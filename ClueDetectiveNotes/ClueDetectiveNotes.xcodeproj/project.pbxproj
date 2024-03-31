@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
+		ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8D12BB90B5E00B1D22B /* ContentView.swift */; };
+		ACFED8D42BB90B5F00B1D22B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */; };
+		ACFED8D72BB90B5F00B1D22B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D62BB90B5F00B1D22B /* Preview Assets.xcassets */; };
+		ACFED8E12BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */; };
+		ACFED8EB2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8EA2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift */; };
+		ACFED8ED2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8EC2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACFED8DD2BB90B5F00B1D22B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACFED8C42BB90B5E00B1D22B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACFED8CB2BB90B5E00B1D22B;
+			remoteInfo = ClueDetectiveNotes;
+		};
+		ACFED8E72BB90B5F00B1D22B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACFED8C42BB90B5E00B1D22B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACFED8CB2BB90B5E00B1D22B;
+			remoteInfo = ClueDetectiveNotes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesApp.swift; sourceTree = "<group>"; };
+		ACFED8D12BB90B5E00B1D22B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ACFED8D62BB90B5F00B1D22B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ACFED8DC2BB90B5F00B1D22B /* ClueDetectiveNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClueDetectiveNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesTests.swift; sourceTree = "<group>"; };
+		ACFED8E62BB90B5F00B1D22B /* ClueDetectiveNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClueDetectiveNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACFED8EA2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesUITests.swift; sourceTree = "<group>"; };
+		ACFED8EC2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACFED8C92BB90B5E00B1D22B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8D92BB90B5F00B1D22B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8E32BB90B5F00B1D22B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACFED8C32BB90B5E00B1D22B = {
+			isa = PBXGroup;
+			children = (
+				ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */,
+				ACFED8DF2BB90B5F00B1D22B /* ClueDetectiveNotesTests */,
+				ACFED8E92BB90B5F00B1D22B /* ClueDetectiveNotesUITests */,
+				ACFED8CD2BB90B5E00B1D22B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ACFED8CD2BB90B5E00B1D22B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */,
+				ACFED8DC2BB90B5F00B1D22B /* ClueDetectiveNotesTests.xctest */,
+				ACFED8E62BB90B5F00B1D22B /* ClueDetectiveNotesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
+				ACFED8D12BB90B5E00B1D22B /* ContentView.swift */,
+				ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */,
+				ACFED8D52BB90B5F00B1D22B /* Preview Content */,
+			);
+			path = ClueDetectiveNotes;
+			sourceTree = "<group>";
+		};
+		ACFED8D52BB90B5F00B1D22B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8D62BB90B5F00B1D22B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ACFED8DF2BB90B5F00B1D22B /* ClueDetectiveNotesTests */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */,
+			);
+			path = ClueDetectiveNotesTests;
+			sourceTree = "<group>";
+		};
+		ACFED8E92BB90B5F00B1D22B /* ClueDetectiveNotesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8EA2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift */,
+				ACFED8EC2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift */,
+			);
+			path = ClueDetectiveNotesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACFED8CB2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACFED8F02BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotes" */;
+			buildPhases = (
+				ACFED8C82BB90B5E00B1D22B /* Sources */,
+				ACFED8C92BB90B5E00B1D22B /* Frameworks */,
+				ACFED8CA2BB90B5E00B1D22B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClueDetectiveNotes;
+			productName = ClueDetectiveNotes;
+			productReference = ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACFED8DB2BB90B5F00B1D22B /* ClueDetectiveNotesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACFED8F32BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotesTests" */;
+			buildPhases = (
+				ACFED8D82BB90B5F00B1D22B /* Sources */,
+				ACFED8D92BB90B5F00B1D22B /* Frameworks */,
+				ACFED8DA2BB90B5F00B1D22B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACFED8DE2BB90B5F00B1D22B /* PBXTargetDependency */,
+			);
+			name = ClueDetectiveNotesTests;
+			productName = ClueDetectiveNotesTests;
+			productReference = ACFED8DC2BB90B5F00B1D22B /* ClueDetectiveNotesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ACFED8E52BB90B5F00B1D22B /* ClueDetectiveNotesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACFED8F62BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotesUITests" */;
+			buildPhases = (
+				ACFED8E22BB90B5F00B1D22B /* Sources */,
+				ACFED8E32BB90B5F00B1D22B /* Frameworks */,
+				ACFED8E42BB90B5F00B1D22B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACFED8E82BB90B5F00B1D22B /* PBXTargetDependency */,
+			);
+			name = ClueDetectiveNotesUITests;
+			productName = ClueDetectiveNotesUITests;
+			productReference = ACFED8E62BB90B5F00B1D22B /* ClueDetectiveNotesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACFED8C42BB90B5E00B1D22B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					ACFED8CB2BB90B5E00B1D22B = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					ACFED8DB2BB90B5F00B1D22B = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = ACFED8CB2BB90B5E00B1D22B;
+					};
+					ACFED8E52BB90B5F00B1D22B = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = ACFED8CB2BB90B5E00B1D22B;
+					};
+				};
+			};
+			buildConfigurationList = ACFED8C72BB90B5E00B1D22B /* Build configuration list for PBXProject "ClueDetectiveNotes" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACFED8C32BB90B5E00B1D22B;
+			productRefGroup = ACFED8CD2BB90B5E00B1D22B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACFED8CB2BB90B5E00B1D22B /* ClueDetectiveNotes */,
+				ACFED8DB2BB90B5F00B1D22B /* ClueDetectiveNotesTests */,
+				ACFED8E52BB90B5F00B1D22B /* ClueDetectiveNotesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACFED8CA2BB90B5E00B1D22B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACFED8D72BB90B5F00B1D22B /* Preview Assets.xcassets in Resources */,
+				ACFED8D42BB90B5F00B1D22B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8DA2BB90B5F00B1D22B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8E42BB90B5F00B1D22B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACFED8C82BB90B5E00B1D22B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */,
+				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8D82BB90B5F00B1D22B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACFED8E12BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACFED8E22BB90B5F00B1D22B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACFED8EB2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift in Sources */,
+				ACFED8ED2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACFED8DE2BB90B5F00B1D22B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACFED8CB2BB90B5E00B1D22B /* ClueDetectiveNotes */;
+			targetProxy = ACFED8DD2BB90B5F00B1D22B /* PBXContainerItemProxy */;
+		};
+		ACFED8E82BB90B5F00B1D22B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACFED8CB2BB90B5E00B1D22B /* ClueDetectiveNotes */;
+			targetProxy = ACFED8E72BB90B5F00B1D22B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ACFED8EE2BB90B5F00B1D22B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ACFED8EF2BB90B5F00B1D22B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACFED8F12BB90B5F00B1D22B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ClueDetectiveNotes/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACFED8F22BB90B5F00B1D22B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ClueDetectiveNotes/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ACFED8F42BB90B5F00B1D22B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClueDetectiveNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ClueDetectiveNotes";
+			};
+			name = Debug;
+		};
+		ACFED8F52BB90B5F00B1D22B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClueDetectiveNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ClueDetectiveNotes";
+			};
+			name = Release;
+		};
+		ACFED8F72BB90B5F00B1D22B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClueDetectiveNotes;
+			};
+			name = Debug;
+		};
+		ACFED8F82BB90B5F00B1D22B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobseeker.ClueDetectiveNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClueDetectiveNotes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACFED8C72BB90B5E00B1D22B /* Build configuration list for PBXProject "ClueDetectiveNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACFED8EE2BB90B5F00B1D22B /* Debug */,
+				ACFED8EF2BB90B5F00B1D22B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACFED8F02BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACFED8F12BB90B5F00B1D22B /* Debug */,
+				ACFED8F22BB90B5F00B1D22B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACFED8F32BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACFED8F42BB90B5F00B1D22B /* Debug */,
+				ACFED8F52BB90B5F00B1D22B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACFED8F62BB90B5F00B1D22B /* Build configuration list for PBXNativeTarget "ClueDetectiveNotesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACFED8F72BB90B5F00B1D22B /* Debug */,
+				ACFED8F82BB90B5F00B1D22B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACFED8C42BB90B5E00B1D22B /* Project object */;
+}
