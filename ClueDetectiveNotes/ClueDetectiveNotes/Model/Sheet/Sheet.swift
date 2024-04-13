@@ -66,12 +66,20 @@ struct Sheet {
         return nil
     }
     
+    mutating func switchSelectionMode() {
+        isMultiMode.toggle()
+    }
+    
     func getRowNames() -> [RowName] {
         return rowNames
     }
     
     func getColNames() -> [ColName] {
         return colNames
+    }
+    
+    func isMultiSelectionMode() -> Bool {
+        return isMultiMode
     }
 }
 
