@@ -57,11 +57,15 @@ final class SheetTests: XCTestCase {
         XCTAssertFalse(sheet.hasSelectedCell())
     }
 
-//    3. 어떤 셀도 선택되지 않은 상태에서 멀티 선택 모드로 스위치(long press)했을 때 멀티 선택 모드가 된다.
-//    → switchToMultiSelectionModeFromNoCellSelectedStateOnLongPress
-//        sheet.hasSelectedCell()
-//        sheet.isMultiSelectionMode()
-//        sheet.switchSelectionMode()
+    // 어떤 셀도 선택되지 않은 상태에서 멀티 선택 모드로 스위치(long press)했을 때 멀티 선택 모드가 된다.
+    func test_switchToMultiSelectionModeFromNoCellSelectedStateOnLongPress() {
+        XCTAssertFalse(sheet.hasSelectedCell())
+        XCTAssertFalse(sheet.isMultiSelectionMode())
+        
+        sheet.switchSelectionMode()
+        
+        XCTAssertTrue(sheet.isMultiSelectionMode())
+    }
 
 //    4. 멀티 선택 모드일 때 선택되지 않은 셀을 선택하면 셀이 추가된다.
 //    → selectUnselectedCellInMultiSelectionModeToAddCell
