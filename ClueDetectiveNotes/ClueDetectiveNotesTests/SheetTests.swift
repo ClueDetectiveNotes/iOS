@@ -83,12 +83,31 @@ final class SheetTests: XCTestCase {
         XCTAssertTrue(sheet.hasSelectedCell())
     }
 
-//    5. 멀티 선택 모드일 때 선택된 셀을 선택하면 해당 셀이 선택 해제된다.
-//    → selectSelectedCellInMultiSelectionModeToDeselectCell
-//        sheet.switchSelectionMode()
-//        sheet.isMultiSelectionMode()
-//        sheet.multiSelectCell(rowname, colname) → List<Cell>
+    // 멀티 선택 모드일 때 선택된 셀을 선택하면 해당 셀이 선택 해제된다.
+    func test_selectSelectedCellInMultiSelectionModeToDeselectCell() {
+        sheet.switchSelectionMode()
+        XCTAssertTrue(sheet.isMultiSelectionMode())
+        
+        guard let _ = sheet.multiSelectCell(
+            rowName: sheet.getRowNames()[0],
+            colName: sheet.getColNames()[0]
+        ) else {
+            XCTFail()
+            return
+        }
+        
+        guard let _ = sheet.multiSelectCell(
+            rowName: sheet.getRowNames()[0],
+            colName: sheet.getColNames()[0]
+        ) else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertFalse(sheet.hasSelectedCell())
+    }
 
+    
 //    6. 멀티 선택 모드일 때 멀티 선택 모드를 해제하면 모든 셀의 선택이 해제되고, 멀티 선택 모드도 해제된다.
 //    → disableMultiSelectionModeToDeselectAllCellsAndExitMultiSelectionMode
 //        sheet.switchSelectionMode()
