@@ -70,6 +70,21 @@ struct Sheet {
         isMultiMode.toggle()
     }
     
+    mutating func multiSelectCell(rowName: RowName, colName: ColName) -> [Cell]? {
+        guard isMultiMode,
+              let cell = findCell(rowName: rowName, colName: colName) else {
+            return nil
+        }
+
+        if let index = selectedCells.firstIndex(of: cell) {
+            selectedCells.remove(at: index)
+        } else {
+            selectedCells.append(cell)
+        }
+        
+        return selectedCells
+    }
+    
     func getRowNames() -> [RowName] {
         return rowNames
     }
