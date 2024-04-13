@@ -10,6 +10,7 @@ struct Sheet {
     private var colNames = [ColName]()
     private var cells = Set<Cell>()
     private var selectedCells = [Cell]()
+    private var isMultiMode: Bool = false
     
     init(
         players: [Player]
@@ -44,6 +45,14 @@ struct Sheet {
         selectedCells.append(selectedCell)
         
         return selectedCell
+    }
+    
+    mutating func unselectCell(rowName: RowName, colName: ColName) {
+        if isMultiMode {
+            
+        } else {
+            selectedCells.removeAll()
+        }
     }
     
     private func findCell(rowName: RowName, colName: ColName) -> Cell? {
