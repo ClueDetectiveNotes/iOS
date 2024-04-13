@@ -67,6 +67,10 @@ struct Sheet {
     }
     
     mutating func switchSelectionMode() {
+        if isMultiMode, !selectedCells.isEmpty {
+            selectedCells.removeAll()
+        }
+        
         isMultiMode.toggle()
     }
     
