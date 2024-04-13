@@ -67,11 +67,21 @@ final class SheetTests: XCTestCase {
         XCTAssertTrue(sheet.isMultiSelectionMode())
     }
 
-//    4. 멀티 선택 모드일 때 선택되지 않은 셀을 선택하면 셀이 추가된다.
-//    → selectUnselectedCellInMultiSelectionModeToAddCell
-//        sheet.switchSelectionMode()
-//        sheet.isMultiSelectionMode()
-//        sheet.multiSelectCell(rowname, colname) → List<Cell>
+    // 멀티 선택 모드일 때 선택되지 않은 셀을 선택하면 셀이 추가된다.
+    func test_selectUnselectedCellInMultiSelectionModeToAddCell() {
+        sheet.switchSelectionMode()
+        XCTAssertTrue(sheet.isMultiSelectionMode())
+       
+        guard let selectedCell = sheet.selectCell(
+            rowName: sheet.getRowNames()[0],
+            colName: sheet.getColNames()[0]
+        ) else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertTrue(sheet.hasSelectedCell())
+    }
 
 //    5. 멀티 선택 모드일 때 선택된 셀을 선택하면 해당 셀이 선택 해제된다.
 //    → selectSelectedCellInMultiSelectionModeToDeselectCell
