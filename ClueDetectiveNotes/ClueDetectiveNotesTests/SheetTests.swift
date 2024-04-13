@@ -35,13 +35,28 @@ final class SheetTests: XCTestCase {
         XCTAssertTrue(sheet.hasSelectedCell())
     }
     
-//    2. 어떤 셀이 선택된 상태에서 어떤 셀이든 선택하면 선택이 취소된다
-//        → selectAnyCellWhileOneCellSelectedUnselectTheCell
-//        sheet.selectCell(Rowname, Colname) → Cell
-//        sheet.hasSelectedCell()
-//        sheet.unselectCell()
+    // 어떤 셀이 선택된 상태에서 어떤 셀이든 선택하면 선택이 취소된다
+    // 멀티모드가 아닐 때, 어떤 셀이 선택된 상태에서 어떤 셀이든 선택하면 선택이 취소된다
+    // -> 다른 셀이 선택되는 것이 아니라? 사용자가 셀이 아닌 다른 곳을 터치한다면?
+    func test_selectAnyCellWhileOneCellSelectedUnselectTheCell() {
+        guard let _ = sheet.selectCell(
+            rowName: sheet.getRowNames()[0],
+            colName: sheet.getColNames()[0]
+        ) else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertTrue(sheet.hasSelectedCell())
+        
+        sheet.unselectCell(
+            rowName: sheet.getRowNames()[0],
+            colName: sheet.getColNames()[0]
+        )
+        
+        XCTAssertFalse(sheet.hasSelectedCell())
+    }
 
-    
 //    3. 어떤 셀도 선택되지 않은 상태에서 멀티 선택 모드로 스위치(long press)했을 때 멀티 선택 모드가 된다.
 //    → switchToMultiSelectionModeFromNoCellSelectedStateOnLongPress
 //        sheet.hasSelectedCell()
