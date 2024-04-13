@@ -2,7 +2,7 @@
 //  ClueDetectiveNotesUITestsLaunchTests.swift
 //  ClueDetectiveNotesUITests
 //
-//  Created by Yena on 2024/03/31.
+//  Created by Dasan & Mary on 2024/03/31.
 //
 
 import XCTest

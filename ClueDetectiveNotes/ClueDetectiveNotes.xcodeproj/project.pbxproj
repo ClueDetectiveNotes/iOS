@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		444293452BCAAF79008CAA2C /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* Sheet.swift */; };
+		444293472BCAB216008CAA2C /* SheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293462BCAB216008CAA2C /* SheetViewModel.swift */; };
+		444293492BCAC0B2008CAA2C /* DefaultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* DefaultCard.swift */; };
+		4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934C2BCAC6D0008CAA2C /* Cell.swift */; };
+		444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934F2BCACB76008CAA2C /* DummyPlayers.swift */; };
+		444293522BCAD10B008CAA2C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293512BCAD10B008CAA2C /* Card.swift */; };
+		444293552BCAD131008CAA2C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293542BCAD131008CAA2C /* Player.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
 		ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8D12BB90B5E00B1D22B /* ContentView.swift */; };
 		ACFED8D42BB90B5F00B1D22B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */; };
 		ACFED8D72BB90B5F00B1D22B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D62BB90B5F00B1D22B /* Preview Assets.xcassets */; };
-		ACFED8E12BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */; };
+		ACFED8E12BB90B5F00B1D22B /* SheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8E02BB90B5F00B1D22B /* SheetTests.swift */; };
 		ACFED8EB2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8EA2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift */; };
 		ACFED8ED2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8EC2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -34,13 +41,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		444293442BCAAF79008CAA2C /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		444293462BCAB216008CAA2C /* SheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewModel.swift; sourceTree = "<group>"; };
+		444293482BCAC0B2008CAA2C /* DefaultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCard.swift; sourceTree = "<group>"; };
+		4442934C2BCAC6D0008CAA2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		4442934F2BCACB76008CAA2C /* DummyPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPlayers.swift; sourceTree = "<group>"; };
+		444293512BCAD10B008CAA2C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		444293542BCAD131008CAA2C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesApp.swift; sourceTree = "<group>"; };
 		ACFED8D12BB90B5E00B1D22B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACFED8D62BB90B5F00B1D22B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ACFED8DC2BB90B5F00B1D22B /* ClueDetectiveNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClueDetectiveNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesTests.swift; sourceTree = "<group>"; };
+		ACFED8E02BB90B5F00B1D22B /* SheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTests.swift; sourceTree = "<group>"; };
 		ACFED8E62BB90B5F00B1D22B /* ClueDetectiveNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClueDetectiveNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFED8EA2BB90B5F00B1D22B /* ClueDetectiveNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesUITests.swift; sourceTree = "<group>"; };
 		ACFED8EC2BB90B5F00B1D22B /* ClueDetectiveNotesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -71,6 +85,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4442933F2BCAAC54008CAA2C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
+				ACFED8D12BB90B5E00B1D22B /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		444293402BCAAC5C008CAA2C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4442934A2BCAC0C2008CAA2C /* Sheet */,
+				4442934B2BCAC0C7008CAA2C /* Card */,
+				444293532BCAD125008CAA2C /* Player */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		444293422BCAAC74008CAA2C /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				444293462BCAB216008CAA2C /* SheetViewModel.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		4442934A2BCAC0C2008CAA2C /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				444293442BCAAF79008CAA2C /* Sheet.swift */,
+				4442934C2BCAC6D0008CAA2C /* Cell.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		4442934B2BCAC0C7008CAA2C /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				444293512BCAD10B008CAA2C /* Card.swift */,
+				444293482BCAC0B2008CAA2C /* DefaultCard.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		4442934E2BCACB5C008CAA2C /* TestDouble */ = {
+			isa = PBXGroup;
+			children = (
+				4442934F2BCACB76008CAA2C /* DummyPlayers.swift */,
+			);
+			path = TestDouble;
+			sourceTree = "<group>";
+		};
+		444293532BCAD125008CAA2C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				444293542BCAD131008CAA2C /* Player.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		ACFED8C32BB90B5E00B1D22B = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +169,9 @@
 		ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
 			isa = PBXGroup;
 			children = (
-				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
-				ACFED8D12BB90B5E00B1D22B /* ContentView.swift */,
+				4442933F2BCAAC54008CAA2C /* App */,
+				444293422BCAAC74008CAA2C /* Feature */,
+				444293402BCAAC5C008CAA2C /* Model */,
 				ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */,
 				ACFED8D52BB90B5F00B1D22B /* Preview Content */,
 			);
@@ -113,7 +189,8 @@
 		ACFED8DF2BB90B5F00B1D22B /* ClueDetectiveNotesTests */ = {
 			isa = PBXGroup;
 			children = (
-				ACFED8E02BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift */,
+				4442934E2BCACB5C008CAA2C /* TestDouble */,
+				ACFED8E02BB90B5F00B1D22B /* SheetTests.swift */,
 			);
 			path = ClueDetectiveNotesTests;
 			sourceTree = "<group>";
@@ -257,8 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444293472BCAB216008CAA2C /* SheetViewModel.swift in Sources */,
+				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
+				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
+				444293492BCAC0B2008CAA2C /* DefaultCard.swift in Sources */,
+				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
+				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACFED8E12BB90B5F00B1D22B /* ClueDetectiveNotesTests.swift in Sources */,
+				ACFED8E12BB90B5F00B1D22B /* SheetTests.swift in Sources */,
+				444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
