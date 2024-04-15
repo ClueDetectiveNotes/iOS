@@ -35,8 +35,20 @@ struct Sheet {
         }
     }
     
+    func getRowNames() -> [RowName] {
+        return rowNames
+    }
+    
+    func getColNames() -> [ColName] {
+        return colNames
+    }
+    
     func hasSelectedCell() -> Bool {
         return !selectedCells.isEmpty
+    }
+    
+    func isMultiSelectionMode() -> Bool {
+        return isMultiMode
     }
     
     mutating func selectCell(rowName: RowName, colName: ColName) throws -> Cell {
@@ -87,16 +99,10 @@ struct Sheet {
         return selectedCells
     }
     
-    func getRowNames() -> [RowName] {
-        return rowNames
-    }
-    
-    func getColNames() -> [ColName] {
-        return colNames
-    }
-    
-    func isMultiSelectionMode() -> Bool {
-        return isMultiMode
+    func selectRow(_ rowName: RowName) -> [Cell] {
+        return cells.filter { cell in
+            cell.rowName == rowName
+        }
     }
 }
 

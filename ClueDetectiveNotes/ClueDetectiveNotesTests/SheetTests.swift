@@ -107,7 +107,7 @@ final class SheetTests: XCTestCase {
         XCTAssertFalse(sheet.isMultiSelectionMode())
     }
     
-    // rowname만 선택되었을 때 row에 해당하는 cell들을 반환한다
+    // rowname만 선택되었을 때 row에 해당하는 cell들을 반환한다.
     func test_returnCellsForRownameSelection() {
         let rowName = sheet.getRowNames()[0]
         let cells = sheet.selectRow(rowName)
