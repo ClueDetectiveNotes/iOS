@@ -24,7 +24,7 @@ final class SheetTests: XCTestCase {
     func test_selectOneCellWithoutAnyCellSelectedCanChooseMarkers() throws {
         XCTAssertFalse(sheet.hasSelectedCell())
         
-        let test = try sheet.selectCell(
+        let _ = try sheet.selectCell(
             rowName: sheet.getRowNames()[0],
             colName: sheet.getColNames()[0]
         )
@@ -106,4 +106,34 @@ final class SheetTests: XCTestCase {
         XCTAssertFalse(sheet.hasSelectedCell())
         XCTAssertFalse(sheet.isMultiSelectionMode())
     }
+    
+    // rowname만 선택되었을 때 row에 해당하는 cell들을 반환한다
+    func test_returnCellsForRownameSelection() {
+        let rowName = sheet.getRowNames()[0]
+        let cells = sheet.selectRow(rowName)
+        
+        XCTAssertEqual(cells.count, sheet.getColNames().count)
+        
+        cells.forEach { cell in
+            XCTAssertEqual(cell.rowName, rowName)
+        }
+    }
+    
+    //    3. colname만 선택되었을 때 col에 해당하는 cell들을 반환한다
+    //    → returnCellsForColnameSelection
+    
+    //    4. rowname과 colname이 선택되었을 때 해당하는 cell들을 반환한다
+    //    → returnCellsForRownameAndColnameSelection
+    
+    //    5. 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
+    //    → returnClueSetForSelectedCategories
+    
+    //    6. 선택된 rowname을 다시 선택하면 해당 rowname이 선택 해제된다.
+    //    → deselectRownameOnReselection
+    
+    //    7. rowname이 선택된 상태에서 같은 카테고리의 rowname이 선택되었을 때 이전 rowname은 선택 해제되고, 해당 rowname은 선택된다.
+    //    → selectNewRownameAndDeselectPreviousInSameCategory
+    
+    //    8. rowname이 선택된 상태에서 다른 카테고리의 rowname이 선택되었을 때 해당 rowname이 추가된다.
+    //    → addRownameSelectionInDifferentCategory
 }
