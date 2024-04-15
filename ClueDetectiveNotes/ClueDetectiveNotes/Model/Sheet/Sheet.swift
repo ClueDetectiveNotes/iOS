@@ -39,8 +39,8 @@ struct Sheet {
         return !selectedCells.isEmpty
     }
     
-    mutating func selectCell(rowName: RowName, colName: ColName) -> Cell? {
-        guard let selectedCell = findCell(rowName: rowName, colName: colName) else { return nil }
+    mutating func selectCell(rowName: RowName, colName: ColName) throws -> Cell {
+        let selectedCell = try findCell(rowName: rowName, colName: colName)
         
         selectedCells.append(selectedCell)
         
@@ -55,7 +55,7 @@ struct Sheet {
         }
     }
     
-    private func findCell(rowName: RowName, colName: ColName) -> Cell? {
+    private func findCell(rowName: RowName, colName: ColName) throws -> Cell {
         for cell in cells {
             if cell.rowName == rowName,
                cell.colName == colName {
@@ -63,7 +63,7 @@ struct Sheet {
             }
         }
 
-        return nil
+        throw SheetError.cellNotFound
     }
     
     mutating func switchSelectionMode() {
@@ -74,11 +74,9 @@ struct Sheet {
         isMultiMode.toggle()
     }
     
-    mutating func multiSelectCell(rowName: RowName, colName: ColName) -> [Cell]? {
-        guard isMultiMode,
-              let cell = findCell(rowName: rowName, colName: colName) else {
-            return nil
-        }
+    mutating func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+        guard isMultiMode else { throw SheetError.notMultiSelectionMode }
+        let cell = try findCell(rowName: rowName, colName: colName)
 
         if let index = selectedCells.firstIndex(of: cell) {
             selectedCells.remove(at: index)
