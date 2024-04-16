@@ -110,6 +110,12 @@ struct Sheet {
             cell.colName == colName
         }
     }
+    
+    func selectRowAndColumn(_ rowName: RowName, _ colName: ColName) -> [Cell] {
+        return cells.filter { cell in
+            cell.rowName == rowName || cell.colName == colName
+        }
+    }
 }
 
 struct RowName: Hashable {
