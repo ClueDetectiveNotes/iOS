@@ -152,6 +152,18 @@ final class SheetTests: XCTestCase {
         }
     }
     
+    // rowname이 선택된 상태에서 같은 카테고리의 rowname이 선택되었을 때 이전 rowname은 선택 해제되고, 해당 rowname은 선택된다.
+    func test_selectNewRownameAndDeselectPreviousInSameCategory() {
+        let firstRowName = sheet.getRowNames()[0]
+        let secondRowName = sheet.getRowNames()[1]
+        _ = sheet.selectRow(firstRowName)
+        _ = sheet.selectRow(secondRowName)
+        
+        let selectedRowNames = sheet.getSelectedRowNames()
+        
+        XCTAssertEqual(selectedRowNames[firstRowName.card.type], secondRowName)
+    }
+    
     //    5. 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
     //    → returnClueSetForSelectedCategories
     
