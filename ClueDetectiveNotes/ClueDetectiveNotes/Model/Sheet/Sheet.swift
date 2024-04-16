@@ -11,6 +11,7 @@ struct Sheet {
     private var cells = Set<Cell>()
     private var selectedCells = [Cell]()
     private var isMultiMode: Bool = false
+    private var selectedRowNames = [CardType:RowName]()
     
     init(
         players: [Player]
@@ -19,7 +20,7 @@ struct Sheet {
             self.colNames.append(ColName(player: player))
         }
         
-        DefaultCard.allCases.forEach { card in
+        Edition.classic.cards.allCards().forEach { card in
             self.rowNames.append(RowName(card: card))
         }
         
@@ -43,8 +44,16 @@ struct Sheet {
         return colNames
     }
     
+    func getSelectedRowNames() -> [CardType:RowName] {
+        return selectedRowNames
+    }
+    
     func hasSelectedCell() -> Bool {
         return !selectedCells.isEmpty
+    }
+    
+    func hasSelectedRowName() -> Bool {
+        return !selectedRowNames.isEmpty
     }
     
     func isMultiSelectionMode() -> Bool {
@@ -99,7 +108,15 @@ struct Sheet {
         return selectedCells
     }
     
-    func selectRow(_ rowName: RowName) -> [Cell] {
+    mutating func selectRow(_ rowName: RowName) -> [Cell] {
+        let type = rowName.card.type
+        
+        if selectedRowNames[type] == rowName {
+            selectedRowNames[type] = nil
+        } else {
+            selectedRowNames[type] = rowName
+        }
+        
         return cells.filter { cell in
             cell.rowName == rowName
         }
@@ -119,7 +136,7 @@ struct Sheet {
 }
 
 struct RowName: Hashable {
-    let card: DefaultCard
+    let card: ClueCard
 }
 
 struct ColName: Hashable {

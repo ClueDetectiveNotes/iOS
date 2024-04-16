@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		444293452BCAAF79008CAA2C /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* Sheet.swift */; };
 		444293472BCAB216008CAA2C /* SheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293462BCAB216008CAA2C /* SheetViewModel.swift */; };
-		444293492BCAC0B2008CAA2C /* DefaultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* DefaultCard.swift */; };
+		444293492BCAC0B2008CAA2C /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* Cards.swift */; };
 		4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934C2BCAC6D0008CAA2C /* Cell.swift */; };
 		444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934F2BCACB76008CAA2C /* DummyPlayers.swift */; };
 		444293522BCAD10B008CAA2C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293512BCAD10B008CAA2C /* Card.swift */; };
 		444293552BCAD131008CAA2C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293542BCAD131008CAA2C /* Player.swift */; };
+		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
 		ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8D12BB90B5E00B1D22B /* ContentView.swift */; };
@@ -35,11 +36,12 @@
 /* Begin PBXFileReference section */
 		444293442BCAAF79008CAA2C /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		444293462BCAB216008CAA2C /* SheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewModel.swift; sourceTree = "<group>"; };
-		444293482BCAC0B2008CAA2C /* DefaultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCard.swift; sourceTree = "<group>"; };
+		444293482BCAC0B2008CAA2C /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		4442934C2BCAC6D0008CAA2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		4442934F2BCACB76008CAA2C /* DummyPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPlayers.swift; sourceTree = "<group>"; };
 		444293512BCAD10B008CAA2C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		444293542BCAD131008CAA2C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesApp.swift; sourceTree = "<group>"; };
@@ -109,7 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				444293512BCAD10B008CAA2C /* Card.swift */,
-				444293482BCAC0B2008CAA2C /* DefaultCard.swift */,
+				444293482BCAC0B2008CAA2C /* Cards.swift */,
+				AC7AB9282BCE7905004A77D3 /* Edition.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -289,7 +292,8 @@
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
-				444293492BCAC0B2008CAA2C /* DefaultCard.swift in Sources */,
+				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
+				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
