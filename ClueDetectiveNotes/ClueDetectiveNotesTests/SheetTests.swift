@@ -131,8 +131,26 @@ final class SheetTests: XCTestCase {
         }
     }
     
-    //    4. rowname과 colname이 선택되었을 때 해당하는 cell들을 반환한다
-    //    → returnCellsForRownameAndColnameSelection
+    // rowname과 colname이 선택되었을 때 해당하는 cell들을 반환한다
+    // selectRowAndColumn 없이 기존 selectRow와 selectColumn으로 충분하지 않을까
+    func test_returnCellsForRownameAndColnameSelection() {
+        let rowName = sheet.getRowNames()[0]
+        let colName = sheet.getColNames()[0]
+        
+        let cells = sheet.selectRowAndColumn(rowName, colName)
+        
+        XCTAssertEqual(
+            cells.count,
+            sheet.getColNames().count + sheet.getRowNames().count - 1
+        )
+        
+        cells.forEach { cell in
+            guard cell.colName == colName || cell.rowName == rowName else {
+                XCTFail()
+                return
+            }
+        }
+    }
     
     //    5. 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
     //    → returnClueSetForSelectedCategories
