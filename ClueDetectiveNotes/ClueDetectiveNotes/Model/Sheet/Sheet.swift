@@ -12,6 +12,7 @@ struct Sheet {
     private var selectedCells = [Cell]()
     private var isMultiMode: Bool = false
     private var selectedRowNames = [CardType:RowName]()
+    private var selectedColName: ColName?
     
     init(
         players: [Player]
@@ -46,6 +47,10 @@ struct Sheet {
     
     func getSelectedRowNames() -> [CardType:RowName] {
         return selectedRowNames
+    }
+    
+    func getSelectedColName() -> ColName? {
+        return selectedColName
     }
     
     func hasSelectedCell() -> Bool {
@@ -122,7 +127,13 @@ struct Sheet {
         }
     }
     
-    func selectColumn(_ colName: ColName) -> [Cell] {
+    mutating func selectColumn(_ colName: ColName) -> [Cell] {
+        if selectedColName == colName {
+            selectedColName = nil
+        } else {
+            selectedColName = colName
+        }
+        
         return cells.filter { cell in
             cell.colName == colName
         }
