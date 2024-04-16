@@ -187,7 +187,20 @@ final class SheetTests: XCTestCase {
         XCTAssertEqual(selectedRowNames[secondRowName.card.type], secondRowName)
     }
 
-    //    5. 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
-    //    → returnClueSetForSelectedCategories
+    // colname이 선택된 상태에서 colname이 선택되었을 때 이전 colname은 선택 해제되고, 해당 colname은 선택된다.
+    func test_selectNewColnameAndDeselectPrevious() {
+        let firstColName = sheet.getColNames()[0]
+        let secondColName = sheet.getColNames()[1]
+        _ = sheet.selectColumn(firstColName)
+        _ = sheet.selectColumn(secondColName)
+        
+        let selectedColName = sheet.getSelectedColName()
+        
+        XCTAssertEqual(selectedColName, secondColName)
+    }
     
+    // 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
+    func test_returnClueSetForSelectedCategories() {
+        
+    }
 }
