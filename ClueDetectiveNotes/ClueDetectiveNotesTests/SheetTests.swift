@@ -119,8 +119,17 @@ final class SheetTests: XCTestCase {
         }
     }
     
-    //    3. colname만 선택되었을 때 col에 해당하는 cell들을 반환한다
-    //    → returnCellsForColnameSelection
+    // colname만 선택되었을 때 col에 해당하는 cell들을 반환한다
+    func test_returnCellsForColnameSelection() {
+        let colName = sheet.getColNames()[0]
+        let cells = sheet.selectColumn(colName)
+        
+        XCTAssertEqual(cells.count, sheet.getRowNames().count)
+        
+        cells.forEach { cell in
+            XCTAssertEqual(cell.colName, colName)
+        }
+    }
     
     //    4. rowname과 colname이 선택되었을 때 해당하는 cell들을 반환한다
     //    → returnCellsForRownameAndColnameSelection
