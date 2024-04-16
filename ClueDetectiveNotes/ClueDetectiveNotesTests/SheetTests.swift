@@ -110,7 +110,8 @@ final class SheetTests: XCTestCase {
     // rowname만 선택되었을 때 row에 해당하는 cell들을 반환한다.
     func test_returnCellsForRownameSelection() {
         let rowName = sheet.getRowNames()[0]
-        let cells = sheet.selectRow(rowName)
+        sheet.selectRow(rowName)
+        let cells = sheet.getCellsInSelectedRowAndColumn()
         
         XCTAssertEqual(cells.count, sheet.getColNames().count)
         
@@ -122,7 +123,8 @@ final class SheetTests: XCTestCase {
     // colname만 선택되었을 때 col에 해당하는 cell들을 반환한다
     func test_returnCellsForColnameSelection() {
         let colName = sheet.getColNames()[0]
-        let cells = sheet.selectColumn(colName)
+        sheet.selectColumn(colName)
+        let cells = sheet.getCellsInSelectedRowAndColumn()
         
         XCTAssertEqual(cells.count, sheet.getRowNames().count)
         
@@ -137,7 +139,10 @@ final class SheetTests: XCTestCase {
         let rowName = sheet.getRowNames()[0]
         let colName = sheet.getColNames()[0]
         
-        let cells = sheet.selectRowAndColumn(rowName, colName)
+        sheet.selectRow(rowName)
+        sheet.selectColumn(colName)
+        
+        let cells = sheet.getCellsInSelectedRowAndColumn()
         
         XCTAssertEqual(
             cells.count,
@@ -156,8 +161,8 @@ final class SheetTests: XCTestCase {
     func test_deselectRownameOnReselection() {
         let rowName = sheet.getRowNames()[0]
         
-        _ = sheet.selectRow(rowName)
-        _ = sheet.selectRow(rowName)
+        sheet.selectRow(rowName)
+        sheet.selectRow(rowName)
         
         XCTAssertFalse(sheet.hasSelectedRowName())
     }
@@ -166,8 +171,8 @@ final class SheetTests: XCTestCase {
     func test_selectNewRownameAndDeselectPreviousInSameCategory() {
         let firstRowName = sheet.getRowNames()[0]
         let secondRowName = sheet.getRowNames()[1]
-        _ = sheet.selectRow(firstRowName)
-        _ = sheet.selectRow(secondRowName)
+        sheet.selectRow(firstRowName)
+        sheet.selectRow(secondRowName)
         
         let selectedRowNames = sheet.getSelectedRowNames()
         
@@ -178,8 +183,8 @@ final class SheetTests: XCTestCase {
     func test_addRownameSelectionInDifferentCategory() {
         let firstRowName = sheet.getRowNames()[0]
         let secondRowName = sheet.getRowNames()[10]
-        _ = sheet.selectRow(firstRowName)
-        _ = sheet.selectRow(secondRowName)
+        sheet.selectRow(firstRowName)
+        sheet.selectRow(secondRowName)
         
         let selectedRowNames = sheet.getSelectedRowNames()
         
@@ -191,8 +196,8 @@ final class SheetTests: XCTestCase {
     func test_selectNewColnameAndDeselectPrevious() {
         let firstColName = sheet.getColNames()[0]
         let secondColName = sheet.getColNames()[1]
-        _ = sheet.selectColumn(firstColName)
-        _ = sheet.selectColumn(secondColName)
+        sheet.selectColumn(firstColName)
+        sheet.selectColumn(secondColName)
         
         let selectedColName = sheet.getSelectedColName()
         

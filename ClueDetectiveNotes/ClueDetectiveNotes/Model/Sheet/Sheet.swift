@@ -45,6 +45,10 @@ struct Sheet {
         return colNames
     }
     
+    func getSelectedCells() -> [Cell] {
+        return selectedCells
+    }
+    
     func getSelectedRowNames() -> [CardType:RowName] {
         return selectedRowNames
     }
@@ -113,7 +117,7 @@ struct Sheet {
         return selectedCells
     }
     
-    mutating func selectRow(_ rowName: RowName) -> [Cell] {
+    mutating func selectRow(_ rowName: RowName) {
         let type = rowName.card.type
         
         if selectedRowNames[type] == rowName {
@@ -121,27 +125,22 @@ struct Sheet {
         } else {
             selectedRowNames[type] = rowName
         }
-        
-        return cells.filter { cell in
-            cell.rowName == rowName
-        }
     }
     
-    mutating func selectColumn(_ colName: ColName) -> [Cell] {
+    mutating func selectColumn(_ colName: ColName) {
         if selectedColName == colName {
             selectedColName = nil
         } else {
             selectedColName = colName
         }
-        
-        return cells.filter { cell in
-            cell.colName == colName
-        }
     }
     
-    func selectRowAndColumn(_ rowName: RowName, _ colName: ColName) -> [Cell] {
+    func getCellsInSelectedRowAndColumn() -> [Cell] {
+        let rowNames = selectedRowNames.values
+        let colName = selectedColName
+        
         return cells.filter { cell in
-            cell.rowName == rowName || cell.colName == colName
+            rowNames.contains(cell.rowName) || cell.colName == colName
         }
     }
 }
