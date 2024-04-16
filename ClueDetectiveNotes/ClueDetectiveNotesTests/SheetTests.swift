@@ -204,6 +204,31 @@ final class SheetTests: XCTestCase {
         XCTAssertEqual(selectedColName, secondColName)
     }
     
+    // 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 하이라이트를 위한 셀을 반환한다
+    func test_returnCellsForSelectedCategories() {
+        let suspect = sheet.getRowNames()[0]
+        let weapon = sheet.getRowNames()[7]
+        let room = sheet.getRowNames()[12]
+        let player = sheet.getColNames()[0]
+        
+        sheet.selectRow(suspect)
+        sheet.selectRow(weapon)
+        sheet.selectRow(room)
+        sheet.selectColumn(player)
+        
+        let cells = sheet.getCellsInSelectedRowAndColumn()
+        
+        let filteredBySuspect = cells.filter { $0.rowName == suspect }
+        let filteredByWeapon = cells.filter { $0.rowName == weapon }
+        let filteredByRoom = cells.filter { $0.rowName == room }
+        let filteredByPlayer = cells.filter { $0.colName == player }
+        
+        XCTAssertEqual(filteredBySuspect.count, sheet.getColNames().count)
+        XCTAssertEqual(filteredByWeapon.count, sheet.getColNames().count)
+        XCTAssertEqual(filteredByRoom.count, sheet.getColNames().count)
+        XCTAssertEqual(filteredByPlayer.count, sheet.getRowNames().count)
+    }
+    
     // 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
     func test_returnClueSetForSelectedCategories() {
         
