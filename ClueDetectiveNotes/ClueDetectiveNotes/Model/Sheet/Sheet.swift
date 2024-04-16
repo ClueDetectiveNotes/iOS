@@ -10,6 +10,7 @@ struct Sheet {
     private var colNames = [ColName]()
     private var cells = Set<Cell>()
     private var selectedCells = [Cell]()
+    private var selectedRowNames = [RowName]()
     private var isMultiMode: Bool = false
     
     init(
@@ -45,6 +46,10 @@ struct Sheet {
     
     func hasSelectedCell() -> Bool {
         return !selectedCells.isEmpty
+    }
+    
+    func hasSelectedRowName() -> Bool {
+        return !selectedRowNames.isEmpty
     }
     
     func isMultiSelectionMode() -> Bool {
@@ -99,7 +104,13 @@ struct Sheet {
         return selectedCells
     }
     
-    func selectRow(_ rowName: RowName) -> [Cell] {
+    mutating func selectRow(_ rowName: RowName) -> [Cell] {
+        if let index = selectedRowNames.firstIndex(of: rowName) {
+            selectedRowNames.remove(at: index)
+        } else {
+            selectedRowNames.append(rowName)
+        }
+        
         return cells.filter { cell in
             cell.rowName == rowName
         }
