@@ -135,12 +135,18 @@ struct Sheet {
         }
     }
     
-    func getCellsInSelectedRowAndColumn() -> [Cell] {
+    func getCellsInSelectedRowAndColumn(intersectionOnly: Bool) -> [Cell] {
         let rowNames = selectedRowNames.values
         let colName = selectedColName
         
-        return cells.filter { cell in
-            rowNames.contains(cell.rowName) || cell.colName == colName
+        if intersectionOnly {
+            return cells.filter { cell in
+                rowNames.contains(cell.rowName) && cell.colName == colName
+            }
+        } else {
+            return cells.filter { cell in
+                rowNames.contains(cell.rowName) || cell.colName == colName
+            }
         }
     }
 }
