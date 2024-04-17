@@ -11,11 +11,11 @@ protocol Markerable {
     var notation: markerType { get set }
 }
 
-struct SubMarker: Markerable {
+struct SubMarker: Markerable, Hashable {
     var notation: String
 }
 
-struct MainMarker: Markerable {
+struct MainMarker: Markerable, Equatable {
     var notation: MainMarkerType
 }
 

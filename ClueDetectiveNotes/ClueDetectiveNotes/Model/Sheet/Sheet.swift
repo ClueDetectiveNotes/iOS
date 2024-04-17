@@ -87,8 +87,8 @@ struct Sheet {
     
     private func findCell(rowName: RowName, colName: ColName) throws -> Cell {
         for cell in cells {
-            if cell.rowName == rowName,
-               cell.colName == colName {
+            if cell.getRowName() == rowName,
+               cell.getColName() == colName {
                 return cell
             }
         }
@@ -141,20 +141,20 @@ struct Sheet {
         
         if intersectionOnly {
             return cells.filter { cell in
-                rowNames.contains(cell.rowName) && cell.colName == colName
+                rowNames.contains(cell.getRowName()) && cell.getColName() == colName
             }
         } else {
             return cells.filter { cell in
-                rowNames.contains(cell.rowName) || cell.colName == colName
+                rowNames.contains(cell.getRowName()) || cell.getColName() == colName
             }
         }
     }
 }
 
-struct RowName: Equatable {
+struct RowName: Hashable {
     let card: ClueCard
 }
 
-struct ColName: Equatable {
+struct ColName: Hashable {
     let player: Player
 }

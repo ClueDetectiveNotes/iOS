@@ -116,7 +116,7 @@ final class SheetTests: XCTestCase {
         XCTAssertEqual(cells.count, sheet.getColNames().count)
         
         cells.forEach { cell in
-            XCTAssertEqual(cell.rowName, rowName)
+            XCTAssertEqual(cell.getRowName(), rowName)
         }
     }
     
@@ -129,7 +129,7 @@ final class SheetTests: XCTestCase {
         XCTAssertEqual(cells.count, sheet.getRowNames().count)
         
         cells.forEach { cell in
-            XCTAssertEqual(cell.colName, colName)
+            XCTAssertEqual(cell.getColName(), colName)
         }
     }
     
@@ -150,7 +150,7 @@ final class SheetTests: XCTestCase {
         )
         
         cells.forEach { cell in
-            guard cell.colName == colName || cell.rowName == rowName else {
+            guard cell.getColName() == colName || cell.getRowName() == rowName else {
                 XCTFail()
                 return
             }
@@ -218,10 +218,10 @@ final class SheetTests: XCTestCase {
         
         let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: false)
         
-        let filteredBySuspect = cells.filter { $0.rowName == suspect }
-        let filteredByWeapon = cells.filter { $0.rowName == weapon }
-        let filteredByRoom = cells.filter { $0.rowName == room }
-        let filteredByPlayer = cells.filter { $0.colName == player }
+        let filteredBySuspect = cells.filter { $0.getRowName() == suspect }
+        let filteredByWeapon = cells.filter { $0.getRowName() == weapon }
+        let filteredByRoom = cells.filter { $0.getRowName() == room }
+        let filteredByPlayer = cells.filter { $0.getColName() == player }
         
         XCTAssertEqual(filteredBySuspect.count, sheet.getColNames().count)
         XCTAssertEqual(filteredByWeapon.count, sheet.getColNames().count)
