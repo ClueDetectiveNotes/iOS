@@ -111,7 +111,7 @@ final class SheetTests: XCTestCase {
     func test_returnCellsForRownameSelection() {
         let rowName = sheet.getRowNames()[0]
         sheet.selectRow(rowName)
-        let cells = sheet.getCellsInSelectedRowAndColumn()
+        let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: false)
         
         XCTAssertEqual(cells.count, sheet.getColNames().count)
         
@@ -124,7 +124,7 @@ final class SheetTests: XCTestCase {
     func test_returnCellsForColnameSelection() {
         let colName = sheet.getColNames()[0]
         sheet.selectColumn(colName)
-        let cells = sheet.getCellsInSelectedRowAndColumn()
+        let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: false)
         
         XCTAssertEqual(cells.count, sheet.getRowNames().count)
         
@@ -142,7 +142,7 @@ final class SheetTests: XCTestCase {
         sheet.selectRow(rowName)
         sheet.selectColumn(colName)
         
-        let cells = sheet.getCellsInSelectedRowAndColumn()
+        let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: false)
         
         XCTAssertEqual(
             cells.count,
@@ -216,7 +216,7 @@ final class SheetTests: XCTestCase {
         sheet.selectRow(room)
         sheet.selectColumn(player)
         
-        let cells = sheet.getCellsInSelectedRowAndColumn()
+        let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: false)
         
         let filteredBySuspect = cells.filter { $0.rowName == suspect }
         let filteredByWeapon = cells.filter { $0.rowName == weapon }
@@ -231,6 +231,18 @@ final class SheetTests: XCTestCase {
     
     // 용의자, 무기, 장소에 해당하는 rowname 3개가 player(colname)가 선택되었을 때, 추리세트(셀)를 반환한다
     func test_returnClueSetForSelectedCategories() {
+        let suspect = sheet.getRowNames()[0] // 스칼렛
+        let weapon = sheet.getRowNames()[7] // 나이프
+        let room = sheet.getRowNames()[12] // 침실
+        let player = sheet.getColNames()[0] // 코코
         
+        sheet.selectRow(suspect)
+        sheet.selectRow(weapon)
+        sheet.selectRow(room)
+        sheet.selectColumn(player)
+        
+        let cells = sheet.getCellsInSelectedRowAndColumn(intersectionOnly: true)
+        
+        XCTAssertEqual(cells.count, 3)
     }
 }
