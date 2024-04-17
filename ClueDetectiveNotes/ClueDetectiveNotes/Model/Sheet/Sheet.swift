@@ -11,7 +11,7 @@ struct Sheet {
     private var cells = Set<Cell>()
     private var selectedCells = [Cell]()
     private var isMultiMode: Bool = false
-    private var selectedRowNames = [CardType:RowName]()
+    private var selectedRowNames = [CardType: RowName]()
     private var selectedColName: ColName?
     
     init(
@@ -151,10 +151,10 @@ struct Sheet {
     }
 }
 
-struct RowName: Hashable {
+struct RowName: Equatable {
     let card: ClueCard
 }
 
-struct ColName: Hashable {
+struct ColName: Equatable {
     let player: Player
 }

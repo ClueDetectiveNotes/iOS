@@ -12,12 +12,13 @@ struct Cell: Identifiable, Hashable {
         return lhs.id == rhs.id
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     let id: String = UUID().uuidString
     let rowName: RowName
     let colName: ColName
-    var markers: [Marker] = []
-}
-
-struct Marker: Hashable {
-    let notation: String
+    var mainMarker: MainMarker?
+    var subMarkers: [SubMarker]?
 }
