@@ -7,18 +7,52 @@
 
 import Foundation
 
-struct Cell: Identifiable, Hashable {
+final class Cell {
+    private let rowName: RowName
+    private let colName: ColName
+    private var mainMarker: MainMarker?
+    private var subMarkers = Set<SubMarker>()
+    
+    init(
+        rowName: RowName,
+        colName: ColName
+    ) {
+        self.rowName = rowName
+        self.colName = colName
+    }
+    
+    func getRowName() -> RowName {
+        return rowName
+    }
+    
+    func getColName() -> ColName {
+        return colName
+    }
+    
+    func getMainMarker() -> MainMarker? {
+        return mainMarker
+    }
+    
+    func getSubMarkers() -> Set<SubMarker> {
+        return subMarkers
+    }
+    
+    func setMainMarker(_ marker: MainMarker) {
+        mainMarker = marker
+    }
+    
+    func setSubMarker(_ marker: SubMarker) {
+        subMarkers.insert(marker)
+    }
+}
+
+extension Cell: Hashable {
     static func == (lhs: Cell, rhs: Cell) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.rowName == rhs.rowName && lhs.colName == rhs.colName
     }
-    
+
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(rowName)
+        hasher.combine(colName)
     }
-    
-    let id: String = UUID().uuidString
-    let rowName: RowName
-    let colName: ColName
-    var mainMarker: MainMarker?
-    var subMarkers: [SubMarker]?
 }
