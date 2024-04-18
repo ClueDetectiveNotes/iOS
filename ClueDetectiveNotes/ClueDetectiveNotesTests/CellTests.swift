@@ -64,8 +64,17 @@ final class CellTests: XCTestCase {
         XCTAssertFalse(expectation.contains(subMarker))
     }
 
-//    3. main marker가 있는 상태에서 main marker가 들어오면 새로운 값으로 override된다.
-//    → overrideMainMarkerIfAlreadyExists
+    // main marker가 있는 상태에서 main marker가 들어오면 새로운 값으로 override된다.
+    func test_overrideMainMarkerIfAlreadyExists() {
+        let previousMainMarker = MainMarker(notation: .question)
+        let mainMarker = MainMarker(notation: .exclamation)
+        cell.setMainMarker(previousMainMarker)
+        cell.setMainMarker(mainMarker)
+        
+        let expectation = cell.getMainMarker()
+        
+        XCTAssertEqual(mainMarker, expectation)
+    }
 
 //    4. sub marker가 있는 상태에서 sub marker가 들어오면 markers에 추가된다.
 //    → addSubMarkerIfAlreadyExists
