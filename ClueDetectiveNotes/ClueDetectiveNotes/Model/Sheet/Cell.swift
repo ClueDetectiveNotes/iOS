@@ -46,7 +46,11 @@ final class Cell {
     }
     
     func setSubMarker(_ marker: SubMarker) {
-        subMarkers.insert(marker)
+        if subMarkers.contains(marker) {
+            subMarkers.remove(marker)
+        } else {
+            subMarkers.insert(marker)
+        }
     }
 }
 
