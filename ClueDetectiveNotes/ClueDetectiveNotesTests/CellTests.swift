@@ -38,6 +38,7 @@ final class CellTests: XCTestCase {
         cell.setSubMarker(subMarker)
         
         let expectation = cell.getSubMarkers()
+        
         XCTAssertTrue(expectation.contains(subMarker))
     }
 
@@ -54,7 +55,13 @@ final class CellTests: XCTestCase {
     
     // 이미 설정된 subMarker를 다시 설정하면 해당 subMarker가 삭제된다.
     func test_removeSubMarkerIfAlreadySet() {
+        let subMarker = SubMarker(notation: "a")
+        cell.setSubMarker(subMarker)
+        cell.setSubMarker(subMarker)
         
+        let expectation = cell.getSubMarkers()
+        
+        XCTAssertFalse(expectation.contains(subMarker))
     }
 
 //    3. main marker가 있는 상태에서 main marker가 들어오면 새로운 값으로 override된다.
