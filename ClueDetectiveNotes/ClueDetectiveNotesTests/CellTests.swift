@@ -41,8 +41,21 @@ final class CellTests: XCTestCase {
         XCTAssertTrue(expectation.contains(subMarker))
     }
 
-//    2. 이미 설정된 marker를 다시 설정하면 해당 marker가 삭제된다.
-//    → removeMarkerIfAlreadySet
+    // 이미 설정된 mainMarker를 다시 설정하면 해당 mainMarker가 삭제된다.
+    func test_removeMainMarkerIfAlreadySet() {
+        let mainMarker = MainMarker(notation: .question)
+        cell.setMainMarker(mainMarker)
+        cell.setMainMarker(mainMarker)
+        
+        let expectation = cell.getMainMarker()
+        
+        XCTAssertNil(expectation)
+    }
+    
+    // 이미 설정된 subMarker를 다시 설정하면 해당 subMarker가 삭제된다.
+    func test_removeSubMarkerIfAlreadySet() {
+        
+    }
 
 //    3. main marker가 있는 상태에서 main marker가 들어오면 새로운 값으로 override된다.
 //    → overrideMainMarkerIfAlreadyExists
