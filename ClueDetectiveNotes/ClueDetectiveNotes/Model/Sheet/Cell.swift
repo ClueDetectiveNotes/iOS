@@ -38,7 +38,11 @@ final class Cell {
     }
     
     func setMainMarker(_ marker: MainMarker) {
-        mainMarker = marker
+        if mainMarker == marker {
+            mainMarker = nil
+        } else {
+            mainMarker = marker
+        }
     }
     
     func setSubMarker(_ marker: SubMarker) {
