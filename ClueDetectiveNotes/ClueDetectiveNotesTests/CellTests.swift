@@ -76,6 +76,16 @@ final class CellTests: XCTestCase {
         XCTAssertEqual(mainMarker, expectation)
     }
 
-//    4. sub marker가 있는 상태에서 sub marker가 들어오면 markers에 추가된다.
-//    → addSubMarkerIfAlreadyExists
+    // sub marker가 있는 상태에서 sub marker가 들어오면 markers에 추가된다.
+    func test_addSubMarkerIfAlreadyExists() {
+        let previousSubMarker = SubMarker(notation: "a")
+        let subMarker = SubMarker(notation: "b")
+        cell.setSubMarker(previousSubMarker)
+        cell.setSubMarker(subMarker)
+        
+        let expectation = cell.getSubMarkers()
+        
+        XCTAssertTrue(expectation.contains(previousSubMarker))
+        XCTAssertTrue(expectation.contains(subMarker))
+    }
 }
