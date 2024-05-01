@@ -7,7 +7,8 @@
 
 import Foundation
 
-final class Cell {
+struct Cell: Identifiable {
+    let id = UUID()
     private let rowName: RowName
     private let colName: ColName
     private var mainMarker: MainMarker?
@@ -37,7 +38,7 @@ final class Cell {
         return subMarkers
     }
     
-    func setMainMarker(_ marker: MainMarker) {
+    mutating func setMainMarker(_ marker: MainMarker) {
         if mainMarker == marker {
             mainMarker = nil
         } else {
@@ -45,22 +46,11 @@ final class Cell {
         }
     }
     
-    func setSubMarker(_ marker: SubMarker) {
+    mutating func setSubMarker(_ marker: SubMarker) {
         if subMarkers.contains(marker) {
             subMarkers.remove(marker)
         } else {
             subMarkers.insert(marker)
         }
-    }
-}
-
-extension Cell: Hashable {
-    static func == (lhs: Cell, rhs: Cell) -> Bool {
-        return lhs.rowName == rhs.rowName && lhs.colName == rhs.colName
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(rowName)
-        hasher.combine(colName)
     }
 }
