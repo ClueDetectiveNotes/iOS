@@ -1,38 +1,43 @@
 //
-//  Sheet.swift
+//  SheetStore.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan & Mary on 2024/04/13.
 //
 
-struct Sheet {
+import Foundation
+
+final class SheetStore: ObservableObject {
+    @Published var cells = [Cell]()
+    private var isMultiMode: Bool
     private var rowNames = [RowName]()
     private var colNames = [ColName]()
-    private var cells = Set<Cell>()
     private var selectedCells = [Cell]()
-    private var isMultiMode: Bool = false
     private var selectedRowNames = [CardType: RowName]()
     private var selectedColName: ColName?
     
     init(
-        players: [Player]
+        players: [Player],
+        cards: Cards,
+        isMultiMode: Bool = false
     ) {
+        self.isMultiMode = isMultiMode
+        
         players.forEach { player in
-            self.colNames.append(ColName(player: player))
+            colNames.append(ColName(player: player))
         }
-        
-        Edition.classic.cards.allCards().forEach { card in
-            self.rowNames.append(RowName(card: card))
+
+        cards.allCards().forEach { card in
+            rowNames.append(RowName(card: card))
         }
-        
+
         for rowName in rowNames {
             for colName in colNames {
                 let cell = Cell(
                     rowName: rowName,
                     colName: colName
                 )
-                
-                cells.insert(cell)
+                cells.append(cell)
             }
         }
     }
@@ -65,11 +70,29 @@ struct Sheet {
         return !selectedRowNames.isEmpty
     }
     
+    func hasSelectedColName() -> Bool {
+        return selectedColName != nil
+    }
+    
     func isMultiSelectionMode() -> Bool {
         return isMultiMode
     }
     
-    mutating func selectCell(rowName: RowName, colName: ColName) throws -> Cell {
+    func cellTapped(_ cell: Cell) {
+        if let index = selectedCells.firstIndex(where: { $0.id == cell.id }) {
+            selectedCells.remove(at: index)
+        } else {
+            if isMultiMode {
+                selectedCells.append(cell)
+            } else if selectedCells.isEmpty {
+                selectedCells.append(cell)
+            } else {
+                selectedCells.removeAll()
+            }
+        }
+    }
+    
+    func selectCell(rowName: RowName, colName: ColName) throws -> Cell {
         let selectedCell = try findCell(rowName: rowName, colName: colName)
         
         selectedCells.append(selectedCell)
@@ -77,7 +100,7 @@ struct Sheet {
         return selectedCell
     }
     
-    mutating func unselectCell(rowName: RowName, colName: ColName) {
+    func unselectCell(rowName: RowName, colName: ColName) {
         if isMultiMode {
             
         } else {
@@ -85,7 +108,21 @@ struct Sheet {
         }
     }
     
-    private func findCell(rowName: RowName, colName: ColName) throws -> Cell {
+    func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+        guard isMultiMode else { throw SheetError.notMultiSelectionMode }
+        
+        let cell = try findCell(rowName: rowName, colName: colName)
+
+        if let index = selectedCells.firstIndex(where: { $0.id == cell.id }) {
+            selectedCells.remove(at: index)
+        } else {
+            selectedCells.append(cell)
+        }
+        
+        return selectedCells
+    }
+    
+    func findCell(rowName: RowName, colName: ColName) throws -> Cell {
         for cell in cells {
             if cell.getRowName() == rowName,
                cell.getColName() == colName {
@@ -96,7 +133,7 @@ struct Sheet {
         throw SheetError.cellNotFound
     }
     
-    mutating func switchSelectionMode() {
+    func switchSelectionMode() {
         if isMultiMode, !selectedCells.isEmpty {
             selectedCells.removeAll()
         }
@@ -104,20 +141,7 @@ struct Sheet {
         isMultiMode.toggle()
     }
     
-    mutating func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        guard isMultiMode else { throw SheetError.notMultiSelectionMode }
-        let cell = try findCell(rowName: rowName, colName: colName)
-
-        if let index = selectedCells.firstIndex(of: cell) {
-            selectedCells.remove(at: index)
-        } else {
-            selectedCells.append(cell)
-        }
-        
-        return selectedCells
-    }
-    
-    mutating func selectRow(_ rowName: RowName) {
+    func selectRow(_ rowName: RowName) {
         let type = rowName.card.type
         
         if selectedRowNames[type] == rowName {
@@ -127,7 +151,7 @@ struct Sheet {
         }
     }
     
-    mutating func selectColumn(_ colName: ColName) {
+    func selectColumn(_ colName: ColName) {
         if selectedColName == colName {
             selectedColName = nil
         } else {

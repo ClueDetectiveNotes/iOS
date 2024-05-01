@@ -9,10 +9,10 @@ import XCTest
 @testable import ClueDetectiveNotes
 
 final class SheetTests: XCTestCase {
-    private var sheet: Sheet!
+    private var sheet: SheetStore!
     
     override func setUpWithError() throws {
-        sheet = Sheet(players: DummyPlayers.players)
+        sheet = SheetStore(players: DummyPlayers.players, cards: Edition.classic.cards)
     }
     
     override func tearDownWithError() throws {
@@ -32,7 +32,6 @@ final class SheetTests: XCTestCase {
         XCTAssertTrue(sheet.hasSelectedCell())
     }
     
-    // 어떤 셀이 선택된 상태에서 어떤 셀이든 선택하면 선택이 취소된다
     // 멀티모드가 아닐 때, 어떤 셀이 선택된 상태에서 어떤 셀이든 선택하면 선택이 취소된다
     // -> 다른 셀이 선택되는 것이 아니라? 사용자가 셀이 아닌 다른 곳을 터치한다면?
     func test_selectAnyCellWhileOneCellSelectedUnselectTheCell() throws {
