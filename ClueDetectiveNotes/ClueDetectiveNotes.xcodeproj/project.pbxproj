@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		444293452BCAAF79008CAA2C /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* SheetStore.swift */; };
+		444293452BCAAF79008CAA2C /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* Sheet.swift */; };
 		444293492BCAC0B2008CAA2C /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* Cards.swift */; };
 		4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934C2BCAC6D0008CAA2C /* Cell.swift */; };
 		444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934F2BCACB76008CAA2C /* DummyPlayers.swift */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		444293442BCAAF79008CAA2C /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
+		444293442BCAAF79008CAA2C /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		444293482BCAC0B2008CAA2C /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		4442934C2BCAC6D0008CAA2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		4442934F2BCACB76008CAA2C /* DummyPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPlayers.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		444293402BCAAC5C008CAA2C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4442934A2BCAC0C2008CAA2C /* Cell */,
+				4442934A2BCAC0C2008CAA2C /* Sheet */,
 				4442934B2BCAC0C7008CAA2C /* Card */,
 				444293532BCAD125008CAA2C /* Player */,
 			);
@@ -94,19 +94,19 @@
 		444293422BCAAC74008CAA2C /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				444293442BCAAF79008CAA2C /* SheetStore.swift */,
-				AC9F1FFB2BCD1A77008283DF /* Errors */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
 		};
-		4442934A2BCAC0C2008CAA2C /* Cell */ = {
+		4442934A2BCAC0C2008CAA2C /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				AC9F1FFB2BCD1A77008283DF /* Errors */,
+				444293442BCAAF79008CAA2C /* Sheet.swift */,
 				4442934C2BCAC6D0008CAA2C /* Cell.swift */,
 				44E8D8D12BD0116000A989E2 /* Marker.swift */,
 			);
-			path = Cell;
+			path = Sheet;
 			sourceTree = "<group>";
 		};
 		4442934B2BCAC0C7008CAA2C /* Card */ = {
@@ -291,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444293452BCAAF79008CAA2C /* SheetStore.swift in Sources */,
+				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
