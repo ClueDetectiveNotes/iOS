@@ -127,6 +127,17 @@ struct Sheet {
         isMultiMode.toggle()
     }
     
+    mutating func multiSelectCell(_ cell: Cell) throws -> [Cell] {
+        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard !isSelectedCell(cell) else {
+            throw SheetError.cannotSelectAlreadySelectedCell
+        }
+        
+        selectedCells.append(cell)
+        
+        return selectedCells
+    }
+    
     mutating func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
         guard try !isSelectedCell(rowName: rowName, colName: colName) else {
@@ -136,6 +147,19 @@ struct Sheet {
         let cell = try findCell(rowName: rowName, colName: colName)
         selectedCells.append(cell)
 
+        return selectedCells
+    }
+    
+    mutating func multiUnselectCell(_ cell: Cell) throws -> [Cell] {
+        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard isSelectedCell(cell) else {
+            throw SheetError.cannotUnselectNeverChosenCell
+        }
+        
+        if let index = selectedCells.firstIndex(where: { $0 == cell }) {
+            selectedCells.remove(at: index)
+        }
+        
         return selectedCells
     }
     
