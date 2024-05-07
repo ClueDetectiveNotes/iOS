@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Cell: Identifiable {
-    let id = UUID()
+struct Cell {
+    private let id = UUID()
     private let rowName: RowName
     private let colName: ColName
     private var mainMarker: MainMarker?
@@ -38,19 +38,47 @@ struct Cell: Identifiable {
         return subMarkers
     }
     
-    mutating func setMainMarker(_ marker: MainMarker) {
-        if mainMarker == marker {
-            mainMarker = nil
-        } else {
-            mainMarker = marker
-        }
+    func isEmptyMainMarker() -> Bool {
+        return mainMarker == nil
     }
     
-    mutating func setSubMarker(_ marker: SubMarker) {
-        if subMarkers.contains(marker) {
-            subMarkers.remove(marker)
-        } else {
-            subMarkers.insert(marker)
+    func isEmptySubMarkers() -> Bool {
+        return subMarkers.isEmpty
+    }
+    
+    func containsSubMarker(_ marker: SubMarker) -> Bool {
+        return subMarkers.contains(marker)
+    }
+    
+    func equalsMainMarker(_ marker: MainMarker) -> Bool {
+        return mainMarker == marker
+    }
+    
+    mutating func setMainMarker(_ marker: MainMarker) {
+        mainMarker = marker
+    }
+    
+    mutating func setSubMarker(_ marker: SubMarker) throws {
+        guard !subMarkers.contains(marker) else {
+            throw CellError.alreadyContainsSubMarker
         }
+        subMarkers.insert(marker)
+    }
+    
+    mutating func removeMainMarker() {
+        mainMarker = nil
+    }
+    
+    mutating func removeSubMarker(_ marker: SubMarker) throws {
+        guard !subMarkers.contains(marker) else {
+            throw CellError.alreadyContainsSubMarker
+        }
+        subMarkers.remove(marker)
+    }
+}
+
+extension Cell: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
     }
 }
