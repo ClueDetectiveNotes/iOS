@@ -2,7 +2,7 @@
 //  SheetError.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 2024/04/15.
+//  Created by Dasan & Mary on 2024/04/15.
 //
 
 import Foundation

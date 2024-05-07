@@ -2,7 +2,7 @@
 //  Marker.swift
 //  ClueDetectiveNotes
 //
-//  Created by MARY on 2024/04/17.
+//  Created by Dasan & Mary on 2024/04/17.
 //
 
 protocol Markerable {
@@ -20,13 +20,13 @@ struct MainMarker: Markerable, Equatable {
 }
 
 enum MainMarkerType: CustomStringConvertible {
-    case x, o, question, exclamation, slash
+    case cross, check, question, exclamation, slash
 
     var description: String {
         switch self {
-        case .x:
+        case .cross:
             return "X"
-        case .o:
+        case .check:
             return "O"
         case .question:
             return "?"

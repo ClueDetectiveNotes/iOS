@@ -111,7 +111,7 @@ struct Sheet {
                 return cell
             }
         }
-
+        
         throw SheetError.cellNotFound
     }
     
@@ -146,7 +146,7 @@ struct Sheet {
         }
         
         let cell = try findCell(rowName: rowName, colName: colName)
-        if let index = selectedCells.firstIndex(where: { $0.id == cell.id }) {
+        if let index = selectedCells.firstIndex(where: { $0 == cell }) {
             selectedCells.remove(at: index)
         }
         
@@ -154,12 +154,12 @@ struct Sheet {
     }
     
     func isSelectedCell(_ cell: Cell) -> Bool {
-        return selectedCells.contains(where: { $0.id == cell.id })
+        return selectedCells.contains(cell)
     }
     
     func isSelectedCell(rowName: RowName, colName: ColName) throws -> Bool {
         let cell = try findCell(rowName: rowName, colName: colName)
-        return selectedCells.contains(where: { $0.id == cell.id })
+        return selectedCells.contains(cell)
     }
 
     mutating func selectRowName(_ rowName: RowName) -> [Cell] {
