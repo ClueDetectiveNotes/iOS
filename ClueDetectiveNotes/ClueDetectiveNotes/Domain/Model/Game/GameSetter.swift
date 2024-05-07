@@ -5,11 +5,15 @@
 //  Created by MARY on 5/7/24.
 //
 
-struct GameSetter {
+final class GameSetter {
     private var sheet: Sheet?
     private let setting: Setting
     
-    mutating func getSheetInstance() -> Sheet {
+    init(setting: Setting) {
+        self.setting = setting
+    }
+    
+    func getSheetInstance() -> Sheet {
         if let sheet {
             return sheet
         } else {
