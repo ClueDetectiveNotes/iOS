@@ -18,6 +18,7 @@
 		44DB76422BEA0D880067A814 /* ClickCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB76412BEA0D880067A814 /* ClickCellUseCase.swift */; };
 		44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8D8D12BD0116000A989E2 /* Marker.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
+		AC54D2712BEB503100A895C3 /* LoadCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54D2702BEB503100A895C3 /* LoadCellUseCase.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC55A3422BEA165000AC0774 /* LoadSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
@@ -51,6 +52,7 @@
 		44DB76412BEA0D880067A814 /* ClickCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickCellUseCase.swift; sourceTree = "<group>"; };
 		44E8D8D12BD0116000A989E2 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
+		AC54D2702BEB503100A895C3 /* LoadCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadCellUseCase.swift; path = ClueDetectiveNotes/Application/UseCase/Sheet/LoadCellUseCase.swift; sourceTree = SOURCE_ROOT; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSheetUseCase.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		44DB76392BE9FD0B0067A814 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AC54D2702BEB503100A895C3 /* LoadCellUseCase.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
+				AC54D2712BEB503100A895C3 /* LoadCellUseCase.swift in Sources */,
 				44DB76422BEA0D880067A814 /* ClickCellUseCase.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
 				44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */,
