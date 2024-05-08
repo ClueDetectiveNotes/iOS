@@ -70,8 +70,8 @@ final class Cell {
     }
     
     func removeSubMarker(_ marker: SubMarker) throws {
-        guard !subMarkers.contains(marker) else {
-            throw CellError.alreadyContainsSubMarker
+        guard subMarkers.contains(marker) else {
+            throw CellError.notExistInSubMarker
         }
         subMarkers.remove(marker)
     }
