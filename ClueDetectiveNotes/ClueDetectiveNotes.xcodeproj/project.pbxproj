@@ -19,6 +19,7 @@
 		44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8D8D12BD0116000A989E2 /* Marker.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
+		AC55A3422BEA165000AC0774 /* LoadSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
@@ -51,6 +52,7 @@
 		44E8D8D12BD0116000A989E2 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
+		AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSheetUseCase.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 			children = (
 				44DB763C2BE9FF340067A814 /* LongClickCellUseCase.swift */,
 				44DB76412BEA0D880067A814 /* ClickCellUseCase.swift */,
+				AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
+				AC55A3422BEA165000AC0774 /* LoadSheetUseCase.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
 				44DB763D2BE9FF340067A814 /* LongClickCellUseCase.swift in Sources */,
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,

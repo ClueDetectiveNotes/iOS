@@ -6,12 +6,8 @@
 //
 
 struct ClickCellUseCase {
-    private var sheet: Sheet
-    
-    init(gameSetter: GameSetter) {
-        sheet = gameSetter.getSheetInstance()
-    }
-    
+    private var sheet: Sheet = GameSetter.shared.getSheetInstance()
+
     mutating func execute(cell: Cell) throws -> [String: Any] {
         switch sheet.isMultiSelectionMode() {
         case true:

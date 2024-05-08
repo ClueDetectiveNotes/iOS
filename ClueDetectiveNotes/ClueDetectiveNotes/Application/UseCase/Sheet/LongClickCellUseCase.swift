@@ -6,11 +6,7 @@
 //
 
 struct LongClickCellUseCase {
-    private var sheet: Sheet
-    
-    init(gameSetter: GameSetter) {
-        sheet = gameSetter.getSheetInstance()
-    }
+    private var sheet: Sheet = GameSetter.shared.getSheetInstance()
     
     mutating func execute(cell: Cell) -> [String: Any] {
         if !sheet.isMultiSelectionMode() {
