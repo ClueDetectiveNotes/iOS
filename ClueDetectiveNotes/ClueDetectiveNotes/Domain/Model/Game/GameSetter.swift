@@ -6,12 +6,12 @@
 //
 
 final class GameSetter {
-    private var sheet: Sheet?
-    private let setting: Setting
+    static let shared = GameSetter()
     
-    init(setting: Setting) {
-        self.setting = setting
-    }
+    private var sheet: Sheet?
+    private var setting = Setting()
+    
+    private init() { }
     
     func getSheetInstance() -> Sheet {
         if let sheet {
@@ -30,4 +30,12 @@ final class GameSetter {
 struct Setting {
     var players: [Player]
     var edition: Edition
+    
+    init(
+        players: [Player] = [Player(name: "Player 1")],
+        edition: Edition = .classic
+    ) {
+        self.players = players
+        self.edition = edition
+    }
 }
