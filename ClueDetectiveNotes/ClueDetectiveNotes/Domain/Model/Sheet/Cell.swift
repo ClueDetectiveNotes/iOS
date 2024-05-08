@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cell {
+final class Cell {
     private let id = UUID()
     private let rowName: RowName
     private let colName: ColName
@@ -54,22 +54,22 @@ struct Cell {
         return mainMarker == marker
     }
     
-    mutating func setMainMarker(_ marker: MainMarker) {
+    func setMainMarker(_ marker: MainMarker) {
         mainMarker = marker
     }
     
-    mutating func setSubMarker(_ marker: SubMarker) throws {
+    func setSubMarker(_ marker: SubMarker) throws {
         guard !subMarkers.contains(marker) else {
             throw CellError.alreadyContainsSubMarker
         }
         subMarkers.insert(marker)
     }
     
-    mutating func removeMainMarker() {
+    func removeMainMarker() {
         mainMarker = nil
     }
     
-    mutating func removeSubMarker(_ marker: SubMarker) throws {
+    func removeSubMarker(_ marker: SubMarker) throws {
         guard !subMarkers.contains(marker) else {
             throw CellError.alreadyContainsSubMarker
         }
@@ -78,7 +78,7 @@ struct Cell {
 }
 
 extension Cell: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Cell, rhs: Cell) -> Bool {
         return lhs.id == rhs.id
     }
 }

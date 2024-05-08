@@ -90,6 +90,20 @@ struct Sheet {
         return isMultiMode
     }
     
+    func isEveryCellMarkedWithMainMarker() -> Bool {
+        return selectedCells.allSatisfy { selectedCell in
+            !selectedCell.isEmptyMainMarker()
+        }
+    }
+    
+    func isSameMainMarkerInEveryCell(_ marker: MainMarker) -> Bool {
+        let markedCells = selectedCells.filter { !$0.isEmptyMainMarker() }
+        
+        return markedCells.allSatisfy { markedCell in
+            markedCell.getMainMarker() == marker
+        }
+    }
+    
     mutating func selectCell(_ cell: Cell) -> [Cell] {
         selectedCells.append(cell)
         
