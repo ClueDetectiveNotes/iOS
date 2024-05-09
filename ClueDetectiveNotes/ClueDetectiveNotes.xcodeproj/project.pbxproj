@@ -23,6 +23,9 @@
 		AC54D2712BEB503100A895C3 /* LoadCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54D2702BEB503100A895C3 /* LoadCellUseCase.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC55A3422BEA165000AC0774 /* LoadSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */; };
+		AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F02BECABB000911F13 /* SheetStore.swift */; };
+		AC6E30F32BECB0E000911F13 /* CellStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F22BECB0E000911F13 /* CellStore.swift */; };
+		AC6E30F52BECB42300911F13 /* MarkerControlBarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F42BECB42300911F13 /* MarkerControlBarStore.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
@@ -59,6 +62,9 @@
 		AC54D2702BEB503100A895C3 /* LoadCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadCellUseCase.swift; path = ClueDetectiveNotes/Application/UseCase/Sheet/LoadCellUseCase.swift; sourceTree = SOURCE_ROOT; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC55A3412BEA165000AC0774 /* LoadSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSheetUseCase.swift; sourceTree = "<group>"; };
+		AC6E30F02BECABB000911F13 /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
+		AC6E30F22BECB0E000911F13 /* CellStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStore.swift; sourceTree = "<group>"; };
+		AC6E30F42BECB42300911F13 /* MarkerControlBarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarStore.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,7 @@
 		4442933F2BCAAC54008CAA2C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AC6E30EF2BECAB6B00911F13 /* Store */,
 				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
 				ACFED8D12BB90B5E00B1D22B /* ContentView.swift */,
 			);
@@ -204,6 +211,16 @@
 				44DB76462BEB65D70067A814 /* CancelClickedCellUseCase.swift */,
 			);
 			path = markerControlBar;
+			sourceTree = "<group>";
+		};
+		AC6E30EF2BECAB6B00911F13 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				AC6E30F02BECABB000911F13 /* SheetStore.swift */,
+				AC6E30F22BECB0E000911F13 /* CellStore.swift */,
+				AC6E30F42BECB42300911F13 /* MarkerControlBarStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		AC9F1FFB2BCD1A77008283DF /* Errors */ = {
@@ -363,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */,
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				44DB76452BEB588E0067A814 /* ChooseMainMarkerUseCase.swift in Sources */,
 				44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */,
@@ -373,9 +391,11 @@
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
+				AC6E30F32BECB0E000911F13 /* CellStore.swift in Sources */,
 				AC54D2712BEB503100A895C3 /* LoadCellUseCase.swift in Sources */,
 				44DB76422BEA0D880067A814 /* ClickCellUseCase.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
+				AC6E30F52BECB42300911F13 /* MarkerControlBarStore.swift in Sources */,
 				44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */,
 				ACFED8D22BB90B5E00B1D22B /* ContentView.swift in Sources */,
 				44DB76472BEB65D70067A814 /* CancelClickedCellUseCase.swift in Sources */,

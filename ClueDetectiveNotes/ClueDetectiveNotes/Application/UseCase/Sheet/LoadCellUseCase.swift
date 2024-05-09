@@ -15,3 +15,4 @@ struct LoadCellUseCase {
         ]
     }
 }
+// 필요 여부

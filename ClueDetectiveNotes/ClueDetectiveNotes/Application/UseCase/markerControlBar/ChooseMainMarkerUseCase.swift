@@ -8,6 +8,10 @@
 struct ChooseMainMarkerUseCase {
     private var marker: MainMarker
     
+    init(marker: MainMarker) {
+        self.marker = marker
+    }
+    
     func execute() throws {
         let sheet = GameSetter.shared.getSheetInstance()
         
