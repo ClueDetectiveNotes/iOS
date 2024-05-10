@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sheet {
+final class Sheet {
     private var cells = [Cell]()
     private var isMultiMode: Bool
     private var rowNames = [RowName]()
@@ -104,13 +104,13 @@ struct Sheet {
         }
     }
     
-    mutating func selectCell(_ cell: Cell) -> [Cell] {
+    func selectCell(_ cell: Cell) -> [Cell] {
         selectedCells.append(cell)
         
         return selectedCells
     }
     
-    mutating func selectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+    func selectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         let selectedCell = try findCell(rowName: rowName, colName: colName)
         
         selectedCells.append(selectedCell)
@@ -129,11 +129,11 @@ struct Sheet {
         throw SheetError.cellNotFound
     }
     
-    mutating func unselectCell() {
+    func unselectCell() {
         selectedCells.removeAll()
     }
     
-    mutating func switchSelectionMode() {
+    func switchSelectionMode() {
         if isMultiSelectionMode(), hasSelectedCell() {
             unselectCell()
         }
@@ -141,7 +141,7 @@ struct Sheet {
         isMultiMode.toggle()
     }
     
-    mutating func multiSelectCell(_ cell: Cell) throws -> [Cell] {
+    func multiSelectCell(_ cell: Cell) throws -> [Cell] {
         guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
         guard !isSelectedCell(cell) else {
             throw SheetError.cannotSelectAlreadySelectedCell
@@ -152,7 +152,7 @@ struct Sheet {
         return selectedCells
     }
     
-    mutating func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+    func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
         guard try !isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotSelectAlreadySelectedCell
@@ -164,7 +164,7 @@ struct Sheet {
         return selectedCells
     }
     
-    mutating func multiUnselectCell(_ cell: Cell) throws -> [Cell] {
+    func multiUnselectCell(_ cell: Cell) throws -> [Cell] {
         guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
         guard isSelectedCell(cell) else {
             throw SheetError.cannotUnselectNeverChosenCell
@@ -177,7 +177,7 @@ struct Sheet {
         return selectedCells
     }
     
-    mutating func multiUnselectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+    func multiUnselectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
         guard try isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotUnselectNeverChosenCell
@@ -200,7 +200,7 @@ struct Sheet {
         return selectedCells.contains(cell)
     }
 
-    mutating func selectRowName(_ rowName: RowName) -> [Cell] {
+    func selectRowName(_ rowName: RowName) -> [Cell] {
         let type = rowName.card.type
         
         selectedRowNames[type] = rowName
@@ -210,13 +210,13 @@ struct Sheet {
         }
     }
     
-    mutating func unselectRowName(_ rowName: RowName) {
+    func unselectRowName(_ rowName: RowName) {
         let type = rowName.card.type
         
         selectedRowNames[type] = nil
     }
     
-    mutating func selectColumnName(_ colName: ColName) -> [Cell] {
+    func selectColumnName(_ colName: ColName) -> [Cell] {
         selectedColName = colName
         
         return cells.filter { cell in
@@ -224,7 +224,7 @@ struct Sheet {
         }
     }
     
-    mutating func unselectColumnName() {
+    func unselectColumnName() {
         selectedColName = nil
     }
     

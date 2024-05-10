@@ -77,8 +77,12 @@ final class Cell {
     }
 }
 
-extension Cell: Equatable {
+extension Cell: Hashable {
     static func == (lhs: Cell, rhs: Cell) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

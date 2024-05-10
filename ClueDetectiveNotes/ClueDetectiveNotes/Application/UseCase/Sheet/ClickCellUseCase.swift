@@ -6,29 +6,39 @@
 //
 
 struct ClickCellUseCase {
-    private var sheet: Sheet = GameSetter.shared.getSheetInstance()
-
-    mutating func execute(cell: Cell) throws -> [String: Any] {
+    private let sheet: Sheet = GameSetter.shared.getSheetInstance()
+    private let store: SheetStore
+    
+    init(store: SheetStore) {
+        self.store = store
+    }
+    
+    func execute(cell: Cell) throws {
         switch sheet.isMultiSelectionMode() {
         case true:
             if sheet.isSelectedCell(cell) {
                 let selectedCells = try sheet.multiUnselectCell(cell)
                 if selectedCells.isEmpty {
                     sheet.switchSelectionMode()
+                    store.isDisplayMarkerControlBar = false
+                } else {
+                    store.isDisplayMarkerControlBar = true
                 }
-                return createState(selectedCells)
             } else {
-                return createState(sheet.selectCell(cell))
+                _ = sheet.selectCell(cell)
             }
         case false:
             if sheet.isSelectedCell(cell) {
                 sheet.unselectCell()
-                return createState(sheet.getSelectedCells())
+                store.isDisplayMarkerControlBar = false
             } else {
                 sheet.unselectCell()
-                return createState(sheet.selectCell(cell))
+                _ = sheet.selectCell(cell)
+                store.isDisplayMarkerControlBar = true
             }
         }
+        
+        store.sampleSheet = sheet
     }
     
     private func createState(_ selectedCells: [Cell]) -> [String: Any] {
