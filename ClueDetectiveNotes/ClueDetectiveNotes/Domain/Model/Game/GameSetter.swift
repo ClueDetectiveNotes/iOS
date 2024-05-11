@@ -32,7 +32,7 @@ struct Setting {
     var edition: Edition
     
     init(
-        players: [Player] = [Player(name: "Player 1")],
+        players: [Player] = [Player(name: "Player 1"), Player(name: "Player 2"), Player(name: "Player 3"), Player(name: "Player 4"), Player(name: "Player 5"), Player(name: "Player 6")],
         edition: Edition = .classic
     ) {
         self.players = players

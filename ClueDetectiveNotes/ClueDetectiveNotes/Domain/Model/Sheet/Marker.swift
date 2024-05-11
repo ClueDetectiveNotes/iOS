@@ -19,7 +19,7 @@ struct MainMarker: Markerable, Equatable {
     var notation: MainMarkerType
 }
 
-enum MainMarkerType: CustomStringConvertible {
+enum MainMarkerType: CustomStringConvertible, CaseIterable {
     case cross, check, question, exclamation, slash
 
     var description: String {

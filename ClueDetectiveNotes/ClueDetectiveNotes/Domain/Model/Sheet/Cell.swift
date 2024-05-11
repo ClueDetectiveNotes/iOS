@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class Cell {
-    private let id = UUID()
+final class Cell: Identifiable {
+    let id = UUID()
     private let rowName: RowName
     private let colName: ColName
     private var mainMarker: MainMarker?
@@ -77,8 +77,12 @@ final class Cell {
     }
 }
 
-extension Cell: Equatable {
+extension Cell: Equatable, Hashable {
     static func == (lhs: Cell, rhs: Cell) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
