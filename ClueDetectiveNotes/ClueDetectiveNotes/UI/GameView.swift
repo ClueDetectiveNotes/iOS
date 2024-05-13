@@ -34,7 +34,7 @@ struct SheetView: View {
             Grid {
                 GridRow {
                     Text("-")
-                    ForEach(sheetStore.sheet.getColNames(), id: \.self) { colName in
+                    ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                         Text(colName.player.name)
                     }
                 }
@@ -79,10 +79,10 @@ struct CardTypeView: View {
                 .gridCellColumns(1)
         }
         
-        ForEach(sheetStore.sheet.getRowNames().filter({ $0.card.type == cardType }), id: \.self) { rowName in
+        ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
             GridRow {
                 Text(rowName.card.name)
-                ForEach(sheetStore.sheet.getCells().filter({ $0.getRowName() == rowName }), id: \.self) { cell in
+                ForEach(sheetStore.sheet.cells.filter({ $0.getRowName() == rowName }), id: \.self) { cell in
                     CellView(
                         sheetStore: sheetStore,
                         cell: cell,
@@ -96,7 +96,7 @@ struct CardTypeView: View {
 
 struct CellView: View {
     @ObservedObject private var sheetStore: SheetStore
-    @State private var cell: Cell
+    private var cell: Cell
     private let sheetUseCase: SheetUseCase
     
     init(

@@ -8,14 +8,13 @@
 import Foundation
 
 final class SheetStore: ObservableObject {
-    @Published var sheet: Sheet
+    @Published var sheet: PresentationSheet
     @Published var isDisplayMarkerControlBar: Bool
     
     init(
-        sheet: Sheet = GameSetter.shared.getSheetInstance(),
         isDisplayMarkerControlBar: Bool = false
     ) {
-        self.sheet = sheet
+        self.sheet = GameSetter.shared.getPresentationSheet()
         self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
     }
 }
