@@ -7,47 +7,64 @@
 
 struct SheetUseCase {
     private var sheetStore: SheetStore
+    private var sheet: Sheet = GameSetter.shared.getSheet()
     
     init(sheetStore: SheetStore) {
         self.sheetStore = sheetStore
     }
     
     func clickCell(_ cell: Cell) {
-        switch sheetStore.sheet.isMultiSelectionMode() {
+        switch sheet.isMultiSelectionMode() {
         case true:
-            if sheetStore.sheet.isSelectedCell(cell) {
-                _ = try! sheetStore.sheet.multiUnselectCell(cell)
-                if !sheetStore.sheet.hasSelectedCell() {
-                    sheetStore.sheet.switchSelectionMode()
+            if sheet.isSelectedCell(cell) {
+                _ = try! sheet.multiUnselectCell(cell)
+                if !sheet.hasSelectedCell() {
+                    sheet.switchSelectionMode()
                     sheetStore.isDisplayMarkerControlBar = false
                 } else {
                     sheetStore.isDisplayMarkerControlBar = true
                 }
             } else {
-                _ = sheetStore.sheet.selectCell(cell)
+                _ = sheet.selectCell(cell)
             }
         case false:
-            if sheetStore.sheet.isSelectedCell(cell) {
-                sheetStore.sheet.unselectCell()
+            if sheet.isSelectedCell(cell) {
+                sheet.unselectCell()
                 sheetStore.isDisplayMarkerControlBar = false
             } else {
-                sheetStore.sheet.unselectCell()
-                _ = sheetStore.sheet.selectCell(cell)
+                sheet.unselectCell()
+                _ = sheet.selectCell(cell)
                 sheetStore.isDisplayMarkerControlBar = true
             }
         }
+        
+        updatePresentationSheet()
     }
     
     func longClickCell(_ cell: Cell) {
-        if !sheetStore.sheet.isMultiSelectionMode() {
-            sheetStore.sheet.switchSelectionMode()
+        if !sheet.isMultiSelectionMode() {
+            sheet.switchSelectionMode()
         }
         
-        if sheetStore.sheet.isSelectedCell(cell) {
+        if sheet.isSelectedCell(cell) {
             sheetStore.isDisplayMarkerControlBar = false
         } else {
-            _ = sheetStore.sheet.selectCell(cell)
+            _ = sheet.selectCell(cell)
             sheetStore.isDisplayMarkerControlBar = true
         }
+        
+        updatePresentationSheet()
+    }
+    
+    private func updatePresentationSheet() {
+        sheetStore.sheet = PresentationSheet(
+            cells: sheet.getCells(),
+            isMultiMode: sheet.isMultiSelectionMode(),
+            rowNames: sheet.getRowNames(),
+            colNames: sheet.getColNames(),
+            selectedCells: sheet.getSelectedCells(),
+            selectedRowNames: sheet.getSelectedRowNames(),
+            selectedColName: sheet.getSelectedColName()
+        )
     }
 }
