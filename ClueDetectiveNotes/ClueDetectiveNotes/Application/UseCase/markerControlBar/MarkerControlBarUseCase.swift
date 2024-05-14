@@ -35,8 +35,7 @@ struct MarkerControlBarUseCase {
                 cell.setMainMarker(marker)
             }
         }
-        sheetStore.isDisplayMarkerControlBar = false
-        
+        sheetStore.setDisplayMarkerControlBar(false)
         updatePresentationSheet()
     }
     
@@ -44,9 +43,32 @@ struct MarkerControlBarUseCase {
         if sheet.isMultiSelectionMode() {
             sheet.switchSelectionMode()
         }
+        
         sheet.unselectCell()
         
+        if sheet.hasSelectedColName() {
+            sheet.unselectColumnName()
+        }
+        if sheet.hasSelectedRowName() {
+            sheet.getSelectedRowNames().values.forEach { rowName in
+                sheet.unselectRowName(rowName)
+            }
+        }
+        
+        sheetStore.setDisplayMarkerControlBar(false)
         updatePresentationSheet()
+    }
+    
+    private func resetSelectedState() {
+        if sheet.isMultiSelectionMode() {
+            sheet.switchSelectionMode()
+        }
+        
+        sheet.unselectCell()
+        sheet.unselectColumnName()
+        sheet.getSelectedRowNames().values.forEach { rowName in
+            sheet.unselectRowName(rowName)
+        }
     }
     
     private func updatePresentationSheet() {
