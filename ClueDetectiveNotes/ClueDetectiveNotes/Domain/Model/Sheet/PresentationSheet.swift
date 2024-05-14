@@ -27,4 +27,12 @@ struct PresentationSheet {
             throw SheetError.cellNotFound
         }
     }
+    
+    func isSelectedRowName(_ rowName: RowName) -> Bool {
+        return selectedRowNames.values.contains(rowName)
+    }
+    
+    func isSelectedColName(_ colName: ColName) -> Bool {
+        return selectedColName == colName
+    }
 }
