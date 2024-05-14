@@ -22,6 +22,10 @@ final class Cell {
         self.colName = colName
     }
     
+    func getID() -> UUID {
+        return id
+    }
+    
     func getRowName() -> RowName {
         return rowName
     }

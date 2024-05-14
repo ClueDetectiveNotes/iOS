@@ -24,11 +24,11 @@ final class GameSetter {
     
     func getPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
-            cells: sheet.getCells(),
+            cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCells(),
+            selectedCells: sheet.getSelectedCellsImmutable(),
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )

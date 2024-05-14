@@ -15,7 +15,7 @@ struct GameView: View {
             SheetView(sheetStore: sheetStore)
             
             if sheetStore.isDisplayMarkerControlBar {
-                MarkerControlBarView(markerControlBarUseCase: MarkerControlBarUseCase(sheetStore: sheetStore))
+                MarkerControlBarView(sheetStore: sheetStore)
             }
         }
         .padding(.horizontal)
@@ -82,12 +82,10 @@ struct CardTypeView: View {
         ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
             GridRow {
                 Text(rowName.card.name)
-                ForEach(sheetStore.sheet.cells.filter({ $0.getRowName() == rowName }), id: \.self) { cell in
-                    CellView(
-                        sheetStore: sheetStore,
-                        cell: cell,
-                        sheetUseCase: sheetUseCase
-                    )
+                ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
+                    CellView(cell: cell, sheetUseCase: sheetUseCase)
+                        .background(sheetStore.sheet.isSelectedCell(cell) ? Color.yellow : Color.blue)
+
                 }
             }
         }
@@ -95,16 +93,10 @@ struct CardTypeView: View {
 }
 
 struct CellView: View {
-    @ObservedObject private var sheetStore: SheetStore
-    private var cell: Cell
+    private var cell: PresentationCell
     private let sheetUseCase: SheetUseCase
     
-    init(
-        sheetStore: SheetStore,
-        cell: Cell,
-        sheetUseCase: SheetUseCase
-    ) {
-        self.sheetStore = sheetStore
+    init(cell: PresentationCell, sheetUseCase: SheetUseCase) {
         self.cell = cell
         self.sheetUseCase = sheetUseCase
     }
@@ -113,17 +105,18 @@ struct CellView: View {
         Button(
             action: { },
             label: {
-                Text(cell.getMainMarker()?.notation.description ?? "")
+                Text(cell.mainMarker?.notation.description ?? "")
                     .frame(width: 40, height: 40)
             }
         )
         .foregroundColor(.white)
-        .background(sheetStore.sheet.isSelectedCell(cell) ? Color.yellow : Color.blue)
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
             sheetUseCase.longClickCell(cell)
+            print(cell.mainMarker ?? "empty")
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
             sheetUseCase.clickCell(cell)
+            print(cell.mainMarker ?? "empty")
         }))
     }
 }

@@ -6,15 +6,15 @@
 //
 
 struct PresentationSheet {
-    let cells: [Cell]
+    let cells: [PresentationCell]
     let isMultiMode: Bool
     let rowNames: [RowName]
     let colNames: [ColName]
-    let selectedCells: [Cell]
+    let selectedCells: [PresentationCell]
     let selectedRowNames: [CardType: RowName]
     let selectedColName: ColName?
     
-    func isSelectedCell(_ cell: Cell) -> Bool {
+    func isSelectedCell(_ cell: PresentationCell) -> Bool {
         return selectedCells.contains(cell)
     }
 }

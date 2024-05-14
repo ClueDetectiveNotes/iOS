@@ -13,6 +13,7 @@
 		444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934F2BCACB76008CAA2C /* DummyPlayers.swift */; };
 		444293522BCAD10B008CAA2C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293512BCAD10B008CAA2C /* Card.swift */; };
 		444293552BCAD131008CAA2C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293542BCAD131008CAA2C /* Player.swift */; };
+		4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */; };
 		44B81D0D2BF1F0B400E82051 /* SheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D0C2BF1F0B400E82051 /* SheetUseCase.swift */; };
 		44B81D0F2BF1F46400E82051 /* MarkerControlBarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D0E2BF1F46400E82051 /* MarkerControlBarUseCase.swift */; };
 		44B81D112BF1F94200E82051 /* MarkerControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */; };
@@ -48,6 +49,7 @@
 		4442934F2BCACB76008CAA2C /* DummyPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPlayers.swift; sourceTree = "<group>"; };
 		444293512BCAD10B008CAA2C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		444293542BCAD131008CAA2C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCell.swift; sourceTree = "<group>"; };
 		44B81D0C2BF1F0B400E82051 /* SheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUseCase.swift; sourceTree = "<group>"; };
 		44B81D0E2BF1F46400E82051 /* MarkerControlBarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarUseCase.swift; sourceTree = "<group>"; };
 		44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				4442934C2BCAC6D0008CAA2C /* Cell.swift */,
 				44E8D8D12BD0116000A989E2 /* Marker.swift */,
 				AC04831D2BF275A500B99608 /* PresentationSheet.swift */,
+				4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
+				4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
 				44B81D0F2BF1F46400E82051 /* MarkerControlBarUseCase.swift in Sources */,
 				44B81D0D2BF1F0B400E82051 /* SheetUseCase.swift in Sources */,

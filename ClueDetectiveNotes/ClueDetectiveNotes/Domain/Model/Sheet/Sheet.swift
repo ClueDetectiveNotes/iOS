@@ -46,6 +46,18 @@ final class Sheet {
         return cells
     }
     
+    func getCellsImmutable() -> [PresentationCell] {
+        return cells.map { cell in
+            PresentationCell(
+                id: cell.getID(),
+                rowName: cell.getRowName(),
+                colName: cell.getColName(),
+                mainMarker: cell.getMainMarker(),
+                subMarkers: cell.getSubMarkers()
+            )
+        }
+    }
+    
     func getRowNames() -> [RowName] {
         return rowNames
     }
@@ -56,6 +68,18 @@ final class Sheet {
     
     func getSelectedCells() -> [Cell] {
         return selectedCells
+    }
+    
+    func getSelectedCellsImmutable() -> [PresentationCell] {
+        return selectedCells.map { cell in
+            PresentationCell(
+                id: cell.getID(),
+                rowName: cell.getRowName(),
+                colName: cell.getColName(),
+                mainMarker: cell.getMainMarker(),
+                subMarkers: cell.getSubMarkers()
+            )
+        }
     }
     
     func getSelectedRowNames() -> [CardType:RowName] {
@@ -116,6 +140,16 @@ final class Sheet {
         selectedCells.append(selectedCell)
         
         return selectedCells
+    }
+    
+    func findCell(id: UUID) throws -> Cell {
+        for cell in cells {
+            if cell.getID() == id {
+                return cell
+            }
+        }
+        
+        throw SheetError.cellNotFound
     }
     
     func findCell(rowName: RowName, colName: ColName) throws -> Cell {

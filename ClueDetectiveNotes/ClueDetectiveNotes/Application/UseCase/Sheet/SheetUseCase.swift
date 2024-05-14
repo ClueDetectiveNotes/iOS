@@ -13,7 +13,9 @@ struct SheetUseCase {
         self.sheetStore = sheetStore
     }
     
-    func clickCell(_ cell: Cell) {
+    func clickCell(_ presentationCell: PresentationCell) {
+        let cell = try! sheet.findCell(id: presentationCell.id)
+        
         switch sheet.isMultiSelectionMode() {
         case true:
             if sheet.isSelectedCell(cell) {
@@ -41,7 +43,9 @@ struct SheetUseCase {
         updatePresentationSheet()
     }
     
-    func longClickCell(_ cell: Cell) {
+    func longClickCell(_ presentationCell: PresentationCell) {
+        let cell = try! sheet.findCell(id: presentationCell.id)
+        
         if !sheet.isMultiSelectionMode() {
             sheet.switchSelectionMode()
         }
@@ -58,11 +62,11 @@ struct SheetUseCase {
     
     private func updatePresentationSheet() {
         sheetStore.sheet = PresentationSheet(
-            cells: sheet.getCells(),
+            cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCells(),
+            selectedCells: sheet.getSelectedCellsImmutable(),
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )

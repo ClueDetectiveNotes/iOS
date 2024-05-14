@@ -37,7 +37,7 @@ struct MarkerControlBarUseCase {
         }
         sheetStore.isDisplayMarkerControlBar = false
         
-        //updatePresentationSheet()
+        updatePresentationSheet()
     }
     
     func cancelClickedCell() {
@@ -46,16 +46,16 @@ struct MarkerControlBarUseCase {
         }
         sheet.unselectCell()
         
-        //updatePresentationSheet()
+        updatePresentationSheet()
     }
     
     private func updatePresentationSheet() {
         sheetStore.sheet = PresentationSheet(
-            cells: sheet.getCells(),
+            cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCells(),
+            selectedCells: sheet.getSelectedCellsImmutable(),
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )

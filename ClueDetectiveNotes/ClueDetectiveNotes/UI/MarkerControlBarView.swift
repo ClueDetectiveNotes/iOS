@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct MarkerControlBarView: View {
+    @ObservedObject private var sheetStore: SheetStore
     private let markerControlBarUseCase: MarkerControlBarUseCase
     
-    init(markerControlBarUseCase: MarkerControlBarUseCase) {
-        self.markerControlBarUseCase = markerControlBarUseCase
+    init(sheetStore: SheetStore) {
+        self.sheetStore = sheetStore
+        self.markerControlBarUseCase = MarkerControlBarUseCase(sheetStore: sheetStore)
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -52,5 +54,5 @@ struct MainMarkerBtnsView: View {
 }
 
 #Preview {
-    MarkerControlBarView(markerControlBarUseCase: MarkerControlBarUseCase(sheetStore: SheetStore()))
+    MarkerControlBarView(sheetStore: SheetStore())
 }
