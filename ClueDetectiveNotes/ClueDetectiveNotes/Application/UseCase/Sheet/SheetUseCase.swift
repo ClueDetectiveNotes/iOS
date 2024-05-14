@@ -28,16 +28,22 @@ struct SheetUseCase {
         
         switch sheet.isMultiSelectionMode() {
         case true:
-            if sheet.isSelectedCell(cell) {
-                _ = try! sheet.multiUnselectCell(cell)
-                if !sheet.hasSelectedCell() {
-                    sheet.switchSelectionMode()
-                    sheetStore.setDisplayMarkerControlBar(false)
-                } else {
-                    sheetStore.setDisplayMarkerControlBar(true)
-                }
+            if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
+                resetSelectedState()
+                sheetStore.setDisplayMarkerControlBar(false)
             } else {
-                _ = sheet.selectCell(cell)
+                
+                if sheet.isSelectedCell(cell) {
+                    _ = try! sheet.multiUnselectCell(cell)
+                    if !sheet.hasSelectedCell() {
+                        sheet.switchSelectionMode()
+                        sheetStore.setDisplayMarkerControlBar(false)
+                    } else {
+                        sheetStore.setDisplayMarkerControlBar(true)
+                    }
+                } else {
+                    _ = sheet.selectCell(cell)
+                }
             }
         case false:
             if sheet.isSelectedCell(cell) {
@@ -68,6 +74,58 @@ struct SheetUseCase {
         }
         
         updatePresentationSheet()
+    }
+    
+    func clickColName(_ colName: ColName) {
+        if sheet.isSelectedColName(colName) {
+            sheet.unselectColumnName()
+        } else {
+            _ = sheet.selectColumnName(colName)
+        }
+        
+        selectIntersectionCells()
+        updatePresentationSheet()
+    }
+    
+    func clickRowName(_ rowName: RowName) {
+        if sheet.isSelectedRowName(rowName) {
+            sheet.unselectRowName(rowName)
+        } else {
+            _ = sheet.selectRowName(rowName)
+        }
+        
+        selectIntersectionCells()
+        updatePresentationSheet()
+    }
+    
+    private func selectIntersectionCells() {
+        if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
+            let cells = try! sheet.getCellsIntersectionOfSelection()
+            
+            sheet.unselectCell()
+            if !sheet.isMultiSelectionMode() {
+                sheet.switchSelectionMode()
+            }
+            
+            for cell in cells {
+                _ = sheet.selectCell(cell)
+            }
+            sheetStore.setDisplayMarkerControlBar(true)
+        } else {
+            sheetStore.setDisplayMarkerControlBar(false)
+        }
+    }
+    
+    private func resetSelectedState() {
+        if sheet.isMultiSelectionMode() {
+            sheet.switchSelectionMode()
+        }
+        
+        sheet.unselectCell()
+        sheet.unselectColumnName()
+        sheet.getSelectedRowNames().values.forEach { rowName in
+            sheet.unselectRowName(rowName)
+        }
     }
     
     private func updatePresentationSheet() {
