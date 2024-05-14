@@ -83,9 +83,11 @@ struct CardTypeView: View {
             GridRow {
                 Text(rowName.card.name)
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
-                    CellView(cell: cell, sheetUseCase: sheetUseCase)
-                        .background(sheetStore.sheet.isSelectedCell(cell) ? Color.yellow : Color.blue)
-
+                    CellView(
+                        sheetStore: sheetStore,
+                        cell: cell,
+                        sheetUseCase: sheetUseCase
+                    )
                 }
             }
         }
@@ -93,10 +95,16 @@ struct CardTypeView: View {
 }
 
 struct CellView: View {
+    @ObservedObject private var sheetStore: SheetStore
     private var cell: PresentationCell
     private let sheetUseCase: SheetUseCase
     
-    init(cell: PresentationCell, sheetUseCase: SheetUseCase) {
+    init(
+        sheetStore: SheetStore,
+        cell: PresentationCell,
+        sheetUseCase: SheetUseCase
+    ) {
+        self.sheetStore = sheetStore
         self.cell = cell
         self.sheetUseCase = sheetUseCase
     }
@@ -105,18 +113,17 @@ struct CellView: View {
         Button(
             action: { },
             label: {
-                Text(cell.mainMarker?.notation.description ?? "")
+                Text(sheetUseCase.loadCell(cell).mainMarker?.notation.description ?? "")
                     .frame(width: 40, height: 40)
             }
         )
         .foregroundColor(.white)
+        .background(sheetStore.sheet.isSelectedCell(cell) ? Color.yellow : Color.blue)
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
             sheetUseCase.longClickCell(cell)
-            print(cell.mainMarker ?? "empty")
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
             sheetUseCase.clickCell(cell)
-            print(cell.mainMarker ?? "empty")
         }))
     }
 }
