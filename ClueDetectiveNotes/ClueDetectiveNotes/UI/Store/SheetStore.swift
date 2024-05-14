@@ -17,4 +17,12 @@ final class SheetStore: ObservableObject {
         self.sheet = GameSetter.shared.getPresentationSheet()
         self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
     }
+    
+    func overwriteSheet(_ newSheet: PresentationSheet) {
+        sheet = newSheet
+    }
+    
+    func setDisplayMarkerControlBar(_ value: Bool) {
+        isDisplayMarkerControlBar = value
+    }
 }

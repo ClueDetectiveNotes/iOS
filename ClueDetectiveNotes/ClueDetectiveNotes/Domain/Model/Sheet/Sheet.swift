@@ -143,13 +143,11 @@ final class Sheet {
     }
     
     func findCell(id: UUID) throws -> Cell {
-        for cell in cells {
-            if cell.getID() == id {
-                return cell
-            }
+        if let cell = cells.filter({ $0.getID() == id }).first {
+            return cell
+        } else {
+            throw SheetError.cellNotFound
         }
-        
-        throw SheetError.cellNotFound
     }
     
     func findCell(rowName: RowName, colName: ColName) throws -> Cell {

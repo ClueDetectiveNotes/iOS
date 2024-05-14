@@ -5,12 +5,22 @@
 //  Created by Dasan & Mary on 5/13/24.
 //
 
+import Foundation
+
 struct SheetUseCase {
     private var sheetStore: SheetStore
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
     init(sheetStore: SheetStore) {
         self.sheetStore = sheetStore
+    }
+    
+    func loadCell(_ cell: PresentationCell) -> PresentationCell {
+        do {
+            return try sheetStore.sheet.findCell(id: cell.id)
+        } catch {
+            return cell
+        }
     }
     
     func clickCell(_ presentationCell: PresentationCell) {
@@ -22,9 +32,9 @@ struct SheetUseCase {
                 _ = try! sheet.multiUnselectCell(cell)
                 if !sheet.hasSelectedCell() {
                     sheet.switchSelectionMode()
-                    sheetStore.isDisplayMarkerControlBar = false
+                    sheetStore.setDisplayMarkerControlBar(false)
                 } else {
-                    sheetStore.isDisplayMarkerControlBar = true
+                    sheetStore.setDisplayMarkerControlBar(true)
                 }
             } else {
                 _ = sheet.selectCell(cell)
@@ -32,11 +42,11 @@ struct SheetUseCase {
         case false:
             if sheet.isSelectedCell(cell) {
                 sheet.unselectCell()
-                sheetStore.isDisplayMarkerControlBar = false
+                sheetStore.setDisplayMarkerControlBar(false)
             } else {
                 sheet.unselectCell()
                 _ = sheet.selectCell(cell)
-                sheetStore.isDisplayMarkerControlBar = true
+                sheetStore.setDisplayMarkerControlBar(true)
             }
         }
         
@@ -51,17 +61,17 @@ struct SheetUseCase {
         }
         
         if sheet.isSelectedCell(cell) {
-            sheetStore.isDisplayMarkerControlBar = false
+            sheetStore.setDisplayMarkerControlBar(false)
         } else {
             _ = sheet.selectCell(cell)
-            sheetStore.isDisplayMarkerControlBar = true
+            sheetStore.setDisplayMarkerControlBar(true)
         }
         
         updatePresentationSheet()
     }
     
     private func updatePresentationSheet() {
-        sheetStore.sheet = PresentationSheet(
+        let presentationSheet = PresentationSheet(
             cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
@@ -70,5 +80,7 @@ struct SheetUseCase {
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )
+        
+        sheetStore.overwriteSheet(presentationSheet)
     }
 }

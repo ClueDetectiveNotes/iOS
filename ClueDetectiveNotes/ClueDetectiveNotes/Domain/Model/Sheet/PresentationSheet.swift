@@ -5,6 +5,8 @@
 //  Created by Dasan & Mary on 5/14/24.
 //
 
+import Foundation
+
 struct PresentationSheet {
     let cells: [PresentationCell]
     let isMultiMode: Bool
@@ -16,5 +18,13 @@ struct PresentationSheet {
     
     func isSelectedCell(_ cell: PresentationCell) -> Bool {
         return selectedCells.contains(cell)
+    }
+    
+    func findCell(id: UUID) throws -> PresentationCell {
+        if let cell = cells.filter({ $0.id == id }).first {
+            return cell
+        } else {
+            throw SheetError.cellNotFound
+        }
     }
 }
