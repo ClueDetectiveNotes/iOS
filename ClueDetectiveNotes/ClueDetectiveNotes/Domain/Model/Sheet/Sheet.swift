@@ -118,7 +118,7 @@ final class Sheet {
         return selectedCells
     }
     
-    private func findCell(rowName: RowName, colName: ColName) throws -> Cell {
+    func findCell(rowName: RowName, colName: ColName) throws -> Cell {
         for cell in cells {
             if cell.getRowName() == rowName,
                cell.getColName() == colName {

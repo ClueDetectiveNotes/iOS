@@ -5,7 +5,7 @@
 //  Created by Dasan & Mary on 2024/04/13.
 //
 
-enum CardType: CaseIterable, CustomStringConvertible {
+enum CardType: CustomStringConvertible {
     case suspect
     case weapon
     case room
