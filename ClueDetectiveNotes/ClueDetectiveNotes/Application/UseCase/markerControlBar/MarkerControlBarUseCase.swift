@@ -39,6 +39,33 @@ struct MarkerControlBarUseCase {
         updatePresentationSheet()
     }
     
+    func chooseSubMarker(marker: SubMarker) {
+        switch sheet.isMultiSelectionMode() {
+        case true:
+            if sheet.isEveryCellMarkedWithSameSubMarker(marker) {
+                sheet.getSelectedCells().forEach { cell in
+                    cell.removeSubMarker(marker)
+                }
+            } else {
+                sheet.getSelectedCells().forEach { cell in
+                    if !cell.containsSubMarker(marker) {
+                        cell.setSubMarker(marker)
+                    }
+                }
+            }
+        case false:
+            guard let cell = sheet.getSelectedCells().first else { return }
+            
+            if cell.containsSubMarker(marker) {
+                cell.removeSubMarker(marker)
+            } else {
+                cell.setSubMarker(marker)
+            }
+        }
+        sheetStore.setDisplayMarkerControlBar(false)
+        updatePresentationSheet()
+    }
+    
     func cancelClickedCell() {
         if sheet.isMultiSelectionMode() {
             sheet.switchSelectionMode()

@@ -128,6 +128,12 @@ final class Sheet {
         }
     }
     
+    func isEveryCellMarkedWithSameSubMarker(_ marker: SubMarker) -> Bool {
+        return selectedCells.allSatisfy { selectedCell in
+            selectedCell.containsSubMarker(marker)
+        }
+    }
+    
     func selectCell(_ cell: Cell) -> [Cell] {
         selectedCells.append(cell)
         
