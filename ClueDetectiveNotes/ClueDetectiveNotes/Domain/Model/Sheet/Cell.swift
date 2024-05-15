@@ -62,10 +62,7 @@ final class Cell {
         mainMarker = marker
     }
     
-    func setSubMarker(_ marker: SubMarker) throws {
-        guard !subMarkers.contains(marker) else {
-            throw CellError.alreadyContainsSubMarker
-        }
+    func setSubMarker(_ marker: SubMarker) {
         subMarkers.insert(marker)
     }
     
@@ -73,10 +70,7 @@ final class Cell {
         mainMarker = nil
     }
     
-    func removeSubMarker(_ marker: SubMarker) throws {
-        guard subMarkers.contains(marker) else {
-            throw CellError.notExistInSubMarker
-        }
+    func removeSubMarker(_ marker: SubMarker) {
         subMarkers.remove(marker)
     }
 }
