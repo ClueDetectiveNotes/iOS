@@ -99,7 +99,7 @@ struct MarkerControlBarUseCase {
     }
     
     private func updatePresentationSheet() {
-        sheetStore.sheet = PresentationSheet(
+        let presentationSheet = PresentationSheet(
             cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
@@ -108,5 +108,7 @@ struct MarkerControlBarUseCase {
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )
+        
+        sheetStore.overwriteSheet(presentationSheet)
     }
 }

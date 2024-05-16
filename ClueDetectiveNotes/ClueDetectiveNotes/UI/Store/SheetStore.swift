@@ -8,8 +8,8 @@
 import Foundation
 
 final class SheetStore: ObservableObject {
-    @Published var sheet: PresentationSheet
-    @Published var isDisplayMarkerControlBar: Bool
+    @Published private(set) var sheet: PresentationSheet
+    @Published private(set) var isDisplayMarkerControlBar: Bool
     
     init(
         isDisplayMarkerControlBar: Bool = false
