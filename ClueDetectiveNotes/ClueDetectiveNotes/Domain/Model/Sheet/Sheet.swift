@@ -26,11 +26,11 @@ final class Sheet {
         players.forEach { player in
             colNames.append(ColName(player: player))
         }
-
+        
         cards.allCards().forEach { card in
             rowNames.append(RowName(card: card))
         }
-
+        
         for rowName in rowNames {
             for colName in colNames {
                 let cell = Cell(
@@ -53,7 +53,7 @@ final class Sheet {
                 rowName: cell.getRowName(),
                 colName: cell.getColName(),
                 mainMarker: cell.getMainMarker(),
-                subMarkers: cell.getSubMarkers()
+                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation }
             )
         }
     }
@@ -77,7 +77,7 @@ final class Sheet {
                 rowName: cell.getRowName(),
                 colName: cell.getColName(),
                 mainMarker: cell.getMainMarker(),
-                subMarkers: cell.getSubMarkers()
+                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation }
             )
         }
     }

@@ -12,7 +12,7 @@ struct PresentationCell {
     let rowName: RowName
     let colName: ColName
     let mainMarker: MainMarker?
-    let subMarkers: Set<SubMarker>
+    let subMarkers: [SubMarker]
 }
 
 extension PresentationCell: Hashable {
