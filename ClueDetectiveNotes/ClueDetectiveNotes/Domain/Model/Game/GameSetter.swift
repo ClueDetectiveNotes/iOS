@@ -33,17 +33,25 @@ final class GameSetter {
             selectedColName: sheet.getSelectedColName()
         )
     }
+    
+    func getSubMarkerTypes() -> [SubMarker] {
+        return setting.subMarkerTypes
+    }
 }
 
 struct Setting {
     var players: [Player]
     var edition: Edition
+    var subMarkerTypes: [SubMarker]
     
     init(
         players: [Player] = [Player(name: "Player 1"), Player(name: "Player 2"), Player(name: "Player 3")],
-        edition: Edition = .classic
+        edition: Edition = .classic,
+        subMarkerTypes: [SubMarker] = [SubMarker(notation: "1"), SubMarker(notation: "2"), SubMarker(notation: "3"), SubMarker(notation: "4"),
+                                       SubMarker(notation: "메"), SubMarker(notation: "다"), SubMarker(notation: "코"), SubMarker(notation: "A")]
     ) {
         self.players = players
         self.edition = edition
+        self.subMarkerTypes = subMarkerTypes
     }
 }
