@@ -17,19 +17,42 @@ struct MarkerControlBarView: View {
     }
 
     var body: some View {
-        VStack {
-            HStack {
-                MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+        HStack {
+            VStack {
+                HStack {
+                    MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                    
+                    Spacer()
+                }
                 
-                Spacer()
-                
-                Button("취소") {
-                    markerControlBarInteractor.excute(.clickCancelButton)
+                ScrollView(.horizontal) {
+                    HStack {
+                        SubMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                        
+                        Button(
+                            action: {
+                                
+                            },
+                            label: {
+                                Image(systemName: "plus")
+                            }
+                        )
+                    }
+                    
+                    Spacer()
                 }
             }
+            
+            Divider()
+            
+            Button("취소") {
+                markerControlBarInteractor.execute(.clickCancelButton)
+            }
+            .padding(6)
         }
+        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
         .onDisappear {
-            markerControlBarInteractor.excute(.clickCancelButton)
+            markerControlBarInteractor.execute(.clickCancelButton)
         }
     }
 }
@@ -44,14 +67,48 @@ struct MainMarkerBtnsView: View {
 
     var body: some View {
         ForEach(mainMarkerTypes, id: \.self) { mainMarkerType in
-            Button(mainMarkerType.description) {
-                markerControlBarInteractor.excute(.chooseMainMarker(MainMarker(notation: mainMarkerType)))
-            }
+            Button(
+                action: {
+                    markerControlBarInteractor.execute(.chooseMainMarker(MainMarker(notation: mainMarkerType)))
+                },
+                label: {
+                    Text(mainMarkerType.description)
+                        .foregroundStyle(Color.black)
+                        .bold()
+                }
+            )
             .frame(width: 40, height: 40)
             .buttonStyle(.bordered)
         }
     }
 }
+
+struct SubMarkerBtnsView: View {
+    private let markerControlBarInteractor: MarkerControlBarInteractor
+    private let subMarkerTypes = GameSetter.shared.getSubMarkerTypes()
+    
+    init(markerControlBarInteractor: MarkerControlBarInteractor) {
+        self.markerControlBarInteractor = markerControlBarInteractor
+    }
+
+    var body: some View {
+        ForEach(subMarkerTypes, id: \.self) { subMarkerType in
+            Button(
+                action: {
+                    markerControlBarInteractor.execute(.chooseSubMarker(subMarkerType))
+                },
+                label: {
+                    Text(subMarkerType.notation)
+                        .foregroundStyle(Color(UIColor.darkGray))
+                }
+            )
+            .frame(width: 40, height: 40)
+            .buttonStyle(.bordered)
+        }
+    }
+}
+
+
 
 #Preview {
     MarkerControlBarView(sheetStore: SheetStore())

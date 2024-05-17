@@ -42,10 +42,11 @@ struct SheetView: View {
                 Grid {
                     GridRow {
                         Text("")
+                        
                         ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                             Button(
                                 action: {
-                                    sheetInterator.excute(.clickColName(colName))
+                                    sheetInterator.execute(.clickColName(colName))
                                 },
                                 label: {
                                     Text(colName.player.name)
@@ -109,7 +110,7 @@ struct CardTypeView: View {
             GridRow {
                 Button(
                     action: {
-                        sheetInterator.excute(.clickRowName(rowName))
+                        sheetInterator.execute(.clickRowName(rowName))
                     },
                     label: {
                         Text(rowName.card.name)
@@ -152,10 +153,23 @@ struct CellView: View {
     
     var body: some View {
         Button(
-            action: { },
+            action: { 
+                //
+            },
             label: {
-                Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
-                    .frame(width: 40, height: 40)
+                VStack {
+                    Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
+                        
+                    HStack {
+                        if let cell = sheetStore.sheet.findCell(id: cell.id) {
+                            ForEach(cell.subMarkers, id: \.self) { subMarker in
+                                Text(subMarker.notation)
+                                    .font(.caption)
+                            }
+                        }
+                    }
+                }
+                .frame(width: 40, height: 40)
             }
         )
         .foregroundColor(.black)
@@ -169,10 +183,10 @@ struct CellView: View {
             : Color.white
         )
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
-            sheetInterator.excute(.longClickCell(cell))
+            sheetInterator.execute(.longClickCell(cell))
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            sheetInterator.excute(.clickCell(cell))
+            sheetInterator.execute(.clickCell(cell))
         }))
     }
 }

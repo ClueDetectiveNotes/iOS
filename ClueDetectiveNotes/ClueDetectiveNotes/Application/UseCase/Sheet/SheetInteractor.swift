@@ -13,7 +13,7 @@ struct SheetInteractor {
         self.sheetStore = sheetStore
     }
     
-    func excute(_ useCase: SheetUseCase) {
+    func execute(_ useCase: SheetUseCase) {
         switch useCase {
         case let .clickCell(presentationCell):
             clickCell(presentationCell)

@@ -13,7 +13,7 @@ struct MarkerControlBarInteractor {
         self.sheetStore = sheetStore
     }
     
-    func excute(_ useCase: MarkerControlBarUseCase) {
+    func execute(_ useCase: MarkerControlBarUseCase) {
         switch useCase {
         case let .chooseMainMarker(marker):
             chooseMainMarker(marker)
@@ -21,6 +21,8 @@ struct MarkerControlBarInteractor {
             chooseSubMarker(marker)
         case .clickCancelButton:
             clickCancelButton()
+        case .clickPlusButton:
+            clickPlusButton()
         }
     }
 }
@@ -97,6 +99,10 @@ extension MarkerControlBarInteractor {
         
         sheetStore.setDisplayMarkerControlBar(false)
         updatePresentationSheet()
+    }
+    
+    private func clickPlusButton() {
+        
     }
     
     private func resetSelectedState() {
