@@ -20,12 +20,8 @@ struct PresentationSheet {
         return selectedCells.contains(cell)
     }
     
-    func findCell(id: UUID) throws -> PresentationCell {
-        if let cell = cells.filter({ $0.id == id }).first {
-            return cell
-        } else {
-            throw SheetError.cellNotFound
-        }
+    func findCell(id: UUID) -> PresentationCell? {
+        return cells.filter({ $0.id == id }).first
     }
     
     func isSelectedRowName(_ rowName: RowName) -> Bool {

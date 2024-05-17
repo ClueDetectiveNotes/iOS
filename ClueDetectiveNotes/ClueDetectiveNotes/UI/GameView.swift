@@ -25,13 +25,13 @@ struct GameView: View {
 
 struct SheetView: View {
     @ObservedObject private var sheetStore: SheetStore
-    private let sheetUseCase: SheetUseCase
+    private let sheetInterator: SheetInteractor
     
     init(
         sheetStore: SheetStore
     ) {
         self.sheetStore = sheetStore
-        self.sheetUseCase = SheetUseCase(sheetStore: sheetStore)
+        self.sheetInterator = SheetInteractor(sheetStore: sheetStore)
     }
 
     var body: some View {
@@ -45,7 +45,7 @@ struct SheetView: View {
                         ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                             Button(
                                 action: {
-                                    sheetUseCase.clickColName(colName)
+                                    sheetInterator.excute(.clickColName(colName))
                                 },
                                 label: {
                                     Text(colName.player.name)
@@ -60,19 +60,19 @@ struct SheetView: View {
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .suspect,
-                        sheetUseCase: sheetUseCase
+                        sheetInterator: sheetInterator
                     )
                     
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .weapon,
-                        sheetUseCase: sheetUseCase
+                        sheetInterator: sheetInterator
                     )
                     
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .room,
-                        sheetUseCase: sheetUseCase
+                        sheetInterator: sheetInterator
                     )
                 }
                 
@@ -85,16 +85,16 @@ struct SheetView: View {
 struct CardTypeView: View {
     @ObservedObject private var sheetStore: SheetStore
     private let cardType: CardType
-    private let sheetUseCase: SheetUseCase
+    private let sheetInterator: SheetInteractor
     
     init(
         sheetStore: SheetStore,
         cardType: CardType,
-        sheetUseCase: SheetUseCase
+        sheetInterator: SheetInteractor
     ) {
         self.sheetStore = sheetStore
         self.cardType = cardType
-        self.sheetUseCase = sheetUseCase
+        self.sheetInterator = sheetInterator
     }
     
     var body: some View {
@@ -109,7 +109,7 @@ struct CardTypeView: View {
             GridRow {
                 Button(
                     action: {
-                        sheetUseCase.clickRowName(rowName)
+                        sheetInterator.excute(.clickRowName(rowName))
                     },
                     label: {
                         Text(rowName.card.name)
@@ -124,7 +124,7 @@ struct CardTypeView: View {
                     CellView(
                         sheetStore: sheetStore,
                         cell: cell,
-                        sheetUseCase: sheetUseCase
+                        sheetInterator: sheetInterator
                     )
                 }
             }
@@ -138,23 +138,23 @@ struct CardTypeView: View {
 struct CellView: View {
     @ObservedObject private var sheetStore: SheetStore
     private var cell: PresentationCell
-    private let sheetUseCase: SheetUseCase
+    private let sheetInterator: SheetInteractor
     
     init(
         sheetStore: SheetStore,
         cell: PresentationCell,
-        sheetUseCase: SheetUseCase
+        sheetInterator: SheetInteractor
     ) {
         self.sheetStore = sheetStore
         self.cell = cell
-        self.sheetUseCase = sheetUseCase
+        self.sheetInterator = sheetInterator
     }
     
     var body: some View {
         Button(
             action: { },
             label: {
-                Text(sheetUseCase.loadCell(cell).mainMarker?.notation.description ?? "")
+                Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
                     .frame(width: 40, height: 40)
             }
         )
@@ -169,10 +169,10 @@ struct CellView: View {
             : Color.white
         )
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
-            sheetUseCase.longClickCell(cell)
+            sheetInterator.excute(.longClickCell(cell))
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            sheetUseCase.clickCell(cell)
+            sheetInterator.excute(.clickCell(cell))
         }))
     }
 }
