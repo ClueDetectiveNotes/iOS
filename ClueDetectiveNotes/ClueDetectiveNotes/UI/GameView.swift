@@ -9,6 +9,17 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
+    @ObservedObject private var settingStore: SettingStore
+    @State private var newSubMarkerName: String = ""
+    private var settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
     
     var body: some View {
         VStack {
@@ -16,22 +27,38 @@ struct GameView: View {
                 .background(Color.blue)
             
             if sheetStore.isDisplayMarkerControlBar {
-                MarkerControlBarView(sheetStore: sheetStore)
+                MarkerControlBarView(
+                    sheetStore: sheetStore,
+                    settingStore: settingStore
+                )
                     .padding(.horizontal)
             }
+        }
+        .alert(
+            "마커 추가",
+            isPresented: $sheetStore.isDisplayAddSubMarkerAlert
+        ) {
+            TextField("마커 이름", text: $newSubMarkerName)
+            Button("확인") {
+                settingInteractor.execute(.addSubMarker(SubMarker(notation: newSubMarkerName)))
+                newSubMarkerName = ""
+            }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("추가할 마커의 이름을 입력해주세요.")
         }
     }
 }
 
 struct SheetView: View {
     @ObservedObject private var sheetStore: SheetStore
-    private let sheetInterator: SheetInteractor
+    private let sheetInteractor: SheetInteractor
     
     init(
         sheetStore: SheetStore
     ) {
         self.sheetStore = sheetStore
-        self.sheetInterator = SheetInteractor(sheetStore: sheetStore)
+        self.sheetInteractor = SheetInteractor(sheetStore: sheetStore)
     }
 
     var body: some View {
@@ -46,7 +73,7 @@ struct SheetView: View {
                         ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                             Button(
                                 action: {
-                                    sheetInterator.execute(.clickColName(colName))
+                                    sheetInteractor.execute(.clickColName(colName))
                                 },
                                 label: {
                                     Text(colName.player.name)
@@ -61,19 +88,19 @@ struct SheetView: View {
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .suspect,
-                        sheetInterator: sheetInterator
+                        sheetInterator: sheetInteractor
                     )
                     
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .weapon,
-                        sheetInterator: sheetInterator
+                        sheetInterator: sheetInteractor
                     )
                     
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .room,
-                        sheetInterator: sheetInterator
+                        sheetInterator: sheetInteractor
                     )
                 }
                 
@@ -86,7 +113,7 @@ struct SheetView: View {
 struct CardTypeView: View {
     @ObservedObject private var sheetStore: SheetStore
     private let cardType: CardType
-    private let sheetInterator: SheetInteractor
+    private let sheetInteractor: SheetInteractor
     
     init(
         sheetStore: SheetStore,
@@ -95,7 +122,7 @@ struct CardTypeView: View {
     ) {
         self.sheetStore = sheetStore
         self.cardType = cardType
-        self.sheetInterator = sheetInterator
+        self.sheetInteractor = sheetInterator
     }
     
     var body: some View {
@@ -110,7 +137,7 @@ struct CardTypeView: View {
             GridRow {
                 Button(
                     action: {
-                        sheetInterator.execute(.clickRowName(rowName))
+                        sheetInteractor.execute(.clickRowName(rowName))
                     },
                     label: {
                         Text(rowName.card.name)
@@ -125,7 +152,7 @@ struct CardTypeView: View {
                     CellView(
                         sheetStore: sheetStore,
                         cell: cell,
-                        sheetInterator: sheetInterator
+                        sheetInterator: sheetInteractor
                     )
                 }
             }
@@ -139,7 +166,7 @@ struct CardTypeView: View {
 struct CellView: View {
     @ObservedObject private var sheetStore: SheetStore
     private var cell: PresentationCell
-    private let sheetInterator: SheetInteractor
+    private let sheetInteractor: SheetInteractor
     
     init(
         sheetStore: SheetStore,
@@ -148,7 +175,7 @@ struct CellView: View {
     ) {
         self.sheetStore = sheetStore
         self.cell = cell
-        self.sheetInterator = sheetInterator
+        self.sheetInteractor = sheetInterator
     }
     
     var body: some View {
@@ -183,16 +210,16 @@ struct CellView: View {
             : Color.white
         )
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
-            sheetInterator.execute(.longClickCell(cell))
+            sheetInteractor.execute(.longClickCell(cell))
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            sheetInterator.execute(.clickCell(cell))
+            sheetInteractor.execute(.clickCell(cell))
         }))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(settingStore: SettingStore(), settingInteractor: SettingInteractor(settingStore: SettingStore()))
     }
 }

@@ -102,7 +102,7 @@ extension MarkerControlBarInteractor {
     }
     
     private func clickPlusButton() {
-        
+        sheetStore.setDisplayAddSubMarkerAlert(true)
     }
     
     private func resetSelectedState() {

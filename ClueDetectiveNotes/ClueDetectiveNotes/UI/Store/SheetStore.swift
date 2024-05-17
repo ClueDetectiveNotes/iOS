@@ -10,12 +10,15 @@ import Foundation
 final class SheetStore: ObservableObject {
     @Published private(set) var sheet: PresentationSheet
     @Published private(set) var isDisplayMarkerControlBar: Bool
+    @Published var isDisplayAddSubMarkerAlert: Bool
     
     init(
-        isDisplayMarkerControlBar: Bool = false
+        isDisplayMarkerControlBar: Bool = false,
+        isDisplayAddSubMarkerAlert: Bool = false
     ) {
         self.sheet = GameSetter.shared.getPresentationSheet()
         self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
+        self.isDisplayAddSubMarkerAlert = isDisplayAddSubMarkerAlert
     }
     
     func overwriteSheet(_ newSheet: PresentationSheet) {
@@ -24,5 +27,9 @@ final class SheetStore: ObservableObject {
     
     func setDisplayMarkerControlBar(_ value: Bool) {
         isDisplayMarkerControlBar = value
+    }
+    
+    func setDisplayAddSubMarkerAlert(_ value: Bool) {
+        isDisplayAddSubMarkerAlert = value
     }
 }

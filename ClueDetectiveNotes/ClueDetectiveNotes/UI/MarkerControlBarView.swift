@@ -9,10 +9,15 @@ import SwiftUI
 
 struct MarkerControlBarView: View {
     @ObservedObject private var sheetStore: SheetStore
+    @ObservedObject private var settingStore: SettingStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
     
-    init(sheetStore: SheetStore) {
+    init(
+        sheetStore: SheetStore,
+        settingStore: SettingStore
+    ) {
         self.sheetStore = sheetStore
+        self.settingStore = settingStore
         self.markerControlBarInteractor = MarkerControlBarInteractor(sheetStore: sheetStore)
     }
 
@@ -27,16 +32,20 @@ struct MarkerControlBarView: View {
                 
                 ScrollView(.horizontal) {
                     HStack {
-                        SubMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                        SubMarkerBtnsView(
+                            settingStore: settingStore,
+                            markerControlBarInteractor: markerControlBarInteractor
+                        )
                         
                         Button(
                             action: {
-                                
+                                markerControlBarInteractor.execute(.clickPlusButton)
                             },
                             label: {
                                 Image(systemName: "plus")
                             }
                         )
+                        .frame(width: 40, height: 40)
                     }
                     
                     Spacer()
@@ -73,6 +82,7 @@ struct MainMarkerBtnsView: View {
                 },
                 label: {
                     Text(mainMarkerType.description)
+                        .monospaced()
                         .foregroundStyle(Color.black)
                         .bold()
                 }
@@ -84,21 +94,26 @@ struct MainMarkerBtnsView: View {
 }
 
 struct SubMarkerBtnsView: View {
+    @ObservedObject private var settingStore: SettingStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
-    private let subMarkerTypes = GameSetter.shared.getSubMarkerTypes()
     
-    init(markerControlBarInteractor: MarkerControlBarInteractor) {
+    init(
+        settingStore: SettingStore,
+        markerControlBarInteractor: MarkerControlBarInteractor
+    ) {
+        self.settingStore = settingStore
         self.markerControlBarInteractor = markerControlBarInteractor
     }
 
     var body: some View {
-        ForEach(subMarkerTypes, id: \.self) { subMarkerType in
+        ForEach(settingStore.setting.subMarkerTypes, id: \.self) { subMarkerType in
             Button(
                 action: {
                     markerControlBarInteractor.execute(.chooseSubMarker(subMarkerType))
                 },
                 label: {
                     Text(subMarkerType.notation)
+                        .monospaced()
                         .foregroundStyle(Color(UIColor.darkGray))
                 }
             )
@@ -111,5 +126,5 @@ struct SubMarkerBtnsView: View {
 
 
 #Preview {
-    MarkerControlBarView(sheetStore: SheetStore())
+    MarkerControlBarView(sheetStore: SheetStore(), settingStore: SettingStore())
 }
