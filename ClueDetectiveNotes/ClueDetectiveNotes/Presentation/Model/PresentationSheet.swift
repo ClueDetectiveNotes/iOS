@@ -16,6 +16,10 @@ struct PresentationSheet {
     let selectedRowNames: [CardType: RowName]
     let selectedColName: ColName?
     
+    func hasSelectedCells() -> Bool {
+        return !selectedCells.isEmpty
+    }
+    
     func isSelectedCell(_ cell: PresentationCell) -> Bool {
         return selectedCells.contains(cell)
     }

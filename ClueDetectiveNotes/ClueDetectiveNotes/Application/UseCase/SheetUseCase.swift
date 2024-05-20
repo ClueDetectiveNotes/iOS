@@ -1,50 +1,26 @@
 //
-//  SheetInteractor.swift
+//  SheetUseCase.swift
 //  ClueDetectiveNotes
 //
-//  Created by Dasan & Mary on 5/17/24.
+//  Created by Dasan & Mary on 5/13/24.
 //
 
-struct SheetInteractor {
-    private var sheetStore: SheetStore
+struct SheetUseCase {
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
-    init(sheetStore: SheetStore) {
-        self.sheetStore = sheetStore
-    }
-    
-    func execute(_ useCase: SheetUseCase) {
-        switch useCase {
-        case let .clickCell(presentationCell):
-            clickCell(presentationCell)
-        case let .longClickCell(presentationCell):
-            longClickCell(presentationCell)
-        case let .clickColName(colName):
-            clickColName(colName)
-        case let .clickRowName(rowName):
-            clickRowName(rowName)
-        }
-    }
-}
-
-extension SheetInteractor {
-    private func clickCell(_ presentationCell: PresentationCell) {
+    func clickCell(_ presentationCell: PresentationCell) -> PresentationSheet {
         let cell = try! sheet.findCell(id: presentationCell.id)
         
         switch sheet.isMultiSelectionMode() {
         case true:
             if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
                 resetSelectedState()
-                sheetStore.setDisplayMarkerControlBar(false)
             } else {
                 
                 if sheet.isSelectedCell(cell) {
                     _ = try! sheet.multiUnselectCell(cell)
                     if !sheet.hasSelectedCell() {
                         sheet.switchSelectionMode()
-                        sheetStore.setDisplayMarkerControlBar(false)
-                    } else {
-                        sheetStore.setDisplayMarkerControlBar(true)
                     }
                 } else {
                     _ = sheet.selectCell(cell)
@@ -53,35 +29,30 @@ extension SheetInteractor {
         case false:
             if sheet.isSelectedCell(cell) {
                 sheet.unselectCell()
-                sheetStore.setDisplayMarkerControlBar(false)
             } else {
                 sheet.unselectCell()
                 _ = sheet.selectCell(cell)
-                sheetStore.setDisplayMarkerControlBar(true)
             }
         }
         
-        updatePresentationSheet()
+        return createPresentationSheet()
     }
     
-    private func longClickCell(_ presentationCell: PresentationCell) {
+    func longClickCell(_ presentationCell: PresentationCell) -> PresentationSheet {
         let cell = try! sheet.findCell(id: presentationCell.id)
         
         if !sheet.isMultiSelectionMode() {
             sheet.switchSelectionMode()
         }
         
-        if sheet.isSelectedCell(cell) {
-            sheetStore.setDisplayMarkerControlBar(false)
-        } else {
+        if !sheet.isSelectedCell(cell) {
             _ = sheet.selectCell(cell)
-            sheetStore.setDisplayMarkerControlBar(true)
         }
         
-        updatePresentationSheet()
+        return createPresentationSheet()
     }
     
-    private func clickColName(_ colName: ColName) {
+    func clickColName(_ colName: ColName) -> PresentationSheet {
         if sheet.isSelectedColName(colName) {
             sheet.unselectColumnName()
         } else {
@@ -89,10 +60,10 @@ extension SheetInteractor {
         }
         
         selectIntersectionCells()
-        updatePresentationSheet()
+        return createPresentationSheet()
     }
     
-    private func clickRowName(_ rowName: RowName) {
+    func clickRowName(_ rowName: RowName) -> PresentationSheet {
         if sheet.isSelectedRowName(rowName) {
             sheet.unselectRowName(rowName)
         } else {
@@ -100,7 +71,7 @@ extension SheetInteractor {
         }
         
         selectIntersectionCells()
-        updatePresentationSheet()
+        return createPresentationSheet()
     }
     
     private func selectIntersectionCells() {
@@ -115,9 +86,6 @@ extension SheetInteractor {
             for cell in cells {
                 _ = sheet.selectCell(cell)
             }
-            sheetStore.setDisplayMarkerControlBar(true)
-        } else {
-            sheetStore.setDisplayMarkerControlBar(false)
         }
     }
     
@@ -133,8 +101,8 @@ extension SheetInteractor {
         }
     }
     
-    private func updatePresentationSheet() {
-        let presentationSheet = PresentationSheet(
+    private func createPresentationSheet() -> PresentationSheet {
+        return PresentationSheet(
             cells: sheet.getCellsImmutable(),
             isMultiMode: sheet.isMultiSelectionMode(),
             rowNames: sheet.getRowNames(),
@@ -143,7 +111,5 @@ extension SheetInteractor {
             selectedRowNames: sheet.getSelectedRowNames(),
             selectedColName: sheet.getSelectedColName()
         )
-        
-        sheetStore.overwriteSheet(presentationSheet)
     }
 }

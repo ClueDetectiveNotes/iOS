@@ -102,15 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4442933F2BCAAC54008CAA2C /* UI */ = {
+		4442933F2BCAAC54008CAA2C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				44AF620A2BFB241400F38165 /* View */,
+				44AF62092BFB233700F38165 /* Model */,
+				44AF62082BFB232F00F38165 /* Intent */,
 				AC6E30EF2BECAB6B00911F13 /* Store */,
-				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
-				ACFED8D12BB90B5E00B1D22B /* GameView.swift */,
-				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
 			);
-			path = UI;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		444293402BCAAC5C008CAA2C /* Model */ = {
@@ -131,8 +131,6 @@
 				444293442BCAAF79008CAA2C /* Sheet.swift */,
 				4442934C2BCAC6D0008CAA2C /* Cell.swift */,
 				44E8D8D12BD0116000A989E2 /* Marker.swift */,
-				AC04831D2BF275A500B99608 /* PresentationSheet.swift */,
-				4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -166,10 +164,38 @@
 		44AF61FF2BF7854F00F38165 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				44AF62002BF7856900F38165 /* SettingInteractor.swift */,
-				44AF62022BF7857C00F38165 /* SettingUseCase.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		44AF62082BFB232F00F38165 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				44AF61F92BF7219D00F38165 /* SheetInteractor.swift */,
+				44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */,
+				44AF62002BF7856900F38165 /* SettingInteractor.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		44AF62092BFB233700F38165 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC04831D2BF275A500B99608 /* PresentationSheet.swift */,
+				4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */,
+				44AF62062BF796BA00F38165 /* PresentationSetting.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44AF620A2BFB241400F38165 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
+				ACFED8D12BB90B5E00B1D22B /* GameView.swift */,
+				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		44DB76362BE9FCD40067A814 /* Application */ = {
@@ -183,6 +209,9 @@
 		44DB76372BE9FCF60067A814 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				44B81D0C2BF1F0B400E82051 /* SheetUseCase.swift */,
+				44B81D0E2BF1F46400E82051 /* MarkerControlBarUseCase.swift */,
+				44AF62022BF7857C00F38165 /* SettingUseCase.swift */,
 				44AF61FF2BF7854F00F38165 /* Setting */,
 				44DB76382BE9FD060067A814 /* Sheet */,
 				44DB76432BEB584C0067A814 /* markerControlBar */,
@@ -193,8 +222,6 @@
 		44DB76382BE9FD060067A814 /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				44AF61F92BF7219D00F38165 /* SheetInteractor.swift */,
-				44B81D0C2BF1F0B400E82051 /* SheetUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -212,7 +239,6 @@
 			children = (
 				44DB763F2BEA004C0067A814 /* GameSetter.swift */,
 				44AF62042BF796AE00F38165 /* Setting.swift */,
-				44AF62062BF796BA00F38165 /* PresentationSetting.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -220,8 +246,6 @@
 		44DB76432BEB584C0067A814 /* markerControlBar */ = {
 			isa = PBXGroup;
 			children = (
-				44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */,
-				44B81D0E2BF1F46400E82051 /* MarkerControlBarUseCase.swift */,
 			);
 			path = markerControlBar;
 			sourceTree = "<group>";
@@ -265,7 +289,7 @@
 		ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
 			isa = PBXGroup;
 			children = (
-				4442933F2BCAAC54008CAA2C /* UI */,
+				4442933F2BCAAC54008CAA2C /* Presentation */,
 				44DB76362BE9FCD40067A814 /* Application */,
 				44DB763A2BE9FD210067A814 /* Domain */,
 				ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */,

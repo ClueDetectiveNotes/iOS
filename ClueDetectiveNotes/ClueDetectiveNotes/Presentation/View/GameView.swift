@@ -73,7 +73,7 @@ struct SheetView: View {
                         ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                             Button(
                                 action: {
-                                    sheetInteractor.execute(.clickColName(colName))
+                                    sheetInteractor.clickColName(colName)
                                 },
                                 label: {
                                     Text(colName.player.name)
@@ -137,7 +137,7 @@ struct CardTypeView: View {
             GridRow {
                 Button(
                     action: {
-                        sheetInteractor.execute(.clickRowName(rowName))
+                        sheetInteractor.clickRowName(rowName)
                     },
                     label: {
                         Text(rowName.card.name)
@@ -210,10 +210,10 @@ struct CellView: View {
             : Color.white
         )
         .simultaneousGesture(LongPressGesture().onEnded({ _ in
-            sheetInteractor.execute(.longClickCell(cell))
+            sheetInteractor.longClickCell(cell)
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            sheetInteractor.execute(.clickCell(cell))
+            sheetInteractor.clickCell(cell)
         }))
     }
 }
