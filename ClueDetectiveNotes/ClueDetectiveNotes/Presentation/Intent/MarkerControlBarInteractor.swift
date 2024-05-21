@@ -7,127 +7,45 @@
 
 struct MarkerControlBarInteractor {
     private var sheetStore: SheetStore
-    private var sheet: Sheet = GameSetter.shared.getSheet()
+    private let markerControlBarUseCase: MarkerControlBarUseCase
     
-    init(sheetStore: SheetStore) {
+    init(
+        sheetStore: SheetStore,
+        markerControlBarUseCase: MarkerControlBarUseCase = MarkerControlBarUseCase()
+    ) {
         self.sheetStore = sheetStore
+        self.markerControlBarUseCase =  markerControlBarUseCase
     }
     
-    func execute(_ useCase: MarkerControlBarUseCase) {
-        switch useCase {
-        case let .chooseMainMarker(marker):
-            chooseMainMarker(marker)
-        case let .chooseSubMarker(marker):
-            chooseSubMarker(marker)
-        case .clickCancelButton:
-            clickCancelButton()
-        case .clickPlusButton:
-            clickPlusButton()
-        }
-    }
-}
-
-extension MarkerControlBarInteractor {
-    private func chooseMainMarker(_ marker: MainMarker) {
-        switch sheet.isMultiSelectionMode() {
-        case true:
-            if sheet.isEveryCellMarkedWithMainMarker(),
-               sheet.isSameMainMarkerInEveryCell(marker) {
-                sheet.getSelectedCells().forEach { cell in
-                    cell.removeMainMarker()
-                }
-            } else {
-                sheet.getSelectedCells().forEach { cell in
-                    cell.setMainMarker(marker)
-                }
-            }
-        case false:
-            guard let cell = sheet.getSelectedCells().first else { return }
-            
-            if cell.equalsMainMarker(marker) {
-                cell.removeMainMarker()
-            } else {
-                cell.setMainMarker(marker)
-            }
-        }
-        sheetStore.setDisplayMarkerControlBar(false)
-        updatePresentationSheet()
-    }
-    
-    private func chooseSubMarker(_ marker: SubMarker) {
-        switch sheet.isMultiSelectionMode() {
-        case true:
-            if sheet.isEveryCellMarkedWithSameSubMarker(marker) {
-                sheet.getSelectedCells().forEach { cell in
-                    cell.removeSubMarker(marker)
-                }
-            } else {
-                sheet.getSelectedCells().forEach { cell in
-                    if !cell.containsSubMarker(marker) {
-                        cell.setSubMarker(marker)
-                    }
-                }
-            }
-        case false:
-            guard let cell = sheet.getSelectedCells().first else { return }
-            
-            if cell.containsSubMarker(marker) {
-                cell.removeSubMarker(marker)
-            } else {
-                cell.setSubMarker(marker)
-            }
-        }
-        sheetStore.setDisplayMarkerControlBar(false)
-        updatePresentationSheet()
-    }
-    
-    private func clickCancelButton() {
-        if sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
-        }
+    func chooseMainMarker(_ marker: MainMarker) {
+        let presentationSheet = markerControlBarUseCase.chooseMainMarker(marker)
         
-        sheet.unselectCell()
-        
-        if sheet.hasSelectedColName() {
-            sheet.unselectColumnName()
-        }
-        if sheet.hasSelectedRowName() {
-            sheet.getSelectedRowNames().values.forEach { rowName in
-                sheet.unselectRowName(rowName)
-            }
-        }
-        
-        sheetStore.setDisplayMarkerControlBar(false)
-        updatePresentationSheet()
+        updateSheetStore(presentationSheet: presentationSheet)
     }
     
-    private func clickPlusButton() {
+    func chooseSubMarker(_ marker: SubMarker) {
+        let presentationSheet = markerControlBarUseCase.chooseSubMarker(marker)
+        
+        updateSheetStore(presentationSheet: presentationSheet)
+    }
+    
+    func clickCancelButton() {
+        let presentationSheet = markerControlBarUseCase.clickCancelButton()
+        
+        updateSheetStore(presentationSheet: presentationSheet)
+    }
+    
+    func clickPlusButton() {
         sheetStore.setDisplayAddSubMarkerAlert(true)
     }
     
-    private func resetSelectedState() {
-        if sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
-        }
-        
-        sheet.unselectCell()
-        sheet.unselectColumnName()
-        sheet.getSelectedRowNames().values.forEach { rowName in
-            sheet.unselectRowName(rowName)
-        }
-    }
-    
-    private func updatePresentationSheet() {
-        let presentationSheet = PresentationSheet(
-            cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
-            rowNames: sheet.getRowNames(),
-            colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCellsImmutable(),
-            selectedRowNames: sheet.getSelectedRowNames(),
-            selectedColName: sheet.getSelectedColName()
-        )
-        
+    private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
+        
+        if presentationSheet.hasSelectedCells() {
+            sheetStore.setDisplayMarkerControlBar(true)
+        } else {
+            sheetStore.setDisplayMarkerControlBar(false)
+        }
     }
 }

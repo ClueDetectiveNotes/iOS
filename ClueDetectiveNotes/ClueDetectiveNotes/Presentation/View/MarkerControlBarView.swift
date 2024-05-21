@@ -39,7 +39,7 @@ struct MarkerControlBarView: View {
                         
                         Button(
                             action: {
-                                markerControlBarInteractor.execute(.clickPlusButton)
+                                markerControlBarInteractor.clickPlusButton()
                             },
                             label: {
                                 Image(systemName: "plus")
@@ -55,13 +55,13 @@ struct MarkerControlBarView: View {
             Divider()
             
             Button("취소") {
-                markerControlBarInteractor.execute(.clickCancelButton)
+                markerControlBarInteractor.clickCancelButton()
             }
             .padding(6)
         }
         .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
         .onDisappear {
-            markerControlBarInteractor.execute(.clickCancelButton)
+            markerControlBarInteractor.clickCancelButton()
         }
     }
 }
@@ -78,7 +78,7 @@ struct MainMarkerBtnsView: View {
         ForEach(mainMarkerTypes, id: \.self) { mainMarkerType in
             Button(
                 action: {
-                    markerControlBarInteractor.execute(.chooseMainMarker(MainMarker(notation: mainMarkerType)))
+                    markerControlBarInteractor.chooseMainMarker(MainMarker(notation: mainMarkerType))
                 },
                 label: {
                     Text(mainMarkerType.description)
@@ -109,7 +109,7 @@ struct SubMarkerBtnsView: View {
         ForEach(settingStore.setting.subMarkerTypes, id: \.self) { subMarkerType in
             Button(
                 action: {
-                    markerControlBarInteractor.execute(.chooseSubMarker(subMarkerType))
+                    markerControlBarInteractor.chooseSubMarker(subMarkerType)
                 },
                 label: {
                     Text(subMarkerType.notation)
@@ -122,8 +122,6 @@ struct SubMarkerBtnsView: View {
         }
     }
 }
-
-
 
 #Preview {
     MarkerControlBarView(sheetStore: SheetStore(), settingStore: SettingStore())
