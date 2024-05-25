@@ -7,36 +7,45 @@
 
 struct SheetInteractor {
     private var sheetStore: SheetStore
-    private let sheetUseCase: SheetUseCase
+    private let clickCellUseCase: ClickCellUseCase
+    private let longClickCellUseCase: LongClickCellUseCase
+    private let clickColNameUseCase: ClickColNameUseCase
+    private let clickRowNameUseCase: ClickRowNameUseCase
     
     init(
         sheetStore: SheetStore,
-        sheetUseCase: SheetUseCase = SheetUseCase()
+        clickCellUseCase: ClickCellUseCase = ClickCellUseCase(),
+        longClickCellUseCase: LongClickCellUseCase = LongClickCellUseCase(),
+        clickColNameUseCase: ClickColNameUseCase = ClickColNameUseCase(),
+        clickRowNameUseCase: ClickRowNameUseCase = ClickRowNameUseCase()
     ) {
         self.sheetStore = sheetStore
-        self.sheetUseCase = sheetUseCase
+        self.clickCellUseCase = clickCellUseCase
+        self.longClickCellUseCase = longClickCellUseCase
+        self.clickColNameUseCase = clickColNameUseCase
+        self.clickRowNameUseCase = clickRowNameUseCase
     }
 
     func clickCell(_ presentationCell: PresentationCell) {
-        let presentationSheet = sheetUseCase.clickCell(presentationCell)
+        let presentationSheet = clickCellUseCase.execute(presentationCell)
         
         updateSheetStore(presentationSheet: presentationSheet)
     }
     
     func longClickCell(_ presentationCell: PresentationCell) {
-        let presentationSheet = sheetUseCase.longClickCell(presentationCell)
+        let presentationSheet = longClickCellUseCase.execute(presentationCell)
         
         updateSheetStore(presentationSheet: presentationSheet)
     }
     
     func clickColName(_ colName: ColName) {
-        let presentationSheet = sheetUseCase.clickColName(colName)
+        let presentationSheet = clickColNameUseCase.execute(colName)
 
         updateSheetStore(presentationSheet: presentationSheet)
     }
     
     func clickRowName(_ rowName: RowName) {
-        let presentationSheet = sheetUseCase.clickRowName(rowName)
+        let presentationSheet = clickRowNameUseCase.execute(rowName)
         
         updateSheetStore(presentationSheet: presentationSheet)
     }

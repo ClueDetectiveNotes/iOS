@@ -9,19 +9,19 @@ import OSLog
 
 struct SettingInteractor {
     private var settingStore: SettingStore
-    private let settingUseCase: SettingUseCase
+    private let addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase
     
     init(
         settingStore: SettingStore,
-        settingUseCase: SettingUseCase = SettingUseCase()
+        addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase()
     ) {
         self.settingStore = settingStore
-        self.settingUseCase = settingUseCase
+        self.addSubMarkerTypeUseCase = addSubMarkerTypeUseCase
     }
     
     func addSubMarker(_ marker: SubMarker) {
         do {
-            let presentationSetting = try settingUseCase.addSubMarker(marker)
+            let presentationSetting = try addSubMarkerTypeUseCase.execute(marker)
             updateSettingStore(presentationSetting: presentationSetting)
         } catch {
             os_log("%{public}@", type: .default, error.localizedDescription)

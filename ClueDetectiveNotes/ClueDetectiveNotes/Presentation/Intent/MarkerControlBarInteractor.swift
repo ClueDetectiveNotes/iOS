@@ -7,30 +7,36 @@
 
 struct MarkerControlBarInteractor {
     private var sheetStore: SheetStore
-    private let markerControlBarUseCase: MarkerControlBarUseCase
+    private let chooseMainMarkerUseCase: ChooseMainMarkerUseCase
+    private let chooseSubMarkerUseCase: ChooseSubMarkerUseCase
+    private let cancelClickedCellUseCase: CancelClickedCellUseCase
     
     init(
         sheetStore: SheetStore,
-        markerControlBarUseCase: MarkerControlBarUseCase = MarkerControlBarUseCase()
+        chooseMainMarkerUseCase: ChooseMainMarkerUseCase = ChooseMainMarkerUseCase(),
+        chooseSubMarkerUseCase: ChooseSubMarkerUseCase = ChooseSubMarkerUseCase(),
+        cancelClickedCellUseCase: CancelClickedCellUseCase = CancelClickedCellUseCase()
     ) {
         self.sheetStore = sheetStore
-        self.markerControlBarUseCase =  markerControlBarUseCase
+        self.chooseMainMarkerUseCase = chooseMainMarkerUseCase
+        self.chooseSubMarkerUseCase = chooseSubMarkerUseCase
+        self.cancelClickedCellUseCase = cancelClickedCellUseCase
     }
     
     func chooseMainMarker(_ marker: MainMarker) {
-        let presentationSheet = markerControlBarUseCase.chooseMainMarker(marker)
+        let presentationSheet = chooseMainMarkerUseCase.execute(marker)
         
         updateSheetStore(presentationSheet: presentationSheet)
     }
     
     func chooseSubMarker(_ marker: SubMarker) {
-        let presentationSheet = markerControlBarUseCase.chooseSubMarker(marker)
+        let presentationSheet = chooseSubMarkerUseCase.execute(marker)
         
         updateSheetStore(presentationSheet: presentationSheet)
     }
     
     func clickCancelButton() {
-        let presentationSheet = markerControlBarUseCase.clickCancelButton()
+        let presentationSheet = cancelClickedCellUseCase.execute()
         
         updateSheetStore(presentationSheet: presentationSheet)
     }

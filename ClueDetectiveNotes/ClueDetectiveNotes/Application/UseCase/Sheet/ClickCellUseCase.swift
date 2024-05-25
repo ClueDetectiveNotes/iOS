@@ -1,14 +1,14 @@
 //
-//  SheetUseCase.swift
+//  ClickCellUseCase.swift
 //  ClueDetectiveNotes
 //
-//  Created by Dasan & Mary on 5/13/24.
+//  Created by Dasan & Mary on 5/25/24.
 //
 
-struct SheetUseCase {
+struct ClickCellUseCase: UseCase {
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
-    func clickCell(_ presentationCell: PresentationCell) -> PresentationSheet {
+    func execute(_ presentationCell: PresentationCell) -> PresentationSheet {
         let cell = try! sheet.findCell(id: presentationCell.id)
         
         switch sheet.isMultiSelectionMode() {
@@ -37,61 +37,10 @@ struct SheetUseCase {
         
         return createPresentationSheet()
     }
-    
-    func longClickCell(_ presentationCell: PresentationCell) -> PresentationSheet {
-        let cell = try! sheet.findCell(id: presentationCell.id)
-        
-        if !sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
-        }
-        
-        if !sheet.isSelectedCell(cell) {
-            _ = sheet.selectCell(cell)
-        }
-        
-        return createPresentationSheet()
-    }
-    
-    func clickColName(_ colName: ColName) -> PresentationSheet {
-        if sheet.isSelectedColName(colName) {
-            sheet.unselectColumnName()
-        } else {
-            _ = sheet.selectColumnName(colName)
-        }
-        
-        selectIntersectionCells()
-        return createPresentationSheet()
-    }
-    
-    func clickRowName(_ rowName: RowName) -> PresentationSheet {
-        if sheet.isSelectedRowName(rowName) {
-            sheet.unselectRowName(rowName)
-        } else {
-            _ = sheet.selectRowName(rowName)
-        }
-        
-        selectIntersectionCells()
-        return createPresentationSheet()
-    }
 }
 
 // MARK: - Private
-extension SheetUseCase {
-    private func selectIntersectionCells() {
-        if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
-            let cells = try! sheet.getCellsIntersectionOfSelection()
-            
-            sheet.unselectCell()
-            if !sheet.isMultiSelectionMode() {
-                sheet.switchSelectionMode()
-            }
-            
-            for cell in cells {
-                _ = sheet.selectCell(cell)
-            }
-        }
-    }
-    
+extension ClickCellUseCase {
     private func resetSelectedState() {
         if sheet.isMultiSelectionMode() {
             sheet.switchSelectionMode()

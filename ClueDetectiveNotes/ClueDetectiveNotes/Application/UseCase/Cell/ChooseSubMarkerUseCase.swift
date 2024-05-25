@@ -1,0 +1,52 @@
+//
+//  ChooseSubMarkerUseCase.swift
+//  ClueDetectiveNotes
+//
+//  Created by Dasan & Mary on 5/25/24.
+//
+
+struct ChooseSubMarkerUseCase: UseCase {
+    private var sheet: Sheet = GameSetter.shared.getSheet()
+    
+    func execute(_ marker: SubMarker) -> PresentationSheet {
+        switch sheet.isMultiSelectionMode() {
+        case true:
+            if sheet.isEveryCellMarkedWithSameSubMarker(marker) {
+                sheet.getSelectedCells().forEach { cell in
+                    cell.removeSubMarker(marker)
+                }
+            } else {
+                sheet.getSelectedCells().forEach { cell in
+                    if !cell.containsSubMarker(marker) {
+                        cell.setSubMarker(marker)
+                    }
+                }
+            }
+        case false:
+            if let cell = sheet.getSelectedCells().first {
+                if cell.containsSubMarker(marker) {
+                    cell.removeSubMarker(marker)
+                } else {
+                    cell.setSubMarker(marker)
+                }
+            }
+        }
+        
+        return createPresentationSheet()
+    }
+}
+
+// MARK: - Private
+extension ChooseSubMarkerUseCase {
+    private func createPresentationSheet() -> PresentationSheet {
+        return PresentationSheet(
+            cells: sheet.getCellsImmutable(),
+            isMultiMode: sheet.isMultiSelectionMode(),
+            rowNames: sheet.getRowNames(),
+            colNames: sheet.getColNames(),
+            selectedCells: sheet.getSelectedCellsImmutable(),
+            selectedRowNames: sheet.getSelectedRowNames(),
+            selectedColName: sheet.getSelectedColName()
+        )
+    }
+}
