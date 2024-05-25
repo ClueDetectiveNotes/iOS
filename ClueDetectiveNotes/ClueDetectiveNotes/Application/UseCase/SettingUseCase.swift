@@ -8,10 +8,8 @@
 struct SettingUseCase {
     private var setting: Setting = GameSetter.shared.getSetting()
     
-    func addSubMarker(_ marker: SubMarker) -> PresentationSetting {
-        // 한 글자 판별, 빈 값 판별, 스페이스 하나 판별
-        // 중복 판별
-        setting.addSubMarkerType(marker)
+    func addSubMarker(_ marker: SubMarker) throws -> PresentationSetting {
+        try setting.addSubMarkerType(marker)
         
         return createPresentationSetting()
     }

@@ -5,6 +5,8 @@
 //  Created by Dasan & Mary on 5/17/24.
 //
 
+import OSLog
+
 struct SettingInteractor {
     private var settingStore: SettingStore
     private let settingUseCase: SettingUseCase
@@ -18,9 +20,12 @@ struct SettingInteractor {
     }
     
     func addSubMarker(_ marker: SubMarker) {
-        let presentationSetting = settingUseCase.addSubMarker(marker)
-        
-        updateSettingStore(presentationSetting: presentationSetting)
+        do {
+            let presentationSetting = try settingUseCase.addSubMarker(marker)
+            updateSettingStore(presentationSetting: presentationSetting)
+        } catch {
+            os_log("%{public}@", type: .default, error.localizedDescription)
+        }
     }
 }
 
