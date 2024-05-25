@@ -73,7 +73,10 @@ struct SheetUseCase {
         selectIntersectionCells()
         return createPresentationSheet()
     }
-    
+}
+
+// MARK: - Private
+extension SheetUseCase {
     private func selectIntersectionCells() {
         if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
             let cells = try! sheet.getCellsIntersectionOfSelection()

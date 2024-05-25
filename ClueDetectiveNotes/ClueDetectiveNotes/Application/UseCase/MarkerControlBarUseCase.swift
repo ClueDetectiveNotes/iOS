@@ -79,7 +79,10 @@ struct MarkerControlBarUseCase {
         
         return createPresentationSheet()
     }
-    
+}
+
+// MARK: - Private
+extension MarkerControlBarUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),

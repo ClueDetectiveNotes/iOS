@@ -22,7 +22,10 @@ struct SettingInteractor {
         
         updateSettingStore(presentationSetting: presentationSetting)
     }
-    
+}
+
+// MARK: - Private
+extension SettingInteractor {
     private func updateSettingStore(presentationSetting: PresentationSetting) {
         settingStore.overwriteSetting(presentationSetting)
     }

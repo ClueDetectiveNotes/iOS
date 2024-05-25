@@ -40,7 +40,10 @@ struct SheetInteractor {
         
         updateSheetStore(presentationSheet: presentationSheet)
     }
-    
+}
+
+// MARK: - Private
+extension SheetInteractor {
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         

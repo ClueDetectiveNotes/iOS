@@ -38,7 +38,10 @@ struct MarkerControlBarInteractor {
     func clickPlusButton() {
         sheetStore.setDisplayAddSubMarkerAlert(true)
     }
-    
+}
+
+// MARK: - Private
+extension MarkerControlBarInteractor {
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         

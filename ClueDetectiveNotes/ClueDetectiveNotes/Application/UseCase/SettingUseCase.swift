@@ -15,7 +15,10 @@ struct SettingUseCase {
         
         return createPresentationSetting()
     }
-    
+}
+
+// MARK: - Private
+extension SettingUseCase {
     private func createPresentationSetting() -> PresentationSetting {
         return PresentationSetting(
             players: setting.getPlayers(),
