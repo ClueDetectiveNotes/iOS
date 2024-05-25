@@ -11,16 +11,15 @@ struct ClickCellUseCase: UseCase {
     func execute(_ presentationCell: PresentationCell) -> PresentationSheet {
         let cell = try! sheet.findCell(id: presentationCell.id)
         
-        switch sheet.isMultiSelectionMode() {
+        switch sheet.isMultiMode() {
         case true:
             if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
                 resetSelectedState()
             } else {
-                
                 if sheet.isSelectedCell(cell) {
                     _ = try! sheet.multiUnselectCell(cell)
                     if !sheet.hasSelectedCell() {
-                        sheet.switchSelectionMode()
+                        sheet.setMode(.single)
                     }
                 } else {
                     _ = sheet.selectCell(cell)
@@ -42,8 +41,8 @@ struct ClickCellUseCase: UseCase {
 // MARK: - Private
 extension ClickCellUseCase {
     private func resetSelectedState() {
-        if sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
+        if sheet.isMultiMode() {
+            sheet.setMode(.single)
         }
         
         sheet.unselectCell()
@@ -56,7 +55,7 @@ extension ClickCellUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

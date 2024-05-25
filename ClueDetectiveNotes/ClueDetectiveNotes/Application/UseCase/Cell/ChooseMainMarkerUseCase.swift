@@ -9,7 +9,7 @@ struct ChooseMainMarkerUseCase: UseCase {
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
     func execute(_ marker: MainMarker) -> PresentationSheet {
-        switch sheet.isMultiSelectionMode() {
+        switch sheet.isMultiMode() {
         case true:
             if sheet.isEveryCellMarkedWithMainMarker(),
                sheet.isSameMainMarkerInEveryCell(marker) {
@@ -40,7 +40,7 @@ extension ChooseMainMarkerUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

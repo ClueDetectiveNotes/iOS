@@ -9,8 +9,8 @@ struct CancelClickedCellUseCase: UseCase {
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
     func execute(_ param: Int) -> PresentationSheet {
-        if sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
+        if sheet.isMultiMode() {
+            sheet.setMode(.single)
         }
         
         sheet.unselectCell()
@@ -33,7 +33,7 @@ extension CancelClickedCellUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

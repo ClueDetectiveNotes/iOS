@@ -11,8 +11,8 @@ struct LongClickCellUseCase: UseCase {
     func execute(_ presentationCell: PresentationCell) -> PresentationSheet {
         let cell = try! sheet.findCell(id: presentationCell.id)
         
-        if !sheet.isMultiSelectionMode() {
-            sheet.switchSelectionMode()
+        if !sheet.isMultiMode() {
+            sheet.setMode(.multi)
         }
         
         if !sheet.isSelectedCell(cell) {
@@ -28,7 +28,7 @@ extension LongClickCellUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

@@ -9,7 +9,7 @@ import Foundation
 
 struct PresentationSheet {
     let cells: [PresentationCell]
-    let isMultiMode: Bool
+    let mode: SheetMode
     let rowNames: [RowName]
     let colNames: [ColName]
     let selectedCells: [PresentationCell]

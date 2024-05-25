@@ -27,8 +27,8 @@ extension ClickColNameUseCase {
             let cells = try! sheet.getCellsIntersectionOfSelection()
 
             sheet.unselectCell()
-            if !sheet.isMultiSelectionMode() {
-                sheet.switchSelectionMode()
+            if !sheet.isMultiMode() {
+                sheet.setMode(.multi)
             }
 
             for cell in cells {
@@ -40,7 +40,7 @@ extension ClickColNameUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

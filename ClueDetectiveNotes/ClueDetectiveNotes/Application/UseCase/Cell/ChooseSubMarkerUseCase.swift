@@ -9,7 +9,7 @@ struct ChooseSubMarkerUseCase: UseCase {
     private var sheet: Sheet = GameSetter.shared.getSheet()
     
     func execute(_ marker: SubMarker) -> PresentationSheet {
-        switch sheet.isMultiSelectionMode() {
+        switch sheet.isMultiMode() {
         case true:
             if sheet.isEveryCellMarkedWithSameSubMarker(marker) {
                 sheet.getSelectedCells().forEach { cell in
@@ -41,7 +41,7 @@ extension ChooseSubMarkerUseCase {
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
-            isMultiMode: sheet.isMultiSelectionMode(),
+            mode: sheet.getMode(),
             rowNames: sheet.getRowNames(),
             colNames: sheet.getColNames(),
             selectedCells: sheet.getSelectedCellsImmutable(),

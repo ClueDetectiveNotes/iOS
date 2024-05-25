@@ -23,6 +23,8 @@
 		44B81D0D2BF1F0B400E82051 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D0C2BF1F0B400E82051 /* UseCase.swift */; };
 		44B81D112BF1F94200E82051 /* MarkerControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */; };
 		44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB763F2BEA004C0067A814 /* GameSetter.swift */; };
+		44E011BC2C01CDA900676359 /* ClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E011BB2C01CDA900676359 /* ClickCellUseCaseTests.swift */; };
+		44E011BE2C01E22600676359 /* SheetMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E011BD2C01E22600676359 /* SheetMode.swift */; };
 		44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8D8D12BD0116000A989E2 /* Marker.swift */; };
 		AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04831D2BF275A500B99608 /* PresentationSheet.swift */; };
 		AC3170512C018C53009E947B /* SettingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170502C018C53009E947B /* SettingError.swift */; };
@@ -73,6 +75,8 @@
 		44B81D0C2BF1F0B400E82051 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarView.swift; sourceTree = "<group>"; };
 		44DB763F2BEA004C0067A814 /* GameSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetter.swift; sourceTree = "<group>"; };
+		44E011BB2C01CDA900676359 /* ClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickCellUseCaseTests.swift; sourceTree = "<group>"; };
+		44E011BD2C01E22600676359 /* SheetMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMode.swift; sourceTree = "<group>"; };
 		44E8D8D12BD0116000A989E2 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AC04831D2BF275A500B99608 /* PresentationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSheet.swift; sourceTree = "<group>"; };
 		AC3170502C018C53009E947B /* SettingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingError.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				AC9F1FFB2BCD1A77008283DF /* Errors */,
 				444293442BCAAF79008CAA2C /* Sheet.swift */,
+				44E011BD2C01E22600676359 /* SheetMode.swift */,
 				4442934C2BCAC6D0008CAA2C /* Cell.swift */,
 				44E8D8D12BD0116000A989E2 /* Marker.swift */,
 			);
@@ -242,6 +247,24 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		44E011B92C01CCA300676359 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				4442934E2BCACB5C008CAA2C /* TestDouble */,
+				ACFED8E02BB90B5F00B1D22B /* SheetTests.swift */,
+				AC4121B42BD0138500817B0A /* CellTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		44E011BA2C01CD8100676359 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				44E011BB2C01CDA900676359 /* ClickCellUseCaseTests.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		AC31704F2C018C44009E947B /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,9 +361,8 @@
 		ACFED8DF2BB90B5F00B1D22B /* ClueDetectiveNotesTests */ = {
 			isa = PBXGroup;
 			children = (
-				4442934E2BCACB5C008CAA2C /* TestDouble */,
-				ACFED8E02BB90B5F00B1D22B /* SheetTests.swift */,
-				AC4121B42BD0138500817B0A /* CellTests.swift */,
+				44E011BA2C01CD8100676359 /* Application */,
+				44E011B92C01CCA300676359 /* Domain */,
 			);
 			path = ClueDetectiveNotesTests;
 			sourceTree = "<group>";
@@ -477,6 +499,7 @@
 				AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
+				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E011BC2C01CDA900676359 /* ClickCellUseCaseTests.swift in Sources */,
 				ACFED8E12BB90B5F00B1D22B /* SheetTests.swift in Sources */,
 				AC4121B52BD0138500817B0A /* CellTests.swift in Sources */,
 				444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 
 final class Sheet {
     private var cells = [Cell]()
-    private var isMultiMode: Bool
+    private var mode: SheetMode
     private var rowNames = [RowName]()
     private var colNames = [ColName]()
     private var selectedCells = [Cell]()
@@ -19,9 +19,9 @@ final class Sheet {
     init(
         players: [Player],
         cards: Cards,
-        isMultiMode: Bool = false
+        mode: SheetMode = .single
     ) {
-        self.isMultiMode = isMultiMode
+        self.mode = mode
         
         players.forEach { player in
             colNames.append(ColName(player: player))
@@ -56,6 +56,10 @@ final class Sheet {
                 subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation }
             )
         }
+    }
+    
+    func getMode() -> SheetMode {
+        return mode
     }
     
     func getRowNames() -> [RowName] {
@@ -110,8 +114,20 @@ final class Sheet {
         return selectedColName == colName
     }
     
-    func isMultiSelectionMode() -> Bool {
-        return isMultiMode
+    func isSingleMode() -> Bool {
+        return mode == .single
+    }
+    
+    func isMultiMode() -> Bool {
+        return mode == .multi
+    }
+    
+    func isInferenceMode() -> Bool {
+        return mode == .inference
+    }
+    
+    func isPreInferenceMode() -> Bool {
+        return mode == .preInference
     }
     
     func isEveryCellMarkedWithMainMarker() -> Bool {
@@ -171,16 +187,12 @@ final class Sheet {
         selectedCells.removeAll()
     }
     
-    func switchSelectionMode() {
-        if isMultiSelectionMode(), hasSelectedCell() {
-            unselectCell()
-        }
-        
-        isMultiMode.toggle()
+    func setMode(_ mode: SheetMode) {
+        self.mode = mode
     }
     
     func multiSelectCell(_ cell: Cell) throws -> [Cell] {
-        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
         guard !isSelectedCell(cell) else {
             throw SheetError.cannotSelectAlreadySelectedCell
         }
@@ -191,7 +203,7 @@ final class Sheet {
     }
     
     func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
         guard try !isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotSelectAlreadySelectedCell
         }
@@ -203,7 +215,7 @@ final class Sheet {
     }
     
     func multiUnselectCell(_ cell: Cell) throws -> [Cell] {
-        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
         guard isSelectedCell(cell) else {
             throw SheetError.cannotUnselectNeverChosenCell
         }
@@ -216,7 +228,7 @@ final class Sheet {
     }
     
     func multiUnselectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        guard isMultiSelectionMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
         guard try isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotUnselectNeverChosenCell
         }
