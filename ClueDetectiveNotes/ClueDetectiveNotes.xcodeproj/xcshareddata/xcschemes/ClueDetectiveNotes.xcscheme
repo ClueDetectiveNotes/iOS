@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:ClueDetectiveNotes.xctestplan"
+            reference = "container:ClueDetectiveNotesTests/ClueDetectiveNotes.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

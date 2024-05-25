@@ -37,5 +37,53 @@ final class ClickCellUseCaseTests: XCTestCase {
     }
     
     // 싱글모드에서 기존에 선택되지 않은 셀을 클릭하면 해당 셀이 선택된다
+    func test_clickUnselectedCellInSingleModeToSelect() {
+        let targetCell = sheet.getCells()[0]
+        
+        let presentationCell = sheet.getCellImmutable(cell: targetCell)
+        _ = clickCellUseCase.execute(presentationCell)
+        
+        XCTAssertTrue(sheet.isSelectedCell(targetCell))
+    }
     
+    // 멀티모드에서 클릭한 셀이 이미 선택되어있고 클릭한 셀 외에 선택한 셀이 없으면 해당 셀이 선택 해제되고, 싱글모드로 변경된다.
+    func test_clickOnlySelectedCellInMultiModeToUnselectAndSwitchToSingleMode() {
+        let targetCell = sheet.getCells()[0]
+        sheet.setMode(.multi)
+        _ = try! sheet.multiSelectCell(targetCell)
+        
+        let presentationCell = sheet.getCellImmutable(cell: targetCell)
+        _ = clickCellUseCase.execute(presentationCell)
+        
+        XCTAssertFalse(sheet.isSelectedCell(targetCell))
+        XCTAssertEqual(sheet.getMode(), .single)
+    }
+    
+    // 멀티모드에서 클릭한 셀이 이미 선택되어있고 클릭한 셀 외에 선택한 셀이 있으면 해당 셀이 선택 해제되고, 멀티모드가 유지된다.
+    func test_clickSelectedCellWithOtherCellsSelectedInMultiModeToUnselectAndRetainMultiMode() {
+        let alreadySelectedCell = sheet.getCells()[0]
+        let targetCell = sheet.getCells()[1]
+        
+        sheet.setMode(.multi)
+        _ = try! sheet.multiSelectCell(alreadySelectedCell)
+        _ = try! sheet.multiSelectCell(targetCell)
+        
+        let presentationCell = sheet.getCellImmutable(cell: targetCell)
+        _ = clickCellUseCase.execute(presentationCell)
+        
+        XCTAssertFalse(sheet.isSelectedCell(targetCell))
+        XCTAssertEqual(sheet.getMode(), .multi)
+    }
+    
+    // 멀티모드에서 클릭한 셀이 기존에 선택되지 않은 셀이면 해당 셀이 선택된다.
+    func test_clickUnselectedCellInMultiModeToSelect() {
+        let targetCell = sheet.getCells()[0]
+        
+        sheet.setMode(.multi)
+        
+        let presentationCell = sheet.getCellImmutable(cell: targetCell)
+        _ = clickCellUseCase.execute(presentationCell)
+        
+        XCTAssertTrue(sheet.isSelectedCell(targetCell))
+    }
 }
