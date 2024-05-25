@@ -6,7 +6,11 @@
 //
 
 struct AddSubMarkerTypeUseCase {
-    private var setting: Setting = GameSetter.shared.getSetting()
+    private var setting: Setting
+    
+    init(setting: Setting = GameSetter.shared.getSetting()) {
+        self.setting = setting
+    }
     
     func execute(_ marker: SubMarker) throws -> PresentationSetting {
         try setting.addSubMarkerType(marker)

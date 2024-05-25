@@ -6,7 +6,11 @@
 //
 
 struct ChooseMainMarkerUseCase: UseCase {
-    private var sheet: Sheet = GameSetter.shared.getSheet()
+    private var sheet: Sheet
+    
+    init(sheet: Sheet = GameSetter.shared.getSheet()) {
+        self.sheet = sheet
+    }
     
     func execute(_ marker: MainMarker) -> PresentationSheet {
         switch sheet.isMultiMode() {
