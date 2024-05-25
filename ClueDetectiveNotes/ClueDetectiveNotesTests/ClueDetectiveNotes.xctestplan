@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "71C6BAAF-E986-45E4-9EE3-EA7D0BCFF70B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ClueDetectiveNotes.xcodeproj",
+      "identifier" : "ACFED8CB2BB90B5E00B1D22B",
+      "name" : "ClueDetectiveNotes"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ClueDetectiveNotes.xcodeproj",
+        "identifier" : "ACFED8DB2BB90B5F00B1D22B",
+        "name" : "ClueDetectiveNotesTests"
+      }
+    }
+  ],
+  "version" : 1
+}
