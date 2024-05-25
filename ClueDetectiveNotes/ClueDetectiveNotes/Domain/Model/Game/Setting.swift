@@ -32,7 +32,21 @@ final class Setting {
         return subMarkerTypes
     }
     
-    func addSubMarkerType(_ marker: SubMarker) {
-        subMarkerTypes.append(marker)
+    func addSubMarkerType(_ marker: SubMarker) throws {
+        let notation = marker.notation.replacingOccurrences(of: " ", with: "")
+        
+        guard isValidSubMarkerNotation(notation) else {
+            throw SettingError.invalidSubMarkerType
+        }
+        
+        guard !subMarkerTypes.contains(SubMarker(notation: notation)) else {
+            throw SettingError.alreadyExistsSubMarkerType
+        }
+        
+        subMarkerTypes.append(SubMarker(notation: notation))
+    }
+    
+    private func isValidSubMarkerNotation(_ notation: String) -> Bool {
+        return !notation.isEmpty && notation.count <= 2
     }
 }
