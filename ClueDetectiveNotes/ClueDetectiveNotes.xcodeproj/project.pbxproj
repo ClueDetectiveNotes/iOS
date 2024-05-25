@@ -27,6 +27,7 @@
 		44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB763F2BEA004C0067A814 /* GameSetter.swift */; };
 		44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8D8D12BD0116000A989E2 /* Marker.swift */; };
 		AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04831D2BF275A500B99608 /* PresentationSheet.swift */; };
+		AC3170512C018C53009E947B /* SettingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170502C018C53009E947B /* SettingError.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F02BECABB000911F13 /* SheetStore.swift */; };
@@ -70,6 +71,7 @@
 		44DB763F2BEA004C0067A814 /* GameSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetter.swift; sourceTree = "<group>"; };
 		44E8D8D12BD0116000A989E2 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AC04831D2BF275A500B99608 /* PresentationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSheet.swift; sourceTree = "<group>"; };
+		AC3170502C018C53009E947B /* SettingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingError.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC6E30F02BECABB000911F13 /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
@@ -220,10 +222,19 @@
 		44DB763E2BEA003D0067A814 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				AC31704F2C018C44009E947B /* Errors */,
 				44DB763F2BEA004C0067A814 /* GameSetter.swift */,
 				44AF62042BF796AE00F38165 /* Setting.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		AC31704F2C018C44009E947B /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				AC3170502C018C53009E947B /* SettingError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		AC6E30EF2BECAB6B00911F13 /* Store */ = {
@@ -393,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B81D112BF1F94200E82051 /* MarkerControlBarView.swift in Sources */,
+				AC3170512C018C53009E947B /* SettingError.swift in Sources */,
 				44AF62072BF796BA00F38165 /* PresentationSetting.swift in Sources */,
 				AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */,
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
