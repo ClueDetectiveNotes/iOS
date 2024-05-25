@@ -40,7 +40,7 @@ struct GameView: View {
         ) {
             TextField("마커 이름", text: $newSubMarkerName)
             Button("확인") {
-                settingInteractor.execute(.addSubMarker(SubMarker(notation: newSubMarkerName)))
+                settingInteractor.addSubMarker(SubMarker(notation: newSubMarkerName))
                 newSubMarkerName = ""
             }
             Button("취소", role: .cancel) { }

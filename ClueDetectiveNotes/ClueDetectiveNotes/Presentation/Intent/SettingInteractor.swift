@@ -7,36 +7,23 @@
 
 struct SettingInteractor {
     private var settingStore: SettingStore
-    private var setting: Setting = GameSetter.shared.getSetting()
+    private let settingUseCase: SettingUseCase
     
-    init(settingStore: SettingStore) {
+    init(
+        settingStore: SettingStore,
+        settingUseCase: SettingUseCase = SettingUseCase()
+    ) {
         self.settingStore = settingStore
+        self.settingUseCase = settingUseCase
     }
     
-    func execute(_ useCase: SettingUseCase) {
-        switch useCase {
-        case let .addSubMarker(marker):
-            addSubMarker(marker)
-        }
-    }
-}
-
-extension SettingInteractor {
-    private func addSubMarker(_ marker: SubMarker) {
-        // 한 글자 판별, 빈 값 판별, 스페이스 하나 판별
-        // 중복 판별
-        setting.addSubMarkerType(marker)
+    func addSubMarker(_ marker: SubMarker) {
+        let presentationSetting = settingUseCase.addSubMarker(marker)
         
-        updatePresentationSetting()
+        updateSettingStore(presentationSetting: presentationSetting)
     }
     
-    private func updatePresentationSetting() {
-        let presentationSetting = PresentationSetting(
-            players: setting.getPlayers(),
-            edition: setting.getEdition(),
-            subMarkerTypes: setting.getSubMarkerTypes()
-        )
-        
+    private func updateSettingStore(presentationSetting: PresentationSetting) {
         settingStore.overwriteSetting(presentationSetting)
     }
 }
