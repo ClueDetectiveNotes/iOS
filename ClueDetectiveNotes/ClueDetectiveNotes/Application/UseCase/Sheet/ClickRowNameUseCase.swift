@@ -36,7 +36,7 @@ extension ClickRowNameUseCase {
             }
 
             for cell in cells {
-                _ = sheet.selectCell(cell)
+                _ = try! sheet.selectCell(cell)
             }
         }
     }

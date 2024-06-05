@@ -150,20 +150,6 @@ final class Sheet {
         }
     }
     
-    func selectCell(_ cell: Cell) -> [Cell] {
-        selectedCells.append(cell)
-        
-        return selectedCells
-    }
-    
-    func selectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        let selectedCell = try findCell(rowName: rowName, colName: colName)
-        
-        selectedCells.append(selectedCell)
-        
-        return selectedCells
-    }
-    
     func findCell(id: UUID) throws -> Cell {
         if let cell = cells.filter({ $0.getID() == id }).first {
             return cell
@@ -183,16 +169,50 @@ final class Sheet {
         throw SheetError.cellNotFound
     }
     
+    func selectCell(_ cell: Cell) throws -> [Cell] {
+        guard !isInferenceMode(), !isPreInferenceMode() else {
+            throw SheetError.modeChanged(to: .single)
+        }
+        
+        selectedCells.append(cell)
+        
+        return selectedCells
+    }
+    
+    func selectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
+        guard !isInferenceMode(), !isPreInferenceMode() else {
+            throw SheetError.modeChanged(to: .single)
+        }
+        
+        let selectedCell = try findCell(rowName: rowName, colName: colName)
+        
+        selectedCells.append(selectedCell)
+        
+        return selectedCells
+    }
+    
     func unselectCell() {
         selectedCells.removeAll()
     }
     
     func setMode(_ mode: SheetMode) {
+        // 어떤 모드에서 어떤 모드로 갈 때 선택된 셀들이 선택 해제되어야하는가
+        // 1. 멀티모드에서 다른 모드로 갈 때
+        // 2. 추리모드에서 다른 모드로 갈 때
+        if hasSelectedCell() && (isMultiMode() || isInferenceMode()) {
+            unselectCell()
+        }
+        
         self.mode = mode
     }
     
     func multiSelectCell(_ cell: Cell) throws -> [Cell] {
-        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
+        guard !isInferenceMode(), !isPreInferenceMode() else {
+            throw SheetError.modeChanged(to: .single)
+        }
+        guard isMultiMode() else {
+            throw SheetError.notMultiSelectionMode
+        }
         guard !isSelectedCell(cell) else {
             throw SheetError.cannotSelectAlreadySelectedCell
         }
@@ -203,7 +223,12 @@ final class Sheet {
     }
     
     func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
+        guard !isInferenceMode(), !isPreInferenceMode() else {
+            throw SheetError.modeChanged(to: .single)
+        }
+        guard isMultiMode() else {
+            throw SheetError.notMultiSelectionMode
+        }
         guard try !isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotSelectAlreadySelectedCell
         }
@@ -215,7 +240,9 @@ final class Sheet {
     }
     
     func multiUnselectCell(_ cell: Cell) throws -> [Cell] {
-        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else {
+            throw SheetError.notMultiSelectionMode
+        }
         guard isSelectedCell(cell) else {
             throw SheetError.cannotUnselectNeverChosenCell
         }
@@ -228,7 +255,9 @@ final class Sheet {
     }
     
     func multiUnselectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
-        guard isMultiMode() else { throw SheetError.notMultiSelectionMode }
+        guard isMultiMode() else {
+            throw SheetError.notMultiSelectionMode
+        }
         guard try isSelectedCell(rowName: rowName, colName: colName) else {
             throw SheetError.cannotUnselectNeverChosenCell
         }

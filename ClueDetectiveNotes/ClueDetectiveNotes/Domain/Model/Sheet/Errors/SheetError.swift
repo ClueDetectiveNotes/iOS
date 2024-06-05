@@ -7,9 +7,10 @@
 
 import Foundation
 
-enum SheetError: LocalizedError {
+enum SheetError: LocalizedError, Equatable {
     case cellNotFound
     case notMultiSelectionMode
+    case modeChanged(to: SheetMode)
     case cannotSelectAlreadySelectedCell
     case cannotUnselectNeverChosenCell
     case notYetSelectAnyRowName
@@ -21,6 +22,8 @@ enum SheetError: LocalizedError {
             return "Can not find that cell in cells"
         case .notMultiSelectionMode:
             return "Current selection mode is not multi selection mode"
+        case .modeChanged(let mode):
+            return "Mode Changed to \(mode.description)"
         case .cannotSelectAlreadySelectedCell:
             return "Can not select already selected cell"
         case .cannotUnselectNeverChosenCell:

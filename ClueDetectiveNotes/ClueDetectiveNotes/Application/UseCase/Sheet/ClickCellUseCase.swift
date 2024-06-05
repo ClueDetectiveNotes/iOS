@@ -26,7 +26,7 @@ struct ClickCellUseCase: UseCase {
                         sheet.setMode(.single)
                     }
                 } else {
-                    _ = sheet.selectCell(cell)
+                    _ = try! sheet.selectCell(cell)
                 }
             }
         case false:
@@ -34,7 +34,7 @@ struct ClickCellUseCase: UseCase {
                 sheet.unselectCell()
             } else {
                 sheet.unselectCell()
-                _ = sheet.selectCell(cell)
+                _ = try! sheet.selectCell(cell)
             }
         }
         

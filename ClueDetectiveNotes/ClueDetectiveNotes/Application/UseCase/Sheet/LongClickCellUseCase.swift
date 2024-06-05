@@ -20,7 +20,7 @@ struct LongClickCellUseCase: UseCase {
         }
         
         if !sheet.isSelectedCell(cell) {
-            _ = sheet.selectCell(cell)
+            _ = try! sheet.selectCell(cell)
         }
         
         return createPresentationSheet()

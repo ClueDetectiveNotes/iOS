@@ -28,7 +28,7 @@ final class ClickCellUseCaseTests: XCTestCase {
     // 싱글모드에서 이미 선택된 셀을 클릭하면 해당 셀의 선택이 해제된다
     func test_clickSelectedCellInSingleModeToUnselect() {
         let targetCell = sheet.getCells()[0]
-        _ = sheet.selectCell(targetCell)
+        _ = try! sheet.selectCell(targetCell)
         
         let presentationCell = sheet.getCellImmutable(cell: targetCell)
         _ = clickCellUseCase.execute(presentationCell)
