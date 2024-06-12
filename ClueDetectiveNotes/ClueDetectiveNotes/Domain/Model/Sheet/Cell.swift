@@ -22,6 +22,24 @@ final class Cell {
         self.colName = colName
     }
     
+    // MARK: - State
+    func isEmptyMainMarker() -> Bool {
+        return mainMarker == nil
+    }
+    
+    func isEmptySubMarkers() -> Bool {
+        return subMarkers.isEmpty
+    }
+    
+    func containsSubMarker(_ marker: SubMarker) -> Bool {
+        return subMarkers.contains(marker)
+    }
+    
+    func equalsMainMarker(_ marker: MainMarker) -> Bool {
+        return mainMarker == marker
+    }
+    
+    // MARK: - GET
     func getID() -> UUID {
         return id
     }
@@ -42,22 +60,7 @@ final class Cell {
         return subMarkers
     }
     
-    func isEmptyMainMarker() -> Bool {
-        return mainMarker == nil
-    }
-    
-    func isEmptySubMarkers() -> Bool {
-        return subMarkers.isEmpty
-    }
-    
-    func containsSubMarker(_ marker: SubMarker) -> Bool {
-        return subMarkers.contains(marker)
-    }
-    
-    func equalsMainMarker(_ marker: MainMarker) -> Bool {
-        return mainMarker == marker
-    }
-    
+    // MARK: - SET
     func setMainMarker(_ marker: MainMarker) {
         mainMarker = marker
     }
