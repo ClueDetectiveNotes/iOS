@@ -13,28 +13,39 @@ struct ClickCellUseCase: UseCase {
     }
     
     func execute(_ presentationCell: PresentationCell) -> PresentationSheet {
-        let cell = try! sheet.findCell(id: presentationCell.id)
-        
-        switch sheet.isMultiMode() {
-        case true:
-            if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
-                resetSelectedState()
-            } else {
+        do {
+            let cell = try sheet.findCell(id: presentationCell.id)
+            
+            switch sheet.getMode() {
+            case .single:
                 if sheet.isSelectedCell(cell) {
-                    _ = try! sheet.multiUnselectCell(cell)
-                    if !sheet.hasSelectedCell() {
-                        sheet.setMode(.single)
-                    }
+                    sheet.unselectCell()
                 } else {
-                    _ = try! sheet.selectCell(cell)
+                    sheet.unselectCell()
+                    _ = try sheet.selectCell(cell)
                 }
+            case .multi:
+                if sheet.isSelectedCell(cell) {
+                    _ = try sheet.multiUnselectCell(cell)
+                    sheet.switchModeInSelectionMode()
+                } else {
+                    _ = try sheet.multiSelectCell(cell)
+                }
+            case .preInference:
+                // user에게 모드 변경 안내
+                print("preInference 모드에서 ClickCellUseCase가 실행됨")
+                sheet.resetSelectedState()
+            case .inference:
+                // user에게 모드 변경 안내
+                print("inference 모드에서 ClickCellUseCase가 실행됨")
+                sheet.resetSelectedState()
             }
-        case false:
-            if sheet.isSelectedCell(cell) {
-                sheet.unselectCell()
-            } else {
-                sheet.unselectCell()
-                _ = try! sheet.selectCell(cell)
+        } catch {
+            switch error as? SheetError {
+            case .inferenceModeException:
+                print(SheetError.inferenceModeException.errorDescription ?? "")
+            default:
+                print(error.localizedDescription)
             }
         }
         
@@ -44,18 +55,6 @@ struct ClickCellUseCase: UseCase {
 
 // MARK: - Private
 extension ClickCellUseCase {
-    private func resetSelectedState() {
-        if sheet.isMultiMode() {
-            sheet.setMode(.single)
-        }
-        
-        sheet.unselectCell()
-        sheet.unselectColumnName()
-        sheet.getSelectedRowNames().values.forEach { rowName in
-            sheet.unselectRowName(rowName)
-        }
-    }
-    
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),

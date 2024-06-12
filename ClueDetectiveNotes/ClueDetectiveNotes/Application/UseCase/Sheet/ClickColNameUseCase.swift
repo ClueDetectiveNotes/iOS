@@ -13,34 +13,30 @@ struct ClickColNameUseCase: UseCase {
     }
     
     func execute(_ colName: ColName) -> PresentationSheet {
-        if sheet.isSelectedColName(colName) {
-            sheet.unselectColumnName()
-        } else {
-            _ = sheet.selectColumnName(colName)
+        do {
+            switch sheet.getMode() {
+            case .single, .multi:
+                sheet.unselectCell()
+                sheet.setMode(.preInference)
+                fallthrough
+            case .preInference, .inference:
+                if sheet.isSelectedColName(colName) {
+                    sheet.unselectColumnName()
+                } else {
+                    _ = sheet.selectColumnName(colName)
+                }
+                try sheet.switchModeInInferenceMode()
+            }
+        } catch {
+            print(error.localizedDescription)
         }
-
-        selectIntersectionCells()
+        
         return createPresentationSheet()
     }
 }
 
 // MARK: - Private
 extension ClickColNameUseCase {
-    private func selectIntersectionCells() {
-        if sheet.hasSelectedColName() && sheet.hasSelectedRowName() {
-            let cells = try! sheet.getCellsIntersectionOfSelection()
-
-            sheet.unselectCell()
-            if !sheet.isMultiMode() {
-                sheet.setMode(.multi)
-            }
-
-            for cell in cells {
-                _ = try! sheet.selectCell(cell)
-            }
-        }
-    }
-    
     private func createPresentationSheet() -> PresentationSheet {
         return PresentationSheet(
             cells: sheet.getCellsImmutable(),
