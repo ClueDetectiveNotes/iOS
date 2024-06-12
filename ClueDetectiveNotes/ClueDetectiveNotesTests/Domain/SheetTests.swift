@@ -62,7 +62,7 @@ final class SheetTests: XCTestCase {
         sheet.setMode(.multi)
         XCTAssertTrue(sheet.isMultiMode())
         
-        let _ = try sheet.selectCell(
+        let _ = try sheet.multiSelectCell(
             rowName: sheet.getRowNames()[0],
             colName: sheet.getColNames()[0]
         )
@@ -129,19 +129,14 @@ final class SheetTests: XCTestCase {
     
     // rowname과 colname이 선택되었을 때 해당하는 cell들을 반환한다
     // selectRowAndColumn 없이 기존 selectRow와 selectColumn으로 충분하지 않을까
-    func test_returnCellsForRownameAndColnameSelection() {
+    func test_returnCellsForRownameAndColnameSelection() throws {
         let rowName = sheet.getRowNames()[0]
         let colName = sheet.getColNames()[0]
         
         _ = sheet.selectRowName(rowName)
         _ = sheet.selectColumnName(colName)
         
-        let cells = try! sheet.getCellsIntersectionOfSelection()
-        
-        //        XCTAssertEqual(
-        //            cells.count,
-        //            sheet.getColNames().count + sheet.getRowNames().count - 1
-        //        )
+        let cells = try sheet.getCellsIntersectionOfSelection()
         
         cells.forEach { cell in
             guard cell.getColName() == colName && cell.getRowName() == rowName else {
@@ -233,14 +228,14 @@ final class SheetTests: XCTestCase {
     
     // 멀티모드에서 셀들을 선택하고 마커를 선택했을 때, 현재 설정된 마커와 관계없이 선택된 모든 셀에 마킹이 된다.
     // 선택된 셀에 마커가 하나도 없는 경우
-    func test_whenSelectUnmarkedCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() {
+    func test_whenSelectUnmarkedCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() throws {
         let cells = sheet.getCells()
         
         sheet.setMode(.multi)
         
-        _ = try! sheet.multiSelectCell(cells[0])
-        _ = try! sheet.multiSelectCell(cells[1])
-        _ = try! sheet.multiSelectCell(cells[2])
+        _ = try sheet.multiSelectCell(cells[0])
+        _ = try sheet.multiSelectCell(cells[1])
+        _ = try sheet.multiSelectCell(cells[2])
         
         let selectedCells = sheet.getSelectedCells()
         let selectedMainMarker = MainMarker(notation: .cross)
@@ -257,7 +252,7 @@ final class SheetTests: XCTestCase {
     
     // 멀티모드에서 셀들을 선택하고 마커를 선택했을 때, 현재 설정된 마커와 관계없이 선택된 모든 셀에 마킹이 된다.
     // 선택된 셀에 일부만 마커가 있는 경우
-    func test_whenSelectMarkedOrUnmarkedCellsCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() {
+    func test_whenSelectMarkedOrUnmarkedCellsCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() throws {
         let cells = sheet.getCells()
         
         cells[2].setMainMarker(.init(notation: .question))
@@ -265,10 +260,10 @@ final class SheetTests: XCTestCase {
         
         sheet.setMode(.multi)
         
-        _ = try! sheet.multiSelectCell(cells[0])
-        _ = try! sheet.multiSelectCell(cells[1])
-        _ = try! sheet.multiSelectCell(cells[2])
-        _ = try! sheet.multiSelectCell(cells[3])
+        _ = try sheet.multiSelectCell(cells[0])
+        _ = try sheet.multiSelectCell(cells[1])
+        _ = try sheet.multiSelectCell(cells[2])
+        _ = try sheet.multiSelectCell(cells[3])
         
         let selectedCells = sheet.getSelectedCells()
         let selectedMainMarker = MainMarker(notation: .cross)
@@ -284,7 +279,7 @@ final class SheetTests: XCTestCase {
     
     // 멀티모드에서 셀들을 선택하고 마커를 선택했을 때, 현재 설정된 마커와 관계없이 선택된 모든 셀에 마킹이 된다.
     // 선택된 모든 셀에 마커가 있는 경우
-    func test_whenSelectMarkedCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() {
+    func test_whenSelectMarkedCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() throws {
         let cells = sheet.getCells()
         
         cells[0].setMainMarker(.init(notation: .question))
@@ -294,10 +289,10 @@ final class SheetTests: XCTestCase {
         
         sheet.setMode(.multi)
         
-        _ = try! sheet.multiSelectCell(cells[0])
-        _ = try! sheet.multiSelectCell(cells[1])
-        _ = try! sheet.multiSelectCell(cells[2])
-        _ = try! sheet.multiSelectCell(cells[3])
+        _ = try sheet.multiSelectCell(cells[0])
+        _ = try sheet.multiSelectCell(cells[1])
+        _ = try sheet.multiSelectCell(cells[2])
+        _ = try sheet.multiSelectCell(cells[3])
         
         let selectedCells = sheet.getSelectedCells()
         let selectedMainMarker = MainMarker(notation: .cross)
@@ -312,7 +307,7 @@ final class SheetTests: XCTestCase {
     }
     
     // 멀티모드에서 특정 마커가 선택한 모든 셀에 있을 때 해당 마커를 한 번 더 선택하면 모든 마커가 지워진다
-    func test_whenSameMarkerInSelectedCellsOneMoreSelectionOfThatMarkerClearsAllMarker() {
+    func test_whenSameMarkerInSelectedCellsOneMoreSelectionOfThatMarkerClearsAllMarker() throws {
         let cells = sheet.getCells()
         
         cells[0].setMainMarker(.init(notation: .question))
@@ -322,10 +317,10 @@ final class SheetTests: XCTestCase {
         
         sheet.setMode(.multi)
         
-        _ = try! sheet.multiSelectCell(cells[0])
-        _ = try! sheet.multiSelectCell(cells[1])
-        _ = try! sheet.multiSelectCell(cells[2])
-        _ = try! sheet.multiSelectCell(cells[3])
+        _ = try sheet.multiSelectCell(cells[0])
+        _ = try sheet.multiSelectCell(cells[1])
+        _ = try sheet.multiSelectCell(cells[2])
+        _ = try sheet.multiSelectCell(cells[3])
         
         let selectedCells = sheet.getSelectedCells()
         let selectedMainMarker = MainMarker(notation: .cross)
@@ -345,16 +340,16 @@ final class SheetTests: XCTestCase {
     }
     
     // 멀티모드에서 모든 셀을 선택해제했을 때 기본 모드가 된다.
-    func test_whenAllCellsAreDeselectedInMultimodeThenGoToDefaultMode() {
+    func test_whenAllCellsAreDeselectedInMultimodeThenGoToDefaultMode() throws {
         let cells = sheet.getCells()
         
         sheet.setMode(.multi)
         
-        _ = try! sheet.multiSelectCell(cells[0])
-        _ = try! sheet.multiSelectCell(cells[1])
+        _ = try sheet.multiSelectCell(cells[0])
+        _ = try sheet.multiSelectCell(cells[1])
         
-        _ = try! sheet.multiUnselectCell(cells[0])
-        _ = try! sheet.multiUnselectCell(cells[1])
+        _ = try sheet.multiUnselectCell(cells[0])
+        _ = try sheet.multiUnselectCell(cells[1])
         
         XCTAssertFalse(sheet.hasSelectedCell())
         
@@ -370,7 +365,7 @@ final class SheetTests: XCTestCase {
         sheet.setMode(.inference)
         
         XCTAssertThrowsError(try sheet.selectCell(cells[0])) { error in
-            XCTAssertEqual(error as? SheetError, SheetError.modeChanged(to: .single))
+            XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
         }
     }
     
@@ -381,7 +376,7 @@ final class SheetTests: XCTestCase {
         sheet.setMode(.preInference)
         
         XCTAssertThrowsError(try sheet.selectCell(cells[0])) { error in
-            XCTAssertEqual(error as? SheetError, SheetError.modeChanged(to: .single))
+            XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
         }
     }
     
@@ -392,7 +387,7 @@ final class SheetTests: XCTestCase {
         sheet.setMode(.inference)
         
         XCTAssertThrowsError(try sheet.multiSelectCell(cells[0])) { error in
-            XCTAssertEqual(error as? SheetError, SheetError.modeChanged(to: .single))
+            XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
         }
     }
     
@@ -403,7 +398,7 @@ final class SheetTests: XCTestCase {
         sheet.setMode(.preInference)
         
         XCTAssertThrowsError(try sheet.multiSelectCell(cells[0])) { error in
-            XCTAssertEqual(error as? SheetError, SheetError.modeChanged(to: .single))
+            XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
         }
     }
 }
