@@ -42,6 +42,9 @@
 		AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F02BECABB000911F13 /* SheetStore.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
+		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
+		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
+		ACEA787E2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
 		ACFED8D22BB90B5E00B1D22B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8D12BB90B5E00B1D22B /* GameView.swift */; };
 		ACFED8D42BB90B5F00B1D22B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */; };
@@ -96,6 +99,9 @@
 		AC6E30F02BECABB000911F13 /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
+		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
+		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
+		ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickColNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesApp.swift; sourceTree = "<group>"; };
 		ACFED8D12BB90B5E00B1D22B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -264,6 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				44E011BB2C01CDA900676359 /* ClickCellUseCaseTests.swift */,
+				ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */,
+				ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */,
+				ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */,
 				44E011C32C01EC5E00676359 /* Sheet+.swift */,
 			);
 			path = Application;
@@ -514,7 +523,10 @@
 			files = (
 				44E011BC2C01CDA900676359 /* ClickCellUseCaseTests.swift in Sources */,
 				ACFED8E12BB90B5F00B1D22B /* SheetTests.swift in Sources */,
+				ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */,
 				AC4121B52BD0138500817B0A /* CellTests.swift in Sources */,
+				ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */,
+				ACEA787E2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift in Sources */,
 				444293502BCACB76008CAA2C /* DummyPlayers.swift in Sources */,
 				44E011C42C01EC5E00676359 /* Sheet+.swift in Sources */,
 			);
