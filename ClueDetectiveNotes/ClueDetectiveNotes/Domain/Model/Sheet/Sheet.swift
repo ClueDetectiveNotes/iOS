@@ -42,6 +42,73 @@ final class Sheet {
         }
     }
     
+    // MARK: - State
+    func isSingleMode() -> Bool {
+        return mode == .single
+    }
+    
+    func isMultiMode() -> Bool {
+        return mode == .multi
+    }
+    
+    func isInferenceMode() -> Bool {
+        return mode == .inference
+    }
+    
+    func isPreInferenceMode() -> Bool {
+        return mode == .preInference
+    }
+    
+    func hasSelectedCell() -> Bool {
+        return !selectedCells.isEmpty
+    }
+    
+    func hasSelectedRowName() -> Bool {
+        return !selectedRowNames.isEmpty
+    }
+    
+    func hasSelectedColName() -> Bool {
+        return selectedColName != nil
+    }
+    
+    func isSelectedCell(_ cell: Cell) -> Bool {
+        return selectedCells.contains(cell)
+    }
+    
+    func isSelectedCell(rowName: RowName, colName: ColName) throws -> Bool {
+        let cell = try findCell(rowName: rowName, colName: colName)
+        return selectedCells.contains(cell)
+    }
+    
+    func isSelectedRowName(_ rowName: RowName) -> Bool {
+        return selectedRowNames.values.contains(rowName)
+    }
+    
+    func isSelectedColName(_ colName: ColName) -> Bool {
+        return selectedColName == colName
+    }
+    
+    func isEveryCellMarkedWithMainMarker() -> Bool {
+        return selectedCells.allSatisfy { selectedCell in
+            !selectedCell.isEmptyMainMarker()
+        }
+    }
+    
+    func isSameMainMarkerInEveryCell(_ marker: MainMarker) -> Bool {
+        let markedCells = selectedCells.filter { !$0.isEmptyMainMarker() }
+        
+        return markedCells.allSatisfy { markedCell in
+            markedCell.getMainMarker() == marker
+        }
+    }
+    
+    func isEveryCellMarkedWithSameSubMarker(_ marker: SubMarker) -> Bool {
+        return selectedCells.allSatisfy { selectedCell in
+            selectedCell.containsSubMarker(marker)
+        }
+    }
+    
+    // MARK: - GET
     func getCells() -> [Cell] {
         return cells
     }
@@ -94,59 +161,19 @@ final class Sheet {
         return selectedColName
     }
     
-    func hasSelectedCell() -> Bool {
-        return !selectedCells.isEmpty
-    }
-    
-    func hasSelectedRowName() -> Bool {
-        return !selectedRowNames.isEmpty
-    }
-    
-    func hasSelectedColName() -> Bool {
-        return selectedColName != nil
-    }
-    
-    func isSelectedRowName(_ rowName: RowName) -> Bool {
-        return selectedRowNames.values.contains(rowName)
-    }
-    
-    func isSelectedColName(_ colName: ColName) -> Bool {
-        return selectedColName == colName
-    }
-    
-    func isSingleMode() -> Bool {
-        return mode == .single
-    }
-    
-    func isMultiMode() -> Bool {
-        return mode == .multi
-    }
-    
-    func isInferenceMode() -> Bool {
-        return mode == .inference
-    }
-    
-    func isPreInferenceMode() -> Bool {
-        return mode == .preInference
-    }
-    
-    func isEveryCellMarkedWithMainMarker() -> Bool {
-        return selectedCells.allSatisfy { selectedCell in
-            !selectedCell.isEmptyMainMarker()
-        }
-    }
-    
-    func isSameMainMarkerInEveryCell(_ marker: MainMarker) -> Bool {
-        let markedCells = selectedCells.filter { !$0.isEmptyMainMarker() }
+    func getCellsIntersectionOfSelection() throws -> [Cell] {
+        let rowNames = selectedRowNames.values
+        let colName = selectedColName
         
-        return markedCells.allSatisfy { markedCell in
-            markedCell.getMainMarker() == marker
+        guard let colName else {
+            throw SheetError.notYetSelectAnyColumnName
         }
-    }
-    
-    func isEveryCellMarkedWithSameSubMarker(_ marker: SubMarker) -> Bool {
-        return selectedCells.allSatisfy { selectedCell in
-            selectedCell.containsSubMarker(marker)
+        guard !rowNames.isEmpty else {
+            throw SheetError.notYetSelectAnyRowName
+        }
+        
+        return cells.filter { cell in
+            rowNames.contains(cell.getRowName()) && cell.getColName() == colName
         }
     }
     
@@ -169,9 +196,33 @@ final class Sheet {
         throw SheetError.cellNotFound
     }
     
+    // MARK: - SET
+    func setMode(_ mode: SheetMode) {
+        if hasSelectedCell() && (isMultiMode() || isInferenceMode()) {
+            unselectCell()
+        }
+        
+        self.mode = mode
+    }
+    
+    func switchModeInInferenceMode() throws {
+        if !hasSelectedColName(), !hasSelectedRowName() {
+            setMode(.single)
+        } else if hasSelectedColName(), selectedRowNames.count == 3 {
+            setMode(.inference)
+            selectedCells.append(contentsOf: try getCellsIntersectionOfSelection())
+        } else {
+            setMode(.preInference)
+        }
+    }
+    
+    func switchModeInSelectionMode() {
+        hasSelectedCell() ? setMode(.multi) : setMode(.single)
+    }
+    
     func selectCell(_ cell: Cell) throws -> [Cell] {
         guard !isInferenceMode(), !isPreInferenceMode() else {
-            throw SheetError.modeChanged(to: .single)
+            throw SheetError.inferenceModeException
         }
         
         selectedCells.append(cell)
@@ -181,7 +232,7 @@ final class Sheet {
     
     func selectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         guard !isInferenceMode(), !isPreInferenceMode() else {
-            throw SheetError.modeChanged(to: .single)
+            throw SheetError.inferenceModeException
         }
         
         let selectedCell = try findCell(rowName: rowName, colName: colName)
@@ -195,20 +246,9 @@ final class Sheet {
         selectedCells.removeAll()
     }
     
-    func setMode(_ mode: SheetMode) {
-        // 어떤 모드에서 어떤 모드로 갈 때 선택된 셀들이 선택 해제되어야하는가
-        // 1. 멀티모드에서 다른 모드로 갈 때
-        // 2. 추리모드에서 다른 모드로 갈 때
-        if hasSelectedCell() && (isMultiMode() || isInferenceMode()) {
-            unselectCell()
-        }
-        
-        self.mode = mode
-    }
-    
     func multiSelectCell(_ cell: Cell) throws -> [Cell] {
         guard !isInferenceMode(), !isPreInferenceMode() else {
-            throw SheetError.modeChanged(to: .single)
+            throw SheetError.inferenceModeException
         }
         guard isMultiMode() else {
             throw SheetError.notMultiSelectionMode
@@ -224,7 +264,7 @@ final class Sheet {
     
     func multiSelectCell(rowName: RowName, colName: ColName) throws -> [Cell] {
         guard !isInferenceMode(), !isPreInferenceMode() else {
-            throw SheetError.modeChanged(to: .single)
+            throw SheetError.inferenceModeException
         }
         guard isMultiMode() else {
             throw SheetError.notMultiSelectionMode
@@ -270,20 +310,11 @@ final class Sheet {
         return selectedCells
     }
     
-    func isSelectedCell(_ cell: Cell) -> Bool {
-        return selectedCells.contains(cell)
-    }
-    
-    func isSelectedCell(rowName: RowName, colName: ColName) throws -> Bool {
-        let cell = try findCell(rowName: rowName, colName: colName)
-        return selectedCells.contains(cell)
-    }
-
     func selectRowName(_ rowName: RowName) -> [Cell] {
         let type = rowName.card.type
         
         selectedRowNames[type] = rowName
-
+        
         return cells.filter { cell in
             cell.getRowName() == rowName
         }
@@ -307,19 +338,15 @@ final class Sheet {
         selectedColName = nil
     }
     
-    func getCellsIntersectionOfSelection() throws -> [Cell] {
-        let rowNames = selectedRowNames.values
-        let colName = selectedColName
-        
-        guard let colName else {
-            throw SheetError.notYetSelectAnyColumnName
-        }
-        guard !rowNames.isEmpty else {
-            throw SheetError.notYetSelectAnyRowName
+    func resetSelectedState() {
+        if !isSingleMode() {
+            setMode(.single)
         }
         
-        return cells.filter { cell in
-            rowNames.contains(cell.getRowName()) && cell.getColName() == colName
+        unselectCell()
+        unselectColumnName()
+        getSelectedRowNames().values.forEach { rowName in
+            unselectRowName(rowName)
         }
     }
 }
