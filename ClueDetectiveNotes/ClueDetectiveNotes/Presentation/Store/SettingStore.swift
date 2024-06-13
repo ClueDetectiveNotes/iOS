@@ -11,7 +11,7 @@ final class SettingStore: ObservableObject {
     @Published private(set) var setting: PresentationSetting
 
     init() {
-        self.setting = GameSetter.shared.getPresentationSetting()
+        self.setting = ConvertManager.getImmutableSetting(GameSetter.shared.getSetting())
     }
     
     func overwriteSetting(_ newSetting: PresentationSetting) {

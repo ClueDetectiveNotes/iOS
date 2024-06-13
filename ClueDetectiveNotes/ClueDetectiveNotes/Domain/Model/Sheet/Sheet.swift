@@ -112,19 +112,7 @@ final class Sheet {
     func getCells() -> [Cell] {
         return cells
     }
-    
-    func getCellsImmutable() -> [PresentationCell] {
-        return cells.map { cell in
-            PresentationCell(
-                id: cell.getID(),
-                rowName: cell.getRowName(),
-                colName: cell.getColName(),
-                mainMarker: cell.getMainMarker(),
-                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation }
-            )
-        }
-    }
-    
+
     func getMode() -> SheetMode {
         return mode
     }
@@ -139,18 +127,6 @@ final class Sheet {
     
     func getSelectedCells() -> [Cell] {
         return selectedCells
-    }
-    
-    func getSelectedCellsImmutable() -> [PresentationCell] {
-        return selectedCells.map { cell in
-            PresentationCell(
-                id: cell.getID(),
-                rowName: cell.getRowName(),
-                colName: cell.getColName(),
-                mainMarker: cell.getMainMarker(),
-                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation }
-            )
-        }
     }
     
     func getSelectedRowNames() -> [CardType:RowName] {
@@ -198,6 +174,8 @@ final class Sheet {
     
     // MARK: - SET
     func setMode(_ mode: SheetMode) {
+        guard self.mode != mode else { return }
+        
         if hasSelectedCell() && (isMultiMode() || isInferenceMode()) {
             unselectCell()
         }

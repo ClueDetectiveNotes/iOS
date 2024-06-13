@@ -22,27 +22,27 @@ final class GameSetter {
         return sheet
     }
     
-    func getPresentationSheet() -> PresentationSheet {
-        return PresentationSheet(
-            cells: sheet.getCellsImmutable(),
-            mode: sheet.getMode(),
-            rowNames: sheet.getRowNames(),
-            colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCellsImmutable(),
-            selectedRowNames: sheet.getSelectedRowNames(),
-            selectedColName: sheet.getSelectedColName()
-        )
-    }
+//    func getPresentationSheet() -> PresentationSheet {
+//        return PresentationSheet(
+//            cells: sheet.getCellsImmutable(),
+//            mode: sheet.getMode(),
+//            rowNames: sheet.getRowNames(),
+//            colNames: sheet.getColNames(),
+//            selectedCells: sheet.getSelectedCellsImmutable(),
+//            selectedRowNames: sheet.getSelectedRowNames(),
+//            selectedColName: sheet.getSelectedColName()
+//        )
+//    }
     
     func getSetting() -> Setting {
         return setting
     }
     
-    func getPresentationSetting() -> PresentationSetting {
-        return PresentationSetting(
-            players: setting.getPlayers(),
-            edition: setting.getEdition(),
-            subMarkerTypes: setting.getSubMarkerTypes()
-        )
-    }
+//    func getPresentationSetting() -> PresentationSetting {
+//        return PresentationSetting(
+//            players: setting.getPlayers(),
+//            edition: setting.getEdition(),
+//            subMarkerTypes: setting.getSubMarkerTypes()
+//        )
+//    }
 }

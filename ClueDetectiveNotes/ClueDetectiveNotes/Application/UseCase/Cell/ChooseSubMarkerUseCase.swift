@@ -43,14 +43,6 @@ struct ChooseSubMarkerUseCase: UseCase {
 // MARK: - Private
 extension ChooseSubMarkerUseCase {
     private func createPresentationSheet() -> PresentationSheet {
-        return PresentationSheet(
-            cells: sheet.getCellsImmutable(),
-            mode: sheet.getMode(),
-            rowNames: sheet.getRowNames(),
-            colNames: sheet.getColNames(),
-            selectedCells: sheet.getSelectedCellsImmutable(),
-            selectedRowNames: sheet.getSelectedRowNames(),
-            selectedColName: sheet.getSelectedColName()
-        )
+        return ConvertManager.getImmutableSheet(sheet)
     }
 }

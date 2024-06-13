@@ -16,7 +16,7 @@ final class SheetStore: ObservableObject {
         isDisplayMarkerControlBar: Bool = false,
         isDisplayAddSubMarkerAlert: Bool = false
     ) {
-        self.sheet = GameSetter.shared.getPresentationSheet()
+        self.sheet = ConvertManager.getImmutableSheet(GameSetter.shared.getSheet())
         self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
         self.isDisplayAddSubMarkerAlert = isDisplayAddSubMarkerAlert
     }
