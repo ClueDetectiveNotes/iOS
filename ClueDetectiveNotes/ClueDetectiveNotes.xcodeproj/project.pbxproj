@@ -44,6 +44,7 @@
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
+		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
 		ACEA787E2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
@@ -102,6 +103,7 @@
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
+		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
 		ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickColNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 				AC3170552C01B13E009E947B /* LongClickCellUseCase.swift */,
 				AC3170572C01B4B6009E947B /* ClickColNameUseCase.swift */,
 				AC3170592C01B51D009E947B /* ClickRowNameUseCase.swift */,
+				ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				AC31705F2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift in Sources */,
 				44B81D0D2BF1F0B400E82051 /* UseCase.swift in Sources */,
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
+				ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
