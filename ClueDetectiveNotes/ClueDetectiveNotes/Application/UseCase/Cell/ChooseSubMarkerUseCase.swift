@@ -13,7 +13,7 @@ struct ChooseSubMarkerUseCase: UseCase {
     }
     
     func execute(_ marker: SubMarker) -> PresentationSheet {
-        switch sheet.isMultiMode() {
+        switch sheet.isMultiMode() || sheet.isInferenceMode() {
         case true:
             if sheet.isEveryCellMarkedWithSameSubMarker(marker) {
                 sheet.getSelectedCells().forEach { cell in

@@ -13,20 +13,7 @@ struct CancelClickedCellUseCase: UseCase {
     }
     
     func execute(_ param: Int) -> PresentationSheet {
-        if sheet.isMultiMode() {
-            sheet.setMode(.single)
-        }
-        
-        sheet.unselectCell()
-        
-        if sheet.hasSelectedColName() {
-            sheet.unselectColumnName()
-        }
-        if sheet.hasSelectedRowName() {
-            sheet.getSelectedRowNames().values.forEach { rowName in
-                sheet.unselectRowName(rowName)
-            }
-        }
+        sheet.resetSelectedState()
         
         return createPresentationSheet()
     }

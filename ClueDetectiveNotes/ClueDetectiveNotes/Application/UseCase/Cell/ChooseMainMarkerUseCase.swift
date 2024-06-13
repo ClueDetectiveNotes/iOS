@@ -13,7 +13,7 @@ struct ChooseMainMarkerUseCase: UseCase {
     }
     
     func execute(_ marker: MainMarker) -> PresentationSheet {
-        switch sheet.isMultiMode() {
+        switch sheet.isMultiMode() || sheet.isInferenceMode() {
         case true:
             if sheet.isEveryCellMarkedWithMainMarker(),
                sheet.isSameMainMarkerInEveryCell(marker) {
