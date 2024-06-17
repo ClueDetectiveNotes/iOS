@@ -53,6 +53,10 @@ struct MarkerControlBarInteractor {
         }
     }
     
+    func clickCloseButton() {
+        sheetStore.setDisplayMarkerControlBar(false)
+    }
+    
     func clickPlusButton() {
         sheetStore.setDisplayAddSubMarkerAlert(true)
     }

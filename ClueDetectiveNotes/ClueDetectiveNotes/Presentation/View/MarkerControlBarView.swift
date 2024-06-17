@@ -22,47 +22,39 @@ struct MarkerControlBarView: View {
     }
 
     var body: some View {
-        HStack {
-            VStack {
+        VStack {
+            HStack {
+                MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                
+                Spacer()
+                
+                Button("닫기") {
+                    markerControlBarInteractor.clickCloseButton()
+                }
+            }
+            
+            ScrollView(.horizontal) {
                 HStack {
-                    MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                    SubMarkerBtnsView(
+                        settingStore: settingStore,
+                        markerControlBarInteractor: markerControlBarInteractor
+                    )
                     
-                    Spacer()
+                    Button(
+                        action: {
+                            markerControlBarInteractor.clickPlusButton()
+                        },
+                        label: {
+                            Image(systemName: "plus")
+                        }
+                    )
+                    .frame(width: 40, height: 40)
                 }
                 
-                ScrollView(.horizontal) {
-                    HStack {
-                        SubMarkerBtnsView(
-                            settingStore: settingStore,
-                            markerControlBarInteractor: markerControlBarInteractor
-                        )
-                        
-                        Button(
-                            action: {
-                                markerControlBarInteractor.clickPlusButton()
-                            },
-                            label: {
-                                Image(systemName: "plus")
-                            }
-                        )
-                        .frame(width: 40, height: 40)
-                    }
-                    
-                    Spacer()
-                }
+                Spacer()
             }
-            
-            Divider()
-            
-            Button("취소") {
-                markerControlBarInteractor.clickCancelButton()
-            }
-            .padding(6)
         }
         .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-        .onDisappear {
-            //markerControlBarInteractor.clickCancelButton()
-        }
     }
 }
 
