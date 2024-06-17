@@ -40,6 +40,9 @@
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
+		AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */; };
+		AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */; };
+		AC6A83E62C1B2D3A0051C0DF /* SnapshotError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E52C1B2D3A0051C0DF /* SnapshotError.swift */; };
 		AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F02BECABB000911F13 /* SheetStore.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
@@ -99,6 +102,9 @@
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
+		AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotManager.swift; sourceTree = "<group>"; };
+		AC6A83E52C1B2D3A0051C0DF /* SnapshotError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotError.swift; sourceTree = "<group>"; };
 		AC6E30F02BECABB000911F13 /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
@@ -150,6 +156,7 @@
 				4442934A2BCAC0C2008CAA2C /* Sheet */,
 				4442934B2BCAC0C7008CAA2C /* Card */,
 				444293532BCAD125008CAA2C /* Player */,
+				AC6A83DF2C1B28930051C0DF /* Snapshot */,
 				44DB763E2BEA003D0067A814 /* Game */,
 			);
 			path = Model;
@@ -236,6 +243,7 @@
 			children = (
 				AC3170522C01B01C009E947B /* Sheet */,
 				AC31705B2C01B600009E947B /* Cell */,
+				AC3D734C2C1C221B0042C669 /* Snapshot */,
 				AC3170622C01B739009E947B /* Setting */,
 				44B81D0C2BF1F0B400E82051 /* UseCase.swift */,
 			);
@@ -319,6 +327,32 @@
 				AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		AC3D734C2C1C221B0042C669 /* Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				AC3D734D2C1C22350042C669 /* SnapshotDecorator.swift */,
+			);
+			path = Snapshot;
+			sourceTree = "<group>";
+		};
+		AC6A83DF2C1B28930051C0DF /* Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				AC6A83E42C1B2D1F0051C0DF /* Errors */,
+				AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */,
+				AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */,
+			);
+			path = Snapshot;
+			sourceTree = "<group>";
+		};
+		AC6A83E42C1B2D1F0051C0DF /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				AC6A83E52C1B2D3A0051C0DF /* SnapshotError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		AC6E30EF2BECAB6B00911F13 /* Store */ = {
@@ -491,6 +525,7 @@
 				AC3170512C018C53009E947B /* SettingError.swift in Sources */,
 				AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */,
 				44AF62072BF796BA00F38165 /* PresentationSetting.swift in Sources */,
+				AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */,
 				AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */,
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */,
@@ -506,6 +541,7 @@
 				44B81D0D2BF1F0B400E82051 /* UseCase.swift in Sources */,
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
 				ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */,
+				AC6A83E62C1B2D3A0051C0DF /* SnapshotError.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
@@ -520,6 +556,7 @@
 				AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */,
 				AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
+				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
 			);
