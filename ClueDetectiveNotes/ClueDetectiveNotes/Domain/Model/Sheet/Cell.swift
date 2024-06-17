@@ -69,12 +69,20 @@ final class Cell {
         subMarkers.insert(marker)
     }
     
+    func setSubMarkers(_ markers: Set<SubMarker>) {
+        subMarkers = markers
+    }
+    
     func removeMainMarker() {
         mainMarker = nil
     }
     
     func removeSubMarker(_ marker: SubMarker) {
         subMarkers.remove(marker)
+    }
+    
+    func removeSubMarkers() {
+        subMarkers.removeAll()
     }
 }
 

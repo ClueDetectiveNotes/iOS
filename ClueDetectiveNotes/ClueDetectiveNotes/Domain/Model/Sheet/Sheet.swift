@@ -112,7 +112,7 @@ final class Sheet {
     func getCells() -> [Cell] {
         return cells
     }
-
+    
     func getMode() -> SheetMode {
         return mode
     }
@@ -173,7 +173,7 @@ final class Sheet {
     }
     
     // MARK: - SET
-    func setMode(_ mode: SheetMode) {
+    func switchMode(_ mode: SheetMode) {
         guard self.mode != mode else { return }
         
         if hasSelectedCell() && (isMultiMode() || isInferenceMode()) {
@@ -185,17 +185,17 @@ final class Sheet {
     
     func switchModeInInferenceMode() throws {
         if !hasSelectedColName(), !hasSelectedRowName() {
-            setMode(.single)
+            switchMode(.single)
         } else if hasSelectedColName(), selectedRowNames.count == 3 {
-            setMode(.inference)
+            switchMode(.inference)
             selectedCells.append(contentsOf: try getCellsIntersectionOfSelection())
         } else {
-            setMode(.preInference)
+            switchMode(.preInference)
         }
     }
     
     func switchModeInSelectionMode() {
-        hasSelectedCell() ? setMode(.multi) : setMode(.single)
+        hasSelectedCell() ? switchMode(.multi) : switchMode(.single)
     }
     
     func selectCell(_ cell: Cell) throws -> [Cell] {
@@ -318,7 +318,7 @@ final class Sheet {
     
     func resetSelectedState() {
         if !isSingleMode() {
-            setMode(.single)
+            switchMode(.single)
         }
         
         unselectCell()

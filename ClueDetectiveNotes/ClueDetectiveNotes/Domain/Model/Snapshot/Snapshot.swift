@@ -8,13 +8,12 @@
 import Foundation
 
 struct Snapshot {
-    //private var sheet: Sheet // GameSetter에서 sheet를 들고오기 때문에, 스냅샵이 스냅샷이 될 수 없음ㅠㅠ 계속 최신의 Sheet 값을 가지고있게됨
     private let mode: SheetMode
     private let selectedCellIds: [UUID]
     private let selectedRowNames: [CardType: RowName]
     private let selectedColName: ColName?
-    private var mainMarkerMarkedCells = [(UUID, MainMarker)]()
-    private var subMarkerMarkedCells = [(UUID, Set<SubMarker>)]()
+    private var mainMarkerMarkedCells = [(id: UUID, mainMarker: MainMarker)]()
+    private var subMarkerMarkedCells = [(id: UUID, subMarkers: Set<SubMarker>)]()
     
     init() {
         let sheet = GameSetter.shared.getSheet()
@@ -59,11 +58,11 @@ struct Snapshot {
         return selectedColName
     }
     
-    func getMainMarkerMarkedCells() -> [(UUID, MainMarker)] {
+    func getMainMarkerMarkedCells() -> [(id: UUID, mainMarker: MainMarker)] {
         return mainMarkerMarkedCells
     }
     
-    func getSubMarkerMarkedCells() -> [(UUID, Set<SubMarker>)] {
+    func getSubMarkerMarkedCells() -> [(id: UUID, subMarkers: Set<SubMarker>)] {
         return subMarkerMarkedCells
     }
 }

@@ -52,14 +52,14 @@ final class SheetTests: XCTestCase {
         XCTAssertFalse(sheet.hasSelectedCell())
         XCTAssertFalse(sheet.isMultiMode())
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         XCTAssertTrue(sheet.isMultiMode())
     }
     
     // 멀티 선택 모드일 때 선택되지 않은 셀을 선택하면 셀이 추가된다.
     func test_selectUnselectedCellInMultiSelectionModeToAddCell() throws {
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         XCTAssertTrue(sheet.isMultiMode())
         
         let _ = try sheet.multiSelectCell(
@@ -72,7 +72,7 @@ final class SheetTests: XCTestCase {
     
     // 멀티 선택 모드일 때 선택된 셀을 선택하면 해당 셀이 선택 해제된다.
     func test_selectSelectedCellInMultiSelectionModeToDeselectCell() throws {
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         XCTAssertTrue(sheet.isMultiMode())
         
         let selectedCells = try sheet.multiSelectCell(
@@ -90,7 +90,7 @@ final class SheetTests: XCTestCase {
     
     // 멀티 선택 모드일 때 멀티 선택 모드를 해제하면 모든 셀의 선택이 해제되고, 멀티 선택 모드도 해제된다.
     func test_disableMultiSelectionModeToDeselectAllCellsAndExitMultiSelectionMode() throws {
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         XCTAssertTrue(sheet.isMultiMode())
         
         let _ = try sheet.multiSelectCell(
@@ -98,7 +98,7 @@ final class SheetTests: XCTestCase {
             colName: sheet.getColNames()[0]
         )
         
-        sheet.setMode(.single)
+        sheet.switchMode(.single)
         XCTAssertFalse(sheet.hasSelectedCell())
         XCTAssertFalse(sheet.isMultiMode())
     }
@@ -231,7 +231,7 @@ final class SheetTests: XCTestCase {
     func test_whenSelectUnmarkedCellsAndChooseMarkerInMultimode_AllSelectedCellsAreMarkedOfTheCurrentlySetMarker() throws {
         let cells = sheet.getCells()
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         _ = try sheet.multiSelectCell(cells[0])
         _ = try sheet.multiSelectCell(cells[1])
@@ -258,7 +258,7 @@ final class SheetTests: XCTestCase {
         cells[2].setMainMarker(.init(notation: .question))
         cells[3].setMainMarker(.init(notation: .question))
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         _ = try sheet.multiSelectCell(cells[0])
         _ = try sheet.multiSelectCell(cells[1])
@@ -287,7 +287,7 @@ final class SheetTests: XCTestCase {
         cells[2].setMainMarker(.init(notation: .slash))
         cells[3].setMainMarker(.init(notation: .cross))
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         _ = try sheet.multiSelectCell(cells[0])
         _ = try sheet.multiSelectCell(cells[1])
@@ -315,7 +315,7 @@ final class SheetTests: XCTestCase {
         cells[2].setMainMarker(.init(notation: .slash))
         cells[3].setMainMarker(.init(notation: .cross))
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         _ = try sheet.multiSelectCell(cells[0])
         _ = try sheet.multiSelectCell(cells[1])
@@ -343,7 +343,7 @@ final class SheetTests: XCTestCase {
     func test_whenAllCellsAreDeselectedInMultimodeThenGoToDefaultMode() throws {
         let cells = sheet.getCells()
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
         _ = try sheet.multiSelectCell(cells[0])
         _ = try sheet.multiSelectCell(cells[1])
@@ -353,7 +353,7 @@ final class SheetTests: XCTestCase {
         
         XCTAssertFalse(sheet.hasSelectedCell())
         
-        sheet.setMode(.single)
+        sheet.switchMode(.single)
         
         XCTAssertEqual(sheet.getMode(), .single)
     }
@@ -362,7 +362,7 @@ final class SheetTests: XCTestCase {
     func test_whenACellIsClickedInInferenceModeThenAnExceptionOccursToChangeMode() {
         let cells = sheet.getCells()
         
-        sheet.setMode(.inference)
+        sheet.switchMode(.inference)
         
         XCTAssertThrowsError(try sheet.selectCell(cells[0])) { error in
             XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
@@ -373,7 +373,7 @@ final class SheetTests: XCTestCase {
     func test_whenACellIsClickedInPreinferenceModeThenAnExceptionOccursToChangeMode() {
         let cells = sheet.getCells()
         
-        sheet.setMode(.preInference)
+        sheet.switchMode(.preInference)
         
         XCTAssertThrowsError(try sheet.selectCell(cells[0])) { error in
             XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
@@ -384,7 +384,7 @@ final class SheetTests: XCTestCase {
     func test_whenACellIsLongPressInInferenceModeThenAnExceptionOccursToChangeMode() {
         let cells = sheet.getCells()
         
-        sheet.setMode(.inference)
+        sheet.switchMode(.inference)
         
         XCTAssertThrowsError(try sheet.multiSelectCell(cells[0])) { error in
             XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)
@@ -395,7 +395,7 @@ final class SheetTests: XCTestCase {
     func test_whenACellIsLongPressInPreinferenceModeThenAnExceptionOccursToChangeMode() {
         let cells = sheet.getCells()
         
-        sheet.setMode(.preInference)
+        sheet.switchMode(.preInference)
         
         XCTAssertThrowsError(try sheet.multiSelectCell(cells[0])) { error in
             XCTAssertEqual(error as? SheetError, SheetError.inferenceModeException)

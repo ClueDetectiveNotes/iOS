@@ -16,7 +16,7 @@ struct ClickRowNameUseCase: UseCase {
         switch sheet.getMode() {
         case .single, .multi:
             sheet.unselectCell()
-            sheet.setMode(.preInference)
+            sheet.switchMode(.preInference)
             fallthrough
         case .preInference, .inference:
             if sheet.isSelectedRowName(rowName) {

@@ -17,7 +17,7 @@ struct LongClickCellUseCase: UseCase {
         
         switch sheet.getMode() {
         case .single:
-            sheet.setMode(.multi)
+            sheet.switchMode(.multi)
             fallthrough
         case .multi:
             if sheet.isSelectedCell(cell) {

@@ -26,24 +26,24 @@ final class LongClickCellUseCaseTests: XCTestCase {
     }
     
     // 싱글모드에서 셀을 길게 누르면 셀이 선택되고 멀티모드로 변경된다.
-    func test_longPressCellInSingleModeToSelectAndSwitchToMultiMode() {
+    func test_longPressCellInSingleModeToSelectAndSwitchToMultiMode() throws {
         let targetCell = sheet.getCells()[0]
         let presentationCell = sheet.getCellImmutable(cell: targetCell)
         
-        _ = longClickCellUseCase.execute(presentationCell)
+        _ = try longClickCellUseCase.execute(presentationCell)
         
         XCTAssertTrue(sheet.isSelectedCell(targetCell))
         XCTAssertTrue(sheet.isMultiMode())
     }
     
     // 멀티모드에서 기존에 선택되지 않은 셀을 길게 누르면 해당 셀이 선택된다.
-    func test_inMultiModeWhenLongPressOnACellThatIsNotSelectedThenTheCellIsSelected() {
+    func test_inMultiModeWhenLongPressOnACellThatIsNotSelectedThenTheCellIsSelected() throws {
         let targetCell = sheet.getCells()[0]
         let presentationCell = sheet.getCellImmutable(cell: targetCell)
         
-        sheet.setMode(.multi)
+        sheet.switchMode(.multi)
         
-        _ = longClickCellUseCase.execute(presentationCell)
+        _ = try longClickCellUseCase.execute(presentationCell)
         
         XCTAssertTrue(sheet.isSelectedCell(targetCell))
     }
