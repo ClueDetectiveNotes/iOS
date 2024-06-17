@@ -37,6 +37,7 @@
 		AC31705F2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */; };
 		AC3170612C01B6E1009E947B /* CancelClickedCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */; };
 		AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */; };
+		AC3D734B2C1C19250042C669 /* UseCaseDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
@@ -99,6 +100,7 @@
 		AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubMarkerUseCase.swift; sourceTree = "<group>"; };
 		AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelClickedCellUseCase.swift; sourceTree = "<group>"; };
 		AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubMarkerTypeUseCase.swift; sourceTree = "<group>"; };
+		AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseDecorator.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				AC3D734C2C1C221B0042C669 /* Snapshot */,
 				AC3170622C01B739009E947B /* Setting */,
 				44B81D0C2BF1F0B400E82051 /* UseCase.swift */,
+				AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 			files = (
 				44B81D112BF1F94200E82051 /* MarkerControlBarView.swift in Sources */,
 				AC3170512C018C53009E947B /* SettingError.swift in Sources */,
+				AC3D734B2C1C19250042C669 /* UseCaseDecorator.swift in Sources */,
 				AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */,
 				44AF62072BF796BA00F38165 /* PresentationSetting.swift in Sources */,
 				AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */,
