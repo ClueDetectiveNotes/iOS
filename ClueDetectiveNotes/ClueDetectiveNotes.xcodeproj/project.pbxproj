@@ -162,6 +162,7 @@
 				444293532BCAD125008CAA2C /* Player */,
 				AC6A83DF2C1B28930051C0DF /* Snapshot */,
 				44DB763E2BEA003D0067A814 /* Game */,
+				ACE5A3DC2C1D641700CBB6C9 /* Utility */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,7 +270,6 @@
 				AC31704F2C018C44009E947B /* Errors */,
 				44DB763F2BEA004C0067A814 /* GameSetter.swift */,
 				44AF62042BF796AE00F38165 /* Setting.swift */,
-				AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -376,6 +376,14 @@
 				AC55A33F2BE9F2AD00AC0774 /* CellError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		ACE5A3DC2C1D641700CBB6C9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		ACFED8C32BB90B5E00B1D22B = {
