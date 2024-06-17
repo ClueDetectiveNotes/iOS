@@ -12,23 +12,19 @@ struct ClickRowNameUseCase: UseCase {
         self.sheet = sheet
     }
     
-    func execute(_ rowName: RowName) -> PresentationSheet {
-        do {
-            switch sheet.getMode() {
-            case .single, .multi:
-                sheet.unselectCell()
-                sheet.setMode(.preInference)
-                fallthrough
-            case .preInference, .inference:
-                if sheet.isSelectedRowName(rowName) {
-                    sheet.unselectRowName(rowName)
-                } else {
-                    _ = sheet.selectRowName(rowName)
-                }
-                try sheet.switchModeInInferenceMode()
+    func execute(_ rowName: RowName) throws -> PresentationSheet {
+        switch sheet.getMode() {
+        case .single, .multi:
+            sheet.unselectCell()
+            sheet.setMode(.preInference)
+            fallthrough
+        case .preInference, .inference:
+            if sheet.isSelectedRowName(rowName) {
+                sheet.unselectRowName(rowName)
+            } else {
+                _ = sheet.selectRowName(rowName)
             }
-        } catch {
-            print(error.localizedDescription)
+            try sheet.switchModeInInferenceMode()
         }
         
         return createPresentationSheet()

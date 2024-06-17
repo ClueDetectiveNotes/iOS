@@ -7,17 +7,17 @@
 
 struct SheetInteractor {
     private var sheetStore: SheetStore
-    private let clickCellUseCase: ClickCellUseCase
-    private let longClickCellUseCase: LongClickCellUseCase
-    private let clickColNameUseCase: ClickColNameUseCase
-    private let clickRowNameUseCase: ClickRowNameUseCase
+    private let clickCellUseCase: AnyUseCase<PresentationCell>
+    private let longClickCellUseCase: AnyUseCase<PresentationCell>
+    private let clickColNameUseCase: AnyUseCase<ColName>
+    private let clickRowNameUseCase: AnyUseCase<RowName>
     
     init(
         sheetStore: SheetStore,
-        clickCellUseCase: ClickCellUseCase = ClickCellUseCase(),
-        longClickCellUseCase: LongClickCellUseCase = LongClickCellUseCase(),
-        clickColNameUseCase: ClickColNameUseCase = ClickColNameUseCase(),
-        clickRowNameUseCase: ClickRowNameUseCase = ClickRowNameUseCase()
+        clickCellUseCase: AnyUseCase<PresentationCell> = AnyUseCase(SnapshotDecorator(ClickCellUseCase())),
+        longClickCellUseCase: AnyUseCase<PresentationCell> = AnyUseCase(SnapshotDecorator(LongClickCellUseCase())),
+        clickColNameUseCase: AnyUseCase<ColName> = AnyUseCase(SnapshotDecorator(ClickColNameUseCase())),
+        clickRowNameUseCase: AnyUseCase<RowName> = AnyUseCase(SnapshotDecorator(ClickRowNameUseCase()))
     ) {
         self.sheetStore = sheetStore
         self.clickCellUseCase = clickCellUseCase
@@ -27,27 +27,43 @@ struct SheetInteractor {
     }
 
     func clickCell(_ presentationCell: PresentationCell) {
-        let presentationSheet = clickCellUseCase.execute(presentationCell)
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try clickCellUseCase.execute(presentationCell)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func longClickCell(_ presentationCell: PresentationCell) {
-        let presentationSheet = longClickCellUseCase.execute(presentationCell)
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try longClickCellUseCase.execute(presentationCell)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func clickColName(_ colName: ColName) {
-        let presentationSheet = clickColNameUseCase.execute(colName)
-
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try clickColNameUseCase.execute(colName)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func clickRowName(_ rowName: RowName) {
-        let presentationSheet = clickRowNameUseCase.execute(rowName)
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try clickRowNameUseCase.execute(rowName)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
 }
 

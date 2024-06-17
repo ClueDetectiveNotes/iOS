@@ -12,41 +12,32 @@ struct ClickCellUseCase: UseCase {
         self.sheet = sheet
     }
     
-    func execute(_ presentationCell: PresentationCell) -> PresentationSheet {
-        do {
-            let cell = try sheet.findCell(id: presentationCell.id)
-            
-            switch sheet.getMode() {
-            case .single:
-                if sheet.isSelectedCell(cell) {
-                    sheet.unselectCell()
-                } else {
-                    sheet.unselectCell()
-                    _ = try sheet.selectCell(cell)
-                }
-            case .multi:
-                if sheet.isSelectedCell(cell) {
-                    _ = try sheet.multiUnselectCell(cell)
-                    sheet.switchModeInSelectionMode()
-                } else {
-                    _ = try sheet.multiSelectCell(cell)
-                }
-            case .preInference:
-                // user에게 모드 변경 안내
-                print("preInference 모드에서 ClickCellUseCase가 실행됨")
-                sheet.resetSelectedState()
-            case .inference:
-                // user에게 모드 변경 안내
-                print("inference 모드에서 ClickCellUseCase가 실행됨")
-                sheet.resetSelectedState()
+    func execute(_ presentationCell: PresentationCell) throws -> PresentationSheet {
+        let cell = try sheet.findCell(id: presentationCell.id)
+        
+        switch sheet.getMode() {
+        case .single:
+            if sheet.isSelectedCell(cell) {
+                sheet.unselectCell()
+            } else {
+                sheet.unselectCell()
+                _ = try sheet.selectCell(cell)
             }
-        } catch {
-            switch error as? SheetError {
-            case .inferenceModeException:
-                print(SheetError.inferenceModeException.errorDescription ?? "")
-            default:
-                print(error.localizedDescription)
+        case .multi:
+            if sheet.isSelectedCell(cell) {
+                _ = try sheet.multiUnselectCell(cell)
+                sheet.switchModeInSelectionMode()
+            } else {
+                _ = try sheet.multiSelectCell(cell)
             }
+        case .preInference:
+            sheet.resetSelectedState()
+            print("preInference 모드에서 ClickCellUseCase가 실행됨")
+            //throw SheetError.inferenceModeException
+        case .inference:
+            sheet.resetSelectedState()
+            print("inference 모드에서 ClickCellUseCase가 실행됨")
+            //throw SheetError.inferenceModeException
         }
         
         return createPresentationSheet()

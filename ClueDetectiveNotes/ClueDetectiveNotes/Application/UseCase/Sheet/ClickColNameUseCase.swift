@@ -12,23 +12,19 @@ struct ClickColNameUseCase: UseCase {
         self.sheet = sheet
     }
     
-    func execute(_ colName: ColName) -> PresentationSheet {
-        do {
-            switch sheet.getMode() {
-            case .single, .multi:
-                sheet.unselectCell()
-                sheet.setMode(.preInference)
-                fallthrough
-            case .preInference, .inference:
-                if sheet.isSelectedColName(colName) {
-                    sheet.unselectColumnName()
-                } else {
-                    _ = sheet.selectColumnName(colName)
-                }
-                try sheet.switchModeInInferenceMode()
+    func execute(_ colName: ColName) throws -> PresentationSheet {
+        switch sheet.getMode() {
+        case .single, .multi:
+            sheet.unselectCell()
+            sheet.setMode(.preInference)
+            fallthrough
+        case .preInference, .inference:
+            if sheet.isSelectedColName(colName) {
+                sheet.unselectColumnName()
+            } else {
+                _ = sheet.selectColumnName(colName)
             }
-        } catch {
-            print(error.localizedDescription)
+            try sheet.switchModeInInferenceMode()
         }
         
         return createPresentationSheet()

@@ -7,15 +7,15 @@
 
 struct MarkerControlBarInteractor {
     private var sheetStore: SheetStore
-    private let chooseMainMarkerUseCase: ChooseMainMarkerUseCase
-    private let chooseSubMarkerUseCase: ChooseSubMarkerUseCase
-    private let cancelClickedCellUseCase: CancelClickedCellUseCase
+    private let chooseMainMarkerUseCase: AnyUseCase<MainMarker>
+    private let chooseSubMarkerUseCase: AnyUseCase<SubMarker>
+    private let cancelClickedCellUseCase: AnyUseCase<Int>
     
     init(
         sheetStore: SheetStore,
-        chooseMainMarkerUseCase: ChooseMainMarkerUseCase = ChooseMainMarkerUseCase(),
-        chooseSubMarkerUseCase: ChooseSubMarkerUseCase = ChooseSubMarkerUseCase(),
-        cancelClickedCellUseCase: CancelClickedCellUseCase = CancelClickedCellUseCase()
+        chooseMainMarkerUseCase: AnyUseCase<MainMarker> = AnyUseCase(SnapshotDecorator(ChooseMainMarkerUseCase())),
+        chooseSubMarkerUseCase: AnyUseCase<SubMarker> = AnyUseCase(SnapshotDecorator(ChooseSubMarkerUseCase())),
+        cancelClickedCellUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase()))
     ) {
         self.sheetStore = sheetStore
         self.chooseMainMarkerUseCase = chooseMainMarkerUseCase
@@ -24,21 +24,33 @@ struct MarkerControlBarInteractor {
     }
     
     func chooseMainMarker(_ marker: MainMarker) {
-        let presentationSheet = chooseMainMarkerUseCase.execute(marker)
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try chooseMainMarkerUseCase.execute(marker)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func chooseSubMarker(_ marker: SubMarker) {
-        let presentationSheet = chooseSubMarkerUseCase.execute(marker)
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try chooseSubMarkerUseCase.execute(marker)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func clickCancelButton() {
-        let presentationSheet = cancelClickedCellUseCase.execute()
-        
-        updateSheetStore(presentationSheet: presentationSheet)
+        do {
+            let presentationSheet = try cancelClickedCellUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func clickPlusButton() {
