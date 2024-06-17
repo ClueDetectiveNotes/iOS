@@ -26,6 +26,8 @@ struct GameView: View {
             SheetView(sheetStore: sheetStore)
                 .background(Color.blue)
             
+            ControlBarView(sheetStore: sheetStore)
+            
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
                     sheetStore: sheetStore,
