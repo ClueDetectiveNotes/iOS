@@ -11,9 +11,18 @@ final class Setting {
     private var subMarkerTypes: [SubMarker]
     
     init(
-        players: [Player] = [Player(name: "Player 1"), Player(name: "Player 2"), Player(name: "Player 3")],
+        players: [Player] = [
+            Player(id: 1, name: "Player 1"),
+            Player(id: 2, name: "Player 2"),
+            Player(id: 3, name: "Player 3")
+        ].sorted { $0.id < $1.id },
         edition: Edition = .classic,
-        subMarkerTypes: [SubMarker] = [SubMarker(notation: "1"), SubMarker(notation: "2"), SubMarker(notation: "3"), SubMarker(notation: "4")]
+        subMarkerTypes: [SubMarker] = [
+            SubMarker(notation: "1"),
+            SubMarker(notation: "2"),
+            SubMarker(notation: "3"),
+            SubMarker(notation: "4")
+        ]
     ) {
         self.players = players
         self.edition = edition

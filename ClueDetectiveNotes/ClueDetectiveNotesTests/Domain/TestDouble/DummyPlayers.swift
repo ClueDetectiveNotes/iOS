@@ -9,9 +9,9 @@
 
 struct DummyPlayers {
     static let players: [Player] = [
-        Player(name: "코코"),
-        Player(name: "다산"),
-        Player(name: "메리"),
-        Player(name: "야곰")
+        Player(id: 1, name: "코코"),
+        Player(id: 2, name: "다산"),
+        Player(id: 3, name: "메리"),
+        Player(id: 4, name: "야곰")
     ]
 }
