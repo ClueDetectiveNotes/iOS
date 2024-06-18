@@ -125,6 +125,19 @@ final class Sheet {
         return colNames
     }
     
+    func getNextColName(_ currentColName: ColName) -> ColName {
+        var nextIndex = 0
+        
+        for (index, colName) in colNames.enumerated() {
+            if currentColName == colName {
+                nextIndex = (index + 1) % colNames.count
+                break
+            }
+        }
+        
+        return colNames[nextIndex]
+    }
+    
     func getSelectedCells() -> [Cell] {
         return selectedCells
     }
