@@ -28,9 +28,16 @@ struct MarkerControlBarView: View {
                 
                 Spacer()
                 
-                Button("닫기") {
-                    markerControlBarInteractor.clickCloseButton()
-                }
+                // 창 닫기
+                Button(
+                    action: {
+                        markerControlBarInteractor.clickCloseButton()
+                    },
+                    label: {
+                        Image(systemName: "xmark.circle")
+                            .foregroundStyle(.red)
+                    }
+                )
             }
             
             ScrollView(.horizontal) {

@@ -43,7 +43,7 @@ struct MarkerControlBarInteractor {
         }
     }
     
-    func clickCancelButton() {
+    func clickCloseButton() {
         do {
             let presentationSheet = try cancelClickedCellUseCase.execute()
             
@@ -51,10 +51,6 @@ struct MarkerControlBarInteractor {
         } catch {
             
         }
-    }
-    
-    func clickCloseButton() {
-        sheetStore.setDisplayMarkerControlBar(false)
     }
     
     func clickPlusButton() {
