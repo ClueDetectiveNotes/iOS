@@ -9,17 +9,21 @@ struct ControlBarInterator {
     private var sheetStore: SheetStore
     private let undoUseCase: UndoUseCase
     private let redoUseCase: RedoUseCase
-    //private let clearUseCase: ClearUseCase // 선택된 셀 마커 삭제
-    //private let cancelUseCase: CancelUsecase // 선택된 셀이 있으면 다 언셀렉
+    private let clearUseCase: AnyUseCase<Int>
+    private let cancelUseCase: AnyUseCase<Int>
     
     init(
         sheetStore: SheetStore,
         undoUseCase: UndoUseCase = UndoUseCase(),
-        redoUseCase: RedoUseCase = RedoUseCase()
+        redoUseCase: RedoUseCase = RedoUseCase(),
+        clearUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(ClearMarkerSelectedCellUseCase())),
+        cancelUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase()))
     ) {
         self.sheetStore = sheetStore
         self.undoUseCase = undoUseCase
         self.redoUseCase = redoUseCase
+        self.clearUseCase = clearUseCase
+        self.cancelUseCase = cancelUseCase
     }
     
     func clickUndo() {
@@ -35,6 +39,26 @@ struct ControlBarInterator {
     func clickRedo() {
         do {
             let presentationSheet = try redoUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func clickClearButton() {
+        do {
+            let presentationSheet = try clearUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func clickCancelButton() {
+        do {
+            let presentationSheet = try cancelUseCase.execute()
             
             updateSheetStore(presentationSheet: presentationSheet)
         } catch {

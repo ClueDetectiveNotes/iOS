@@ -20,39 +20,44 @@ struct ControlBarView: View {
     
     var body: some View {
         HStack(spacing: 30) {
+            
+            // Undo
             Button(
                 action: {
                     controlBarInteractor.clickUndo()
                 },
                 label: {
-                    Image(systemName: "arrow.uturn.left") // Undo
+                    Image(systemName: "arrow.uturn.left")
                 }
             )
             
+            // Rndo
             Button(
                 action: {
                     controlBarInteractor.clickRedo()
                 },
                 label: {
-                    Image(systemName: "arrow.uturn.right") // Rndo
+                    Image(systemName: "arrow.uturn.right")
                 }
             )
             
+            // Clear
             Button(
                 action: {
-                    //controlBarInteractor
+                    controlBarInteractor.clickClearButton()
                 },
                 label: {
-                    Image(systemName: "eraser") // Clear
+                    Image(systemName: "eraser")
                 }
             )
             
+            // Cancel
             Button(
                 action: {
-                    //controlBarInteractor
+                    controlBarInteractor.clickCancelButton()
                 },
                 label: {
-                    Image(systemName: "square.dashed") // Cancel
+                    Image(systemName: "square.dashed")
                 }
             )
         }
