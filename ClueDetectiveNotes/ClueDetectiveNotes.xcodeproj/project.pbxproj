@@ -27,6 +27,7 @@
 		44E011BE2C01E22600676359 /* SheetMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E011BD2C01E22600676359 /* SheetMode.swift */; };
 		44E011C42C01EC5E00676359 /* Sheet+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E011C32C01EC5E00676359 /* Sheet+.swift */; };
 		44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8D8D12BD0116000A989E2 /* Marker.swift */; };
+		AC0360BB2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */; };
 		AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04831D2BF275A500B99608 /* PresentationSheet.swift */; };
 		AC3170512C018C53009E947B /* SettingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170502C018C53009E947B /* SettingError.swift */; };
 		AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170532C01B02F009E947B /* ClickCellUseCase.swift */; };
@@ -95,6 +96,7 @@
 		44E011C22C01EB8700676359 /* ClueDetectiveNotes.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ClueDetectiveNotes.xctestplan; sourceTree = "<group>"; };
 		44E011C32C01EC5E00676359 /* Sheet+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+.swift"; sourceTree = "<group>"; };
 		44E8D8D12BD0116000A989E2 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearMarkerSelectedCellUseCase.swift; sourceTree = "<group>"; };
 		AC04831D2BF275A500B99608 /* PresentationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSheet.swift; sourceTree = "<group>"; };
 		AC3170502C018C53009E947B /* SettingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingError.swift; sourceTree = "<group>"; };
 		AC3170532C01B02F009E947B /* ClickCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickCellUseCase.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				AC31705C2C01B627009E947B /* ChooseMainMarkerUseCase.swift */,
 				AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */,
 				AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */,
+				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				AC31705A2C01B51D009E947B /* ClickRowNameUseCase.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				44AF62012BF7856900F38165 /* SettingInteractor.swift in Sources */,
+				AC0360BB2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift in Sources */,
 				AC3D734E2C1C22350042C669 /* SnapshotDecorator.swift in Sources */,
 				AC3170562C01B13E009E947B /* LongClickCellUseCase.swift in Sources */,
 				AC31705D2C01B627009E947B /* ChooseMainMarkerUseCase.swift in Sources */,
