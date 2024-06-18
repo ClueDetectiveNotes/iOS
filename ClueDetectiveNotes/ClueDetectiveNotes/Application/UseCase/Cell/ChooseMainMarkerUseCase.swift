@@ -12,9 +12,17 @@ struct ChooseMainMarkerUseCase: UseCase {
         self.sheet = sheet
     }
     
-    func execute(_ marker: MainMarker) -> PresentationSheet {
-        switch sheet.isMultiMode() || sheet.isInferenceMode() {
-        case true:
+    func execute(_ marker: MainMarker) throws -> PresentationSheet {
+        switch sheet.getMode() {
+        case .single, .preInference:
+            if let cell = sheet.getSelectedCells().first {
+                if cell.equalsMainMarker(marker) {
+                    cell.removeMainMarker()
+                } else {
+                    cell.setMainMarker(marker)
+                }
+            }
+        case .multi:
             if sheet.isEveryCellMarkedWithMainMarker(),
                sheet.isSameMainMarkerInEveryCell(marker) {
                 sheet.getSelectedCells().forEach { cell in
@@ -25,13 +33,20 @@ struct ChooseMainMarkerUseCase: UseCase {
                     cell.setMainMarker(marker)
                 }
             }
-        case false:
-            if let cell = sheet.getSelectedCells().first {
-                if cell.equalsMainMarker(marker) {
+        case .inference:
+            if sheet.isEveryCellMarkedWithMainMarker(),
+               sheet.isSameMainMarkerInEveryCell(marker) {
+                sheet.getSelectedCells().forEach { cell in
                     cell.removeMainMarker()
-                } else {
+                }
+            } else {
+                let selectedCells = sheet.getSelectedCells()
+                selectedCells.forEach { cell in
                     cell.setMainMarker(marker)
                 }
+                
+                let currentColName = selectedCells[0].getColName()
+                try selectNextInferenceCells(currentColName)
             }
         }
         
@@ -41,6 +56,18 @@ struct ChooseMainMarkerUseCase: UseCase {
 
 // MARK: - Private
 extension ChooseMainMarkerUseCase {
+    private func selectNextInferenceCells(_ currentColName: ColName) throws {
+        // selectedCell, selectedColumnName 초기화
+        sheet.unselectCell()
+        sheet.unselectColumnName()
+        
+        // 다음 columnName 선택
+        let nextColName = sheet.getNextColName(currentColName)
+        _ = sheet.selectColumnName(nextColName)
+        
+        try sheet.switchModeInInferenceMode()
+    }
+    
     private func createPresentationSheet() -> PresentationSheet {
         return ConvertManager.getImmutableSheet(sheet)
     }
