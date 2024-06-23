@@ -8,94 +8,130 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
-    @State private var playerNames: [String]
+    @ObservedObject private var settingStore: SettingStore
     @State private var selectedPlayer: String = ""
+    private var settingInteractor: SettingInteractor
     
-    init(playerNames: [String]) {
-        self.playerNames = playerNames
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
     }
     
     var body: some View {
         NavigationStack {
             VStack {
-                TitleView()
+                
+                TitleView(
+                    title: "플레이어 설정",
+                    description: "자신을 선택하고, 플레이 순서에 맞게 정렬해주세요."
+                )
                 
                 Spacer()
                     .frame(height: 50)
                 
-                List {
-                    ForEach(playerNames, id: \.self) { playerName in
-                        HStack {
-                            Image(systemName: selectedPlayer == playerName ? "checkmark.circle.fill" : "circle")
-                                .foregroundStyle(.blue)
-                            Text("\(playerName)")
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            selectedPlayer = playerName
-                        }
-                    }.onMove { (source: IndexSet, destination: Int) in
-                        self.playerNames.move(fromOffsets: source, toOffset: destination)
-                        print(playerNames)
-                    }
-                }
-                .environment(\.editMode, .constant(.active))
-                .listStyle(.inset)
-                .listRowSpacing(10)
+                PlayerNameListView(
+                    settingStore: settingStore,
+                    settingInteractor: settingInteractor
+                )
                 
-                NavigationLink {
-                    PlayerView(name: "111")
-                } label: {
-                    Text("다음")
-                        .frame(maxWidth: 200)
-                        .frame(height: 40)
-                }
-                .navigationDestination(for: String.self) { name in
-                    PlayerView(name: "111")
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(selectedPlayer.isEmpty ? true : false)
+                NextButtonView(
+                    settingStore: settingStore,
+                    settingInteractor: settingInteractor)
             }
         }
     }
 }
 
-private struct TitleView: View {
+private struct PlayerNameListView: View {
+    @ObservedObject private var settingStore: SettingStore
+    private let settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("플레이어 설정")
-                    .font(.title)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            
-            Spacer()
-                .frame(height: 10)
-            
-            HStack {
-                Text("자신을 선택하고, 플레이 순서에 맞게 정렬해주세요.")
-                    .foregroundStyle(.gray)
-                Spacer()
+        List {
+            ForEach(settingStore.playerNames, id: \.self) { playerName in
+                HStack {
+                    Image(
+                        systemName: settingStore.isSelectedPlayer(playerName)
+                        ? "checkmark.circle.fill"
+                        : "circle"
+                    )
+                        .foregroundStyle(.blue)
+                    Text("\(playerName)")
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    settingInteractor.selectPlayer(playerName)
+                }
+            }.onMove { (source: IndexSet, destination: Int) in
+                settingStore.playerNames.move(fromOffsets: source, toOffset: destination)
+                print(settingStore.playerNames)
             }
         }
-        .padding()
+        .environment(\.editMode, .constant(.active))
+        .listStyle(.inset)
+        .listRowSpacing(10)
+    }
+}
+
+private struct NextButtonView: View {
+    @ObservedObject private var settingStore: SettingStore
+    private let settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
+    
+    var body: some View {
+        NavigationLink {
+            GameView(
+                settingStore: settingStore,
+                settingInteractor: settingInteractor
+            )
+            .navigationBarBackButtonHidden()
+        } label: {
+            Text("다음")
+                .frame(maxWidth: 250)
+                .frame(height: 40)
+        }
+        .navigationDestination(for: String.self) { _ in
+            GameView(
+                settingStore: settingStore,
+                settingInteractor: settingInteractor
+            )
+        }
+        .buttonStyle(.borderedProminent)
+        .disabled(settingStore.isEmptySelectedPlayer())
+        .simultaneousGesture(TapGesture().onEnded({ _ in
+            settingInteractor.clickPlayerDetailSettingNextButton()
+        }))
     }
 }
 
 struct PlayerView: View {
-    var name: String
-    
-    init(name: String) {
-        self.name = name
-    }
     
     var body: some View {
-        Text("d")
+        Text("까꽁")
     }
-    
 }
 
 #Preview {
-    PlayerDetailSettingView(playerNames: ["다산","메리","코코"])
+    PlayerDetailSettingView(
+        settingStore: SettingStore(),
+        settingInteractor: SettingInteractor(settingStore: SettingStore())
+    )
 }

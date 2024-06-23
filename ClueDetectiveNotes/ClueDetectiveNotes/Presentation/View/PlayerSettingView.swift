@@ -8,140 +8,175 @@
 import SwiftUI
 
 struct PlayerSettingView: View {
-    @State private var value = 3
-    @State private var playerNames = Array(repeating: "", count: 3)
-    let range = 3...6
+    @ObservedObject private var settingStore: SettingStore
+    private var settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore, 
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
     
     var body: some View {
         NavigationStack {
-            
             VStack {
-                TitleView()
+                Spacer()
+                    .frame(height: 44)
+                
+                TitleView(
+                    title: "플레이어 설정",
+                    description: "게임에 참여하는 인원 수와 이름을 설정해주세요."
+                )
                 
                 Spacer()
                     .frame(height: 50)
                 
-                HStack {
-                    Button(
-                        action: {
-                            decrementStep()
-                        },
-                        label: {
-                            Image(systemName: "minus")
-                                .frame(width: 25, height: 17)
-                        }
-                    )
-                    .disabled(value == 3 ? true : false)
-                    .buttonStyle(.bordered)
-                    
-                    Text("\(value)")
-                        .font(.title)
-                        .padding([.leading, .trailing])
-                    
-                    Button(
-                        action: {
-                            incrementStep()
-                        },
-                        label: {
-                            Image(systemName: "plus")
-                                .frame(width: 25, height: 17)
-                        }
-                    )
-                    .disabled(value == 6 ? true : false)
-                    .buttonStyle(.bordered)
-                }
+                StepperView(
+                    settingStore: settingStore,
+                    settingInteractor: settingInteractor
+                )
                 
                 Spacer()
                     .frame(height: 50)
                 
-                List {
-                    ForEach(playerNames.indices, id: \.self) { index in
-                        VStack {
-                            TextField(
-                                "Player \(index+1) Name",
-                                text: $playerNames[index]
-                            )
-                        }
-                    }
-                }
-                .listStyle(.inset)
-                .listRowSpacing(10)
+                PlayerNameFieldListView(settingStore: settingStore)
                 
                 Spacer()
                 
-                NavigationLink {
-                    PlayerDetailSettingView(playerNames: playerNames)
-                } label: {
-                    Text("다음")
-                    .frame(maxWidth: 200)
-                    .frame(height: 40)
+                
+                if !settingStore.isValidPlayerNames() {
+                    Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
+                        .foregroundStyle(.gray)
                 }
-                .navigationDestination(for: [String].self) { playerNames in
-                    PlayerDetailSettingView(playerNames: playerNames)
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(checkIsEmpty() ? true : false)
+                
+                NextButtonView(
+                    settingStore: settingStore,
+                    settingInteractor: settingInteractor
+                )
             }
         }
         .padding()
     }
-    
-    func checkIsEmpty() -> Bool {
-        var check = false
-        for playerName in playerNames {
-            if playerName.isEmpty {
-                check = true
-                break
-            }
-        }
-        return check
-    }
-    // 이름이 중복된 것은 없는지도 체크해야함ㅋ
-    
-    func incrementStep() {
-        if value < 6 {
-            value += 1
-            playerNames.append("")
-        }
-    }
-    
-    func decrementStep() {
-        if value > 3 {
-            value -= 1
-            playerNames.removeLast()
-        }
-    }
 }
 
-private struct TitleView: View {
+private struct StepperView: View {
+    @ObservedObject private var settingStore: SettingStore
+    private let settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("플레이어 설정")
-                    .font(.title)
-                    .fontWeight(.bold)
-                Spacer()
-            }
+        HStack {
+            Button(
+                action: {
+                    settingInteractor.clickMinusButton()
+                },
+                label: {
+                    Image(systemName: "minus")
+                        .frame(width: 25, height: 17)
+                }
+            )
+            .disabled(settingStore.isDisabledMinusButton)
+            .buttonStyle(.bordered)
             
-            Spacer()
-                .frame(height: 10)
+            Text("\(settingStore.count)")
+                .font(.title)
+                .padding([.leading, .trailing])
             
-            HStack {
-                Text("게임에 참여하는 인원 수와 이름을 설정해주세요.")
-                    .foregroundStyle(.gray)
-                Spacer()
-            }
+            Button(
+                action: {
+                    settingInteractor.clickPlusButton()
+                },
+                label: {
+                    Image(systemName: "plus")
+                        .frame(width: 25, height: 17)
+                }
+            )
+            .disabled(settingStore.isDisabledPlusButton)
+            .buttonStyle(.bordered)
         }
-        .padding()
     }
 }
 
-//struct StepperView: View {
-//    var body: some View {
-//
-//    }
-//}
+private struct PlayerNameFieldListView: View {
+    @ObservedObject private var settingStore: SettingStore
+    
+    init(settingStore: SettingStore) {
+        self.settingStore = settingStore
+    }
+    
+    // 1
+    // 기존 리스트 카피하기, 그리고 카피본에서 지우기
+    // 그 후에 기존 리스트를 카피본으로 대체
+    
+    // 2
+    // 루프가 끝난 후! 해당 인덱스를 삭제
+    // 반복문이 수행중인 상태에서 해당 리스트를 삭제하면 오류가남
+    
+    var body: some View {
+        List {
+            ForEach(settingStore.playerNames.indices, id: \.self) { index in
+                VStack {
+                    TextField(
+                        "Player \(index+1) Name",
+                        text: $settingStore.playerNames[index]
+                    )
+                }
+            }
+        }
+        .listStyle(.inset)
+        .listRowSpacing(10)
+    }
+}
+
+private struct NextButtonView: View {
+    @ObservedObject private var settingStore: SettingStore
+    private let settingInteractor: SettingInteractor
+    
+    init(
+        settingStore: SettingStore,
+        settingInteractor: SettingInteractor
+    ) {
+        self.settingStore = settingStore
+        self.settingInteractor = settingInteractor
+    }
+    
+    var body: some View {
+        NavigationLink {
+            PlayerDetailSettingView(
+                settingStore: settingStore,
+                settingInteractor: settingInteractor
+            )
+        } label: {
+            Text("다음")
+            .frame(maxWidth: 250)
+            .frame(height: 40)
+        }
+        .navigationDestination(for: [String].self) { _ in
+            PlayerDetailSettingView(
+                settingStore: settingStore,
+                settingInteractor: settingInteractor
+            )
+        }
+        .buttonStyle(.borderedProminent)
+        .disabled(!settingStore.isValidPlayerNames())
+        .simultaneousGesture(TapGesture().onEnded({ _ in
+            settingInteractor.clickPlayerSettingNextButton()
+        }))
+    }
+}
 
 #Preview {
-    PlayerSettingView()
+    PlayerSettingView(
+        settingStore: SettingStore(),
+        settingInteractor: SettingInteractor(settingStore: SettingStore())
+    )
 }

@@ -13,7 +13,10 @@ struct ClueDetectiveNotesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PlayerSettingView()
+            PlayerSettingView(
+                settingStore: settingStore,
+                settingInteractor: SettingInteractor(settingStore: settingStore)
+            )
 //            GameView(
 //                settingStore: settingStore,
 //                settingInteractor: SettingInteractor(settingStore: settingStore)
