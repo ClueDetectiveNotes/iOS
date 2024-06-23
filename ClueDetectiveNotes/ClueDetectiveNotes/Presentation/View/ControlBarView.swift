@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ControlBarView: View {
     @ObservedObject private var sheetStore: SheetStore
-    private let controlBarInteractor: ControlBarInterator
+    private let controlBarInteractor: ControlBarInteractor
     
     init(
         sheetStore: SheetStore
     ) {
         self.sheetStore = sheetStore
-        self.controlBarInteractor = ControlBarInterator(sheetStore: sheetStore)
+        self.controlBarInteractor = ControlBarInteractor(sheetStore: sheetStore)
     }
     
     var body: some View {

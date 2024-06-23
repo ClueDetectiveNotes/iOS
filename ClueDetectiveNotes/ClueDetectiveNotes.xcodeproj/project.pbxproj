@@ -47,7 +47,7 @@
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC55CA7B2C204CA90045E78F /* RedoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7A2C204CA90045E78F /* RedoUseCase.swift */; };
 		AC55CA7D2C2058980045E78F /* UndoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7C2C2058980045E78F /* UndoUseCase.swift */; };
-		AC55CA7F2C2059640045E78F /* ControlBarInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7E2C2059640045E78F /* ControlBarInterator.swift */; };
+		AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */; };
 		AC55CA812C205FE50045E78F /* ControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA802C205FE50045E78F /* ControlBarView.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
 		AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */; };
@@ -120,7 +120,7 @@
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC55CA7A2C204CA90045E78F /* RedoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedoUseCase.swift; sourceTree = "<group>"; };
 		AC55CA7C2C2058980045E78F /* UndoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoUseCase.swift; sourceTree = "<group>"; };
-		AC55CA7E2C2059640045E78F /* ControlBarInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarInterator.swift; sourceTree = "<group>"; };
+		AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarInteractor.swift; sourceTree = "<group>"; };
 		AC55CA802C205FE50045E78F /* ControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarView.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
 		AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				44AF61F92BF7219D00F38165 /* SheetInteractor.swift */,
-				AC55CA7E2C2059640045E78F /* ControlBarInterator.swift */,
+				AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */,
 				44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */,
 				44AF62002BF7856900F38165 /* SettingInteractor.swift */,
 			);
@@ -605,7 +605,7 @@
 				AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */,
 				AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
-				AC55CA7F2C2059640045E78F /* ControlBarInterator.swift in Sources */,
+				AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */,
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,

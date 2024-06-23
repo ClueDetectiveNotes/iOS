@@ -1,11 +1,11 @@
 //
-//  ControlBarInterator.swift
+//  ControlBarInteractor.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan & Mary on 6/17/24.
 //
 
-struct ControlBarInterator {
+struct ControlBarInteractor {
     private var sheetStore: SheetStore
     private let undoUseCase: UndoUseCase
     private let redoUseCase: RedoUseCase
@@ -68,7 +68,7 @@ struct ControlBarInterator {
 }
 
 // MARK: - Private
-extension ControlBarInterator {
+extension ControlBarInteractor {
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         
