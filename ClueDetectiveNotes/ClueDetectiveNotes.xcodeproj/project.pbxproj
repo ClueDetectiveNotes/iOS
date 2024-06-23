@@ -59,6 +59,7 @@
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
 		ACEA787E2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */; };
+		ACF3694C2C259C33000D32A1 /* CreatePlayersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF3694B2C259C33000D32A1 /* CreatePlayersUseCase.swift */; };
 		ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */; };
 		ACFED8D22BB90B5E00B1D22B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFED8D12BB90B5E00B1D22B /* GameView.swift */; };
 		ACFED8D42BB90B5F00B1D22B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFED8D32BB90B5F00B1D22B /* Assets.xcassets */; };
@@ -130,6 +131,7 @@
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
 		ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickColNameUseCaseTests.swift; sourceTree = "<group>"; };
+		ACF3694B2C259C33000D32A1 /* CreatePlayersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlayersUseCase.swift; sourceTree = "<group>"; };
 		ACFED8CC2BB90B5E00B1D22B /* ClueDetectiveNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClueDetectiveNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetectiveNotesApp.swift; sourceTree = "<group>"; };
 		ACFED8D12BB90B5E00B1D22B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */,
+				ACF3694B2C259C33000D32A1 /* CreatePlayersUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
+				ACF3694C2C259C33000D32A1 /* CreatePlayersUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
