@@ -17,7 +17,7 @@ final class Sheet {
     private var selectedColName: ColName?
     
     init(
-        players: [Player],
+        players: [any Player],
         cards: Cards,
         mode: SheetMode = .single
     ) {
@@ -347,5 +347,13 @@ struct RowName: Hashable {
 }
 
 struct ColName: Hashable {
-    let player: Player
+    let player: any Player
+    
+    static func == (lhs: ColName, rhs: ColName) -> Bool {
+        lhs.player.id == rhs.player.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(player.id)
+    }
 }

@@ -6,16 +6,14 @@
 //
 
 final class Setting {
-    private var players: [Player]
+    private var players: [any Player]
     private var edition: Edition
     private var subMarkerTypes: [SubMarker]
     
+    private let playerCountRange = 3...6
+    
     init(
-        players: [Player] = [
-            Player(id: 1, name: "Player 1"),
-            Player(id: 2, name: "Player 2"),
-            Player(id: 3, name: "Player 3")
-        ].sorted { $0.id < $1.id },
+        players: [any Player] = [any Player](),
         edition: Edition = .classic,
         subMarkerTypes: [SubMarker] = [
             SubMarker(notation: "1"),

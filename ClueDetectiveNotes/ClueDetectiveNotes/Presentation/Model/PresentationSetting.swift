@@ -6,7 +6,7 @@
 //
 
 struct PresentationSetting {
-    let players: [Player]
+    let players: [any Player]
     let edition: Edition
     let subMarkerTypes: [SubMarker]
 }
