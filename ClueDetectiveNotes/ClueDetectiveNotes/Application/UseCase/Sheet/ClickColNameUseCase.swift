@@ -22,6 +22,7 @@ struct ClickColNameUseCase: UseCase {
             if sheet.isSelectedColName(colName) {
                 sheet.unselectColumnName()
             } else {
+                sheet.unselectCell()
                 _ = sheet.selectColumnName(colName)
             }
             try sheet.switchModeInInferenceMode()
