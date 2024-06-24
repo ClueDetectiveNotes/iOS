@@ -46,7 +46,7 @@ struct PlayerSettingView: View {
                 Spacer()
                 
                 
-                if !settingStore.isValidPlayerNames() {
+                if !settingInteractor.isValidPlayerNames() {
                     Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
                         .foregroundStyle(.gray)
                 }
@@ -179,7 +179,7 @@ private struct NextButtonView: View {
             )
         }
         .buttonStyle(.borderedProminent)
-        .disabled(!settingStore.isValidPlayerNames())
+        .disabled(!settingInteractor.isValidPlayerNames())
         .simultaneousGesture(TapGesture().onEnded({ _ in
             settingInteractor.clickPlayerSettingNextButton()
         }))

@@ -35,8 +35,8 @@ struct SettingInteractor {
         let minPlayerCount = GameSetter.shared.getSetting().getMinPlayerCount()
         
         if settingStore.count > minPlayerCount {
-            settingStore.decrementCount()
-            settingStore.removeLastPlayerName()
+            decrementCount()
+            removeLastPlayerName()
         }
         
         if settingStore.count == minPlayerCount {
@@ -51,8 +51,8 @@ struct SettingInteractor {
         let maxPlayerCount = GameSetter.shared.getSetting().getMaxPlayerCount()
         
         if settingStore.count <  maxPlayerCount {
-            settingStore.incrementCount()
-            settingStore.appendPlayerName("")
+            incrementCount()
+            appendPlayerName("")
         }
         
         if settingStore.count == maxPlayerCount {
@@ -64,8 +64,8 @@ struct SettingInteractor {
     }
     
     func clickPlayerSettingNextButton() {
-        if settingStore.isValidPlayerNames() {
-            let trimmingNames = settingStore.trimmingPlayerNames()
+        if isValidPlayerNames() {
+            let trimmingNames = trimmingPlayerNames()
             settingStore.overwritePlayerNames(trimmingNames)
         }
     }
@@ -86,11 +86,64 @@ struct SettingInteractor {
             
         }
     }
+    
+    func isValidPlayerNames() -> Bool {
+        let trimmingNames = trimmingPlayerNames()
+        
+        guard !isEmptyStrings(trimmingNames) else {
+            return false
+        }
+        
+        guard Set(trimmingNames).count == trimmingNames.count else {
+            return false
+        }
+        
+        return true
+    }
+    
+    func isSelectedPlayer(_ playerName: String) -> Bool {
+        return settingStore.selectedPlayer == playerName
+    }
+    
+    func isEmptySelectedPlayer() -> Bool {
+        return settingStore.selectedPlayer.isEmpty
+    }
 }
 
 // MARK: - Private
 extension SettingInteractor {
     private func updateSettingStore(presentationSetting: PresentationSetting) {
         settingStore.overwriteSetting(presentationSetting)
+    }
+    
+    private func incrementCount() {
+        settingStore.count += 1
+    }
+    
+    private func decrementCount() {
+        settingStore.count -= 1
+    }
+    
+    private func appendPlayerName(_ name: String) {
+        settingStore.playerNames.append(name)
+    }
+    
+    private func removeLastPlayerName() {
+        settingStore.playerNames.removeLast()
+    }
+    
+    private func trimmingPlayerNames() -> [String] {
+        return settingStore.playerNames.map {
+            $0.trimmingCharacters(in: .whitespaces)
+        }
+    }
+    
+    private func isEmptyStrings(_ strings: [String]) -> Bool {
+        for string in strings {
+            if string.isEmpty {
+                return true
+            }
+        }
+        return false
     }
 }

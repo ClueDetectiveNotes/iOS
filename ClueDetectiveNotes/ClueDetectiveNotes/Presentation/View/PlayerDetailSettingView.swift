@@ -62,7 +62,7 @@ private struct PlayerNameListView: View {
             ForEach(settingStore.playerNames, id: \.self) { playerName in
                 HStack {
                     Image(
-                        systemName: settingStore.isSelectedPlayer(playerName)
+                        systemName: settingInteractor.isSelectedPlayer(playerName)
                         ? "checkmark.circle.fill"
                         : "circle"
                     )
@@ -115,7 +115,7 @@ private struct NextButtonView: View {
             )
         }
         .buttonStyle(.borderedProminent)
-        .disabled(settingStore.isEmptySelectedPlayer())
+        .disabled(settingInteractor.isEmptySelectedPlayer())
         .simultaneousGesture(TapGesture().onEnded({ _ in
             settingInteractor.clickPlayerDetailSettingNextButton()
         }))
