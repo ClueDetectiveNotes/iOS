@@ -113,27 +113,39 @@ private struct PlayerNameFieldListView: View {
         self.settingStore = settingStore
     }
     
-    // 1
-    // 기존 리스트 카피하기, 그리고 카피본에서 지우기
-    // 그 후에 기존 리스트를 카피본으로 대체
-    
-    // 2
-    // 루프가 끝난 후! 해당 인덱스를 삭제
-    // 반복문이 수행중인 상태에서 해당 리스트를 삭제하면 오류가남
-    
     var body: some View {
         List {
             ForEach(settingStore.playerNames.indices, id: \.self) { index in
-                VStack {
-                    TextField(
-                        "Player \(index+1) Name",
-                        text: $settingStore.playerNames[index]
-                    )
-                }
+                NameField(settingStore: settingStore, index: index)
             }
         }
         .listStyle(.inset)
         .listRowSpacing(10)
+    }
+}
+
+private struct NameField: View {
+    @ObservedObject private var settingStore: SettingStore
+    @State var tempName = ""
+    var index: Int
+    
+    init(
+        settingStore: SettingStore, 
+        index: Int
+    ) {
+        self.settingStore = settingStore
+        self.index = index
+    }
+    
+    var body: some View {
+        VStack {
+            TextField(
+                "Player \(index+1) Name",
+                text: index < settingStore.playerNames.count 
+                ? $settingStore.playerNames[index]
+                : $tempName
+            )
+        }
     }
 }
 

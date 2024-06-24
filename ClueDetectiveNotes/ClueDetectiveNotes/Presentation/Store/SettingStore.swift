@@ -17,7 +17,6 @@ final class SettingStore: ObservableObject {
     
     @Published private(set) var selectedPlayer: String
     
-    
     init(
         isDisabledMinusButton: Bool = true,
         isDisabledPlusButton: Bool = false

@@ -36,10 +36,7 @@ struct SettingInteractor {
         
         if settingStore.count > minPlayerCount {
             settingStore.decrementCount()
-            //settingStore.removeLastPlayerName()
-            var temp = settingStore.playerNames
-            temp.removeLast()
-            settingStore.playerNames = temp
+            settingStore.removeLastPlayerName()
         }
         
         if settingStore.count == minPlayerCount {
