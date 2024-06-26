@@ -17,10 +17,6 @@ struct ClueDetectiveNotesApp: App {
                 settingStore: settingStore,
                 settingInteractor: SettingInteractor(settingStore: settingStore)
             )
-//            GameView(
-//                settingStore: settingStore,
-//                settingInteractor: SettingInteractor(settingStore: settingStore)
-//            )
         }
     }
 }

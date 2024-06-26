@@ -26,8 +26,6 @@ struct GameView: View {
             SheetView(sheetStore: sheetStore)
                 .background(Color.blue)
             
-            ControlBarView(sheetStore: sheetStore)
-            
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
                     sheetStore: sheetStore,
@@ -35,6 +33,8 @@ struct GameView: View {
                 )
                     .padding(.horizontal)
             }
+            
+            ControlBarView(sheetStore: sheetStore)
         }
         .alert(
             "마커 추가",
