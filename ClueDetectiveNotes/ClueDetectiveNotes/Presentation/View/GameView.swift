@@ -55,6 +55,7 @@ struct GameView: View {
 struct SheetView: View {
     @ObservedObject private var sheetStore: SheetStore
     private let sheetInteractor: SheetInteractor
+    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore
@@ -80,10 +81,15 @@ struct SheetView: View {
                                 label: {
                                     Text(colName.player.name)
                                         .padding(10)
-                                        .background()
                                         .foregroundStyle(.black)
+                                        .minimumScaleFactor(0.2)
                                 }
                             )
+                            .frame(
+                                width: sheetStore.getCellSize(screenWidth).width,
+                                height: sheetStore.getCellSize(screenWidth).height
+                            )
+                            .background(colName.player is User ? Color.yellow : Color.white)
                         }
                     }
                     
@@ -143,12 +149,14 @@ struct CardTypeView: View {
                     },
                     label: {
                         Text(rowName.card.name)
-                            .frame(width: 100)
                             .padding(10)
-                            .background()
                             .foregroundStyle(Color.black)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.2)
                     }
                 )
+                .frame(width: 90)
+                .background()
                 
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
                     CellView(
@@ -169,6 +177,9 @@ struct CellView: View {
     @ObservedObject private var sheetStore: SheetStore
     private var cell: PresentationCell
     private let sheetInteractor: SheetInteractor
+    
+    // UIScreen.main 없어질 예정. 다른 방법 찾아보기
+    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore,
@@ -197,8 +208,12 @@ struct CellView: View {
                             }
                         }
                     }
+                    .padding(.horizontal, 2)
                 }
-                .frame(width: 40, height: 40)
+                .frame(
+                    width: sheetStore.getCellSize(screenWidth).width,
+                    height: sheetStore.getCellSize(screenWidth).height
+                )
             }
         )
         .foregroundColor(.black)

@@ -21,6 +21,15 @@ final class SheetStore: ObservableObject {
         self.isDisplayAddSubMarkerAlert = isDisplayAddSubMarkerAlert
     }
     
+    func getCellSize(_ screenWidth: CGFloat) -> (width: CGFloat, height: CGFloat) {
+        let colCount = CGFloat(sheet.colNames.count)
+        let tempWidth = (screenWidth - 10*(colCount+1)) / (colCount+2)
+        
+        let cellWidth = tempWidth < 40 ? tempWidth : 40
+        
+        return (cellWidth, cellWidth)
+    }
+    
     func overwriteSheet(_ newSheet: PresentationSheet) {
         sheet = newSheet
     }
