@@ -57,7 +57,7 @@ struct PlayerSettingView: View {
                 )
             }
         }
-        .padding()
+        .padding(0)
     }
 }
 
