@@ -60,8 +60,21 @@ struct ControlBarView: View {
                     Image(systemName: "square.dashed")
                 }
             )
+            
+            Spacer()
+            
+            // Setting
+            Button(
+                action: {
+                    // 세팅 화면
+                },
+                label: {
+                    Image(systemName: "gearshape")
+                }
+            )
         }
         .padding(10)
+        .padding(.horizontal, 20)
     }
 }
 
