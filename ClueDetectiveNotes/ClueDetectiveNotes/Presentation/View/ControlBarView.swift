@@ -31,7 +31,7 @@ struct ControlBarView: View {
                 }
             )
             
-            // Rndo
+            // Redo
             Button(
                 action: {
                     controlBarInteractor.clickRedo()
@@ -69,7 +69,7 @@ struct ControlBarView: View {
                     // 세팅 화면
                 },
                 label: {
-                    Image(systemName: "gearshape")
+                    Image(systemName: "ellipsis")
                 }
             )
         }

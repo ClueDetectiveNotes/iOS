@@ -22,6 +22,7 @@ struct ClickRowNameUseCase: UseCase {
             if sheet.isSelectedRowName(rowName) {
                 sheet.unselectRowName(rowName)
             } else {
+                sheet.unselectCell()
                 _ = sheet.selectRowName(rowName)
             }
             try sheet.switchModeInInferenceMode()
