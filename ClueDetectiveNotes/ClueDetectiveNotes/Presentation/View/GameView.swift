@@ -65,34 +65,16 @@ struct SheetView: View {
     }
 
     var body: some View {
-        ScrollView {
-            HStack {
-                Spacer()
-                
-                Grid {
-                    GridRow {
-                        Text("")
-                        
-                        ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
-                            Button(
-                                action: {
-                                    sheetInteractor.clickColName(colName)
-                                },
-                                label: {
-                                    Text(colName.player.name)
-                                        .padding(10)
-                                        .foregroundStyle(.black)
-                                        .minimumScaleFactor(0.2)
-                                }
-                            )
-                            .frame(
-                                width: sheetStore.getCellSize(screenWidth).width,
-                                height: sheetStore.getCellSize(screenWidth).height
-                            )
-                            .background(colName.player is User ? Color.yellow : Color.white)
-                        }
-                    }
-                    
+        VStack {
+            Text("")
+            
+            PlayerRowView(
+                sheetStore: sheetStore,
+                sheetInteractor: sheetInteractor
+            )
+            
+            ScrollView {
+                VStack(spacing: 2) {
                     CardTypeView(
                         sheetStore: sheetStore,
                         cardType: .suspect,
@@ -111,8 +93,6 @@ struct SheetView: View {
                         sheetInterator: sheetInteractor
                     )
                 }
-                
-                Spacer()
             }
         }
     }
@@ -134,31 +114,157 @@ struct CardTypeView: View {
     }
     
     var body: some View {
-        GridRow {
-            Text(cardType.description)
-                .frame(height: 30)
-                .gridCellColumns(1)
-                .bold()
-        }
+//        HStack {
+//            Text(cardType.description)
+//                .frame(height: 30)
+//                .gridCellColumns(1)
+//                .bold()
+//                .padding(.horizontal, 30)
+//            
+//            Spacer()
+//        }
+//        .contentShape(Rectangle())
+//        .onTapGesture {
+//            print("여기 터치됨")
+//        }
+        CardNameView(
+            sheetStore: sheetStore,
+            cardType: cardType
+        )
         
         ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
-            GridRow {
-                Button(
-                    action: {
-                        sheetInteractor.clickRowName(rowName)
-                    },
-                    label: {
-                        Text(rowName.card.name)
-                            .padding(10)
-                            .foregroundStyle(Color.black)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.2)
-                    }
-                )
-                .frame(width: 90)
-                .background()
-                
+            CardRowView(
+                sheetStore: sheetStore,
+                sheetInteractor: sheetInteractor,
+                rowName: rowName
+            )
+        }
+    }
+}
+
+struct CardNameView: View {
+    @ObservedObject private var sheetStore: SheetStore
+    private let cardType: CardType
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
+    init(
+        sheetStore: SheetStore,
+        cardType: CardType
+    ) {
+        self.sheetStore = sheetStore
+        self.cardType = cardType
+    }
+    
+    var body: some View {
+        HStack {
+            Text(cardType.description)
+                .padding(10)
+                .minimumScaleFactor(0.1)
+                .bold()
+                .frame(width: 90, height: sheetStore.getCellSize(screenWidth).height)
+            
+            HStack(spacing: 0) {
+                ForEach(sheetStore.sheet.colNames, id: \.self) { _ in
+                    Spacer()
+                    
+                    Rectangle()
+                    .frame(
+                        width: sheetStore.getCellSize(screenWidth).width,
+                        height: sheetStore.getCellSize(screenWidth).height
+                    )
+                    .opacity(0)
+                }
+            }
+        }
+        .padding(.horizontal, 10)
+    }
+}
+
+struct PlayerRowView: View {
+    @ObservedObject private var sheetStore: SheetStore
+    private let sheetInteractor: SheetInteractor
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
+    init(
+        sheetStore: SheetStore,
+        sheetInteractor: SheetInteractor
+    ) {
+        self.sheetStore = sheetStore
+        self.sheetInteractor = sheetInteractor
+    }
+    
+    var body: some View {
+        HStack {
+            Text("")
+                .frame(width: 90, height: sheetStore.getCellSize(screenWidth).height)
+            
+            HStack(spacing: 0) {
+                ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
+                    Spacer()
+                    
+                    Button(
+                        action: {
+                            sheetInteractor.clickColName(colName)
+                        },
+                        label: {
+                            Text(colName.player.name)
+                                .padding(10)
+                                .foregroundStyle(.black)
+                                .minimumScaleFactor(0.2)
+                        }
+                    )
+                    .frame(
+                        width: sheetStore.getCellSize(screenWidth).width,
+                        height: sheetStore.getCellSize(screenWidth).height
+                    )
+                    .background(colName.player is User ? Color.yellow : Color.white)
+                }
+            }
+        }
+        .padding(.horizontal, 10)
+    }
+}
+
+struct CardRowView: View {
+    @ObservedObject private var sheetStore: SheetStore
+    private let sheetInteractor: SheetInteractor
+    private let rowName: RowName
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
+    init(
+        sheetStore: SheetStore,
+        sheetInteractor: SheetInteractor,
+        rowName: RowName
+    ) {
+        self.sheetStore = sheetStore
+        self.sheetInteractor = sheetInteractor
+        self.rowName = rowName
+    }
+    
+    var body: some View {
+        HStack {
+            Button(
+                action: {
+                    sheetInteractor.clickRowName(rowName)
+                },
+                label: {
+                    Text(rowName.card.name)
+                        .padding(10)
+                        .foregroundStyle(Color.black)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.2)
+                }
+            )
+            .frame(width: 90, height: sheetStore.getCellSize(screenWidth).height)
+            .background()
+            
+            HStack(spacing: 0) {
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
+                    Spacer()
+                    
                     CellView(
                         sheetStore: sheetStore,
                         cell: cell,
@@ -167,9 +273,7 @@ struct CardTypeView: View {
                 }
             }
         }
-        
-        Rectangle()
-            .frame(height: 1)
+        .padding(.horizontal, 10)
     }
 }
 
@@ -192,33 +296,28 @@ struct CellView: View {
     }
     
     var body: some View {
-        Button(
-            action: { 
-                //
-            },
-            label: {
-                VStack {
-                    Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
-                        
-                    HStack {
-                        if let cell = sheetStore.sheet.findCell(id: cell.id) {
-                            ForEach(cell.subMarkers, id: \.self) { subMarker in
-                                Text(subMarker.notation)
-                                    .font(.caption)
-                            }
-                        }
+        VStack {
+            Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
+                
+            HStack {
+                if let cell = sheetStore.sheet.findCell(id: cell.id) {
+                    ForEach(cell.subMarkers, id: \.self) { subMarker in
+                        Text(subMarker.notation)
+                            .font(.caption)
                     }
-                    .padding(.horizontal, 2)
                 }
-                .frame(
-                    width: sheetStore.getCellSize(screenWidth).width,
-                    height: sheetStore.getCellSize(screenWidth).height
-                )
             }
+            .padding(.horizontal, 2)
+        }
+        .frame(
+            width: sheetStore.getCellSize(screenWidth).width,
+            height: sheetStore.getCellSize(screenWidth).height
         )
         .foregroundColor(.black)
         .border(
-            sheetStore.sheet.isSelectedCell(cell) ? Color.orange : Color.black,
+            sheetStore.sheet.isSelectedCell(cell) ?
+            sheetStore.sheet.mode == .multi ? Color.orange : Color.green
+            : Color.black,
             width: sheetStore.sheet.isSelectedCell(cell) ? 4 : 1
         )
         .background(
