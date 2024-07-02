@@ -325,12 +325,15 @@ struct CellView: View {
             ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7) 
             : Color.white
         )
-        .simultaneousGesture(LongPressGesture().onEnded({ _ in
-            sheetInteractor.longClickCell(cell)
+        .simultaneousGesture(LongPressGesture().onEnded ({ _ in
+                sheetInteractor.longClickCell(cell)
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
             sheetInteractor.clickCell(cell)
         }))
+        .highPriorityGesture(
+            DragGesture().onChanged { _ in }
+        )
     }
 }
 
