@@ -27,7 +27,7 @@ final class SheetStore: ObservableObject {
         
         let cellWidth = tempWidth < 40 ? tempWidth : 40
         
-        return (cellWidth, cellWidth)
+        return (tempWidth, cellWidth)
     }
     
     func overwriteSheet(_ newSheet: PresentationSheet) {
