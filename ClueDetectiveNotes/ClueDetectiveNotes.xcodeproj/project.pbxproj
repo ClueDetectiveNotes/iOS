@@ -49,6 +49,7 @@
 		AC55CA7D2C2058980045E78F /* UndoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7C2C2058980045E78F /* UndoUseCase.swift */; };
 		AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */; };
 		AC55CA812C205FE50045E78F /* ControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA802C205FE50045E78F /* ControlBarView.swift */; };
+		AC5C854C2C35011A00F09746 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
 		AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */; };
 		AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */; };
@@ -122,6 +123,7 @@
 		AC55CA7C2C2058980045E78F /* UndoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoUseCase.swift; sourceTree = "<group>"; };
 		AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarInteractor.swift; sourceTree = "<group>"; };
 		AC55CA802C205FE50045E78F /* ControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarView.swift; sourceTree = "<group>"; };
+		AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
 		AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
 		AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotManager.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				44AF62092BFB233700F38165 /* Model */,
 				44AF62082BFB232F00F38165 /* Intent */,
 				AC6E30EF2BECAB6B00911F13 /* Store */,
+				AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				ACFED8D22BB90B5E00B1D22B /* GameView.swift in Sources */,
 				AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */,
 				AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */,
+				AC5C854C2C35011A00F09746 /* KeyboardObserver.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
 				AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */,
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
