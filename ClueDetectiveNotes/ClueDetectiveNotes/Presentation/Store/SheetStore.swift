@@ -23,11 +23,11 @@ final class SheetStore: ObservableObject {
     
     func getCellSize(_ screenWidth: CGFloat) -> (width: CGFloat, height: CGFloat) {
         let colCount = CGFloat(sheet.colNames.count)
-        let tempWidth = (screenWidth - 10*(colCount+1)) / (colCount+2)
+        let tempWidth = (screenWidth - 5*(colCount+1)) / (colCount+2)
         
-        let cellWidth = tempWidth < 40 ? tempWidth : 40
+        let cellHeight = tempWidth < 40 ? tempWidth : 40
         
-        return (tempWidth, cellWidth)
+        return (tempWidth, cellHeight)
     }
     
     func overwriteSheet(_ newSheet: PresentationSheet) {
