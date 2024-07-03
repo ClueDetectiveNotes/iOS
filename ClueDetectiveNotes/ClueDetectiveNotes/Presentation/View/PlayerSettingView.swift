@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayerSettingView: View {
+    @StateObject private var keyboardObserver = KeyboardObserver()
     @ObservedObject private var settingStore: SettingStore
     private var settingInteractor: SettingInteractor
     
@@ -45,16 +46,20 @@ struct PlayerSettingView: View {
                 
                 Spacer()
                 
-                
-                if !settingInteractor.isValidPlayerNames() {
-                    Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
-                        .foregroundStyle(.gray)
+                if !keyboardObserver.isKeyboardVisible {
+                    if !settingInteractor.isValidPlayerNames() {
+                        Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
+                            .foregroundStyle(.gray)
+                            .ignoresSafeArea(.keyboard)
+                    }
+                    
+                    NextButtonView(
+                        settingStore: settingStore,
+                        settingInteractor: settingInteractor
+                    )
+                    
+                    Spacer()
                 }
-                
-                NextButtonView(
-                    settingStore: settingStore,
-                    settingInteractor: settingInteractor
-                )
             }
         }
         .padding(0)
@@ -126,8 +131,8 @@ private struct PlayerNameFieldListView: View {
 
 private struct NameField: View {
     @ObservedObject private var settingStore: SettingStore
-    @State var tempName = ""
-    var index: Int
+    @State private var tempName = ""
+    private var index: Int
     
     init(
         settingStore: SettingStore, 
