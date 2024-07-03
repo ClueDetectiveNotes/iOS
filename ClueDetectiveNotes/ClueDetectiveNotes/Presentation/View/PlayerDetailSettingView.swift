@@ -23,7 +23,6 @@ struct PlayerDetailSettingView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
                 TitleView(
                     title: "플레이어 설정",
                     description: "자신을 선택하고, 플레이 순서에 맞게 정렬해주세요."
@@ -40,6 +39,8 @@ struct PlayerDetailSettingView: View {
                 NextButtonView(
                     settingStore: settingStore,
                     settingInteractor: settingInteractor)
+                
+                Spacer()
             }
         }
     }
@@ -119,13 +120,6 @@ private struct NextButtonView: View {
         .simultaneousGesture(TapGesture().onEnded({ _ in
             settingInteractor.clickPlayerDetailSettingNextButton()
         }))
-    }
-}
-
-struct PlayerView: View {
-    
-    var body: some View {
-        Text("까꽁")
     }
 }
 
