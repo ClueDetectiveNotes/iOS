@@ -11,15 +11,18 @@ struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
     @ObservedObject private var settingStore: SettingStore
     private var settingInteractor: SettingInteractor
+    private var deviceInteractor: DeviceInteractor
     
     @State private var newSubMarkerName: String = ""
-
+    
     init(
         settingStore: SettingStore,
-        settingInteractor: SettingInteractor
+        settingInteractor: SettingInteractor,
+        deviceInteractor: DeviceInteractor
     ) {
         self.settingStore = settingStore
         self.settingInteractor = settingInteractor
+        self.deviceInteractor = deviceInteractor
     }
     
     var body: some View {
@@ -48,6 +51,14 @@ struct GameView: View {
         } message: {
             Text("추가할 마커의 이름을 입력해주세요.")
         }
+        .overlay {
+            GeometryReader { proxy in
+                Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
+            }
+        }
+        .onPreferenceChange(SizePreferenceKey.self) { value in
+            deviceInteractor.changeDeviceOrientation(value)
+        }
     }
 }
 
@@ -61,9 +72,9 @@ struct SheetView: View {
         self.sheetStore = sheetStore
         self.sheetInteractor = SheetInteractor(sheetStore: sheetStore)
     }
-
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 2) {
             EmptyView()
                 .frame(height: 1)
             
@@ -94,16 +105,15 @@ struct SheetView: View {
                 }
             }
         }
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+        .frame(maxWidth: .infinity)
         .background(Color.blue)
     }
 }
 
 private struct PlayerRowView: View {
+    @EnvironmentObject private var deviceStore: DeviceStore
     @ObservedObject private var sheetStore: SheetStore
     private let sheetInteractor: SheetInteractor
-    
-    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore,
@@ -117,8 +127,8 @@ private struct PlayerRowView: View {
         HStack {
             EmptyView()
                 .frame(
-                    width: 90,
-                    height: sheetStore.getCellSize(screenWidth).height
+                    width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
+                    height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
             HStack(spacing: 2) {
@@ -135,8 +145,8 @@ private struct PlayerRowView: View {
                         }
                     )
                     .frame(
-                        width: sheetStore.getCellSize(screenWidth).width,
-                        height: sheetStore.getCellSize(screenWidth).height
+                        width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
+                        height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
                     )
                     .background(colName.player is User ? Color.yellow : Color.white)
                 }
@@ -161,26 +171,27 @@ private struct CardTypeView: View {
     }
     
     var body: some View {
-        CardNameView(
-            sheetStore: sheetStore,
-            cardType: cardType
-        )
-        
-        ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
-            CardRowView(
+        VStack(spacing: 2) {
+            CardNameView(
                 sheetStore: sheetStore,
-                sheetInteractor: sheetInteractor,
-                rowName: rowName
+                cardType: cardType
             )
+            
+            ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
+                CardRowView(
+                    sheetStore: sheetStore,
+                    sheetInteractor: sheetInteractor,
+                    rowName: rowName
+                )
+            }
         }
     }
 }
 
 private struct CardNameView: View {
+    @EnvironmentObject private var deviceStore: DeviceStore
     @ObservedObject private var sheetStore: SheetStore
     private let cardType: CardType
-    
-    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore,
@@ -197,16 +208,16 @@ private struct CardNameView: View {
                 .bold()
                 .padding(8)
                 .frame(
-                    width: 90,
-                    height: sheetStore.getCellSize(screenWidth).height
+                    width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
+                    height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
             HStack(spacing: 2) {
                 ForEach(sheetStore.sheet.colNames, id: \.self) { _ in
                     Rectangle()
                         .frame(
-                            width: sheetStore.getCellSize(screenWidth).width,
-                            height: sheetStore.getCellSize(screenWidth).height
+                            width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
+                            height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
                         )
                         .opacity(0)
                 }
@@ -216,11 +227,10 @@ private struct CardNameView: View {
 }
 
 private struct CardRowView: View {
+    @EnvironmentObject private var deviceStore: DeviceStore
     @ObservedObject private var sheetStore: SheetStore
     private let sheetInteractor: SheetInteractor
     private let rowName: RowName
-    
-    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore,
@@ -247,8 +257,8 @@ private struct CardRowView: View {
                 }
             )
             .frame(
-                width: 90,
-                height: sheetStore.getCellSize(screenWidth).height
+                width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
+                height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
             )
             .background()
             
@@ -266,11 +276,10 @@ private struct CardRowView: View {
 }
 
 private struct CellView: View {
+    @EnvironmentObject private var deviceStore: DeviceStore
     @ObservedObject private var sheetStore: SheetStore
     private let sheetInteractor: SheetInteractor
     private var cell: PresentationCell
-    
-    let screenWidth = UIScreen.main.bounds.width
     
     init(
         sheetStore: SheetStore,
@@ -285,7 +294,7 @@ private struct CellView: View {
     var body: some View {
         VStack {
             Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
-                
+            
             HStack(spacing: 1) {
                 if let cell = sheetStore.sheet.findCell(id: cell.id) {
                     ForEach(cell.subMarkers, id: \.self) { subMarker in
@@ -297,24 +306,23 @@ private struct CellView: View {
             }
         }
         .frame(
-            width: sheetStore.getCellSize(screenWidth).width,
-            height: sheetStore.getCellSize(screenWidth).height
+            width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
+            height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
         )
-        
         .foregroundColor(.black)
         .border(
             sheetStore.sheet.isSelectedCell(cell) ?
             sheetStore.sheet.mode == .multi ? Color.orange : Color.green
             : Color.black,
-            width: sheetStore.sheet.isSelectedCell(cell) ? 4 : 1
+            width: sheetStore.sheet.isSelectedCell(cell) ? 3 : 1
         )
         .background(
-            sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName) 
-            ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7) 
+            sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName)
+            ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
             : Color.white
         )
         .simultaneousGesture(LongPressGesture().onEnded ({ _ in
-                sheetInteractor.longClickCell(cell)
+            sheetInteractor.longClickCell(cell)
         }))
         .simultaneousGesture(TapGesture().onEnded({ _ in
             sheetInteractor.clickCell(cell)
@@ -325,17 +333,13 @@ private struct CellView: View {
     }
 }
 
-private struct EmptyView: View {
-    var body: some View {
-        Text("")
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GameView(
             settingStore: SettingStore(),
-            settingInteractor: SettingInteractor(settingStore: SettingStore())
+            settingInteractor: SettingInteractor(settingStore: SettingStore()), 
+            deviceInteractor: DeviceInteractor(deviceStore: DeviceStore())
         )
+        .environmentObject(DeviceStore(screenSize: .init(width: 375, height: 667)))
     }
 }

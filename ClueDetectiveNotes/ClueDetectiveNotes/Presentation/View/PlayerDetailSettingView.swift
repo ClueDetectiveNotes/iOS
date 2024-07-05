@@ -86,6 +86,7 @@ private struct PlayerNameListView: View {
 }
 
 private struct NextButtonView: View {
+    @EnvironmentObject private var deviceSotre: DeviceStore
     @ObservedObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
@@ -101,7 +102,8 @@ private struct NextButtonView: View {
         NavigationLink {
             GameView(
                 settingStore: settingStore,
-                settingInteractor: settingInteractor
+                settingInteractor: settingInteractor,
+                deviceInteractor: DeviceInteractor(deviceStore: deviceSotre)
             )
             .navigationBarBackButtonHidden()
         } label: {
@@ -112,7 +114,8 @@ private struct NextButtonView: View {
         .navigationDestination(for: String.self) { _ in
             GameView(
                 settingStore: settingStore,
-                settingInteractor: settingInteractor
+                settingInteractor: settingInteractor,
+                deviceInteractor: DeviceInteractor(deviceStore: deviceSotre)
             )
         }
         .buttonStyle(.borderedProminent)
@@ -128,4 +131,5 @@ private struct NextButtonView: View {
         settingStore: SettingStore(),
         settingInteractor: SettingInteractor(settingStore: SettingStore())
     )
+    .environmentObject(DeviceStore())
 }
