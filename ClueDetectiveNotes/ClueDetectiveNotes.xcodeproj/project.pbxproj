@@ -50,6 +50,7 @@
 		AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */; };
 		AC55CA812C205FE50045E78F /* ControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA802C205FE50045E78F /* ControlBarView.swift */; };
 		AC5C854C2C35011A00F09746 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */; };
+		AC5C85552C38217500F09746 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C85542C38217500F09746 /* EmptyView.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
 		AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */; };
 		AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */; };
@@ -124,6 +125,7 @@
 		AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarInteractor.swift; sourceTree = "<group>"; };
 		AC55CA802C205FE50045E78F /* ControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarView.swift; sourceTree = "<group>"; };
 		AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		AC5C85542C38217500F09746 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
 		AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
 		AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotManager.swift; sourceTree = "<group>"; };
@@ -250,13 +252,13 @@
 		44AF620A2BFB241400F38165 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AC5C85532C38214500F09746 /* Component */,
 				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
+				AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */,
+				AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */,
 				ACFED8D12BB90B5E00B1D22B /* GameView.swift */,
 				AC55CA802C205FE50045E78F /* ControlBarView.swift */,
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
-				AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */,
-				AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */,
-				AC41F8E12C23F91E002FEA66 /* TitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +372,15 @@
 				AC55CA7A2C204CA90045E78F /* RedoUseCase.swift */,
 			);
 			path = Snapshot;
+			sourceTree = "<group>";
+		};
+		AC5C85532C38214500F09746 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				AC41F8E12C23F91E002FEA66 /* TitleView.swift */,
+				AC5C85542C38217500F09746 /* EmptyView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		AC6A83DF2C1B28930051C0DF /* Snapshot */ = {
@@ -595,6 +606,7 @@
 				AC6A83E62C1B2D3A0051C0DF /* SnapshotError.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
+				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
 				44AF62052BF796AE00F38165 /* Setting.swift in Sources */,
 				44AF61FE2BF7852500F38165 /* SettingStore.swift in Sources */,
