@@ -101,25 +101,35 @@ struct SheetView: View {
                 sheetInteractor: sheetInteractor
             )
             
-            ScrollView {
-                VStack(spacing: 2) {
-                    CardTypeView(
-                        sheetStore: sheetStore,
-                        sheetInterator: sheetInteractor,
-                        cardType: .suspect
-                    )
-                    
-                    CardTypeView(
-                        sheetStore: sheetStore,
-                        sheetInterator: sheetInteractor,
-                        cardType: .weapon
-                    )
-                    
-                    CardTypeView(
-                        sheetStore: sheetStore,
-                        sheetInterator: sheetInteractor,
-                        cardType: .room
-                    )
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 2) {
+                        CardTypeView(
+                            sheetStore: sheetStore, 
+                            geometryInteractor: geometryInteractor,
+                            sheetInterator: sheetInteractor,
+                            cardType: .suspect
+                        )
+                        
+                        CardTypeView(
+                            sheetStore: sheetStore,
+                            geometryInteractor: geometryInteractor,
+                            sheetInterator: sheetInteractor,
+                            cardType: .weapon
+                        )
+                        
+                        CardTypeView(
+                            sheetStore: sheetStore,
+                            geometryInteractor: geometryInteractor,
+                            sheetInterator: sheetInteractor,
+                            cardType: .room
+                        )
+                    }
+                }
+                .onChange(of: geometryStore.selectedRowName) { rowName in
+                    if geometryInteractor.isClickCoveredByControlBars() {
+                        proxy.scrollTo(rowName)
+                    }
                 }
             }
         }
@@ -351,19 +361,39 @@ private struct CellView: View {
             width: sheetStore.sheet.isSelectedCell(cell) ? 3 : 1
         )
         .background(
-            sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName)
-            ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
-            : Color.white
+            GeometryReader { proxy in
+                cellBackground
+                    .simultaneousGesture(LongPressGesture().onEnded ({ _ in
+                        print("long \(proxy.frame(in: .global).origin)")
+                        let currentCoordinates = proxy.frame(in: .global).origin
+                        
+                        geometryInteractor.clickCell(
+                            currentCoordinates: currentCoordinates,
+                            currentRowName: cell.rowName
+                        )
+                        sheetInteractor.longClickCell(cell)
+                    }))
+                    .simultaneousGesture(TapGesture().onEnded({ _ in
+                        print("tap \(proxy.frame(in: .global).origin)")
+                        let currentCoordinates = proxy.frame(in: .global).origin
+                        
+                        geometryInteractor.clickCell(
+                            currentCoordinates: currentCoordinates,
+                            currentRowName: cell.rowName
+                        )
+                        sheetInteractor.clickCell(cell)
+                    }))
+            }
         )
-        .simultaneousGesture(LongPressGesture().onEnded ({ _ in
-            sheetInteractor.longClickCell(cell)
-        }))
-        .simultaneousGesture(TapGesture().onEnded({ _ in
-            sheetInteractor.clickCell(cell)
-        }))
         .highPriorityGesture(
             DragGesture().onChanged { _ in }
         )
+    }
+    
+    var cellBackground: some View {
+        sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName)
+        ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
+        : Color.white
     }
 }
 
