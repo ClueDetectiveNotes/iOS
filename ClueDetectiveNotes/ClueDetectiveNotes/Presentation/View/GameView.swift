@@ -14,6 +14,7 @@ struct GameView: View {
     private let geometryInteractor: GeometryInteractor
     
     @State private var newSubMarkerName: String = ""
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     init(
         settingStore: SettingStore,
@@ -56,11 +57,21 @@ struct GameView: View {
         }
         .overlay {
             GeometryReader { proxy in
-                Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
+                Color.clear
+                    .onAppear {
+                        geometryInteractor.setOriginSize(
+                            screenSize: proxy.size,
+                            safeAreaHeight: safeAreaInsets.top + safeAreaInsets.bottom
+                        )
+                    }
             }
         }
-        .onPreferenceChange(SizePreferenceKey.self) { value in
-            deviceInteractor.changeDeviceOrientation(value)
+        .onRotate { orientation in
+            if orientation == .landscapeLeft || orientation == .landscapeRight {
+                geometryInteractor.changeDeviceOrientation(.landscape)
+            } else if orientation == .portrait || orientation == .portraitUpsideDown {
+                geometryInteractor.changeDeviceOrientation(.portrait)
+            }
         }
     }
 }
