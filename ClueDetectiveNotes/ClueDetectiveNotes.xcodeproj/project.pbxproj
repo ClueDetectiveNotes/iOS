@@ -61,6 +61,7 @@
 		AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E30F02BECABB000911F13 /* SheetStore.swift */; };
 		AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7AB9282BCE7905004A77D3 /* Edition.swift */; };
 		AC87BEDE2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87BEDD2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift */; };
+		AC87BEE02C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87BEDF2C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
@@ -140,6 +141,7 @@
 		AC6E30F02BECABB000911F13 /* SheetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStore.swift; sourceTree = "<group>"; };
 		AC7AB9282BCE7905004A77D3 /* Edition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edition.swift; sourceTree = "<group>"; };
 		AC87BEDD2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
+		AC87BEDF2C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaInsetsKey.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */,
 				AC5C85562C3821A300F09746 /* SizePreferenceKey.swift */,
 				AC87BEDD2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift */,
+				AC87BEDF2C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */,
 				AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */,
 				AC5C854C2C35011A00F09746 /* KeyboardObserver.swift in Sources */,
+				AC87BEE02C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
 				AC55CA7F2C2059640045E78F /* ControlBarInteractor.swift in Sources */,
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
