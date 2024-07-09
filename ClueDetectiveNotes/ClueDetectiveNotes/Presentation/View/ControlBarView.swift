@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ControlBarView: View {
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
     private let controlBarInteractor: ControlBarInteractor
     
@@ -75,9 +76,11 @@ struct ControlBarView: View {
         }
         .padding(10)
         .padding(.horizontal, 20)
+        .frame(height: geometryStore.controlBarHeight)
     }
 }
 
 #Preview {
     ControlBarView(sheetStore: SheetStore())
+        .environmentObject(GeometryStore())
 }

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct ClueDetectiveNotesApp: App {
     @StateObject private var settingStore = SettingStore()
-    @StateObject private var deviceStore = DeviceStore()
+    @StateObject private var geometryStore = GeometryStore()
     
     var body: some Scene {
         WindowGroup {
@@ -18,7 +18,7 @@ struct ClueDetectiveNotesApp: App {
                 settingStore: settingStore,
                 settingInteractor: SettingInteractor(settingStore: settingStore)
             )
-            .environmentObject(deviceStore)
+            .environmentObject(geometryStore)
         }
     }
 }

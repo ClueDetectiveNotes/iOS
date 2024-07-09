@@ -9,8 +9,9 @@ import SwiftUI
 
 struct PlayerDetailSettingView: View {
     @ObservedObject private var settingStore: SettingStore
-    @State private var selectedPlayer: String = ""
     private var settingInteractor: SettingInteractor
+    
+    @State private var selectedPlayer: String = ""
     
     init(
         settingStore: SettingStore,
@@ -86,7 +87,7 @@ private struct PlayerNameListView: View {
 }
 
 private struct NextButtonView: View {
-    @EnvironmentObject private var deviceSotre: DeviceStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
@@ -103,7 +104,7 @@ private struct NextButtonView: View {
             GameView(
                 settingStore: settingStore,
                 settingInteractor: settingInteractor,
-                deviceInteractor: DeviceInteractor(deviceStore: deviceSotre)
+                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
             )
             .navigationBarBackButtonHidden()
         } label: {
@@ -115,7 +116,7 @@ private struct NextButtonView: View {
             GameView(
                 settingStore: settingStore,
                 settingInteractor: settingInteractor,
-                deviceInteractor: DeviceInteractor(deviceStore: deviceSotre)
+                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
             )
         }
         .buttonStyle(.borderedProminent)
@@ -131,5 +132,5 @@ private struct NextButtonView: View {
         settingStore: SettingStore(),
         settingInteractor: SettingInteractor(settingStore: SettingStore())
     )
-    .environmentObject(DeviceStore())
+    .environmentObject(GeometryStore())
 }

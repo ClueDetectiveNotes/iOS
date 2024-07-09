@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct MarkerControlBarView: View {
-    @ObservedObject private var sheetStore: SheetStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var settingStore: SettingStore
+    @ObservedObject private var sheetStore: SheetStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
     
     init(
-        sheetStore: SheetStore,
-        settingStore: SettingStore
+        settingStore: SettingStore,
+        sheetStore: SheetStore
     ) {
-        self.sheetStore = sheetStore
         self.settingStore = settingStore
+        self.sheetStore = sheetStore
         self.markerControlBarInteractor = MarkerControlBarInteractor(sheetStore: sheetStore)
     }
 
     var body: some View {
         VStack {
+            Spacer()
+            
             HStack {
                 MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
                 
@@ -60,14 +63,17 @@ struct MarkerControlBarView: View {
                 
                 Spacer()
             }
+            
+            Spacer()
         }
-        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+        .frame(height: geometryStore.markerControlBarHeight)
         .padding(.horizontal)
     }
 }
 
 struct MainMarkerBtnsView: View {
     private let markerControlBarInteractor: MarkerControlBarInteractor
+    
     private let mainMarkerTypes = MainMarker.markerType.allCases
     
     init(markerControlBarInteractor: MarkerControlBarInteractor) {
@@ -124,5 +130,8 @@ struct SubMarkerBtnsView: View {
 }
 
 #Preview {
-    MarkerControlBarView(sheetStore: SheetStore(), settingStore: SettingStore())
+    MarkerControlBarView(
+        settingStore: SettingStore(), 
+        sheetStore: SheetStore()
+    )
 }

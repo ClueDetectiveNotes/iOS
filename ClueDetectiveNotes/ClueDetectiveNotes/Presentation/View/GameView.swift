@@ -10,29 +10,32 @@ import SwiftUI
 struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
     @ObservedObject private var settingStore: SettingStore
-    private var settingInteractor: SettingInteractor
-    private var deviceInteractor: DeviceInteractor
+    private let settingInteractor: SettingInteractor
+    private let geometryInteractor: GeometryInteractor
     
     @State private var newSubMarkerName: String = ""
     
     init(
         settingStore: SettingStore,
         settingInteractor: SettingInteractor,
-        deviceInteractor: DeviceInteractor
+        geometryInteractor: GeometryInteractor
     ) {
         self.settingStore = settingStore
         self.settingInteractor = settingInteractor
-        self.deviceInteractor = deviceInteractor
+        self.geometryInteractor = geometryInteractor
     }
     
     var body: some View {
-        VStack {
-            SheetView(sheetStore: sheetStore)
+        VStack(spacing: 0) {
+            SheetView(
+                sheetStore: sheetStore,
+                geometryInteractor: geometryInteractor
+            )
                 
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
-                    sheetStore: sheetStore,
-                    settingStore: settingStore
+                    settingStore: settingStore, 
+                    sheetStore: sheetStore
                 )
             }
             
@@ -63,13 +66,17 @@ struct GameView: View {
 }
 
 struct SheetView: View {
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
+    private let geometryInteractor: GeometryInteractor
     private let sheetInteractor: SheetInteractor
     
     init(
-        sheetStore: SheetStore
+        sheetStore: SheetStore,
+        geometryInteractor: GeometryInteractor
     ) {
         self.sheetStore = sheetStore
+        self.geometryInteractor = geometryInteractor
         self.sheetInteractor = SheetInteractor(sheetStore: sheetStore)
     }
     
@@ -111,7 +118,7 @@ struct SheetView: View {
 }
 
 private struct PlayerRowView: View {
-    @EnvironmentObject private var deviceStore: DeviceStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
     private let sheetInteractor: SheetInteractor
     
@@ -127,8 +134,8 @@ private struct PlayerRowView: View {
         HStack {
             EmptyView()
                 .frame(
-                    width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
-                    height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+                    width: geometryStore.cardNameWidth,
+                    height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
             HStack(spacing: 2) {
@@ -145,8 +152,8 @@ private struct PlayerRowView: View {
                         }
                     )
                     .frame(
-                        width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
-                        height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+                        width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+                        height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                     )
                     .background(colName.player is User ? Color.yellow : Color.white)
                 }
@@ -157,15 +164,19 @@ private struct PlayerRowView: View {
 
 private struct CardTypeView: View {
     @ObservedObject private var sheetStore: SheetStore
+    private let geometryInteractor: GeometryInteractor
     private let sheetInteractor: SheetInteractor
+    
     private let cardType: CardType
     
     init(
         sheetStore: SheetStore,
+        geometryInteractor: GeometryInteractor,
         sheetInterator: SheetInteractor,
         cardType: CardType
     ) {
         self.sheetStore = sheetStore
+        self.geometryInteractor = geometryInteractor
         self.sheetInteractor = sheetInterator
         self.cardType = cardType
     }
@@ -180,6 +191,7 @@ private struct CardTypeView: View {
             ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
                 CardRowView(
                     sheetStore: sheetStore,
+                    geometryInteractor: geometryInteractor,
                     sheetInteractor: sheetInteractor,
                     rowName: rowName
                 )
@@ -189,8 +201,9 @@ private struct CardTypeView: View {
 }
 
 private struct CardNameView: View {
-    @EnvironmentObject private var deviceStore: DeviceStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
+    
     private let cardType: CardType
     
     init(
@@ -208,16 +221,16 @@ private struct CardNameView: View {
                 .bold()
                 .padding(8)
                 .frame(
-                    width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
-                    height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+                    width: geometryStore.cardNameWidth,
+                    height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
             HStack(spacing: 2) {
                 ForEach(sheetStore.sheet.colNames, id: \.self) { _ in
                     Rectangle()
                         .frame(
-                            width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
-                            height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+                            width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+                            height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                         )
                         .opacity(0)
                 }
@@ -227,17 +240,21 @@ private struct CardNameView: View {
 }
 
 private struct CardRowView: View {
-    @EnvironmentObject private var deviceStore: DeviceStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
+    private let geometryInteractor: GeometryInteractor
     private let sheetInteractor: SheetInteractor
+    
     private let rowName: RowName
     
     init(
         sheetStore: SheetStore,
+        geometryInteractor: GeometryInteractor,
         sheetInteractor: SheetInteractor,
         rowName: RowName
     ) {
         self.sheetStore = sheetStore
+        self.geometryInteractor = geometryInteractor
         self.sheetInteractor = sheetInteractor
         self.rowName = rowName
     }
@@ -257,8 +274,8 @@ private struct CardRowView: View {
                 }
             )
             .frame(
-                width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width * 2,
-                height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+                width: geometryStore.cardNameWidth,
+                height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
             )
             .background()
             
@@ -266,7 +283,8 @@ private struct CardRowView: View {
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
                     CellView(
                         sheetStore: sheetStore,
-                        sheetInterator: sheetInteractor,
+                        geometryInteractor: geometryInteractor,
+                        sheetInteractor: sheetInteractor,
                         cell: cell
                     )
                 }
@@ -276,18 +294,22 @@ private struct CardRowView: View {
 }
 
 private struct CellView: View {
-    @EnvironmentObject private var deviceStore: DeviceStore
+    @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
+    private let geometryInteractor: GeometryInteractor
     private let sheetInteractor: SheetInteractor
+    
     private var cell: PresentationCell
     
     init(
         sheetStore: SheetStore,
-        sheetInterator: SheetInteractor,
+        geometryInteractor: GeometryInteractor,
+        sheetInteractor: SheetInteractor,
         cell: PresentationCell
     ) {
         self.sheetStore = sheetStore
-        self.sheetInteractor = sheetInterator
+        self.geometryInteractor = geometryInteractor
+        self.sheetInteractor = sheetInteractor
         self.cell = cell
     }
     
@@ -305,9 +327,10 @@ private struct CellView: View {
                 }
             }
         }
+        .id(cell.rowName)
         .frame(
-            width: deviceStore.getCellSize(sheetStore.sheet.colNames.count).width,
-            height: deviceStore.getCellSize(sheetStore.sheet.colNames.count).height
+            width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+            height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
         )
         .foregroundColor(.black)
         .border(
@@ -338,8 +361,8 @@ struct ContentView_Previews: PreviewProvider {
         GameView(
             settingStore: SettingStore(),
             settingInteractor: SettingInteractor(settingStore: SettingStore()), 
-            deviceInteractor: DeviceInteractor(deviceStore: DeviceStore())
+            geometryInteractor: GeometryInteractor(geometryStore: GeometryStore())
         )
-        .environmentObject(DeviceStore(screenSize: .init(width: 375, height: 667)))
+        .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
     }
 }
