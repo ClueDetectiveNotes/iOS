@@ -1,5 +1,5 @@
 //
-//  DeviceStore.swift
+//  GeometryStore.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan on 7/5/24.
@@ -7,9 +7,17 @@
 
 import Foundation
 
-final class DeviceStore: ObservableObject {
+final class GeometryStore: ObservableObject {
     @Published private(set) var screenSize: CGSize
+    @Published private(set) var selectedRowName: RowName?
+    
     private(set) var originSize: CGSize
+    private(set) var currentCoordinates: CGPoint?
+    
+    private(set) var cardNameWidth: CGFloat = 110
+    private(set) var controlBarHeight: CGFloat = 40
+    private(set) var markerControlBarHeight: CGFloat = 100
+    private let cellMaxHeight: CGFloat = 40
     
     init(
         screenSize: CGSize = .init(width: 200, height: 200),
@@ -21,11 +29,11 @@ final class DeviceStore: ObservableObject {
     
     func getCellSize(_ colOfCount: Int) -> (width: CGFloat, height: CGFloat) {
         let screenWidth = screenSize.width
-        
         let colCount = CGFloat(colOfCount)
-        let tempWidth = (screenWidth - 5*(colCount+1)) / (colCount+2)
         
-        let cellHeight = tempWidth < 40 ? tempWidth : 40
+        let tempWidth = ((screenWidth - cardNameWidth) / colCount) - 5
+        
+        let cellHeight = tempWidth < cellMaxHeight ? tempWidth : cellMaxHeight
         
         return (tempWidth, cellHeight)
     }
@@ -36,5 +44,13 @@ final class DeviceStore: ObservableObject {
     
     func setOriginSize(_ value: CGSize) {
         originSize = value
+    }
+    
+    func setCurrentCoordinates(_ coordinates: CGPoint) {
+        currentCoordinates = coordinates
+    }
+    
+    func setSelectedRowName(_ rowName: RowName) {
+        selectedRowName = rowName
     }
 }
