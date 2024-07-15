@@ -96,7 +96,7 @@ struct SheetView: View {
             .clipped()
             
             ScrollViewReader { proxy in
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 2) {
                         CardTypeView(
                             sheetStore: sheetStore, 
