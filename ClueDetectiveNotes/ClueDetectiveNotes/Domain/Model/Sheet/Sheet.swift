@@ -130,7 +130,11 @@ final class Sheet {
         
         for (index, colName) in colNames.enumerated() {
             if currentColName == colName {
-                nextIndex = (index + 1) % colNames.count
+                if index == colNames.count - 1 {
+                    nextIndex = 0
+                } else {
+                    nextIndex = (index + 1) % (colNames.count-1)
+                }
                 break
             }
         }
