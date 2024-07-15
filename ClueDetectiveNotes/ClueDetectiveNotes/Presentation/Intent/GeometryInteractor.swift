@@ -42,11 +42,13 @@ struct GeometryInteractor {
     }
     
     func isClickCoveredByControlBars() -> Bool {
-        let screenSize = geometryStore.screenSize
-        let controlBarsHeight = geometryStore.controlBarHeight + geometryStore.markerControlBarHeight + 10
+        let coveredBottomY = geometryStore.originSize.height - (geometryStore.controlBarHeight + geometryStore.safeAreaHeight.bottom)
+        let coveredTopY = coveredBottomY - geometryStore.markerControlBarHeight - 40
         let currentY = geometryStore.currentCoordinates?.y ?? 0.0
         
-        return (screenSize.height - controlBarsHeight)...screenSize.height ~= currentY
+        geometryStore.setSelectedRowName(nil)
+        
+        return coveredTopY...coveredBottomY ~= currentY
     }
     
     func clickCell(currentCoordinates: CGPoint, currentRowName: RowName) {
