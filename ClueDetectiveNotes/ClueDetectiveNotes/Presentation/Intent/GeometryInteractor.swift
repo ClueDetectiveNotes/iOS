@@ -56,21 +56,21 @@ struct GeometryInteractor {
         geometryStore.setSelectedRowName(currentRowName)
     }
     
-    func changeDeviceOrientation(_ orientation: DeviceOrientation) {
-        if orientation == .landscape {
-            geometryStore.setScreenSize(
-                CGSize(
-                    width: geometryStore.originSizeWithoutSafeArea.height,
-                    height: geometryStore.originSizeWithoutSafeArea.width
-                )
-            )
-        } else {
-            geometryStore.setScreenSize(geometryStore.originSizeWithoutSafeArea)
-        }
-    }
+//    func changeDeviceOrientation(_ orientation: DeviceOrientation) {
+//        if orientation == .landscape {
+//            geometryStore.setScreenSize(
+//                CGSize(
+//                    width: geometryStore.originSizeWithoutSafeArea.height,
+//                    height: geometryStore.originSizeWithoutSafeArea.width
+//                )
+//            )
+//        } else {
+//            geometryStore.setScreenSize(geometryStore.originSizeWithoutSafeArea)
+//        }
+//    }
 }
 
-enum DeviceOrientation {
-    case landscape // 가로
-    case portrait // 세로
-}
+//enum DeviceOrientation {
+//    case landscape // 가로
+//    case portrait // 세로
+//}

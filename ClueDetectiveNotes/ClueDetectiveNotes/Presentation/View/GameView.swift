@@ -66,13 +66,13 @@ struct GameView: View {
                     }
             }
         }
-        .onRotate { orientation in
-            if orientation == .landscapeLeft || orientation == .landscapeRight {
-                geometryInteractor.changeDeviceOrientation(.landscape)
-            } else if orientation == .portrait || orientation == .portraitUpsideDown {
-                geometryInteractor.changeDeviceOrientation(.portrait)
-            }
-        }
+//        .onRotate { orientation in
+//            if orientation == .landscapeLeft || orientation == .landscapeRight {
+//                geometryInteractor.changeDeviceOrientation(.landscape)
+//            } else if orientation == .portrait || orientation == .portraitUpsideDown {
+//                geometryInteractor.changeDeviceOrientation(.portrait)
+//            }
+//        }
     }
 }
 

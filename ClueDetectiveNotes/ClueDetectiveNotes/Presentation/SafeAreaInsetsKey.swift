@@ -13,6 +13,16 @@ public struct SafeAreaInsetsKey: EnvironmentKey {
     }
 }
 
+extension UIApplication {
+    // UIWindow 추출
+    public var keyWindow: UIWindow? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+    }
+}
+
 extension EnvironmentValues {
     public var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
