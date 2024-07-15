@@ -53,7 +53,6 @@
 		AC5C85502C380F4300F09746 /* GeometryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C854F2C380F4300F09746 /* GeometryStore.swift */; };
 		AC5C85522C380F9000F09746 /* GeometryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C85512C380F9000F09746 /* GeometryInteractor.swift */; };
 		AC5C85552C38217500F09746 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C85542C38217500F09746 /* EmptyView.swift */; };
-		AC5C85572C3821A300F09746 /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C85562C3821A300F09746 /* SizePreferenceKey.swift */; };
 		AC6A83DE2C1ADC110051C0DF /* ConvertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */; };
 		AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */; };
 		AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */; };
@@ -133,7 +132,6 @@
 		AC5C854F2C380F4300F09746 /* GeometryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryStore.swift; sourceTree = "<group>"; };
 		AC5C85512C380F9000F09746 /* GeometryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryInteractor.swift; sourceTree = "<group>"; };
 		AC5C85542C38217500F09746 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		AC5C85562C3821A300F09746 /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		AC6A83DD2C1ADC110051C0DF /* ConvertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertManager.swift; sourceTree = "<group>"; };
 		AC6A83E02C1B28BE0051C0DF /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
 		AC6A83E22C1B29E70051C0DF /* SnapshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotManager.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				44AF62082BFB232F00F38165 /* Intent */,
 				AC6E30EF2BECAB6B00911F13 /* Store */,
 				AC5C854B2C35011A00F09746 /* KeyboardObserver.swift */,
-				AC5C85562C3821A300F09746 /* SizePreferenceKey.swift */,
 				AC87BEDD2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift */,
 				AC87BEDF2C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift */,
 			);
@@ -620,7 +617,6 @@
 				44B81D0D2BF1F0B400E82051 /* UseCase.swift in Sources */,
 				AC7AB9292BCE7905004A77D3 /* Edition.swift in Sources */,
 				AC0360C12C21CB9800455C4A /* PlayerDetailSettingView.swift in Sources */,
-				AC5C85572C3821A300F09746 /* SizePreferenceKey.swift in Sources */,
 				ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */,
 				AC6A83E62C1B2D3A0051C0DF /* SnapshotError.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Cards.swift in Sources */,

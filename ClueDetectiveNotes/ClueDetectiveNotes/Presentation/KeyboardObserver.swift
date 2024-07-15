@@ -31,7 +31,7 @@ final class KeyboardObserver: ObservableObject {
     }
     
     @objc private func keyBoardWillShow(notification: Notification) {
-        if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+        if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
             isKeyboardVisible = true
         }
     }
