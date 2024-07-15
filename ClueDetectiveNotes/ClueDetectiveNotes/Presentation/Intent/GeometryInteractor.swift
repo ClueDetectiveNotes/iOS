@@ -14,18 +14,28 @@ struct GeometryInteractor {
         self.geometryStore = geometryStore
     }
     
-    func setOriginSize(screenSize: CGSize, safeAreaHeight: CGFloat) {
+    func setOriginSize(screenSize: CGSize, safeAreaHeight: (top: CGFloat, bottom: CGFloat)) {
+        geometryStore.setSafeAreaHeight(top: safeAreaHeight.top, bottom: safeAreaHeight.bottom)
+        
         if geometryStore.originSize == .zero {
             geometryStore.setOriginSize(
                 CGSize(
                     width: screenSize.width,
-                    height: screenSize.height - safeAreaHeight
+                    height: screenSize.height
                 )
             )
+            
             geometryStore.setScreenSize(
                 CGSize(
                     width: screenSize.width,
-                    height: screenSize.height - safeAreaHeight
+                    height: screenSize.height - (safeAreaHeight.top + safeAreaHeight.bottom)
+                )
+            )
+            
+            geometryStore.setOriginSizeWithoutSafeArea(
+                CGSize(
+                    width: screenSize.width,
+                    height: screenSize.height - (safeAreaHeight.top + safeAreaHeight.bottom)
                 )
             )
         }
@@ -48,12 +58,12 @@ struct GeometryInteractor {
         if orientation == .landscape {
             geometryStore.setScreenSize(
                 CGSize(
-                    width: geometryStore.originSize.height,
-                    height: geometryStore.originSize.width
+                    width: geometryStore.originSizeWithoutSafeArea.height,
+                    height: geometryStore.originSizeWithoutSafeArea.width
                 )
             )
         } else {
-            geometryStore.setScreenSize(geometryStore.originSize)
+            geometryStore.setScreenSize(geometryStore.originSizeWithoutSafeArea)
         }
     }
 }

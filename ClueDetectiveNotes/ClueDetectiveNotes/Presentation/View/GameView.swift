@@ -57,11 +57,11 @@ struct GameView: View {
         }
         .overlay {
             GeometryReader { proxy in
-                Color.clear
+                Color.clear // safeArea 포함한 크기
                     .onAppear {
                         geometryInteractor.setOriginSize(
                             screenSize: proxy.size,
-                            safeAreaHeight: safeAreaInsets.top + safeAreaInsets.bottom
+                            safeAreaHeight: (safeAreaInsets.top, safeAreaInsets.bottom)
                         )
                     }
             }
