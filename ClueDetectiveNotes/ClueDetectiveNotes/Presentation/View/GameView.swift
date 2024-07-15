@@ -100,6 +100,7 @@ struct SheetView: View {
                 sheetStore: sheetStore,
                 sheetInteractor: sheetInteractor
             )
+            .clipped()
             
             ScrollViewReader { proxy in
                 ScrollView {
