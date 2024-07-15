@@ -12,6 +12,8 @@ final class GeometryStore: ObservableObject {
     @Published private(set) var selectedRowName: RowName?
     
     private(set) var originSize: CGSize
+    private(set) var originSizeWithoutSafeArea: CGSize = .zero
+    private(set) var safeAreaHeight: (top: CGFloat, bottom: CGFloat) = (0, 0)
     private(set) var currentCoordinates: CGPoint?
     
     private(set) var cardNameWidth: CGFloat = 110
@@ -38,19 +40,27 @@ final class GeometryStore: ObservableObject {
         return (tempWidth, cellHeight)
     }
     
-    func setScreenSize(_ value: CGSize) {
-        screenSize = value
-    }
-    
     func setOriginSize(_ value: CGSize) {
         originSize = value
+    }
+    
+    func setOriginSizeWithoutSafeArea(_ value: CGSize) {
+        originSizeWithoutSafeArea = value
+    }
+    
+    func setSafeAreaHeight(top: CGFloat, bottom: CGFloat) {
+        safeAreaHeight = (top: top, bottom: bottom)
+    }
+    
+    func setScreenSize(_ value: CGSize) {
+        screenSize = value
     }
     
     func setCurrentCoordinates(_ coordinates: CGPoint) {
         currentCoordinates = coordinates
     }
     
-    func setSelectedRowName(_ rowName: RowName) {
+    func setSelectedRowName(_ rowName: RowName?) {
         selectedRowName = rowName
     }
 }
