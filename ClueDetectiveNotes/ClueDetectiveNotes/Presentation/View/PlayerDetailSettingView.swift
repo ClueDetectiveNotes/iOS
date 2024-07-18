@@ -101,23 +101,31 @@ private struct NextButtonView: View {
     
     var body: some View {
         NavigationLink {
-            GameView(
+            PublicCardsSettingView(
                 settingStore: settingStore,
-                settingInteractor: settingInteractor,
-                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+                settingInteractor: settingInteractor
             )
-            .navigationBarBackButtonHidden()
+//            GameView(
+//                settingStore: settingStore,
+//                settingInteractor: settingInteractor,
+//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+//            )
+//            .navigationBarBackButtonHidden()
         } label: {
             Text("다음")
                 .frame(maxWidth: 250)
                 .frame(height: 40)
         }
         .navigationDestination(for: String.self) { _ in
-            GameView(
+            PublicCardsSettingView(
                 settingStore: settingStore,
-                settingInteractor: settingInteractor,
-                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+                settingInteractor: settingInteractor
             )
+//            GameView(
+//                settingStore: settingStore,
+//                settingInteractor: settingInteractor,
+//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+//            )
         }
         .buttonStyle(.borderedProminent)
         .disabled(settingInteractor.isEmptySelectedPlayer())
