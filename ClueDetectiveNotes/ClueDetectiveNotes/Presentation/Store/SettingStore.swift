@@ -12,7 +12,7 @@ final class SettingStore: ObservableObject {
     @Published private(set) var isDisabledMinusButton: Bool
     @Published private(set) var isDisabledPlusButton: Bool
     
-    @Published var count: Int
+    @Published var playerCount: Int
     @Published var playerNames: [String]
     @Published var selectedPlayer: String
     
@@ -21,7 +21,7 @@ final class SettingStore: ObservableObject {
         isDisabledPlusButton: Bool = false
     ) {
         self.setting = ConvertManager.getImmutableSetting(GameSetter.shared.getSetting())
-        self.count = GameSetter.shared.getSetting().getMinPlayerCount()
+        self.playerCount = GameSetter.shared.getSetting().getMinPlayerCount()
         self.playerNames = Array(repeating: "", count: GameSetter.shared.getSetting().getMinPlayerCount())
         
         self.isDisabledMinusButton = isDisabledMinusButton

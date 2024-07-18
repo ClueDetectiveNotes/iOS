@@ -92,7 +92,7 @@ private struct StepperView: View {
             .disabled(settingStore.isDisabledMinusButton)
             .buttonStyle(.bordered)
             
-            Text("\(settingStore.count)")
+            Text("\(settingStore.playerCount)")
                 .font(.title)
                 .padding([.leading, .trailing])
             

@@ -34,12 +34,12 @@ struct SettingInteractor {
     func clickMinusButton() {
         let minPlayerCount = GameSetter.shared.getSetting().getMinPlayerCount()
         
-        if settingStore.count > minPlayerCount {
-            decrementCount()
+        if settingStore.playerCount > minPlayerCount {
+            decrementPlayerCount()
             removeLastPlayerName()
         }
         
-        if settingStore.count == minPlayerCount {
+        if settingStore.playerCount == minPlayerCount {
             settingStore.setIsDisabledMinusButton(true)
         } else {
             settingStore.setIsDisabledMinusButton(false)
@@ -50,12 +50,12 @@ struct SettingInteractor {
     func clickPlusButton() {
         let maxPlayerCount = GameSetter.shared.getSetting().getMaxPlayerCount()
         
-        if settingStore.count <  maxPlayerCount {
-            incrementCount()
+        if settingStore.playerCount <  maxPlayerCount {
+            incrementPlayerCount()
             appendPlayerName("")
         }
         
-        if settingStore.count == maxPlayerCount {
+        if settingStore.playerCount == maxPlayerCount {
             settingStore.setIsDisabledPlusButton(true)
         } else {
             settingStore.setIsDisabledMinusButton(false)
@@ -116,12 +116,12 @@ extension SettingInteractor {
         settingStore.overwriteSetting(presentationSetting)
     }
     
-    private func incrementCount() {
-        settingStore.count += 1
+    private func incrementPlayerCount() {
+        settingStore.playerCount += 1
     }
     
-    private func decrementCount() {
-        settingStore.count -= 1
+    private func decrementPlayerCount() {
+        settingStore.playerCount -= 1
     }
     
     private func appendPlayerName(_ name: String) {
