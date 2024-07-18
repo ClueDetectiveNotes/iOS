@@ -34,7 +34,8 @@ struct ConvertManager {
         return PresentationSetting(
             players: mutableSetting.getPlayers(),
             edition: mutableSetting.getEdition(),
-            subMarkerTypes: mutableSetting.getSubMarkerTypes()
+            subMarkerTypes: mutableSetting.getSubMarkerTypes(),
+            publicCards: mutableSetting.getPublicCards()
         )
     }
 }

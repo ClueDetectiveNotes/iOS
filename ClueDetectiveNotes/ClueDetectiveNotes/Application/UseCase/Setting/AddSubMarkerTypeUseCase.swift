@@ -25,7 +25,8 @@ extension AddSubMarkerTypeUseCase {
         return PresentationSetting(
             players: setting.getPlayers(),
             edition: setting.getEdition(),
-            subMarkerTypes: setting.getSubMarkerTypes()
+            subMarkerTypes: setting.getSubMarkerTypes(),
+            publicCards: setting.getPublicCards()
         )
     }
 }
