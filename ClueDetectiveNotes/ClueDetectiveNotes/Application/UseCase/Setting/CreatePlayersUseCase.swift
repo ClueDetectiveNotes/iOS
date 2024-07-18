@@ -13,6 +13,8 @@ struct CreatePlayersUseCase {
     }
     
     func execute(_ playerNames: [String], _ userName: String) throws -> PresentationSetting {
+        setting.removeAllPlayer()
+        
         for (index, playerName) in playerNames.enumerated() {
             try setting.addPlayer(
                 id: index+1,

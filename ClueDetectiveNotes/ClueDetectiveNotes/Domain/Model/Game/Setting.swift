@@ -119,6 +119,9 @@ final class Setting {
         return publicCards
     }
     
+    func removeAllPlayer() {
+        players.removeAll()
+    }
     
     func addPublicCard(_ card: ClueCard) throws {
         guard !publicCards.contains(card) else {
