@@ -9,23 +9,38 @@ final class Setting {
     private var players: [any Player]
     private var edition: Edition
     private var subMarkerTypes: [SubMarker]
+    private var publicCards: [ClueCard]
     
     private let playerCountRange = 3...6
     
     init(
-        players: [any Player] = [any Player](),
+        players: [any Player] = [any Player](),//DummyPlayers.players,//
         edition: Edition = .classic,
         subMarkerTypes: [SubMarker] = [
             SubMarker(notation: "1"),
             SubMarker(notation: "2"),
             SubMarker(notation: "3"),
             SubMarker(notation: "4")
-        ]
+        ],
+        publicCards: [ClueCard] = []
     ) {
         self.players = players
         self.edition = edition
         self.subMarkerTypes = subMarkerTypes
+        self.publicCards = publicCards
     }
+    
+//    func getPublicCardsCount() -> Int {
+//        guard getPlayersCountWithoutSolution() != 0 else {
+//            // 에러 던지는 걸로 바꾸기
+//            return 0
+//        }
+//        
+//        let cardsCount = edition.cards.allCardsCount() // 6 + 6 + 9 = 21개
+//        let playerCount = getPlayersCountWithoutSolution()
+//        
+//        return (cardsCount - 3) % playerCount
+//    }
     
     func getPlayers() -> [any Player] {
         return players.sorted { $0.id < $1.id }
@@ -98,6 +113,23 @@ final class Setting {
         }
         
         players.append(player)
+    }
+    
+    func getPublicCards() -> [ClueCard] {
+        return publicCards
+    }
+    
+    
+    func addPublicCard(_ card: ClueCard) throws {
+        guard !publicCards.contains(card) else {
+            throw SettingError.alreadySelectedCard
+        }
+        
+        publicCards.append(card)
+    }
+    
+    func removeAllPublicCards() {
+        publicCards.removeAll()
     }
 }
 
