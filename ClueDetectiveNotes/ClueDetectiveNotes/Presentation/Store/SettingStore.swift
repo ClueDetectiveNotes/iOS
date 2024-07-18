@@ -11,10 +11,14 @@ final class SettingStore: ObservableObject {
     @Published private(set) var setting: PresentationSetting
     @Published private(set) var isDisabledMinusButton: Bool
     @Published private(set) var isDisabledPlusButton: Bool
+    @Published private(set) var isDisplayChosenCardsView: Bool = false
+    @Published private(set) var isDisplayChooseCardView: Bool = false
+    
     
     @Published var playerCount: Int
     @Published var playerNames: [String]
     @Published var selectedPlayer: String
+    @Published var selectedPublicCards: [ClueCard]
     
     init(
         isDisabledMinusButton: Bool = true,
@@ -28,6 +32,7 @@ final class SettingStore: ObservableObject {
         self.isDisabledPlusButton = isDisabledPlusButton
         
         self.selectedPlayer = ""
+        self.selectedPublicCards = []
     }
     
     func overwriteSetting(_ newSetting: PresentationSetting) {
@@ -48,5 +53,9 @@ final class SettingStore: ObservableObject {
     
     func setSelectedPlayer(_ playerName: String) {
         selectedPlayer = playerName
+    }
+    
+    func overwriteSelectedPublicCards(_ cards: [ClueCard]) {
+        selectedPublicCards = cards
     }
 }
