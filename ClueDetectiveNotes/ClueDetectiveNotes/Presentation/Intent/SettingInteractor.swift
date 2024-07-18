@@ -90,6 +90,18 @@ struct SettingInteractor {
         }
     }
     
+    func clickPublicCardsSettingNextButton() {
+        do {
+            let publicCards = settingStore.selectedPublicCards.filter { $0.type != .none }
+            
+            let presentationSetting = try createPublicCardsUseCase.execute(publicCards)
+            
+            updateSettingStore(presentationSetting: presentationSetting)
+        } catch {
+            print(error)
+        }
+    }
+    
     func isValidPlayerNames() -> Bool {
         let trimmingNames = trimmingPlayerNames()
         
@@ -110,6 +122,77 @@ struct SettingInteractor {
     
     func isEmptySelectedPlayer() -> Bool {
         return settingStore.selectedPlayer.isEmpty
+    }
+    
+    //
+    
+    func initSelectedPublicCards() {
+        // 기존 갯수와 같다면 초기화 하지 않아도 돼 이거 구현하기
+        let emptyCard = ClueCard(rawName: "", name: "", type: .none)
+        let cards: [ClueCard] = Array(repeating: emptyCard, count: settingStore.setting.getPublicCardsCount())
+        
+        settingStore.overwriteSelectedPublicCards(cards)
+    }
+    
+    func isExistPublicCard() -> Bool {
+        return settingStore.setting.getPublicCardsCount() > 0
+    }
+    
+    func isCardSelectionComplete() -> Bool {
+        let count = settingStore.selectedPublicCards.filter { $0.type != .none }.count
+        return count == settingStore.setting.getPublicCardsCount()
+    }
+    
+    func clickCard(card: ClueCard) {
+        var tempCards = settingStore.selectedPublicCards.filter { $0.type != .none }
+        
+        // 이미 있는 카드면 삭제
+        if tempCards.contains(card) {
+            if let index = tempCards.firstIndex(of: card) {
+                tempCards.remove(at: index)
+            }
+        } else { // 없는 카드면 추가
+            if tempCards.count < settingStore.setting.getPublicCardsCount() {
+                tempCards.append(card)
+            }
+        }
+        
+        let n = settingStore.setting.getPublicCardsCount() - tempCards.count
+        
+        // tempCards가 아직 모자라면 남은 배열은 nil로 채워줌
+        if n > 0 {
+            for _ in 0..<n {
+                tempCards.append(ClueCard(rawName: "", name: "", type: .none))
+            }
+        }
+        
+        // 덮어 씌우기
+        settingStore.overwriteSelectedPublicCards(tempCards)
+    }
+    
+    func clickCard2(card: ClueCard?) {
+        guard let card else { return }
+        
+        var tempCards = settingStore.selectedPublicCards.filter { $0.type != .none }
+        
+        // 이미 있는 카드면 삭제
+        if tempCards.contains(card) {
+            if let index = tempCards.firstIndex(of: card) {
+                tempCards.remove(at: index)
+            }
+        }
+        
+        let n = settingStore.setting.getPublicCardsCount() - tempCards.count
+        
+        // tempCards가 아직 모자라면 남은 배열은 nil로 채워줌
+        if n > 0 {
+            for _ in 0..<n {
+                tempCards.append(ClueCard(rawName: "", name: "", type: .none))
+            }
+        }
+        
+        // 덮어 씌우기
+        settingStore.overwriteSelectedPublicCards(tempCards)
     }
 }
 
