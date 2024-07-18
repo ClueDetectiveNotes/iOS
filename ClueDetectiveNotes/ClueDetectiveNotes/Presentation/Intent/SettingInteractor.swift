@@ -11,15 +11,18 @@ struct SettingInteractor {
     private var settingStore: SettingStore
     private let addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase
     private let createPlayersUseCase: CreatePlayersUseCase
+    private let createPublicCardsUseCase : CreatePublicCardsUseCase
     
     init(
         settingStore: SettingStore,
         addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase(),
-        createPlayersUseCase: CreatePlayersUseCase = CreatePlayersUseCase()
+        createPlayersUseCase: CreatePlayersUseCase = CreatePlayersUseCase(),
+        createPublicCardsUseCase : CreatePublicCardsUseCase = CreatePublicCardsUseCase()
     ) {
         self.settingStore = settingStore
         self.addSubMarkerTypeUseCase = addSubMarkerTypeUseCase
         self.createPlayersUseCase = createPlayersUseCase
+        self.createPublicCardsUseCase = createPublicCardsUseCase
     }
     
     func addSubMarker(_ marker: SubMarker) {
