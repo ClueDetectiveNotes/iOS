@@ -31,6 +31,7 @@
 		AC0360BF2C21B40900455C4A /* PlayerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */; };
 		AC0360C12C21CB9800455C4A /* PlayerDetailSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */; };
 		AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04831D2BF275A500B99608 /* PresentationSheet.swift */; };
+		AC0EAC022C44EFB500521147 /* CreatePublicCardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EAC012C44EFB500521147 /* CreatePublicCardsUseCase.swift */; };
 		AC3170512C018C53009E947B /* SettingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170502C018C53009E947B /* SettingError.swift */; };
 		AC3170542C01B02F009E947B /* ClickCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170532C01B02F009E947B /* ClickCellUseCase.swift */; };
 		AC3170562C01B13E009E947B /* LongClickCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170552C01B13E009E947B /* LongClickCellUseCase.swift */; };
@@ -110,6 +111,7 @@
 		AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSettingView.swift; sourceTree = "<group>"; };
 		AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailSettingView.swift; sourceTree = "<group>"; };
 		AC04831D2BF275A500B99608 /* PresentationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSheet.swift; sourceTree = "<group>"; };
+		AC0EAC012C44EFB500521147 /* CreatePublicCardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePublicCardsUseCase.swift; sourceTree = "<group>"; };
 		AC3170502C018C53009E947B /* SettingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingError.swift; sourceTree = "<group>"; };
 		AC3170532C01B02F009E947B /* ClickCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickCellUseCase.swift; sourceTree = "<group>"; };
 		AC3170552C01B13E009E947B /* LongClickCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCase.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			children = (
 				AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */,
 				ACF3694B2C259C33000D32A1 /* CreatePlayersUseCase.swift */,
+				AC0EAC012C44EFB500521147 /* CreatePublicCardsUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
 				44AF62052BF796AE00F38165 /* Setting.swift in Sources */,
+				AC0EAC022C44EFB500521147 /* CreatePublicCardsUseCase.swift in Sources */,
 				44AF61FE2BF7852500F38165 /* SettingStore.swift in Sources */,
 				44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */,
 				AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */,
