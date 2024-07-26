@@ -67,6 +67,7 @@
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
 		ACBF6B132C4EA1B50092112E /* CreateMyCardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B122C4EA1B50092112E /* CreateMyCardsUseCase.swift */; };
+		ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
 		ACEA787E2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */; };
@@ -150,6 +151,7 @@
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
 		ACBF6B122C4EA1B50092112E /* CreateMyCardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMyCardsUseCase.swift; sourceTree = "<group>"; };
+		ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSheetUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
 		ACEA787D2C10A4B5002CF159 /* ClickColNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickColNameUseCaseTests.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				AC3170572C01B4B6009E947B /* ClickColNameUseCase.swift */,
 				AC3170592C01B51D009E947B /* ClickRowNameUseCase.swift */,
 				ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */,
+				ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				ACBF6B132C4EA1B50092112E /* CreateMyCardsUseCase.swift in Sources */,
 				AC87BEDE2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift in Sources */,
+				ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */,
 				44AF62012BF7856900F38165 /* SettingInteractor.swift in Sources */,
 				AC0360BB2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift in Sources */,
 				AC3D734E2C1C22350042C669 /* SnapshotDecorator.swift in Sources */,
