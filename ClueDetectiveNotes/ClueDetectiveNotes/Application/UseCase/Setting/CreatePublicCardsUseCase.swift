@@ -18,8 +18,7 @@ struct CreatePublicCardsUseCase {
         for card in publicCards {
             try setting.addPublicCard(card)
         }
-
-        print(setting.getPublicCards())
+        
         return createPresentationSetting()
     }
 }
@@ -31,7 +30,8 @@ extension CreatePublicCardsUseCase {
             players: setting.getPlayers(),
             edition: setting.getEdition(),
             subMarkerTypes: setting.getSubMarkerTypes(),
-            publicCards: setting.getPublicCards()
+            publicCards: setting.getPublicCards(),
+            myCards: setting.getMyCards()
         )
     }
 }

@@ -35,7 +35,8 @@ struct ConvertManager {
             players: mutableSetting.getPlayers(),
             edition: mutableSetting.getEdition(),
             subMarkerTypes: mutableSetting.getSubMarkerTypes(),
-            publicCards: mutableSetting.getPublicCards()
+            publicCards: mutableSetting.getPublicCards(),
+            myCards: mutableSetting.getMyCards()
         )
     }
 }

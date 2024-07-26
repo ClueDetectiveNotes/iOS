@@ -38,8 +38,8 @@ struct DummyPlayers {
         Other(id: 2, name: "다산"),
         Other(id: 3, name: "메리"),
         Other(id: 4, name: "야곰"),
-        Other(id: 5, name: "가가"),
-        Other(id: 6, name: "나나"),
+        //Other(id: 5, name: "가가"),
+        //Other(id: 6, name: "나나"),
         Solution(id: 10000, name: "정답")
     ]
 }
@@ -54,6 +54,7 @@ struct DummySetting {
             SubMarker(notation: "3"),
             SubMarker(notation: "4")
         ],
-        publicCards: []
+        publicCards: [],
+        myCards: []
     )
 }

@@ -10,6 +10,11 @@ struct PresentationSetting {
     let edition: Edition
     let subMarkerTypes: [SubMarker]
     let publicCards: [ClueCard]
+    let myCards: [ClueCard]
+    
+    func getPlayersCountWithoutSolution() -> Int {
+        return players.filter { !($0 is Solution) }.count
+    }
     
     func getPublicCardsCount() -> Int {
         let cardsCount = edition.cards.allCardsCount()
@@ -18,7 +23,10 @@ struct PresentationSetting {
         return (cardsCount - 3) % playerCount
     }
     
-    func getPlayersCountWithoutSolution() -> Int {
-        return players.filter { !($0 is Solution) }.count
+    func getMyCardsCount() -> Int {
+        let cardsCount = edition.cards.allCardsCount()
+        let playerCount = getPlayersCountWithoutSolution()
+        
+        return (cardsCount - 3) / playerCount
     }
 }
