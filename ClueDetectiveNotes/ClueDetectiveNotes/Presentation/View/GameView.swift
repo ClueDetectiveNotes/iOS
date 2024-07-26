@@ -126,6 +126,9 @@ struct SheetView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color.blue)
+        .onAppear {
+            sheetInteractor.initSheet()
+        }
     }
 }
 
@@ -161,13 +164,14 @@ private struct PlayerRowView: View {
                                 .foregroundStyle(.black)
                                 .minimumScaleFactor(0.2)
                                 .padding(7)
+                                .underline(colName.player is User)
                         }
                     )
                     .frame(
                         width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
                         height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                     )
-                    .background(colName.player is User ? Color.yellow : Color.white)
+                    .background(Color.white)
                 }
             }
         }
@@ -284,13 +288,18 @@ private struct CardRowView: View {
                         .foregroundStyle(Color.black)
                         .lineLimit(1)
                         .minimumScaleFactor(0.2)
+                        .underline(settingStore.selectedMyCards.contains(rowName.card))
                 }
             )
             .frame(
                 width: geometryStore.cardNameWidth,
                 height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
             )
-            .background()
+            .background(
+                settingStore.selectedPublicCards.contains(rowName.card)
+                ? Color.yellow
+                : Color.white
+            )
             
             HStack(spacing: 2) {
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
