@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayerSettingView: View {
+    @EnvironmentObject private var settingStore: SettingStore
     @StateObject private var keyboardObserver = KeyboardObserver()
     private var settingInteractor: SettingInteractor
     
