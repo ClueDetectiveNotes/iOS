@@ -277,11 +277,11 @@
 				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
 				AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */,
 				AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */,
+				AC0EABFF2C44E95000521147 /* PublicCardsSettingView.swift */,
+				ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */,
 				ACFED8D12BB90B5E00B1D22B /* GameView.swift */,
 				AC55CA802C205FE50045E78F /* ControlBarView.swift */,
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
-				AC0EABFF2C44E95000521147 /* PublicCardsSettingView.swift */,
-				ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     private let geometryInteractor: GeometryInteractor
     
@@ -17,11 +17,9 @@ struct GameView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor,
         geometryInteractor: GeometryInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
         self.geometryInteractor = geometryInteractor
     }
@@ -35,7 +33,6 @@ struct GameView: View {
                 
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
-                    settingStore: settingStore, 
                     sheetStore: sheetStore
                 )
             }
@@ -256,6 +253,7 @@ private struct CardNameView: View {
 
 private struct CardRowView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
+    @EnvironmentObject private var settingStore: SettingStore
     @ObservedObject private var sheetStore: SheetStore
     private let geometryInteractor: GeometryInteractor
     private let sheetInteractor: SheetInteractor
@@ -394,10 +392,10 @@ private struct CellView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GameView(
-            settingStore: SettingStore(),
             settingInteractor: SettingInteractor(settingStore: SettingStore()), 
             geometryInteractor: GeometryInteractor(geometryStore: GeometryStore())
         )
         .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
+        .environmentObject(SettingStore())
     }
 }

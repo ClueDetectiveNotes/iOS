@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
-    @ObservedObject private var settingStore: SettingStore
     private var settingInteractor: SettingInteractor
     
-    @State private var selectedPlayer: String = ""
-    
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
@@ -33,12 +28,10 @@ struct PlayerDetailSettingView: View {
                     .frame(height: 50)
                 
                 PlayerNameListView(
-                    settingStore: settingStore,
                     settingInteractor: settingInteractor
                 )
                 
                 NextButtonView(
-                    settingStore: settingStore,
                     settingInteractor: settingInteractor)
                 
                 Spacer()
@@ -48,14 +41,12 @@ struct PlayerDetailSettingView: View {
 }
 
 private struct PlayerNameListView: View {
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
@@ -87,45 +78,31 @@ private struct PlayerNameListView: View {
 }
 
 private struct NextButtonView: View {
-    @EnvironmentObject private var geometryStore: GeometryStore
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
     var body: some View {
         NavigationLink {
-            PublicCardsSettingView(
-                settingStore: settingStore,
-                settingInteractor: settingInteractor
-            )
-//            GameView(
-//                settingStore: settingStore,
-//                settingInteractor: settingInteractor,
-//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
-//            )
-//            .navigationBarBackButtonHidden()
+            if settingInteractor.isExistPublicCard() {
+                PublicCardsSettingView(
+                    settingInteractor: settingInteractor
+                )
+            } else {
+                MyCardsSettingView(
+                    settingInteractor: settingInteractor
+                )
+            }
+
         } label: {
             Text("다음")
                 .frame(maxWidth: 250)
                 .frame(height: 40)
-        }
-        .navigationDestination(for: String.self) { _ in
-            PublicCardsSettingView(
-                settingStore: settingStore,
-                settingInteractor: settingInteractor
-            )
-//            GameView(
-//                settingStore: settingStore,
-//                settingInteractor: settingInteractor,
-//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
-//            )
         }
         .buttonStyle(.borderedProminent)
         .disabled(settingInteractor.isEmptySelectedPlayer())
@@ -137,8 +114,7 @@ private struct NextButtonView: View {
 
 #Preview {
     PlayerDetailSettingView(
-        settingStore: SettingStore(),
         settingInteractor: SettingInteractor(settingStore: SettingStore())
     )
-    .environmentObject(GeometryStore())
+    .environmentObject(SettingStore())
 }

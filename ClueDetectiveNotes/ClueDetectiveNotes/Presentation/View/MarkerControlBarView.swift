@@ -9,15 +9,13 @@ import SwiftUI
 
 struct MarkerControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     @ObservedObject private var sheetStore: SheetStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
     
     init(
-        settingStore: SettingStore,
         sheetStore: SheetStore
     ) {
-        self.settingStore = settingStore
         self.sheetStore = sheetStore
         self.markerControlBarInteractor = MarkerControlBarInteractor(sheetStore: sheetStore)
     }
@@ -46,7 +44,6 @@ struct MarkerControlBarView: View {
             ScrollView(.horizontal) {
                 HStack {
                     SubMarkerBtnsView(
-                        settingStore: settingStore,
                         markerControlBarInteractor: markerControlBarInteractor
                     )
                     
@@ -73,7 +70,6 @@ struct MarkerControlBarView: View {
 
 struct MainMarkerBtnsView: View {
     private let markerControlBarInteractor: MarkerControlBarInteractor
-    
     private let mainMarkerTypes = MainMarker.markerType.allCases
     
     init(markerControlBarInteractor: MarkerControlBarInteractor) {
@@ -100,14 +96,12 @@ struct MainMarkerBtnsView: View {
 }
 
 struct SubMarkerBtnsView: View {
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
     
     init(
-        settingStore: SettingStore,
         markerControlBarInteractor: MarkerControlBarInteractor
     ) {
-        self.settingStore = settingStore
         self.markerControlBarInteractor = markerControlBarInteractor
     }
 
@@ -131,7 +125,8 @@ struct SubMarkerBtnsView: View {
 
 #Preview {
     MarkerControlBarView(
-        settingStore: SettingStore(), 
         sheetStore: SheetStore()
     )
+    .environmentObject(GeometryStore())
+    .environmentObject(SettingStore())
 }

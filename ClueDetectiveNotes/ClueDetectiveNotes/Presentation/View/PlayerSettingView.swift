@@ -9,14 +9,11 @@ import SwiftUI
 
 struct PlayerSettingView: View {
     @StateObject private var keyboardObserver = KeyboardObserver()
-    @ObservedObject private var settingStore: SettingStore
     private var settingInteractor: SettingInteractor
     
     init(
-        settingStore: SettingStore, 
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
@@ -35,14 +32,13 @@ struct PlayerSettingView: View {
                     .frame(height: 50)
                 
                 StepperView(
-                    settingStore: settingStore,
                     settingInteractor: settingInteractor
                 )
                 
                 Spacer()
                     .frame(height: 50)
                 
-                PlayerNameFieldListView(settingStore: settingStore)
+                PlayerNameFieldListView()
                 
                 Spacer()
                 
@@ -54,7 +50,6 @@ struct PlayerSettingView: View {
                     }
                     
                     NextButtonView(
-                        settingStore: settingStore,
                         settingInteractor: settingInteractor
                     )
                     
@@ -67,14 +62,12 @@ struct PlayerSettingView: View {
 }
 
 private struct StepperView: View {
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
@@ -112,16 +105,12 @@ private struct StepperView: View {
 }
 
 private struct PlayerNameFieldListView: View {
-    @ObservedObject private var settingStore: SettingStore
-    
-    init(settingStore: SettingStore) {
-        self.settingStore = settingStore
-    }
+    @EnvironmentObject private var settingStore: SettingStore
     
     var body: some View {
         List {
             ForEach(settingStore.playerNames.indices, id: \.self) { index in
-                NameField(settingStore: settingStore, index: index)
+                NameField(index: index)
             }
         }
         .listStyle(.inset)
@@ -130,15 +119,13 @@ private struct PlayerNameFieldListView: View {
 }
 
 private struct NameField: View {
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     @State private var tempName = ""
     private var index: Int
     
     init(
-        settingStore: SettingStore, 
         index: Int
     ) {
-        self.settingStore = settingStore
         self.index = index
     }
     
@@ -155,33 +142,24 @@ private struct NameField: View {
 }
 
 private struct NextButtonView: View {
-    @ObservedObject private var settingStore: SettingStore
+    @EnvironmentObject private var settingStore: SettingStore
     private let settingInteractor: SettingInteractor
     
     init(
-        settingStore: SettingStore,
         settingInteractor: SettingInteractor
     ) {
-        self.settingStore = settingStore
         self.settingInteractor = settingInteractor
     }
     
     var body: some View {
         NavigationLink {
             PlayerDetailSettingView(
-                settingStore: settingStore,
                 settingInteractor: settingInteractor
             )
         } label: {
             Text("다음")
             .frame(maxWidth: 250)
             .frame(height: 40)
-        }
-        .navigationDestination(for: [String].self) { _ in
-            PlayerDetailSettingView(
-                settingStore: settingStore,
-                settingInteractor: settingInteractor
-            )
         }
         .buttonStyle(.borderedProminent)
         .disabled(!settingInteractor.isValidPlayerNames())
@@ -193,7 +171,7 @@ private struct NextButtonView: View {
 
 #Preview {
     PlayerSettingView(
-        settingStore: SettingStore(),
         settingInteractor: SettingInteractor(settingStore: SettingStore())
     )
+    .environmentObject(SettingStore())
 }
