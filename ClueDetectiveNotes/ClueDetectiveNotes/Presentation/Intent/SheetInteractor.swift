@@ -7,6 +7,7 @@
 
 struct SheetInteractor {
     private var sheetStore: SheetStore
+    private var initSheetUseCase: InitSheetUseCase
     private let clickCellUseCase: AnyUseCase<PresentationCell>
     private let longClickCellUseCase: AnyUseCase<PresentationCell>
     private let clickColNameUseCase: AnyUseCase<ColName>
@@ -14,16 +15,28 @@ struct SheetInteractor {
     
     init(
         sheetStore: SheetStore,
+        initSheetUseCase: InitSheetUseCase = InitSheetUseCase(),
         clickCellUseCase: AnyUseCase<PresentationCell> = AnyUseCase(SnapshotDecorator(ClickCellUseCase())),
         longClickCellUseCase: AnyUseCase<PresentationCell> = AnyUseCase(SnapshotDecorator(LongClickCellUseCase())),
         clickColNameUseCase: AnyUseCase<ColName> = AnyUseCase(SnapshotDecorator(ClickColNameUseCase())),
         clickRowNameUseCase: AnyUseCase<RowName> = AnyUseCase(SnapshotDecorator(ClickRowNameUseCase()))
     ) {
         self.sheetStore = sheetStore
+        self.initSheetUseCase = initSheetUseCase
         self.clickCellUseCase = clickCellUseCase
         self.longClickCellUseCase = longClickCellUseCase
         self.clickColNameUseCase = clickColNameUseCase
         self.clickRowNameUseCase = clickRowNameUseCase
+    }
+    
+    func initSheet() {
+        do {
+            let presentationSheet = try initSheetUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
 
     func clickCell(_ presentationCell: PresentationCell) {
