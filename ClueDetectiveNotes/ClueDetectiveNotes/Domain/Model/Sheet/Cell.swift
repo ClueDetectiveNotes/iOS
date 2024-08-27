@@ -13,7 +13,7 @@ final class Cell {
     private let colName: ColName
     private var mainMarker: MainMarker?
     private var subMarkers = Set<SubMarker>()
-    var isLock: Bool = false
+    private var isLock: Bool = false
     
     init(
         rowName: RowName,
@@ -38,6 +38,10 @@ final class Cell {
     
     func equalsMainMarker(_ marker: MainMarker) -> Bool {
         return mainMarker == marker
+    }
+    
+    func isLocked() -> Bool {
+        return isLock
     }
     
     // MARK: - GET
@@ -96,6 +100,10 @@ final class Cell {
         if !isLock {
             subMarkers.removeAll()
         }
+    }
+    
+    func setIsLock(_ isLock: Bool) {
+        self.isLock = isLock
     }
 }
 

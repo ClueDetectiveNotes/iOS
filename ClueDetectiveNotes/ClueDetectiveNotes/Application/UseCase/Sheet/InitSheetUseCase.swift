@@ -17,18 +17,18 @@ struct InitSheetUseCase: UseCase {
         let myCards = GameSetter.shared.getSetting().getMyCards()
         
         sheet.getCells().forEach { cell in
-            if publicCards.contains(cell.getRowName().card) {
-                cell.setMainMarker(.init(notation: .cross))
-                cell.isLock = true
-            }
-            
-            if myCards.contains(cell.getRowName().card) {
-                if cell.getColName().player is User {
+            if cell.getColName().player is User {
+                if myCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .check))
                 } else {
                     cell.setMainMarker(.init(notation: .cross))
                 }
-                cell.isLock = true
+                cell.setIsLock(true)
+            } else {
+                if publicCards.contains(cell.getRowName().card) {
+                    cell.setMainMarker(.init(notation: .cross))
+                    cell.setIsLock(true)
+                }
             }
         }
         
