@@ -19,10 +19,16 @@ struct InitSheetUseCase: UseCase {
         sheet.getCells().forEach { cell in
             if publicCards.contains(cell.getRowName().card) {
                 cell.setMainMarker(.init(notation: .cross))
+                cell.isLock = true
             }
             
             if myCards.contains(cell.getRowName().card) {
-                cell.setMainMarker(.init(notation: .cross))
+                if cell.getColName().player is User {
+                    cell.setMainMarker(.init(notation: .check))
+                } else {
+                    cell.setMainMarker(.init(notation: .cross))
+                }
+                cell.isLock = true
             }
         }
         

@@ -13,6 +13,7 @@ final class Cell {
     private let colName: ColName
     private var mainMarker: MainMarker?
     private var subMarkers = Set<SubMarker>()
+    var isLock: Bool = false
     
     init(
         rowName: RowName,
@@ -62,27 +63,39 @@ final class Cell {
     
     // MARK: - SET
     func setMainMarker(_ marker: MainMarker) {
-        mainMarker = marker
+        if !isLock {
+            mainMarker = marker
+        }
     }
     
     func setSubMarker(_ marker: SubMarker) {
-        subMarkers.insert(marker)
+        if !isLock {
+            subMarkers.insert(marker)
+        }
     }
     
     func setSubMarkers(_ markers: Set<SubMarker>) {
-        subMarkers = markers
+        if !isLock {
+            subMarkers = markers
+        }
     }
     
     func removeMainMarker() {
-        mainMarker = nil
+        if !isLock {
+            mainMarker = nil
+        }
     }
     
     func removeSubMarker(_ marker: SubMarker) {
-        subMarkers.remove(marker)
+        if !isLock {
+            subMarkers.remove(marker)
+        }
     }
     
     func removeSubMarkers() {
-        subMarkers.removeAll()
+        if !isLock {
+            subMarkers.removeAll()
+        }
     }
 }
 
