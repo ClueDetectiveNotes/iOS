@@ -64,6 +64,16 @@ struct ControlBarView: View {
             
             Spacer()
             
+            Button(
+                action: {
+                    // 화면 가리기
+                    controlBarInteractor.clickVisibleButton()
+                },
+                label: {
+                    Image(systemName: sheetStore.isVisibleScreen ? "eye" : "eye.slash")
+                }
+            )
+            
             // Setting
             Button(
                 action: {

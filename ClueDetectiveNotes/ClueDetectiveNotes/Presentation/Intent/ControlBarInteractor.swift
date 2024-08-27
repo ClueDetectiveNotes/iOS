@@ -56,6 +56,10 @@ struct ControlBarInteractor {
         }
     }
     
+    func clickVisibleButton() {
+        sheetStore.isVisibleScreen.toggle()
+    }
+    
     func clickCancelButton() {
         do {
             let presentationSheet = try cancelUseCase.execute()

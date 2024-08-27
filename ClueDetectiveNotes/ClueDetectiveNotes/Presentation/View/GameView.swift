@@ -30,6 +30,9 @@ struct GameView: View {
                 sheetStore: sheetStore,
                 geometryInteractor: geometryInteractor
             )
+            .overlay {
+                sheetStore.isVisibleScreen ? Color.clear : Color.gray.opacity(0.99)
+            }
                 
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
