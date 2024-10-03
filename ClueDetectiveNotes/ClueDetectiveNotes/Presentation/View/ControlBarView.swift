@@ -87,6 +87,13 @@ struct ControlBarView: View {
         .padding(10)
         .padding(.horizontal, 20)
         .frame(height: geometryStore.controlBarHeight)
+        .background()
+        .clipped()
+        .shadow(
+            radius: sheetStore.isDisplayMarkerControlBar ? 0 : 4,
+            x: 0,
+            y: sheetStore.isDisplayMarkerControlBar ? 0 : -7
+        )
     }
 }
 

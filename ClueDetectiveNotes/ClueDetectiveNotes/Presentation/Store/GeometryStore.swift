@@ -18,7 +18,7 @@ final class GeometryStore: ObservableObject {
     
     private(set) var cardNameWidth: CGFloat = 110
     private(set) var controlBarHeight: CGFloat = 40
-    private(set) var markerControlBarHeight: CGFloat = 100
+    private(set) var markerControlBarHeight: CGFloat = 120
     private let cellMaxHeight: CGFloat = 40
     
     init(

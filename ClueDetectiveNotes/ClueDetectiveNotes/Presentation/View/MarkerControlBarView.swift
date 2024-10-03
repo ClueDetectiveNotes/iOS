@@ -29,14 +29,8 @@ struct MarkerControlBarView: View {
     }
 
     var body: some View {
-        VStack {
-            Spacer()
-            
+        VStack(spacing: 5) {
             HStack {
-                MainMarkerBtnsView(
-                    markerControlBarInteractor: markerControlBarInteractor
-                )
-                
                 Spacer()
                 
                 // 창 닫기
@@ -45,37 +39,48 @@ struct MarkerControlBarView: View {
                         markerControlBarInteractor.clickCloseButton()
                     },
                     label: {
-                        Image(systemName: "xmark.circle")
-                            .foregroundStyle(.red)
+                        Text("닫기")
                     }
                 )
             }
             
-            ScrollView(.horizontal) {
-                HStack {
-                    SubMarkerBtnsView(
-                        controlBarStore: controlBarStore,
-                        markerControlBarInteractor: markerControlBarInteractor
-                    )
-                    
-                    Button(
-                        action: {
-                            markerControlBarInteractor.clickPlusButton()
-                        },
-                        label: {
-                            Image(systemName: "plus")
-                        }
-                    )
-                    .frame(width: 40, height: 40)
-                }
+            HStack {
+                MainMarkerBtnsView(
+                    markerControlBarInteractor: markerControlBarInteractor
+                )
                 
                 Spacer()
             }
             
-            Spacer()
+            HStack {
+                ScrollView(.horizontal) {
+                    HStack {
+                        SubMarkerBtnsView(
+                            controlBarStore: controlBarStore,
+                            markerControlBarInteractor: markerControlBarInteractor
+                        )
+                    }
+                }
+                .padding(.leading, 2)
+                
+                Spacer()
+                
+                Button(
+                    action: {
+                        markerControlBarInteractor.clickPlusButton()
+                    },
+                    label: {
+                        Image(systemName: "plus")
+                    }
+                )
+                .frame(width: 40, height: 40)
+            }
         }
         .frame(height: geometryStore.markerControlBarHeight)
         .padding(.horizontal)
+        .background()
+        .clipped()
+        .shadow(radius: 4, x: 0, y: -7)
         .alert(
             "마커 추가",
             isPresented: $sheetStore.isDisplayAddSubMarkerAlert
@@ -139,11 +144,11 @@ struct SubMarkerBtnsView: View {
                 },
                 label: {
                     Text(subMarkerType)
-                        .monospaced()
+                        //.monospaced()
                         .foregroundStyle(Color(UIColor.darkGray))
                 }
             )
-            .frame(width: 40, height: 40)
+            .frame(height: 40)
             .buttonStyle(.bordered)
         }
     }
