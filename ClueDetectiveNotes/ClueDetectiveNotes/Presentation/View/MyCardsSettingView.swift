@@ -49,7 +49,6 @@ struct MyCardsSettingView: View {
         }
         .onAppear {
             gameSettingInteractor.initMyCards()
-            //settingInteractor.initSelectedMyCards()
         }
     }
 }
@@ -72,7 +71,6 @@ private struct SelectedCardsView: View {
                         .border(Color.black)
                         .onTapGesture {
                             gameSettingInteractor.selectMyCard(card)
-                            //settingInteractor.clickMyCardInSelectedCardsView(card)
                         }
                     
                     Text(card.name)
@@ -152,7 +150,6 @@ private struct CardTypeHScrollView: View {
                                 .onTapGesture {
                                     print("뿅")
                                     gameSettingInteractor.selectMyCard(card)
-                                    //settingInteractor.clickMyCardInClueCardSetView(card)
                                 }
                                 .disabled(gameSettingStore.gameGameSetting.selectedPublicCards.contains(card))
                             
@@ -204,9 +201,6 @@ private struct NextButtonView: View {
             .frame(height: 40)
         }
         .buttonStyle(.borderedProminent)
-        .simultaneousGesture(TapGesture().onEnded({ _ in
-            //settingInteractor.clickMyCardsSettingNextButton()
-        }))
     }
 }
 

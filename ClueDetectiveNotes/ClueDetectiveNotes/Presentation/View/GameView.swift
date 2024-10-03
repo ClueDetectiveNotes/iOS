@@ -41,7 +41,9 @@ struct GameView: View {
                 )
             }
             
-            ControlBarView(sheetStore: sheetStore)
+            ControlBarView(
+                sheetStore: sheetStore
+            )
         }
         .overlay {
             GeometryReader { proxy in

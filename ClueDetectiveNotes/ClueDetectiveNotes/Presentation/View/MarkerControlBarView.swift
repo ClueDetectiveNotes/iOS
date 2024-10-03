@@ -19,7 +19,6 @@ struct MarkerControlBarView: View {
     init(
         sheetStore: SheetStore,
         controlBarStore: ControlBarStore
-        //markerControlBarInteractor: MarkerControlBarInteractor
     ) {
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
@@ -34,7 +33,9 @@ struct MarkerControlBarView: View {
             Spacer()
             
             HStack {
-                MainMarkerBtnsView(markerControlBarInteractor: markerControlBarInteractor)
+                MainMarkerBtnsView(
+                    markerControlBarInteractor: markerControlBarInteractor
+                )
                 
                 Spacer()
                 
@@ -82,7 +83,6 @@ struct MarkerControlBarView: View {
             TextField("마커 이름", text: $newSubMarkerName)
             Button("확인") {
                 markerControlBarInteractor.addSubMarker(SubMarker(notation: newSubMarkerName))
-                //settingInteractor.addSubMarker(SubMarker(notation: newSubMarkerName))
                 newSubMarkerName = ""
             }
             Button("취소", role: .cancel) { }
@@ -120,7 +120,6 @@ struct MainMarkerBtnsView: View {
 }
 
 struct SubMarkerBtnsView: View {
-    //@EnvironmentObject private var settingStore: SettingStore
     @ObservedObject private var controlBarStore: ControlBarStore
     private let markerControlBarInteractor: MarkerControlBarInteractor
     

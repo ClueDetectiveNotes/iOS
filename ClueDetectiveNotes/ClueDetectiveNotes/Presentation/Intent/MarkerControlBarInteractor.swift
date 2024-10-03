@@ -69,8 +69,7 @@ struct MarkerControlBarInteractor {
             
             updateControlBarStore(presentationControlBar: presentationControlBar)
         } catch {
-            print(error)
-            //os_log("%{public}@", type: .default, error.localizedDescription)
+            
         }
     }
 }

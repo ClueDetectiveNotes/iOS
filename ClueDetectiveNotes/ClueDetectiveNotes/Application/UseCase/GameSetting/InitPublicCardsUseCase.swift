@@ -2,7 +2,7 @@
 //  InitPublicCardsUseCase.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/2/24.
+//  Created by Dasan on 10/2/24.
 //
 
 struct InitPublicCardsUseCase {

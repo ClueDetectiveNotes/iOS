@@ -48,9 +48,7 @@ struct PublicCardsSettingView: View {
             }
         }
         .onAppear {
-            //gameSettingInteractor.initGame()
             gameSettingInteractor.initPublicCards()
-            //settingInteractor.initSelectedPublicCards()
         }
     }
 }
@@ -73,7 +71,6 @@ private struct SelectedCardsView: View {
                         .border(Color.black)
                         .onTapGesture {
                             gameSettingInteractor.selectPublicCard(card)
-                            //settingInteractor.clickPublicCardInSelectedCardsView(card)
                         }
                     
                     Text(card.name)
@@ -145,13 +142,11 @@ private struct CardTypeHScrollView: View {
                             CardImage(name: card.rawName)
                                 .overlay {
                                     gameSettingStore.gameGameSetting.selectedPublicCards.contains(card)
-                                    //settingStore.selectedPublicCards.contains(card)
                                     ? Color.gray.opacity(0.7)
                                     : Color.clear
                                 }
                                 .onTapGesture {
                                     gameSettingInteractor.selectPublicCard(card)
-                                    //settingInteractor.clickPublicCardInClueCardSetView(card)
                                 }
                             
                             Text(card.name)
@@ -199,9 +194,6 @@ private struct NextButtonView: View {
             .frame(height: 40)
         }
         .buttonStyle(.borderedProminent)
-        .simultaneousGesture(TapGesture().onEnded({ _ in
-            //settingInteractor.clickPublicCardsSettingNextButton()
-        }))
     }
 }
 

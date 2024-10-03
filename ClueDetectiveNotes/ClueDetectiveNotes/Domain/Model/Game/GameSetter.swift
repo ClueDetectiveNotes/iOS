@@ -13,7 +13,7 @@ final class GameSetter {
     
     private var edition: Edition = .classic
     private var players: [Player] = []
-    private var game: Game? // 값이 nil일 때 부르지 않도록 조심
+    private var game: Game?
     
     private init() { }
     
@@ -80,7 +80,6 @@ final class GameSetter {
     
     func destroyGame() {
         game = nil
-        let tempCount = players.count
         
         if !players.isEmpty {
             for player in players {

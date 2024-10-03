@@ -16,10 +16,6 @@
 		4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */; };
 		44AF61FA2BF7219D00F38165 /* SheetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF61F92BF7219D00F38165 /* SheetInteractor.swift */; };
 		44AF61FC2BF723FB00F38165 /* MarkerControlBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */; };
-		44AF61FE2BF7852500F38165 /* SettingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF61FD2BF7852500F38165 /* SettingStore.swift */; };
-		44AF62012BF7856900F38165 /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF62002BF7856900F38165 /* SettingInteractor.swift */; };
-		44AF62052BF796AE00F38165 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF62042BF796AE00F38165 /* Setting.swift */; };
-		44AF62072BF796BA00F38165 /* PresentationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF62062BF796BA00F38165 /* PresentationSetting.swift */; };
 		44B81D0D2BF1F0B400E82051 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D0C2BF1F0B400E82051 /* UseCase.swift */; };
 		44B81D112BF1F94200E82051 /* MarkerControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */; };
 		44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB763F2BEA004C0067A814 /* GameSetter.swift */; };
@@ -122,10 +118,6 @@
 		4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCell.swift; sourceTree = "<group>"; };
 		44AF61F92BF7219D00F38165 /* SheetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetInteractor.swift; sourceTree = "<group>"; };
 		44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarInteractor.swift; sourceTree = "<group>"; };
-		44AF61FD2BF7852500F38165 /* SettingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStore.swift; sourceTree = "<group>"; };
-		44AF62002BF7856900F38165 /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
-		44AF62042BF796AE00F38165 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		44AF62062BF796BA00F38165 /* PresentationSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSetting.swift; sourceTree = "<group>"; };
 		44B81D0C2BF1F0B400E82051 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerControlBarView.swift; sourceTree = "<group>"; };
 		44DB763F2BEA004C0067A814 /* GameSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetter.swift; sourceTree = "<group>"; };
@@ -302,7 +294,6 @@
 				44AF61F92BF7219D00F38165 /* SheetInteractor.swift */,
 				AC55CA7E2C2059640045E78F /* ControlBarInteractor.swift */,
 				44AF61FB2BF723FB00F38165 /* MarkerControlBarInteractor.swift */,
-				44AF62002BF7856900F38165 /* SettingInteractor.swift */,
 				AC5C85512C380F9000F09746 /* GeometryInteractor.swift */,
 				AC427B212C9A94340071AB4D /* GameSettingInteractor.swift */,
 			);
@@ -314,7 +305,6 @@
 			children = (
 				AC04831D2BF275A500B99608 /* PresentationSheet.swift */,
 				4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */,
-				44AF62062BF796BA00F38165 /* PresentationSetting.swift */,
 				AC427B042C994ED40071AB4D /* PresentationControlBar.swift */,
 				AC427B1B2C9A766C0071AB4D /* PresentationGameSetting.swift */,
 			);
@@ -348,9 +338,8 @@
 		44DB76372BE9FCF60067A814 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				AC427B032C994E9B0071AB4D /* ControlBar */,
 				AC3170522C01B01C009E947B /* Sheet */,
-				AC31705B2C01B600009E947B /* Cell */,
+				AC427B032C994E9B0071AB4D /* ControlBar */,
 				AC427B202C9A8DB80071AB4D /* GameSetting */,
 				AC3D734C2C1C221B0042C669 /* Snapshot */,
 				44B81D0C2BF1F0B400E82051 /* UseCase.swift */,
@@ -374,7 +363,6 @@
 				AC427B112C99C32E0071AB4D /* CardHolders.swift */,
 				AC427B0B2C996CC20071AB4D /* Game.swift */,
 				44DB763F2BEA004C0067A814 /* GameSetter.swift */,
-				44AF62042BF796AE00F38165 /* Setting.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -423,17 +411,6 @@
 			path = Sheet;
 			sourceTree = "<group>";
 		};
-		AC31705B2C01B600009E947B /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				AC31705C2C01B627009E947B /* ChooseMainMarkerUseCase.swift */,
-				AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */,
-				AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */,
-				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		AC3D734C2C1C221B0042C669 /* Snapshot */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +425,10 @@
 			isa = PBXGroup;
 			children = (
 				AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */,
+				AC31705C2C01B627009E947B /* ChooseMainMarkerUseCase.swift */,
+				AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */,
+				AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */,
+				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
 			);
 			path = ControlBar;
 			sourceTree = "<group>";
@@ -514,7 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				AC6E30F02BECABB000911F13 /* SheetStore.swift */,
-				44AF61FD2BF7852500F38165 /* SettingStore.swift */,
 				AC5C854F2C380F4300F09746 /* GeometryStore.swift */,
 				AC427B072C994F230071AB4D /* ControlBarStore.swift */,
 				AC427B1D2C9A81240071AB4D /* GameSettingStore.swift */,
@@ -695,7 +675,6 @@
 				AC427B2C2C9AD6500071AB4D /* SetPlayerNameUseCase.swift in Sources */,
 				AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */,
 				AC427B1E2C9A81240071AB4D /* GameSettingStore.swift in Sources */,
-				44AF62072BF796BA00F38165 /* PresentationSetting.swift in Sources */,
 				AC6A83E32C1B29E70051C0DF /* SnapshotManager.swift in Sources */,
 				AC427B332CAD70F30071AB4D /* SelectMyCardUseCase.swift in Sources */,
 				AC6E30F12BECABB000911F13 /* SheetStore.swift in Sources */,
@@ -708,7 +687,6 @@
 				AC87BEDE2C3BF0BA006C2B0D /* DeviceRotationViewModifier.swift in Sources */,
 				ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */,
 				AC9B9B1B2CAE3966005054F3 /* InitMyCardsUseCase.swift in Sources */,
-				44AF62012BF7856900F38165 /* SettingInteractor.swift in Sources */,
 				AC0360BB2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift in Sources */,
 				AC427B1C2C9A766C0071AB4D /* PresentationGameSetting.swift in Sources */,
 				AC3D734E2C1C22350042C669 /* SnapshotDecorator.swift in Sources */,
@@ -739,9 +717,7 @@
 				AC427B0C2C996CC20071AB4D /* Game.swift in Sources */,
 				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
-				44AF62052BF796AE00F38165 /* Setting.swift in Sources */,
 				AC0EAC022C44EFB500521147 /* CreatePublicCardsUseCase.swift in Sources */,
-				44AF61FE2BF7852500F38165 /* SettingStore.swift in Sources */,
 				44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */,
 				AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */,
 				AC3170582C01B4B6009E947B /* ClickColNameUseCase.swift in Sources */,

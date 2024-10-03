@@ -2,7 +2,7 @@
 //  ControlBarStore.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 9/17/24.
+//  Created by Dasan on 9/17/24.
 //
 
 import Foundation

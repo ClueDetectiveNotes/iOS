@@ -34,20 +34,21 @@ struct ChooseMainMarkerUseCase: UseCase {
                 }
             }
         case .inference:
+            let selectedCells = sheet.getSelectedCells()
+            
             if sheet.isEveryCellMarkedWithMainMarker(),
                sheet.isSameMainMarkerInEveryCell(marker) {
-                sheet.getSelectedCells().forEach { cell in
+                selectedCells.forEach { cell in
                     cell.removeMainMarker()
                 }
             } else {
-                let selectedCells = sheet.getSelectedCells()
                 selectedCells.forEach { cell in
                     cell.setMainMarker(marker)
                 }
-                
-                let currentColName = selectedCells[0].getColName()
-                try selectNextInferenceCells(currentColName)
             }
+            
+            let currentColName = selectedCells[0].getColName()
+            try selectNextInferenceCells(currentColName)
         }
         
         return createPresentationSheet()
