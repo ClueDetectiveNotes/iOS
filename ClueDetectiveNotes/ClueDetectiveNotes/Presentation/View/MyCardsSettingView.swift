@@ -64,22 +64,25 @@ private struct SelectedCardsView: View {
     }
     
     var body: some View {
-        HStack() {
-            ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
-                VStack(spacing: 2) {
-                    CardImage(name: card.type != .none ? card.rawName : "empty(white)")
-                        .border(Color.black)
-                        .onTapGesture {
-                            gameSettingInteractor.selectMyCard(card)
-                        }
-                    
-                    Text(card.name)
-                        .frame(height: 20)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack() {
+                ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
+                    VStack(spacing: 2) {
+                        CardImage(name: card.type != .none ? card.rawName : "empty(white)")
+                            .border(Color.black)
+                            .onTapGesture {
+                                gameSettingInteractor.selectMyCard(card)
+                            }
+                        
+                        Text(card.name)
+                            .frame(height: 20)
+                    }
                 }
             }
+            .padding(.top, 30)
+            .padding(.bottom, 20)
+            .padding(.horizontal)
         }
-        .padding(.top, 30)
-        .padding(.bottom, 20)
     }
 }
 
@@ -148,7 +151,6 @@ private struct CardTypeHScrollView: View {
                                     : Color.clear
                                 }
                                 .onTapGesture {
-                                    print("뿅")
                                     gameSettingInteractor.selectMyCard(card)
                                 }
                                 .disabled(gameSettingStore.gameGameSetting.selectedPublicCards.contains(card))
