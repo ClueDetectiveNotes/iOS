@@ -39,13 +39,11 @@ struct GameView: View {
                     sheetStore: sheetStore,
                     controlBarStore: controlBarStore
                 )
-//                .background()
-//                .clipped()
-//                .shadow(radius: 5, x: 0, y: -10)
             }
             
             ControlBarView(
-                sheetStore: sheetStore
+                sheetStore: sheetStore,
+                gameSettingInteractor: gameSettingInteractor
             )
         }
         .overlay {

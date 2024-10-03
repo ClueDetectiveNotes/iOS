@@ -144,7 +144,6 @@ struct SubMarkerBtnsView: View {
                 },
                 label: {
                     Text(subMarkerType)
-                        //.monospaced()
                         .foregroundStyle(Color(UIColor.darkGray))
                 }
             )

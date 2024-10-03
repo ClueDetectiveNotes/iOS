@@ -11,12 +11,15 @@ struct ControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
     private let controlBarInteractor: ControlBarInteractor
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        sheetStore: SheetStore
+        sheetStore: SheetStore,
+        gameSettingInteractor: GameSettingInteractor
     ) {
         self.sheetStore = sheetStore
         self.controlBarInteractor = ControlBarInteractor(sheetStore: sheetStore)
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
@@ -74,15 +77,9 @@ struct ControlBarView: View {
                 }
             )
             
-            // Setting
-            Button(
-                action: {
-                    // 세팅 화면
-                },
-                label: {
-                    Image(systemName: "ellipsis")
-                }
-            )
+            // 더보기
+            MoreMenuView(gameSettingInteractor: gameSettingInteractor)
+            
         }
         .padding(10)
         .padding(.horizontal, 20)
@@ -98,6 +95,9 @@ struct ControlBarView: View {
 }
 
 #Preview {
-    ControlBarView(sheetStore: SheetStore())
+    ControlBarView(
+        sheetStore: SheetStore(), 
+        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+    )
         .environmentObject(GeometryStore())
 }

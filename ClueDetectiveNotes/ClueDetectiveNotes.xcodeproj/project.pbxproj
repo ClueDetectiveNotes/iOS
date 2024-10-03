@@ -82,6 +82,7 @@
 		AC9B9B172CAD9340005054F3 /* InitPublicCardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B9B162CAD9340005054F3 /* InitPublicCardsUseCase.swift */; };
 		AC9B9B192CAE34F2005054F3 /* InitGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B9B182CAE34F2005054F3 /* InitGameUseCase.swift */; };
 		AC9B9B1B2CAE3966005054F3 /* InitMyCardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B9B1A2CAE3966005054F3 /* InitMyCardsUseCase.swift */; };
+		AC9B9B1F2CAEA460005054F3 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */; };
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
@@ -185,6 +186,7 @@
 		AC9B9B162CAD9340005054F3 /* InitPublicCardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitPublicCardsUseCase.swift; sourceTree = "<group>"; };
 		AC9B9B182CAE34F2005054F3 /* InitGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitGameUseCase.swift; sourceTree = "<group>"; };
 		AC9B9B1A2CAE3966005054F3 /* InitMyCardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitMyCardsUseCase.swift; sourceTree = "<group>"; };
+		AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				ACFED8D12BB90B5E00B1D22B /* GameView.swift */,
 				AC55CA802C205FE50045E78F /* ControlBarView.swift */,
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
+				AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				444293492BCAC0B2008CAA2C /* Deck.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				AC427B0C2C996CC20071AB4D /* Game.swift in Sources */,
+				AC9B9B1F2CAEA460005054F3 /* MoreMenuView.swift in Sources */,
 				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
 				AC0EAC022C44EFB500521147 /* CreatePublicCardsUseCase.swift in Sources */,
