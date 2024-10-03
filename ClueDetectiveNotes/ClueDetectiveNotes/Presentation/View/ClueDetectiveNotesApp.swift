@@ -10,15 +10,17 @@ import SwiftUI
 @main
 struct ClueDetectiveNotesApp: App {
     @StateObject private var settingStore = SettingStore()
+    @StateObject private var gameSettingStore = GameSettingStore()
     @StateObject private var geometryStore = GeometryStore()
     
     var body: some Scene {
         WindowGroup {
             PlayerSettingView(
-                settingInteractor: SettingInteractor(settingStore: settingStore)
+                gameSettingInteractor: GameSettingInteractor(gameSettingStore: gameSettingStore)
             )
             .environmentObject(geometryStore)
             .environmentObject(settingStore)
+            .environmentObject(gameSettingStore)
         }
     }
 }

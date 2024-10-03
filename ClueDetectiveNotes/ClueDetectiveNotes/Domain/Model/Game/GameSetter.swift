@@ -5,56 +5,87 @@
 //  Created by Dasan & Mary on 5/7/24.
 //
 
+// player, edition, game
+// option - language, Appearance(dark, light), subMarker
+
 final class GameSetter {
     static let shared = GameSetter()
     
-    private var sheet: Sheet?
-    private var setting = Setting()
+    private var edition: Edition = .classic
+    private var players: [Player] = []
+    private var game: Game? // 값이 nil일 때 부르지 않도록 조심
     
     private init() { }
     
-    func getSheet() -> Sheet {
-        if let sheet {
-            return sheet
+    func getEdition() -> Edition {
+        return edition
+    }
+    
+    func getPlayers() -> [Player] {
+        if players.isEmpty {
+            players.append(Other(name: ""))
+            players.append(Other(name: ""))
+            players.append(Other(name: ""))
+        }
+        
+        return players
+    }
+    
+    func getUser() -> Player? {
+        for player in players {
+            if player is User {
+                return player
+            }
+        }
+        return nil
+    }
+    
+    func getPublicCardsCount() -> Int {
+        let cardsCount = edition.deck.allCardsCount()
+        let playerCount = players.count
+        
+        return (cardsCount - 3) % playerCount
+    }
+    
+    func getMyCardsCount() -> Int {
+        let cardsCount = edition.deck.allCardsCount()
+        let playerCount = players.count
+        
+        return (cardsCount - 3) / playerCount
+    }
+    
+    // players가 설정되기 전에 game이 생성되지 않도록 막는 것도 필요해보인다.
+    func getGame() -> Game {
+        if let game {
+            return game
         } else {
-            let newSheet = Sheet(
-                players: setting.getPlayers(),
-                cards: setting.getEdition().cards
+            let newGame = Game(
+                deck: edition.deck,
+                players: players
             )
-            self.sheet = newSheet
-            return newSheet
+            self.game = newGame
+            return newGame
         }
     }
     
-    func getSetting() -> Setting {
-        return setting
-        //return DummySetting.setting
+    func getSheet() -> Sheet {
+        let game = getGame()
+        
+        return game.getSheet()
     }
-}
-
-struct DummyPlayers {
-    static let players: [any Player] = [
-        User(id: 1, name: "코코"),
-        Other(id: 2, name: "다산"),
-        Other(id: 3, name: "메리"),
-        Other(id: 4, name: "야곰"),
-        //Other(id: 5, name: "가가"),
-        //Other(id: 6, name: "나나"),
-        Solution(id: 10000, name: "정답")
-    ]
-}
-
-struct DummySetting {
-    static let setting: Setting = Setting(
-        players: DummyPlayers.players,
-        edition: .classic,
-        subMarkerTypes: [
-            SubMarker(notation: "1"),
-            SubMarker(notation: "2"),
-            SubMarker(notation: "3"),
-            SubMarker(notation: "4")
-        ],
-        publicCards: [],
-        myCards: []
-    )
+    
+    func setPlayers(_ players: [Player]) {
+        self.players = players
+    }
+    
+    func destroyGame() {
+        game = nil
+        let tempCount = players.count
+        
+        if !players.isEmpty {
+            for player in players {
+                player.removeAllCard()
+            }
+        }
+    }
 }

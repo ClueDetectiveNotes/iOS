@@ -6,16 +6,16 @@
 //
 
 final class Setting {
-    private var players: [any Player]
+    private var players: [Player]
     private var edition: Edition
     private var subMarkerTypes: [SubMarker]
-    private var publicCards: [ClueCard]
-    private var myCards: [ClueCard]
+    private var publicCards: [Card]
+    private var myCards: [Card]
     
     private let playerCountRange = 3...6
     
     init(
-        players: [any Player] = [any Player](),
+        players: [Player] = [Player](),
         edition: Edition = .classic,
         subMarkerTypes: [SubMarker] = [
             SubMarker(notation: "1"),
@@ -23,8 +23,8 @@ final class Setting {
             SubMarker(notation: "3"),
             SubMarker(notation: "4")
         ],
-        publicCards: [ClueCard] = [],
-        myCards: [ClueCard] = []
+        publicCards: [Card] = [],
+        myCards: [Card] = []
     ) {
         self.players = players
         self.edition = edition
@@ -34,23 +34,23 @@ final class Setting {
     }
     
     // MARK: - GET
-    func getPlayers() -> [any Player] {
-        return players.sorted { $0.id < $1.id }
-    }
+//    func getPlayers() -> [Player] {
+//        return players.sorted { $0.id < $1.id }
+//    }
     
-    func getPlayersWithoutSolution() -> [any Player] {
-        return players
-            .filter { !($0 is Solution) }
-            .sorted { $0.id < $1.id }
-    }
+//    func getPlayersWithoutSolution() -> [Player] {
+//        return players
+//            .filter { !($0 is Solution) }
+//            .sorted { $0.id < $1.id }
+//    }
     
     func getPlayerCount() -> Int {
         return players.count
     }
     
-    func getPlayersCountWithoutSolution() -> Int {
-        return players.filter { !($0 is Solution) }.count
-    }
+//    func getPlayersCountWithoutSolution() -> Int {
+//        return players.filter { !($0 is Solution) }.count
+//    }
     
     func getMinPlayerCount() -> Int {
         return playerCountRange.lowerBound
@@ -68,11 +68,11 @@ final class Setting {
         return subMarkerTypes
     }
     
-    func getPublicCards() -> [ClueCard] {
+    func getPublicCards() -> [Card] {
         return publicCards
     }
     
-    func getMyCards() -> [ClueCard] {
+    func getMyCards() -> [Card] {
         return myCards
     }
     
@@ -102,21 +102,19 @@ final class Setting {
             throw SettingError.alreadyExistsPlayer
         }
         
-        var player: any Player
+        var player: Player
         
         switch type {
         case .user:
-            player = User(id: id, name: name)
+            player = User(name: name)
         case .other:
-            player = Other(id: id, name: name)
-        case .solution:
-            player = Solution(id: id, name: name)
+            player = Other(name: name)
         }
         
         players.append(player)
     }
     
-    func addPublicCard(_ card: ClueCard) throws {
+    func addPublicCard(_ card: Card) throws {
         guard !publicCards.contains(card) else {
             throw SettingError.alreadySelectedCard
         }
@@ -124,7 +122,7 @@ final class Setting {
         publicCards.append(card)
     }
     
-    func addMyCard(_ card: ClueCard) throws {
+    func addMyCard(_ card: Card) throws {
         guard !myCards.contains(card) else {
             throw SettingError.alreadySelectedCard
         }
@@ -151,11 +149,11 @@ extension Setting {
     }
     
     private func isDuplicatePlayer(id: Int, name: String) -> Bool {
-        for player in players {
-            if player.id == id || player.name == name {
-                return true
-            }
-        }
+//        for player in players {
+//            if player.id == id || player.name == name {
+//                return true
+//            }
+//        }
         return false
     }
 }

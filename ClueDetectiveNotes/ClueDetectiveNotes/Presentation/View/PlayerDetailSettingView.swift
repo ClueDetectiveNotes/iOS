@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
-    private var settingInteractor: SettingInteractor
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
@@ -28,11 +28,12 @@ struct PlayerDetailSettingView: View {
                     .frame(height: 50)
                 
                 PlayerNameListView(
-                    settingInteractor: settingInteractor
+                    gameSettingInteractor: gameSettingInteractor
                 )
                 
                 NextButtonView(
-                    settingInteractor: settingInteractor)
+                    gameSettingInteractor: gameSettingInteractor
+                )
                 
                 Spacer()
             }
@@ -41,34 +42,37 @@ struct PlayerDetailSettingView: View {
 }
 
 private struct PlayerNameListView: View {
-    @EnvironmentObject private var settingStore: SettingStore
-    private let settingInteractor: SettingInteractor
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
         List {
-            ForEach(settingStore.playerNames, id: \.self) { playerName in
+            ForEach(gameSettingStore.gameGameSetting.playerNames, id: \.self) { playerName in
                 HStack {
                     Image(
-                        systemName: settingInteractor.isSelectedPlayer(playerName)
+                        systemName: gameSettingStore.gameGameSetting.selectedPlayer == playerName
                         ? "checkmark.circle.fill"
                         : "circle"
                     )
                         .foregroundStyle(.blue)
+                    
                     Text("\(playerName)")
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    settingInteractor.selectPlayer(playerName)
+                    gameSettingInteractor.selectUser(name: playerName)
                 }
             }.onMove { (source: IndexSet, destination: Int) in
-                settingStore.playerNames.move(fromOffsets: source, toOffset: destination)
-                print(settingStore.playerNames)
+                gameSettingInteractor.reorderPlayer(
+                    source: source,
+                    destination: destination
+                )
             }
         }
         .environment(\.editMode, .constant(.active))
@@ -78,43 +82,42 @@ private struct PlayerNameListView: View {
 }
 
 private struct NextButtonView: View {
-    @EnvironmentObject private var settingStore: SettingStore
-    private let settingInteractor: SettingInteractor
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
         NavigationLink {
-            if settingInteractor.isExistPublicCard() {
+            if gameSettingStore.gameGameSetting.publicCardsCount > 0 {
                 PublicCardsSettingView(
-                    settingInteractor: settingInteractor
+                    gameSettingInteractor: gameSettingInteractor
                 )
             } else {
                 MyCardsSettingView(
-                    settingInteractor: settingInteractor
+                    gameSettingInteractor: gameSettingInteractor
                 )
             }
-
         } label: {
             Text("다음")
                 .frame(maxWidth: 250)
                 .frame(height: 40)
         }
         .buttonStyle(.borderedProminent)
-        .disabled(settingInteractor.isEmptySelectedPlayer())
+        .disabled(gameSettingStore.isDisablePlayerDetailSettingNextButton)
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            settingInteractor.clickPlayerDetailSettingNextButton()
+            gameSettingInteractor.initGame()
         }))
     }
 }
 
 #Preview {
     PlayerDetailSettingView(
-        settingInteractor: SettingInteractor(settingStore: SettingStore())
+        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
     )
-    .environmentObject(SettingStore())
+    .environmentObject(GameSettingStore())
 }

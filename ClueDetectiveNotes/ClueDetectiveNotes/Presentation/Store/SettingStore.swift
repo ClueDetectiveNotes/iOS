@@ -15,16 +15,16 @@ final class SettingStore: ObservableObject {
     @Published private(set) var isDisabledMinusButton: Bool
     @Published private(set) var isDisabledPlusButton: Bool
     @Published private(set) var selectedPlayer: String
-    @Published private(set) var selectedPublicCards: [ClueCard]
-    @Published private(set) var selectedMyCards: [ClueCard]
+    @Published private(set) var selectedPublicCards: [Card]
+    @Published private(set) var selectedMyCards: [Card]
     
     init(
         isDisabledMinusButton: Bool = true,
         isDisabledPlusButton: Bool = false
     ) {
-        self.setting = ConvertManager.getImmutableSetting(GameSetter.shared.getSetting())
-        self.playerCount = GameSetter.shared.getSetting().getMinPlayerCount()
-        self.playerNames = Array(repeating: "", count: GameSetter.shared.getSetting().getMinPlayerCount())
+        self.setting = PresentationSetting(players: [], edition: .classic, subMarkerTypes: [], publicCards: [], myCards: []) //ConvertManager.getImmutableSetting(GameSetter.shared.getSetting())
+        self.playerCount = 0//GameSetter.shared.getSetting().getMinPlayerCount()
+        self.playerNames = []//Array(repeating: "", count: GameSetter.shared.getSetting().getMinPlayerCount())
         
         self.isDisabledMinusButton = isDisabledMinusButton
         self.isDisabledPlusButton = isDisabledPlusButton
@@ -53,11 +53,11 @@ final class SettingStore: ObservableObject {
         selectedPlayer = playerName
     }
     
-    func overwriteSelectedPublicCards(_ cards: [ClueCard]) {
+    func overwriteSelectedPublicCards(_ cards: [Card]) {
         selectedPublicCards = cards
     }
     
-    func overwriteSelectedMyCards(_ cards: [ClueCard]) {
+    func overwriteSelectedMyCards(_ cards: [Card]) {
         selectedMyCards = cards
     }
 }

@@ -8,10 +8,10 @@
 enum Edition {
     case classic
     
-    var cards: Cards {
+    var deck: Deck {
         switch self {
         case .classic:
-            return Cards(
+            return Deck(
                 suspects: [
                     .init(rawName: "SCARLET", name: "스칼렛", type: .suspect),
                     .init(rawName: "MUSTARD",name: "머스타드", type: .suspect),

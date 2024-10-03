@@ -31,9 +31,9 @@ struct SheetInteractor {
     
     func initSheet() {
         do {
-            let presentationSheet = try initSheetUseCase.execute()
-            
-            updateSheetStore(presentationSheet: presentationSheet)
+//            let presentationSheet = try initSheetUseCase.execute()
+//            
+//            updateSheetStore(presentationSheet: presentationSheet)
         } catch {
             
         }

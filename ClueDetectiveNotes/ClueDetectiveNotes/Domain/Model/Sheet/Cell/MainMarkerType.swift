@@ -1,23 +1,9 @@
 //
-//  Marker.swift
+//  MainMarkerType.swift
 //  ClueDetectiveNotes
 //
-//  Created by Dasan & Mary on 2024/04/17.
+//  Created by Dasan on 9/18/24.
 //
-
-protocol Markerable {
-    associatedtype markerType
-    
-    var notation: markerType { get set }
-}
-
-struct SubMarker: Markerable, Hashable {
-    var notation: String
-}
-
-struct MainMarker: Markerable, Equatable {
-    var notation: MainMarkerType
-}
 
 enum MainMarkerType: CaseIterable, CustomStringConvertible {
     case cross, check, question, exclamation, slash

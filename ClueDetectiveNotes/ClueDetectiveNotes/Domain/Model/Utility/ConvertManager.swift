@@ -30,13 +30,35 @@ struct ConvertManager {
         )
     }
     
-    static func getImmutableSetting(_ mutableSetting: Setting) -> PresentationSetting {
-        return PresentationSetting(
-            players: mutableSetting.getPlayers(),
-            edition: mutableSetting.getEdition(),
-            subMarkerTypes: mutableSetting.getSubMarkerTypes(),
-            publicCards: mutableSetting.getPublicCards(),
-            myCards: mutableSetting.getMyCards()
+//    static func getImmutableSetting(_ mutableSetting: Setting) -> PresentationSetting {
+//        return PresentationSetting(
+//            players: mutableSetting.getPlayers(),
+//            edition: mutableSetting.getEdition(),
+//            subMarkerTypes: mutableSetting.getSubMarkerTypes(),
+//            publicCards: mutableSetting.getPublicCards(),
+//            myCards: mutableSetting.getMyCards()
+//        )
+//    }
+    
+    static func getImmutableGameSetting(
+        selectedPublicCards: [Card] = [],
+        selectedMyCards: [Card] = []
+    ) -> PresentationGameSetting {
+        return PresentationGameSetting(
+            edition: GameSetter.shared.getEdition(),
+            players: GameSetter.shared.getPlayers().map { ($0.id, $0.name) },
+            playerCount: GameSetter.shared.getPlayers().count,
+            playerNames: GameSetter.shared.getPlayers().map { $0.name },
+            //cards: GameSetter.shared.getEdition().deck.allCards(),
+            selectedPlayer: GameSetter.shared.getUser()?.name ?? "",
+            selectedPublicCards: selectedPublicCards, // 생각해보자.
+            selectedMyCards: selectedMyCards,
+            publicCardsCount: GameSetter.shared.getPublicCardsCount(),
+            myCardsCount: GameSetter.shared.getMyCardsCount()
         )
+    }
+    
+    static func getImmutableControlBar(mutableSubMarkerType: SubMarkerType) -> PresentationControlBar {
+        return PresentationControlBar(subMarkerTypes: mutableSubMarkerType.getSubMarkerTypes())
     }
 }

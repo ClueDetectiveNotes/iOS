@@ -16,20 +16,26 @@ final class Sheet {
     private var selectedRowNames = [CardType: RowName]()
     private var selectedColName: ColName?
     
-    init(
-        players: [any Player],
-        cards: Cards,
+    init (
+        cardHolders: CardHolders,
+        cards: Deck,
         mode: SheetMode = .single
     ) {
         self.mode = mode
         
-        players.forEach { player in
-            colNames.append(ColName(player: player))
+        var tempHolders: [CardHolder] = cardHolders.getPlayers()
+        tempHolders.append(cardHolders.getAnswer())
+        
+        tempHolders.forEach { holder in
+            colNames.append(ColName(cardHolder: holder))
         }
         
         cards.allCards().forEach { card in
             rowNames.append(RowName(card: card))
         }
+        
+        let myCards = cardHolders.getUser()?.cards
+        let publicCards = cardHolders.getPublicOne().cards
         
         for rowName in rowNames {
             for colName in colNames {
@@ -347,17 +353,17 @@ final class Sheet {
 }
 
 struct RowName: Hashable {
-    let card: ClueCard
+    let card: Card
 }
 
 struct ColName: Hashable {
-    let player: any Player
+    let cardHolder: CardHolder
     
     static func == (lhs: ColName, rhs: ColName) -> Bool {
-        lhs.player.id == rhs.player.id
+        lhs.cardHolder.id == rhs.cardHolder.id
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(player.id)
+        hasher.combine(cardHolder.id)
     }
 }

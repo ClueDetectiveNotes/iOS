@@ -7,20 +7,26 @@
 
 struct MarkerControlBarInteractor {
     private var sheetStore: SheetStore
+    private var controlBarStore: ControlBarStore
     private let chooseMainMarkerUseCase: AnyUseCase<MainMarker>
     private let chooseSubMarkerUseCase: AnyUseCase<SubMarker>
     private let cancelClickedCellUseCase: AnyUseCase<Int>
+    private let addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase
     
     init(
         sheetStore: SheetStore,
+        controlBarStore: ControlBarStore,
         chooseMainMarkerUseCase: AnyUseCase<MainMarker> = AnyUseCase(SnapshotDecorator(ChooseMainMarkerUseCase())),
         chooseSubMarkerUseCase: AnyUseCase<SubMarker> = AnyUseCase(SnapshotDecorator(ChooseSubMarkerUseCase())),
-        cancelClickedCellUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase()))
+        cancelClickedCellUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase())),
+        addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase()
     ) {
         self.sheetStore = sheetStore
+        self.controlBarStore = controlBarStore
         self.chooseMainMarkerUseCase = chooseMainMarkerUseCase
         self.chooseSubMarkerUseCase = chooseSubMarkerUseCase
         self.cancelClickedCellUseCase = cancelClickedCellUseCase
+        self.addSubMarkerTypeUseCase = addSubMarkerTypeUseCase
     }
     
     func chooseMainMarker(_ marker: MainMarker) {
@@ -68,5 +74,9 @@ extension MarkerControlBarInteractor {
         } else {
             sheetStore.setDisplayMarkerControlBar(false)
         }
+    }
+    
+    private func updateControlBarStore(presentationControlBar: PresentationControlBar) {
+        controlBarStore.overwriteControlBar(presentationControlBar)
     }
 }

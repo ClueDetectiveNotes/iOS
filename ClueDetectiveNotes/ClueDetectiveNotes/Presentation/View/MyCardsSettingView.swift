@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MyCardsSettingView: View {
-    @EnvironmentObject private var settingStore: SettingStore
-    private let settingInteractor: SettingInteractor
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
@@ -26,21 +26,21 @@ struct MyCardsSettingView: View {
                 )
                 
                 SelectedCardsView(
-                    settingInteractor: settingInteractor
+                    gameSettingInteractor: gameSettingInteractor
                 )
                 
                 Spacer()
                 
-                if !settingInteractor.isMyCardSelectionComplete() {
+                if gameSettingStore.isDisableMyCardsSettingNextButton {
                     ClueCardSetView(
-                        settingInteractor: settingInteractor
+                        gameSettingInteractor: gameSettingInteractor
                     )
                 } else {
                     Spacer()
                         .frame(maxHeight: .infinity)
                     
                     NextButtonView(
-                        settingInteractor: settingInteractor
+                        gameSettingInteractor: gameSettingInteractor
                     )
                 }
                 
@@ -48,29 +48,31 @@ struct MyCardsSettingView: View {
             }
         }
         .onAppear {
-            settingInteractor.initSelectedMyCards()
+            gameSettingInteractor.initMyCards()
+            //settingInteractor.initSelectedMyCards()
         }
     }
 }
 
 private struct SelectedCardsView: View {
-    @EnvironmentObject private var settingStore: SettingStore
-    private let settingInteractor: SettingInteractor
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
         HStack() {
-            ForEach(settingStore.selectedMyCards, id: \.self) { card in
+            ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
                 VStack(spacing: 2) {
                     CardImage(name: card.type != .none ? card.rawName : "empty(white)")
                         .border(Color.black)
                         .onTapGesture {
-                            settingInteractor.clickMyCardInSelectedCardsView(card)
+                            gameSettingInteractor.selectMyCard(card)
+                            //settingInteractor.clickMyCardInSelectedCardsView(card)
                         }
                     
                     Text(card.name)
@@ -84,29 +86,29 @@ private struct SelectedCardsView: View {
 }
 
 private struct ClueCardSetView: View {
-    private let settingInteractor: SettingInteractor
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack() {
                 CardTypeHScrollView(
-                    settingInteractor: settingInteractor,
+                    gameSettingInteractor: gameSettingInteractor,
                     cardType: .suspect
                 )
                 
                 CardTypeHScrollView(
-                    settingInteractor: settingInteractor,
+                    gameSettingInteractor: gameSettingInteractor,
                     cardType: .weapon
                 )
                 
                 CardTypeHScrollView(
-                    settingInteractor: settingInteractor,
+                    gameSettingInteractor: gameSettingInteractor,
                     cardType: .room
                 )
             }
@@ -116,15 +118,15 @@ private struct ClueCardSetView: View {
 }
 
 private struct CardTypeHScrollView: View {
-    @EnvironmentObject private var settingStore: SettingStore
-    private let settingInteractor: SettingInteractor
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingInteractor: GameSettingInteractor
     let cardType: CardType
 
     init(
-        settingInteractor: SettingInteractor,
+        gameSettingInteractor: GameSettingInteractor,
         cardType: CardType
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
         self.cardType = cardType
     }
     
@@ -137,20 +139,22 @@ private struct CardTypeHScrollView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(settingStore.setting.edition.cards.getCards(type: cardType), id: \.self) { card in
+                    ForEach(gameSettingStore.gameGameSetting.edition.deck.getCards(type: cardType), id: \.self) { card in
                         VStack(spacing: 2) {
                             CardImage(name: card.rawName)
                                 .overlay {
-                                    settingStore.setting.publicCards.contains(card)
+                                    gameSettingStore.gameGameSetting.selectedPublicCards.contains(card)
                                     ? Color.red.opacity(0.7)
-                                    : settingStore.selectedMyCards.contains(card)
+                                    : gameSettingStore.gameGameSetting.selectedMyCards.contains(card)
                                     ? Color.gray.opacity(0.7)
                                     : Color.clear
                                 }
                                 .onTapGesture {
-                                    settingInteractor.clickMyCardInClueCardSetView(card)
+                                    print("뿅")
+                                    gameSettingInteractor.selectMyCard(card)
+                                    //settingInteractor.clickMyCardInClueCardSetView(card)
                                 }
-                                .disabled(settingStore.setting.publicCards.contains(card))
+                                .disabled(gameSettingStore.gameGameSetting.selectedPublicCards.contains(card))
                             
                             Text(card.name)
                         }
@@ -179,21 +183,21 @@ private struct CardImage: View {
 
 private struct NextButtonView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
-    private let settingInteractor: SettingInteractor
+    private let gameSettingInteractor: GameSettingInteractor
     
     init(
-        settingInteractor: SettingInteractor
+        gameSettingInteractor: GameSettingInteractor
     ) {
-        self.settingInteractor = settingInteractor
+        self.gameSettingInteractor = gameSettingInteractor
     }
     
     var body: some View {
         NavigationLink {
-            GameView(
-                settingInteractor: settingInteractor,
-                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
-            )
-            .navigationBarBackButtonHidden()
+//            GameView(
+//                settingInteractor: settingInteractor,
+//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+//            )
+//            .navigationBarBackButtonHidden()
         } label: {
             Text("다음")
             .frame(maxWidth: 250)
@@ -201,15 +205,15 @@ private struct NextButtonView: View {
         }
         .buttonStyle(.borderedProminent)
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            settingInteractor.clickMyCardsSettingNextButton()
+            //settingInteractor.clickMyCardsSettingNextButton()
         }))
     }
 }
 
 #Preview {
     MyCardsSettingView(
-        settingInteractor: SettingInteractor(settingStore: SettingStore())
+        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
     )
     .environmentObject(GeometryStore())
-    .environmentObject(SettingStore())
+    .environmentObject(GameSettingStore())
 }

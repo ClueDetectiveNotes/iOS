@@ -6,27 +6,27 @@
 //
 
 struct PresentationSetting {
-    let players: [any Player]
+    let players: [Player]
     let edition: Edition
     let subMarkerTypes: [SubMarker]
-    let publicCards: [ClueCard]
-    let myCards: [ClueCard]
+    let publicCards: [Card]
+    let myCards: [Card]
     
-    func getPlayersCountWithoutSolution() -> Int {
-        return players.filter { !($0 is Solution) }.count
-    }
+//    func getPlayersCountWithoutSolution() -> Int {
+//        return players.filter { !($0 is Solution) }.count
+//    }
     
-    func getPublicCardsCount() -> Int {
-        let cardsCount = edition.cards.allCardsCount()
-        let playerCount = getPlayersCountWithoutSolution()
-        
-        return (cardsCount - 3) % playerCount
-    }
-    
-    func getMyCardsCount() -> Int {
-        let cardsCount = edition.cards.allCardsCount()
-        let playerCount = getPlayersCountWithoutSolution()
-        
-        return (cardsCount - 3) / playerCount
-    }
+//    func getPublicCardsCount() -> Int {
+//        let cardsCount = edition.cards.allCardsCount()
+//        let playerCount = getPlayersCountWithoutSolution()
+//        
+//        return (cardsCount - 3) % playerCount
+//    }
+//    
+//    func getMyCardsCount() -> Int {
+//        let cardsCount = edition.cards.allCardsCount()
+//        let playerCount = getPlayersCountWithoutSolution()
+//        
+//        return (cardsCount - 3) / playerCount
+//    }
 }
