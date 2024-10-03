@@ -193,11 +193,11 @@ private struct NextButtonView: View {
     
     var body: some View {
         NavigationLink {
-//            GameView(
-//                settingInteractor: settingInteractor,
-//                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
-//            )
-//            .navigationBarBackButtonHidden()
+            GameView(
+                gameSettingInteractor: gameSettingInteractor,
+                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+            )
+            .navigationBarBackButtonHidden()
         } label: {
             Text("다음")
             .frame(maxWidth: 250)

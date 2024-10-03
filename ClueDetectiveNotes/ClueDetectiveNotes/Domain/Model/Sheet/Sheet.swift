@@ -34,9 +34,6 @@ final class Sheet {
             rowNames.append(RowName(card: card))
         }
         
-        let myCards = cardHolders.getUser()?.cards
-        let publicCards = cardHolders.getPublicOne().cards
-        
         for rowName in rowNames {
             for colName in colNames {
                 let cell = Cell(

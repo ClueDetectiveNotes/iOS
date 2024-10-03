@@ -353,7 +353,6 @@
 				AC31705B2C01B600009E947B /* Cell */,
 				AC427B202C9A8DB80071AB4D /* GameSetting */,
 				AC3D734C2C1C221B0042C669 /* Snapshot */,
-				AC3170622C01B739009E947B /* Setting */,
 				44B81D0C2BF1F0B400E82051 /* UseCase.swift */,
 				AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */,
 			);
@@ -414,12 +413,12 @@
 		AC3170522C01B01C009E947B /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */,
 				AC3170532C01B02F009E947B /* ClickCellUseCase.swift */,
 				AC3170552C01B13E009E947B /* LongClickCellUseCase.swift */,
 				AC3170572C01B4B6009E947B /* ClickColNameUseCase.swift */,
 				AC3170592C01B51D009E947B /* ClickRowNameUseCase.swift */,
 				ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */,
-				ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -433,13 +432,6 @@
 				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		AC3170622C01B739009E947B /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		AC3D734C2C1C221B0042C669 /* Snapshot */ = {
