@@ -9,11 +9,11 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
+    @StateObject private var controlBarStore = ControlBarStore()
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingInteractor: GameSettingInteractor
     private let geometryInteractor: GeometryInteractor
     
-    @State private var newSubMarkerName: String = ""
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     init(
@@ -35,25 +35,13 @@ struct GameView: View {
             }
                 
             if sheetStore.isDisplayMarkerControlBar {
-//                MarkerControlBarView(
-//                    sheetStore: sheetStore
-//                )
+                MarkerControlBarView(
+                    sheetStore: sheetStore,
+                    controlBarStore: controlBarStore
+                )
             }
             
             ControlBarView(sheetStore: sheetStore)
-        }
-        .alert(
-            "마커 추가",
-            isPresented: $sheetStore.isDisplayAddSubMarkerAlert
-        ) {
-            TextField("마커 이름", text: $newSubMarkerName)
-            Button("확인") {
-                //settingInteractor.addSubMarker(SubMarker(notation: newSubMarkerName))
-                newSubMarkerName = ""
-            }
-            Button("취소", role: .cancel) { }
-        } message: {
-            Text("추가할 마커의 이름을 입력해주세요.")
         }
         .overlay {
             GeometryReader { proxy in

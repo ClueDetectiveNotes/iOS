@@ -15,6 +15,7 @@ struct AddSubMarkerTypeUseCase {
     func execute(_ marker: SubMarker) throws -> PresentationControlBar {
         try subMarkerType.addSubMarkerType(marker.notation)
         
+        print(subMarkerType.getSubMarkerTypes())
         return createPresentationControlBar()
     }
 }

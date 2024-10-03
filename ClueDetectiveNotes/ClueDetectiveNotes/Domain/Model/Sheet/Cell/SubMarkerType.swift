@@ -23,7 +23,7 @@ final class SubMarkerType {
     func addSubMarkerType(_ notation: String) throws {
         let tempNotation = notation.replacingOccurrences(of: " ", with: "")
         
-        guard types.contains(tempNotation) else {
+        guard !types.contains(tempNotation) else {
             throw CellError.alreadyContainsSubMarker
         }
         

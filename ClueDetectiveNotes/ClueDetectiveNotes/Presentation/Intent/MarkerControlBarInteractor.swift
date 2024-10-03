@@ -62,6 +62,17 @@ struct MarkerControlBarInteractor {
     func clickPlusButton() {
         sheetStore.setDisplayAddSubMarkerAlert(true)
     }
+    
+    func addSubMarker(_ marker: SubMarker) {
+        do {
+            let presentationControlBar = try addSubMarkerTypeUseCase.execute(marker)
+            
+            updateControlBarStore(presentationControlBar: presentationControlBar)
+        } catch {
+            print(error)
+            //os_log("%{public}@", type: .default, error.localizedDescription)
+        }
+    }
 }
 
 // MARK: - Private
