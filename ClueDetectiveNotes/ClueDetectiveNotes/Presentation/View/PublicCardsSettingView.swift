@@ -68,12 +68,13 @@ private struct SelectedCardsView: View {
             ForEach(gameSettingStore.gameGameSetting.selectedPublicCards, id: \.self) { card in
                 VStack(spacing: 2) {
                     CardImage(name: card.type != .none ? card.rawName : "empty(white)")
-                        .border(Color.black)
+                        .border(Color("black1"))
                         .onTapGesture {
                             gameSettingInteractor.selectPublicCard(card)
                         }
                     
                     Text(card.name)
+                        .foregroundStyle(Color("black1"))
                         .frame(height: 20)
                 }
             }
@@ -131,6 +132,7 @@ private struct CardTypeHScrollView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(cardType.description)
+                .foregroundStyle(Color("black1"))
                 .bold()
                 .padding(.vertical, 8)
                 .padding(.horizontal)
@@ -150,6 +152,7 @@ private struct CardTypeHScrollView: View {
                                 }
                             
                             Text(card.name)
+                                .foregroundStyle(Color("black1"))
                         }
                     }
                 }
@@ -170,7 +173,7 @@ private struct CardImage: View {
         Image(name)
             .resizable()
             .frame(width: 70, height: 70)
-            .border(Color.gray)
+            .border(Color("border_gray"))
     }
 }
 
@@ -190,9 +193,11 @@ private struct NextButtonView: View {
             )
         } label: {
             Text("다음")
-            .frame(maxWidth: 250)
-            .frame(height: 40)
+                .foregroundStyle(Color("button_white"))
+                .frame(maxWidth: 250)
+                .frame(height: 40)
         }
+        .foregroundStyle(Color("blue1"))
         .buttonStyle(.borderedProminent)
     }
 }

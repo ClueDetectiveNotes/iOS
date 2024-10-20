@@ -60,9 +60,10 @@ private struct PlayerNameListView: View {
                         ? "checkmark.circle.fill"
                         : "circle"
                     )
-                        .foregroundStyle(.blue)
+                    .foregroundStyle(Color("blue1"))
                     
                     Text("\(playerName)")
+                        .foregroundStyle(Color("black1"))
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -78,6 +79,7 @@ private struct PlayerNameListView: View {
         .environment(\.editMode, .constant(.active))
         .listStyle(.inset)
         .listRowSpacing(10)
+        //.listRowSeparatorTint(<#T##color: Color?##Color?#>)
     }
 }
 
@@ -106,8 +108,10 @@ private struct NextButtonView: View {
             Text("다음")
                 .frame(maxWidth: 250)
                 .frame(height: 40)
+                .foregroundStyle(Color("button_white"))
         }
         .buttonStyle(.borderedProminent)
+        .foregroundStyle(Color("blue1"))
         .disabled(gameSettingStore.isDisablePlayerDetailSettingNextButton)
         .simultaneousGesture(TapGesture().onEnded({ _ in
             gameSettingInteractor.initGame()

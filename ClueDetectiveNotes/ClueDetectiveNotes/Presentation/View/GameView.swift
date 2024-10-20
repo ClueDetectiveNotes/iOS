@@ -119,7 +119,7 @@ struct SheetView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .background(Color.blue)
+        .background(Color("blue1"))
         .onAppear {
             sheetInteractor.initSheet()
         }
@@ -155,7 +155,7 @@ private struct PlayerRowView: View {
                         },
                         label: {
                             Text(colName.cardHolder.name)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("black1"))
                                 .minimumScaleFactor(0.2)
                                 .padding(7)
                                 .underline(colName.cardHolder is User)
@@ -165,7 +165,7 @@ private struct PlayerRowView: View {
                         width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
                         height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                     )
-                    .background(Color.white)
+                    .background(Color("white1"))
                 }
             }
         }
@@ -279,7 +279,7 @@ private struct CardRowView: View {
                 label: {
                     Text(rowName.card.name)
                         .padding(8)
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("black1"))
                         .lineLimit(1)
                         .minimumScaleFactor(0.2)
                         .underline(gameSettingStore.gameGameSetting.selectedMyCards.contains(rowName.card))
@@ -291,8 +291,8 @@ private struct CardRowView: View {
             )
             .background(
                 gameSettingStore.gameGameSetting.selectedPublicCards.contains(rowName.card)
-                ? Color.yellow
-                : Color.white
+                ? Color("yellow1")
+                : Color("white1")
             )
             
             HStack(spacing: 2) {
@@ -332,11 +332,13 @@ private struct CellView: View {
     var body: some View {
         VStack {
             Text(sheetStore.sheet.findCell(id: cell.id)?.mainMarker?.notation.description ?? "")
+                .foregroundStyle(Color("black1"))
             
             HStack(spacing: 1) {
                 if let cell = sheetStore.sheet.findCell(id: cell.id) {
                     ForEach(cell.subMarkers, id: \.self) { subMarker in
                         Text(subMarker.notation)
+                            .foregroundStyle(Color("black1"))
                             .font(.caption2)
                             .fontWeight(.light)
                     }
@@ -351,7 +353,7 @@ private struct CellView: View {
         .foregroundColor(.black)
         .border(
             sheetStore.sheet.isSelectedCell(cell) ?
-            sheetStore.sheet.mode == .multi ? Color.orange : Color.green
+            sheetStore.sheet.mode == .multi ? Color("orange1") : Color("green1")
             : Color.black,
             width: sheetStore.sheet.isSelectedCell(cell) ? 3 : 1
         )
@@ -387,8 +389,9 @@ private struct CellView: View {
     
     var cellBackground: some View {
         sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName)
-        ? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
-        : Color.white
+        //? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
+        ? Color("mint1")
+        : Color("white1")
     }
 }
 

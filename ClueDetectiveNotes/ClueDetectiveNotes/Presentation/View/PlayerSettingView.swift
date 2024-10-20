@@ -48,7 +48,7 @@ struct PlayerSettingView: View {
                 if !keyboardObserver.isKeyboardVisible {
                     if gameSettingStore.isDisablePlayerSettingNextButton {
                         Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Color("subText"))
                             .ignoresSafeArea(.keyboard)
                     }
                     
@@ -83,6 +83,7 @@ private struct StepperView: View {
                 label: {
                     Image(systemName: "minus")
                         .frame(width: 25, height: 17)
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             .disabled(gameSettingStore.isDisabledMinusButton)
@@ -90,6 +91,7 @@ private struct StepperView: View {
             
             Text("\(gameSettingStore.gameGameSetting.playerCount)")
                 .font(.title)
+                .foregroundStyle(Color("black1"))
                 .padding([.leading, .trailing])
             
             Button(
@@ -99,6 +101,7 @@ private struct StepperView: View {
                 label: {
                     Image(systemName: "plus")
                         .frame(width: 25, height: 17)
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             .disabled(gameSettingStore.isDisabledPlusButton)
@@ -161,6 +164,7 @@ private struct NameField: View {
                     gameSettingInteractor.setPlayerName(index: index, name: newName)
                 }
             )
+            .foregroundStyle(Color("black1"))
         }
     }
 }
@@ -184,8 +188,10 @@ private struct NextButtonView: View {
             Text("다음")
             .frame(maxWidth: 250)
             .frame(height: 40)
+            .foregroundStyle(Color("button_white"))
         }
         .buttonStyle(.borderedProminent)
+        .foregroundStyle(Color("blue1"))
         .disabled(gameSettingStore.isDisablePlayerSettingNextButton)
     }
 }

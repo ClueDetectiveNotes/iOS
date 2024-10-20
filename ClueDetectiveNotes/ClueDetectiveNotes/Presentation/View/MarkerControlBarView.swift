@@ -40,6 +40,7 @@ struct MarkerControlBarView: View {
                     },
                     label: {
                         Text("닫기")
+                            .foregroundStyle(Color("blue1"))
                     }
                 )
             }
@@ -71,6 +72,7 @@ struct MarkerControlBarView: View {
                     },
                     label: {
                         Image(systemName: "plus")
+                            .foregroundStyle(Color("blue1"))
                     }
                 )
                 .frame(width: 40, height: 40)
@@ -114,7 +116,7 @@ struct MainMarkerBtnsView: View {
                 label: {
                     Text(mainMarkerType.description)
                         .monospaced()
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("black1"))
                         .bold()
                 }
             )
@@ -144,7 +146,7 @@ struct SubMarkerBtnsView: View {
                 },
                 label: {
                     Text(subMarkerType)
-                        .foregroundStyle(Color(UIColor.darkGray))
+                        .foregroundStyle(Color("darkgray1"))
                 }
             )
             .frame(height: 40)

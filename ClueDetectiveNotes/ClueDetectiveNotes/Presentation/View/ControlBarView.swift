@@ -32,6 +32,7 @@ struct ControlBarView: View {
                 },
                 label: {
                     Image(systemName: "arrow.uturn.left")
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             
@@ -42,6 +43,7 @@ struct ControlBarView: View {
                 },
                 label: {
                     Image(systemName: "arrow.uturn.right")
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             
@@ -52,6 +54,7 @@ struct ControlBarView: View {
                 },
                 label: {
                     Image(systemName: "eraser")
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             
@@ -62,6 +65,7 @@ struct ControlBarView: View {
                 },
                 label: {
                     Image(systemName: "square.dashed")
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             
@@ -74,6 +78,7 @@ struct ControlBarView: View {
                 },
                 label: {
                     Image(systemName: sheetStore.isVisibleScreen ? "eye" : "eye.slash")
+                        .foregroundStyle(Color("blue1"))
                 }
             )
             
