@@ -253,12 +253,12 @@ final class SQLiteHelper {
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
 //                var row = [String: String]()
-//                
+//
 //                row["TYPE"] = String(cString: sqlite3_column_text(stmt, 0))
 //                row["VALUE"] = String(cString: sqlite3_column_text(stmt, 1))
-//                
+//
 //                result.append(row)
-//                
+//
 //                print("read value type : \(String(describing: row["TYPE"])) value : \(String(describing: row["VALUE"]))")
             }
         } else {
@@ -313,3 +313,4 @@ final class SQLiteHelper {
         sqlite3_finalize(statement) // 메모리에서 sqlite3 할당 해제
     }
 }
+

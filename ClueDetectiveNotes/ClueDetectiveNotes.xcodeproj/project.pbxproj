@@ -28,6 +28,7 @@
 		AC0360C12C21CB9800455C4A /* PlayerDetailSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */; };
 		AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04831D2BF275A500B99608 /* PresentationSheet.swift */; };
 		AC0695BB2CC495CC004B915E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0695BA2CC495CC004B915E /* Color.xcassets */; };
+		AC0695C12CC53460004B915E /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0695C02CC53460004B915E /* SQLiteHelper.swift */; };
 		AC0EAC002C44E95000521147 /* PublicCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EABFF2C44E95000521147 /* PublicCardsSettingView.swift */; };
 		AC0EAC022C44EFB500521147 /* CreatePublicCardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EAC012C44EFB500521147 /* CreatePublicCardsUseCase.swift */; };
 		AC3170512C018C53009E947B /* SettingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170502C018C53009E947B /* SettingError.swift */; };
@@ -133,6 +134,7 @@
 		AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailSettingView.swift; sourceTree = "<group>"; };
 		AC04831D2BF275A500B99608 /* PresentationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSheet.swift; sourceTree = "<group>"; };
 		AC0695BA2CC495CC004B915E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		AC0695C02CC53460004B915E /* SQLiteHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
 		AC0EABFF2C44E95000521147 /* PublicCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCardsSettingView.swift; sourceTree = "<group>"; };
 		AC0EAC012C44EFB500521147 /* CreatePublicCardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePublicCardsUseCase.swift; sourceTree = "<group>"; };
 		AC3170502C018C53009E947B /* SettingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingError.swift; sourceTree = "<group>"; };
@@ -394,6 +396,22 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		AC0695BC2CC5339F004B915E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				AC0695BD2CC533C8004B915E /* DB */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		AC0695BD2CC533C8004B915E /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				AC0695C02CC53460004B915E /* SQLiteHelper.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		AC31704F2C018C44009E947B /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +563,7 @@
 		ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
 			isa = PBXGroup;
 			children = (
+				AC0695BC2CC5339F004B915E /* Persistence */,
 				4442933F2BCAAC54008CAA2C /* Presentation */,
 				44DB76362BE9FCD40067A814 /* Application */,
 				44DB763A2BE9FD210067A814 /* Domain */,
@@ -751,6 +770,7 @@
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				AC427B162C99D2460071AB4D /* MainMarkerType.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
+				AC0695C12CC53460004B915E /* SQLiteHelper.swift in Sources */,
 				ACF3694C2C259C33000D32A1 /* CreatePlayersUseCase.swift in Sources */,
 				AC427B372CAD872E0071AB4D /* SelectPublicCardUseCase.swift in Sources */,
 				ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */,
