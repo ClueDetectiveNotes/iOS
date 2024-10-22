@@ -10,12 +10,12 @@ import SwiftUI
 struct PlayerSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @StateObject private var keyboardObserver = KeyboardObserver()
-    private let gameSettingIntnet: GameSettingIntent
+    private let gameSettingIntent: GameSettingIntent
     
     init(
         gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingIntnet = gameSettingIntent
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -33,14 +33,14 @@ struct PlayerSettingView: View {
                     .frame(height: 50)
                 
                 StepperView(
-                    gameSettingIntent: gameSettingIntnet
+                    gameSettingIntent: gameSettingIntent
                 )
                 
                 Spacer()
                     .frame(height: 50)
                 
                 PlayerNameFieldListView(
-                    gameSettingIntent: gameSettingIntnet
+                    gameSettingIntent: gameSettingIntent
                 )
                 
                 Spacer()
@@ -53,7 +53,7 @@ struct PlayerSettingView: View {
                     }
                     
                     NextButtonView(
-                        gameSettingIntent: gameSettingIntnet
+                        gameSettingIntent: gameSettingIntent
                     )
                     
                     Spacer()

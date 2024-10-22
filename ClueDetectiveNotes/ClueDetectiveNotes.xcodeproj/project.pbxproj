@@ -63,6 +63,7 @@
 		AC427B302CACD60A0071AB4D /* SelectUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC427B2F2CACD60A0071AB4D /* SelectUserUseCase.swift */; };
 		AC427B332CAD70F30071AB4D /* SelectMyCardUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC427B322CAD70F30071AB4D /* SelectMyCardUseCase.swift */; };
 		AC427B372CAD872E0071AB4D /* SelectPublicCardUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC427B362CAD872E0071AB4D /* SelectPublicCardUseCase.swift */; };
+		AC44C5312CC7DAF500EF6C36 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44C5302CC7DAF500EF6C36 /* OptionView.swift */; };
 		AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55A33F2BE9F2AD00AC0774 /* CellError.swift */; };
 		AC55CA7B2C204CA90045E78F /* RedoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7A2C204CA90045E78F /* RedoUseCase.swift */; };
 		AC55CA7D2C2058980045E78F /* UndoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55CA7C2C2058980045E78F /* UndoUseCase.swift */; };
@@ -165,6 +166,7 @@
 		AC427B2F2CACD60A0071AB4D /* SelectUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserUseCase.swift; sourceTree = "<group>"; };
 		AC427B322CAD70F30071AB4D /* SelectMyCardUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyCardUseCase.swift; sourceTree = "<group>"; };
 		AC427B362CAD872E0071AB4D /* SelectPublicCardUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPublicCardUseCase.swift; sourceTree = "<group>"; };
+		AC44C5302CC7DAF500EF6C36 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		AC55A33F2BE9F2AD00AC0774 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		AC55CA7A2C204CA90045E78F /* RedoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedoUseCase.swift; sourceTree = "<group>"; };
 		AC55CA7C2C2058980045E78F /* UndoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoUseCase.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				AC55CA802C205FE50045E78F /* ControlBarView.swift */,
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
 				AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */,
+				AC44C5302CC7DAF500EF6C36 /* OptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				AC427B122C99C32E0071AB4D /* CardHolders.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				AC427B162C99D2460071AB4D /* MainMarkerType.swift in Sources */,
+				AC44C5312CC7DAF500EF6C36 /* OptionView.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
 				AC0695C12CC53460004B915E /* SQLiteHelper.swift in Sources */,
 				AC427B372CAD872E0071AB4D /* SelectPublicCardUseCase.swift in Sources */,

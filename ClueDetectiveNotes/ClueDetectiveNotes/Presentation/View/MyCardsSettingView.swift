@@ -19,7 +19,7 @@ struct MyCardsSettingView: View {
     
     var body: some View {
         NavigationStack {
-            VStack() {
+            VStack {
                 TitleView(
                     title: "개인 카드 설정",
                     description: "개인 카드를 설정해주세요."
@@ -70,7 +70,7 @@ private struct SelectedCardsView: View {
     }
     
     var body: some View {
-        HStack() {
+        HStack {
             ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
                 VStack(spacing: 2) {
                     CardImage(name: card.type != .none ? card.rawName : "empty(white)")
@@ -101,7 +101,7 @@ private struct ScrollSelectedCardsView: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack() {
+            HStack {
                 ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
                     VStack(spacing: 2) {
                         CardImage(name: card.type != .none ? card.rawName : "empty(white)")
@@ -134,7 +134,7 @@ private struct ClueCardSetView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack() {
+            VStack {
                 CardTypeHScrollView(
                     gameSettingIntent: gameSettingIntent,
                     cardType: .suspect

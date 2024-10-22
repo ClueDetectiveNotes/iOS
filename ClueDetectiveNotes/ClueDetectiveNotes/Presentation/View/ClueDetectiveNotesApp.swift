@@ -14,11 +14,12 @@ struct ClueDetectiveNotesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PlayerSettingView(
-                gameSettingIntent: GameSettingIntent(gameSettingStore: gameSettingStore)
-            )
-            .environmentObject(geometryStore)
-            .environmentObject(gameSettingStore)
+            OptionView()
+//            PlayerSettingView(
+//                gameSettingIntent: GameSettingIntent(gameSettingStore: gameSettingStore)
+//            )
+//            .environmentObject(geometryStore)
+//            .environmentObject(gameSettingStore)
         }
     }
 }
