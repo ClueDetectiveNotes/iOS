@@ -10,15 +10,21 @@ import SwiftUI
 struct ControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
+    @ObservedObject private var controlBarStore: ControlBarStore
     private let controlBarIntent: ControlBarIntent
     private let gameSettingIntent: GameSettingIntent
     
     init(
         sheetStore: SheetStore,
+        controlBarStore: ControlBarStore,
         gameSettingIntent: GameSettingIntent
     ) {
         self.sheetStore = sheetStore
-        self.controlBarIntent = ControlBarIntent(sheetStore: sheetStore)
+        self.controlBarStore = controlBarStore
+        self.controlBarIntent = ControlBarIntent(
+            sheetStore: sheetStore,
+            controlBarStore: controlBarStore
+        )
         self.gameSettingIntent = gameSettingIntent
     }
     
@@ -83,7 +89,10 @@ struct ControlBarView: View {
             )
             
             // 더보기
-            MoreMenuView(gameSettingIntent: gameSettingIntent)
+            MoreMenuView(
+                gameSettingIntent: gameSettingIntent,
+                controlBarIntent: controlBarIntent
+            )
             
         }
         .padding(10)
@@ -96,13 +105,17 @@ struct ControlBarView: View {
             x: 0,
             y: sheetStore.isDisplayMarkerControlBar ? 0 : -7
         )
+        .sheet(isPresented: $controlBarStore.showOptionView) {
+            OptionView()
+        }
     }
 }
 
 #Preview {
     ControlBarView(
         sheetStore: SheetStore(), 
+        controlBarStore: ControlBarStore(),
         gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
-        .environmentObject(GeometryStore())
+    .environmentObject(GeometryStore())
 }

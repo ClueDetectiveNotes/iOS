@@ -87,7 +87,7 @@ private struct ScreenModePickerView: View {
             
             Picker("Screen Mode", selection: $selectedScreenMode) {
                 ForEach(ScreenMode.allCases) { screenMode in
-                    Text(screenMode.rawValue)
+                    Text(screenMode.rawValue.capitalized) // 영어 첫문자 대문자로 만들어줌
                 }
             }
         }

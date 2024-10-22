@@ -43,6 +43,7 @@ struct GameView: View {
             
             ControlBarView(
                 sheetStore: sheetStore,
+                controlBarStore: controlBarStore,
                 gameSettingIntent: gameSettingIntent
             )
         }

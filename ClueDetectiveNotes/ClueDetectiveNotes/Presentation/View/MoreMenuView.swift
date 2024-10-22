@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct MoreMenuView: View {
-    let gameSettingIntent: GameSettingIntent
+    private let gameSettingIntent: GameSettingIntent
+    private let controlBarIntent: ControlBarIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        controlBarIntent: ControlBarIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.controlBarIntent = controlBarIntent
     }
     
     var body: some View {
@@ -30,7 +33,7 @@ struct MoreMenuView: View {
             
             Button(
                 action: {
-                    //
+                    controlBarIntent.clickOption()
                 },
                 label: {
                     Text("옵션")
@@ -72,5 +75,11 @@ struct MoreMenuView: View {
 }
 
 #Preview {
-    MoreMenuView(gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()))
+    MoreMenuView(
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
+        controlBarIntent: ControlBarIntent(
+            sheetStore: SheetStore(),
+            controlBarStore: ControlBarStore()
+        )
+    )
 }

@@ -7,6 +7,7 @@
 
 struct ControlBarIntent {
     private var sheetStore: SheetStore
+    private var controlBarStore: ControlBarStore
     private let undoUseCase: UndoUseCase
     private let redoUseCase: RedoUseCase
     private let clearUseCase: AnyUseCase<Int>
@@ -14,12 +15,14 @@ struct ControlBarIntent {
     
     init(
         sheetStore: SheetStore,
+        controlBarStore: ControlBarStore,
         undoUseCase: UndoUseCase = UndoUseCase(),
         redoUseCase: RedoUseCase = RedoUseCase(),
         clearUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(ClearMarkerSelectedCellUseCase())),
         cancelUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase()))
     ) {
         self.sheetStore = sheetStore
+        self.controlBarStore = controlBarStore
         self.undoUseCase = undoUseCase
         self.redoUseCase = redoUseCase
         self.clearUseCase = clearUseCase
@@ -58,6 +61,10 @@ struct ControlBarIntent {
     
     func clickVisibleButton() {
         sheetStore.isVisibleScreen.toggle()
+    }
+    
+    func clickOption() {
+        controlBarStore.showOptionView = true
     }
     
     func clickCancelButton() {
