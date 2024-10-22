@@ -1,5 +1,5 @@
 //
-//  GeometryInteractor.swift
+//  GeometryIntent.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan on 7/5/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeometryInteractor {
+struct GeometryIntent {
     private var geometryStore: GeometryStore
     
     init(geometryStore: GeometryStore) {

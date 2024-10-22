@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PublicCardsSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -26,21 +26,21 @@ struct PublicCardsSettingView: View {
                 )
                 
                 SelectedCardsView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
                 
                 Spacer()
                 
                 if gameSettingStore.isDisablePublicCardsSettingNextButton {
                     ClueCardSetView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntent
                     )
                 } else {
                     Spacer()
                         .frame(maxHeight: .infinity)
                     
                     NextButtonView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntent
                     )
                 }
                 
@@ -48,19 +48,19 @@ struct PublicCardsSettingView: View {
             }
         }
         .onAppear {
-            gameSettingInteractor.initPublicCards()
+            gameSettingIntent.initPublicCards()
         }
     }
 }
 
 private struct SelectedCardsView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -70,7 +70,7 @@ private struct SelectedCardsView: View {
                     CardImage(name: card.type != .none ? card.rawName : "empty(white)")
                         .border(Color("black1"))
                         .onTapGesture {
-                            gameSettingInteractor.selectPublicCard(card)
+                            gameSettingIntent.selectPublicCard(card)
                         }
                     
                     Text(card.name)
@@ -85,29 +85,29 @@ private struct SelectedCardsView: View {
 }
 
 private struct ClueCardSetView: View {
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack() {
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .suspect
                 )
                 
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .weapon
                 )
                 
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .room
                 )
             }
@@ -118,14 +118,14 @@ private struct ClueCardSetView: View {
 
 private struct CardTypeHScrollView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     let cardType: CardType
 
     init(
-        gameSettingInteractor: GameSettingInteractor,
+        gameSettingIntent: GameSettingIntent,
         cardType: CardType
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
         self.cardType = cardType
     }
     
@@ -148,7 +148,7 @@ private struct CardTypeHScrollView: View {
                                     : Color.clear
                                 }
                                 .onTapGesture {
-                                    gameSettingInteractor.selectPublicCard(card)
+                                    gameSettingIntent.selectPublicCard(card)
                                 }
                             
                             Text(card.name)
@@ -178,18 +178,18 @@ private struct CardImage: View {
 }
 
 private struct NextButtonView: View {
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         NavigationLink {
             MyCardsSettingView(
-                gameSettingInteractor: gameSettingInteractor
+                gameSettingIntent: gameSettingIntent
             )
         } label: {
             Text("다음")
@@ -204,7 +204,7 @@ private struct NextButtonView: View {
 
 #Preview {
     PublicCardsSettingView(
-        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
     .environmentObject(GameSettingStore())
 }

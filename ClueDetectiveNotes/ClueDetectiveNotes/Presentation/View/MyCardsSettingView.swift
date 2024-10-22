@@ -9,12 +9,12 @@ import SwiftUI
 
 struct MyCardsSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -27,11 +27,11 @@ struct MyCardsSettingView: View {
                 
                 if gameSettingStore.gameGameSetting.myCardsCount > 4 {
                     ScrollSelectedCardsView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntenet: gameSettingIntent
                     )
                 } else {
                     SelectedCardsView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntent
                     )
                 }
                 
@@ -39,14 +39,14 @@ struct MyCardsSettingView: View {
                 
                 if gameSettingStore.isDisableMyCardsSettingNextButton {
                     ClueCardSetView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntent
                     )
                 } else {
                     Spacer()
                         .frame(maxHeight: .infinity)
                     
                     NextButtonView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntent
                     )
                 }
                 
@@ -54,19 +54,19 @@ struct MyCardsSettingView: View {
             }
         }
         .onAppear {
-            gameSettingInteractor.initMyCards()
+            gameSettingIntent.initMyCards()
         }
     }
 }
 
 private struct SelectedCardsView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -76,7 +76,7 @@ private struct SelectedCardsView: View {
                     CardImage(name: card.type != .none ? card.rawName : "empty(white)")
                         .border(Color.black)
                         .onTapGesture {
-                            gameSettingInteractor.selectMyCard(card)
+                            gameSettingIntent.selectMyCard(card)
                         }
                     
                     Text(card.name)
@@ -91,12 +91,12 @@ private struct SelectedCardsView: View {
 
 private struct ScrollSelectedCardsView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntenet: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntenet
     }
     
     var body: some View {
@@ -107,7 +107,7 @@ private struct ScrollSelectedCardsView: View {
                         CardImage(name: card.type != .none ? card.rawName : "empty(white)")
                             .border(Color("black1"))
                             .onTapGesture {
-                                gameSettingInteractor.selectMyCard(card)
+                                gameSettingIntent.selectMyCard(card)
                             }
                         
                         Text(card.name)
@@ -124,29 +124,29 @@ private struct ScrollSelectedCardsView: View {
 }
 
 private struct ClueCardSetView: View {
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack() {
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .suspect
                 )
                 
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .weapon
                 )
                 
                 CardTypeHScrollView(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     cardType: .room
                 )
             }
@@ -157,14 +157,14 @@ private struct ClueCardSetView: View {
 
 private struct CardTypeHScrollView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     let cardType: CardType
 
     init(
-        gameSettingInteractor: GameSettingInteractor,
+        gameSettingIntent: GameSettingIntent,
         cardType: CardType
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
         self.cardType = cardType
     }
     
@@ -189,7 +189,7 @@ private struct CardTypeHScrollView: View {
                                     : Color.clear
                                 }
                                 .onTapGesture {
-                                    gameSettingInteractor.selectMyCard(card)
+                                    gameSettingIntent.selectMyCard(card)
                                 }
                                 .disabled(gameSettingStore.gameGameSetting.selectedPublicCards.contains(card))
                             
@@ -221,19 +221,19 @@ private struct CardImage: View {
 
 private struct NextButtonView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         NavigationLink {
             GameView(
-                gameSettingInteractor: gameSettingInteractor,
-                geometryInteractor: GeometryInteractor(geometryStore: geometryStore)
+                gameSettingIntent: gameSettingIntent,
+                geometryIntent: GeometryIntent(geometryStore: geometryStore)
             )
             .navigationBarBackButtonHidden()
         } label: {
@@ -249,7 +249,7 @@ private struct NextButtonView: View {
 
 #Preview {
     MyCardsSettingView(
-        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
     .environmentObject(GeometryStore())
     .environmentObject(GameSettingStore())

@@ -1,11 +1,11 @@
 //
-//  SheetInteractor.swift
+//  SheetIntent.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan & Mary on 5/17/24.
 //
 
-struct SheetInteractor {
+struct SheetIntent {
     private var sheetStore: SheetStore
     private var initSheetUseCase: InitSheetUseCase
     private let clickCellUseCase: AnyUseCase<PresentationCell>
@@ -81,7 +81,7 @@ struct SheetInteractor {
 }
 
 // MARK: - Private
-extension SheetInteractor {
+extension SheetIntent {
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         

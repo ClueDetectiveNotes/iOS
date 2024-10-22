@@ -10,16 +10,16 @@ import SwiftUI
 struct ControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
-    private let controlBarInteractor: ControlBarInteractor
-    private let gameSettingInteractor: GameSettingInteractor
+    private let controlBarIntent: ControlBarIntent
+    private let gameSettingIntent: GameSettingIntent
     
     init(
         sheetStore: SheetStore,
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
         self.sheetStore = sheetStore
-        self.controlBarInteractor = ControlBarInteractor(sheetStore: sheetStore)
-        self.gameSettingInteractor = gameSettingInteractor
+        self.controlBarIntent = ControlBarIntent(sheetStore: sheetStore)
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct ControlBarView: View {
             // Undo
             Button(
                 action: {
-                    controlBarInteractor.clickUndo()
+                    controlBarIntent.clickUndo()
                 },
                 label: {
                     Image(systemName: "arrow.uturn.left")
@@ -39,7 +39,7 @@ struct ControlBarView: View {
             // Redo
             Button(
                 action: {
-                    controlBarInteractor.clickRedo()
+                    controlBarIntent.clickRedo()
                 },
                 label: {
                     Image(systemName: "arrow.uturn.right")
@@ -50,7 +50,7 @@ struct ControlBarView: View {
             // Clear
             Button(
                 action: {
-                    controlBarInteractor.clickClearButton()
+                    controlBarIntent.clickClearButton()
                 },
                 label: {
                     Image(systemName: "eraser")
@@ -61,7 +61,7 @@ struct ControlBarView: View {
             // Cancel
             Button(
                 action: {
-                    controlBarInteractor.clickCancelButton()
+                    controlBarIntent.clickCancelButton()
                 },
                 label: {
                     Image(systemName: "square.dashed")
@@ -74,7 +74,7 @@ struct ControlBarView: View {
             Button(
                 action: {
                     // 화면 가리기
-                    controlBarInteractor.clickVisibleButton()
+                    controlBarIntent.clickVisibleButton()
                 },
                 label: {
                     Image(systemName: sheetStore.isVisibleScreen ? "eye" : "eye.slash")
@@ -83,7 +83,7 @@ struct ControlBarView: View {
             )
             
             // 더보기
-            MoreMenuView(gameSettingInteractor: gameSettingInteractor)
+            MoreMenuView(gameSettingIntent: gameSettingIntent)
             
         }
         .padding(10)
@@ -102,7 +102,7 @@ struct ControlBarView: View {
 #Preview {
     ControlBarView(
         sheetStore: SheetStore(), 
-        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
         .environmentObject(GeometryStore())
 }

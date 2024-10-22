@@ -20,7 +20,6 @@ final class SnapshotManager {
         snapshotRedoStack.removeAll()
         snapshotUndoStack.append(tempSnapshot)
         tempSnapshot = Snapshot()
-        print("찰칵")
     }
     
     func popOffUndoSnapshot() throws -> Snapshot {

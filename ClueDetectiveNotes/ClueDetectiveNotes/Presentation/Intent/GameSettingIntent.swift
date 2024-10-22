@@ -1,5 +1,5 @@
 //
-//  GameSettingInteractor.swift
+//  GameSettingIntent.swift
 //  ClueDetectiveNotes
 //
 //  Created by Yena on 9/18/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameSettingInteractor {
+struct GameSettingIntent {
     private var gameSettingStore: GameSettingStore
     private let removeLastPlayerUseCase: RemoveLastPlayerUseCase
     private let addPlayerUseCase: AddPlayerUseCase
@@ -222,7 +222,7 @@ struct GameSettingInteractor {
 }
 
 // MARK: - Private
-extension GameSettingInteractor {
+extension GameSettingIntent {
     private func updateGameSettingStore(presentationGameSetting: PresentationGameSetting) {
         gameSettingStore.overwriteGameSetting(presentationGameSetting)
     }

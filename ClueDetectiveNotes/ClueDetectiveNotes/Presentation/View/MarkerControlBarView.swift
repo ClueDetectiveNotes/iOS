@@ -12,7 +12,7 @@ struct MarkerControlBarView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @ObservedObject private var sheetStore: SheetStore
     @ObservedObject private var controlBarStore: ControlBarStore
-    private let markerControlBarInteractor: MarkerControlBarInteractor
+    private let markerControlBarIntent: MarkerControlBarIntent
     
     @State private var newSubMarkerName: String = ""
     
@@ -22,7 +22,7 @@ struct MarkerControlBarView: View {
     ) {
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
-        self.markerControlBarInteractor = MarkerControlBarInteractor(
+        self.markerControlBarIntent = MarkerControlBarIntent(
             sheetStore: sheetStore,
             controlBarStore: controlBarStore
         )
@@ -36,7 +36,7 @@ struct MarkerControlBarView: View {
                 // 창 닫기
                 Button(
                     action: {
-                        markerControlBarInteractor.clickCloseButton()
+                        markerControlBarIntent.clickCloseButton()
                     },
                     label: {
                         Text("닫기")
@@ -47,7 +47,7 @@ struct MarkerControlBarView: View {
             
             HStack {
                 MainMarkerBtnsView(
-                    markerControlBarInteractor: markerControlBarInteractor
+                    markerControlBarIntent: markerControlBarIntent
                 )
                 
                 Spacer()
@@ -58,7 +58,7 @@ struct MarkerControlBarView: View {
                     HStack {
                         SubMarkerBtnsView(
                             controlBarStore: controlBarStore,
-                            markerControlBarInteractor: markerControlBarInteractor
+                            markerControlBarIntent: markerControlBarIntent
                         )
                     }
                 }
@@ -68,7 +68,7 @@ struct MarkerControlBarView: View {
                 
                 Button(
                     action: {
-                        markerControlBarInteractor.clickPlusButton()
+                        markerControlBarIntent.clickPlusButton()
                     },
                     label: {
                         Image(systemName: "plus")
@@ -89,7 +89,7 @@ struct MarkerControlBarView: View {
         ) {
             TextField("마커 이름", text: $newSubMarkerName)
             Button("확인") {
-                markerControlBarInteractor.addSubMarker(SubMarker(notation: newSubMarkerName))
+                markerControlBarIntent.addSubMarker(SubMarker(notation: newSubMarkerName))
                 newSubMarkerName = ""
             }
             Button("취소", role: .cancel) { }
@@ -100,18 +100,18 @@ struct MarkerControlBarView: View {
 }
 
 struct MainMarkerBtnsView: View {
-    private let markerControlBarInteractor: MarkerControlBarInteractor
+    private let markerControlBarIntent: MarkerControlBarIntent
     private let mainMarkerTypes = MainMarker.markerType.allCases
     
-    init(markerControlBarInteractor: MarkerControlBarInteractor) {
-        self.markerControlBarInteractor = markerControlBarInteractor
+    init(markerControlBarIntent: MarkerControlBarIntent) {
+        self.markerControlBarIntent = markerControlBarIntent
     }
 
     var body: some View {
         ForEach(mainMarkerTypes, id: \.self) { mainMarkerType in
             Button(
                 action: {
-                    markerControlBarInteractor.chooseMainMarker(MainMarker(notation: mainMarkerType))
+                    markerControlBarIntent.chooseMainMarker(MainMarker(notation: mainMarkerType))
                 },
                 label: {
                     Text(mainMarkerType.description)
@@ -128,21 +128,21 @@ struct MainMarkerBtnsView: View {
 
 struct SubMarkerBtnsView: View {
     @ObservedObject private var controlBarStore: ControlBarStore
-    private let markerControlBarInteractor: MarkerControlBarInteractor
+    private let markerControlBarIntent: MarkerControlBarIntent
     
     init(
         controlBarStore: ControlBarStore,
-        markerControlBarInteractor: MarkerControlBarInteractor
+        markerControlBarIntent: MarkerControlBarIntent
     ) {
         self.controlBarStore = controlBarStore
-        self.markerControlBarInteractor = markerControlBarInteractor
+        self.markerControlBarIntent = markerControlBarIntent
     }
 
     var body: some View {
         ForEach(controlBarStore.controlBar.subMarkerTypes, id: \.self) { subMarkerType in
             Button(
                 action: {
-                    markerControlBarInteractor.chooseSubMarker(SubMarker(notation: subMarkerType))
+                    markerControlBarIntent.chooseSubMarker(SubMarker(notation: subMarkerType))
                 },
                 label: {
                     Text(subMarkerType)

@@ -1,11 +1,11 @@
 //
-//  MarkerControlBarInteractor.swift
+//  MarkerControlBarIntent.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan & Mary on 5/17/24.
 //
 
-struct MarkerControlBarInteractor {
+struct MarkerControlBarIntent {
     private var sheetStore: SheetStore
     private var controlBarStore: ControlBarStore
     private let chooseMainMarkerUseCase: AnyUseCase<MainMarker>
@@ -75,7 +75,7 @@ struct MarkerControlBarInteractor {
 }
 
 // MARK: - Private
-extension MarkerControlBarInteractor {
+extension MarkerControlBarIntent {
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         

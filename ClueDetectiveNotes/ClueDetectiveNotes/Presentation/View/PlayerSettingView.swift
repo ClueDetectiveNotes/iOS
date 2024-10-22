@@ -10,12 +10,12 @@ import SwiftUI
 struct PlayerSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @StateObject private var keyboardObserver = KeyboardObserver()
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntnet: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntnet = gameSettingIntent
     }
     
     var body: some View {
@@ -33,14 +33,14 @@ struct PlayerSettingView: View {
                     .frame(height: 50)
                 
                 StepperView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntnet
                 )
                 
                 Spacer()
                     .frame(height: 50)
                 
                 PlayerNameFieldListView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntnet
                 )
                 
                 Spacer()
@@ -53,7 +53,7 @@ struct PlayerSettingView: View {
                     }
                     
                     NextButtonView(
-                        gameSettingInteractor: gameSettingInteractor
+                        gameSettingIntent: gameSettingIntnet
                     )
                     
                     Spacer()
@@ -66,19 +66,19 @@ struct PlayerSettingView: View {
 
 private struct StepperView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         HStack {
             Button(
                 action: {
-                    gameSettingInteractor.clickMinusButton()
+                    gameSettingIntent.clickMinusButton()
                 },
                 label: {
                     Image(systemName: "minus")
@@ -96,7 +96,7 @@ private struct StepperView: View {
             
             Button(
                 action: {
-                    gameSettingInteractor.clickPlusButton()
+                    gameSettingIntent.clickPlusButton()
                 },
                 label: {
                     Image(systemName: "plus")
@@ -112,19 +112,19 @@ private struct StepperView: View {
 
 private struct PlayerNameFieldListView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         List {
             ForEach(gameSettingStore.gameGameSetting.playerNames.indices, id: \.self) { index in
                 NameField(
-                    gameSettingInteractor: gameSettingInteractor,
+                    gameSettingIntent: gameSettingIntent,
                     index: index
                 )
             }
@@ -137,14 +137,14 @@ private struct PlayerNameFieldListView: View {
 private struct NameField: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @State private var tempName = ""
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     private let index: Int
     
     init(
-        gameSettingInteractor: GameSettingInteractor,
+        gameSettingIntent: GameSettingIntent,
         index: Int
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
         self.index = index
     }
     
@@ -161,7 +161,7 @@ private struct NameField: View {
                 ? gameSettingStore.gameGameSetting.playerNames[index]
                 : "" ,
                 perform: { newName in
-                    gameSettingInteractor.setPlayerName(index: index, name: newName)
+                    gameSettingIntent.setPlayerName(index: index, name: newName)
                 }
             )
             .foregroundStyle(Color("black1"))
@@ -171,18 +171,18 @@ private struct NameField: View {
 
 private struct NextButtonView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         NavigationLink {
             PlayerDetailSettingView(
-                gameSettingInteractor: gameSettingInteractor
+                gameSettingIntent: gameSettingIntent
             )
         } label: {
             Text("다음")
@@ -198,7 +198,7 @@ private struct NextButtonView: View {
 
 #Preview {
     PlayerSettingView(
-        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
     .environmentObject(GameSettingStore())
 }

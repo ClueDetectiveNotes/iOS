@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MoreMenuView: View {
-    let gameSettingInteractor: GameSettingInteractor
+    let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -39,14 +39,14 @@ struct MoreMenuView: View {
             
             NavigationLink {
                 PlayerSettingView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
                 .navigationBarBackButtonHidden()
             } label: {
                 Text("다시하기")
             }
             .simultaneousGesture(TapGesture().onEnded {
-                gameSettingInteractor.initGame()
+                gameSettingIntent.initGame()
             })
             
             Button(
@@ -72,5 +72,5 @@ struct MoreMenuView: View {
 }
 
 #Preview {
-    MoreMenuView(gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore()))
+    MoreMenuView(gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()))
 }

@@ -11,24 +11,24 @@ struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
     @StateObject private var controlBarStore = ControlBarStore()
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
-    private let geometryInteractor: GeometryInteractor
+    private let gameSettingIntent: GameSettingIntent
+    private let geometryIntent: GeometryIntent
     
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     init(
-        gameSettingInteractor: GameSettingInteractor,
-        geometryInteractor: GeometryInteractor
+        gameSettingIntent: GameSettingIntent,
+        geometryIntent: GeometryIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
-        self.geometryInteractor = geometryInteractor
+        self.gameSettingIntent = gameSettingIntent
+        self.geometryIntent = geometryIntent
     }
     
     var body: some View {
         VStack(spacing: 0) {
             SheetView(
                 sheetStore: sheetStore,
-                geometryInteractor: geometryInteractor
+                geometryIntent: geometryIntent
             )
             .overlay {
                 sheetStore.isVisibleScreen ? Color.clear : Color.gray.opacity(0.99)
@@ -43,14 +43,14 @@ struct GameView: View {
             
             ControlBarView(
                 sheetStore: sheetStore,
-                gameSettingInteractor: gameSettingInteractor
+                gameSettingIntent: gameSettingIntent
             )
         }
         .overlay {
             GeometryReader { proxy in
                 Color.clear // safeArea 포함한 크기
                     .onAppear {
-                        geometryInteractor.setOriginSize(
+                        geometryIntent.setOriginSize(
                             screenSize: proxy.size,
                             safeAreaHeight: (safeAreaInsets.top, safeAreaInsets.bottom)
                         )
@@ -63,16 +63,16 @@ struct GameView: View {
 struct SheetView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
-    private let geometryInteractor: GeometryInteractor
-    private let sheetInteractor: SheetInteractor
+    private let geometryIntent: GeometryIntent
+    private let sheetIntent: SheetIntent
     
     init(
         sheetStore: SheetStore,
-        geometryInteractor: GeometryInteractor
+        geometryIntent: GeometryIntent
     ) {
         self.sheetStore = sheetStore
-        self.geometryInteractor = geometryInteractor
-        self.sheetInteractor = SheetInteractor(sheetStore: sheetStore)
+        self.geometryIntent = geometryIntent
+        self.sheetIntent = SheetIntent(sheetStore: sheetStore)
     }
     
     var body: some View {
@@ -82,7 +82,7 @@ struct SheetView: View {
             
             PlayerRowView(
                 sheetStore: sheetStore,
-                sheetInteractor: sheetInteractor
+                sheetIntent: sheetIntent
             )
             .clipped()
             
@@ -91,28 +91,28 @@ struct SheetView: View {
                     VStack(spacing: 2) {
                         CardTypeView(
                             sheetStore: sheetStore, 
-                            geometryInteractor: geometryInteractor,
-                            sheetInterator: sheetInteractor,
+                            geometryIntent: geometryIntent,
+                            sheetIntent: sheetIntent,
                             cardType: .suspect
                         )
                         
                         CardTypeView(
                             sheetStore: sheetStore,
-                            geometryInteractor: geometryInteractor,
-                            sheetInterator: sheetInteractor,
+                            geometryIntent: geometryIntent,
+                            sheetIntent: sheetIntent,
                             cardType: .weapon
                         )
                         
                         CardTypeView(
                             sheetStore: sheetStore,
-                            geometryInteractor: geometryInteractor,
-                            sheetInterator: sheetInteractor,
+                            geometryIntent: geometryIntent,
+                            sheetIntent: sheetIntent,
                             cardType: .room
                         )
                     }
                 }
                 .onChange(of: geometryStore.selectedRowName) { rowName in
-                    if geometryInteractor.isClickCoveredByControlBars() {
+                    if geometryIntent.isClickCoveredByControlBars() {
                         proxy.scrollTo(rowName)
                     }
                 }
@@ -121,7 +121,7 @@ struct SheetView: View {
         .frame(maxWidth: .infinity)
         .background(Color("blue1"))
         .onAppear {
-            sheetInteractor.initSheet()
+            sheetIntent.initSheet()
         }
     }
 }
@@ -129,14 +129,14 @@ struct SheetView: View {
 private struct PlayerRowView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
-    private let sheetInteractor: SheetInteractor
+    private let sheetIntent: SheetIntent
     
     init(
         sheetStore: SheetStore,
-        sheetInteractor: SheetInteractor
+        sheetIntent: SheetIntent
     ) {
         self.sheetStore = sheetStore
-        self.sheetInteractor = sheetInteractor
+        self.sheetIntent = sheetIntent
     }
     
     var body: some View {
@@ -151,7 +151,7 @@ private struct PlayerRowView: View {
                 ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
                     Button(
                         action: {
-                            sheetInteractor.clickColName(colName)
+                            sheetIntent.clickColName(colName)
                         },
                         label: {
                             Text(colName.cardHolder.name)
@@ -174,20 +174,20 @@ private struct PlayerRowView: View {
 
 private struct CardTypeView: View {
     @ObservedObject private var sheetStore: SheetStore
-    private let geometryInteractor: GeometryInteractor
-    private let sheetInteractor: SheetInteractor
+    private let geometryIntent: GeometryIntent
+    private let sheetIntent: SheetIntent
     
     private let cardType: CardType
     
     init(
         sheetStore: SheetStore,
-        geometryInteractor: GeometryInteractor,
-        sheetInterator: SheetInteractor,
+        geometryIntent: GeometryIntent,
+        sheetIntent: SheetIntent,
         cardType: CardType
     ) {
         self.sheetStore = sheetStore
-        self.geometryInteractor = geometryInteractor
-        self.sheetInteractor = sheetInterator
+        self.geometryIntent = geometryIntent
+        self.sheetIntent = sheetIntent
         self.cardType = cardType
     }
     
@@ -201,8 +201,8 @@ private struct CardTypeView: View {
             ForEach(sheetStore.sheet.rowNames.filter({ $0.card.type == cardType }), id: \.self) { rowName in
                 CardRowView(
                     sheetStore: sheetStore,
-                    geometryInteractor: geometryInteractor,
-                    sheetInteractor: sheetInteractor,
+                    geometryIntent: geometryIntent,
+                    sheetIntent: sheetIntent,
                     rowName: rowName
                 )
             }
@@ -253,20 +253,20 @@ private struct CardRowView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @ObservedObject private var sheetStore: SheetStore
-    private let geometryInteractor: GeometryInteractor
-    private let sheetInteractor: SheetInteractor
+    private let geometryIntent: GeometryIntent
+    private let sheetIntent: SheetIntent
     
     private let rowName: RowName
     
     init(
         sheetStore: SheetStore,
-        geometryInteractor: GeometryInteractor,
-        sheetInteractor: SheetInteractor,
+        geometryIntent: GeometryIntent,
+        sheetIntent: SheetIntent,
         rowName: RowName
     ) {
         self.sheetStore = sheetStore
-        self.geometryInteractor = geometryInteractor
-        self.sheetInteractor = sheetInteractor
+        self.geometryIntent = geometryIntent
+        self.sheetIntent = sheetIntent
         self.rowName = rowName
     }
     
@@ -274,7 +274,7 @@ private struct CardRowView: View {
         HStack {
             Button(
                 action: {
-                    sheetInteractor.clickRowName(rowName)
+                    sheetIntent.clickRowName(rowName)
                 },
                 label: {
                     Text(rowName.card.name)
@@ -299,8 +299,8 @@ private struct CardRowView: View {
                 ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
                     CellView(
                         sheetStore: sheetStore,
-                        geometryInteractor: geometryInteractor,
-                        sheetInteractor: sheetInteractor,
+                        geometryIntent: geometryIntent,
+                        sheetIntent: sheetIntent,
                         cell: cell
                     )
                 }
@@ -312,20 +312,20 @@ private struct CardRowView: View {
 private struct CellView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
-    private let geometryInteractor: GeometryInteractor
-    private let sheetInteractor: SheetInteractor
+    private let geometryIntent: GeometryIntent
+    private let sheetIntent: SheetIntent
     
     private var cell: PresentationCell
     
     init(
         sheetStore: SheetStore,
-        geometryInteractor: GeometryInteractor,
-        sheetInteractor: SheetInteractor,
+        geometryIntent: GeometryIntent,
+        sheetIntent: SheetIntent,
         cell: PresentationCell
     ) {
         self.sheetStore = sheetStore
-        self.geometryInteractor = geometryInteractor
-        self.sheetInteractor = sheetInteractor
+        self.geometryIntent = geometryIntent
+        self.sheetIntent = sheetIntent
         self.cell = cell
     }
     
@@ -364,21 +364,21 @@ private struct CellView: View {
                         print("long \(proxy.frame(in: .global).origin)")
                         let currentCoordinates = proxy.frame(in: .global).origin
                         
-                        geometryInteractor.clickCell(
+                        geometryIntent.clickCell(
                             currentCoordinates: currentCoordinates,
                             currentRowName: cell.rowName
                         )
-                        sheetInteractor.longClickCell(cell)
+                        sheetIntent.longClickCell(cell)
                     }))
                     .simultaneousGesture(TapGesture().onEnded({ _ in
                         print("tap \(proxy.frame(in: .global).origin)")
                         let currentCoordinates = proxy.frame(in: .global).origin
                         
-                        geometryInteractor.clickCell(
+                        geometryIntent.clickCell(
                             currentCoordinates: currentCoordinates,
                             currentRowName: cell.rowName
                         )
-                        sheetInteractor.clickCell(cell)
+                        sheetIntent.clickCell(cell)
                     }))
             }
         )
@@ -398,8 +398,8 @@ private struct CellView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GameView(
-            gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore()),
-            geometryInteractor: GeometryInteractor(geometryStore: GeometryStore())
+            gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
+            geometryIntent: GeometryIntent(geometryStore: GeometryStore())
         )
         .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
         .environmentObject(GameSettingStore())

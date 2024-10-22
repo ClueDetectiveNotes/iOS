@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -28,11 +28,11 @@ struct PlayerDetailSettingView: View {
                     .frame(height: 50)
                 
                 PlayerNameListView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
                 
                 NextButtonView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
                 
                 Spacer()
@@ -43,12 +43,12 @@ struct PlayerDetailSettingView: View {
 
 private struct PlayerNameListView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
@@ -67,10 +67,10 @@ private struct PlayerNameListView: View {
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    gameSettingInteractor.selectUser(name: playerName)
+                    gameSettingIntent.selectUser(name: playerName)
                 }
             }.onMove { (source: IndexSet, destination: Int) in
-                gameSettingInteractor.reorderPlayer(
+                gameSettingIntent.reorderPlayer(
                     source: source,
                     destination: destination
                 )
@@ -79,29 +79,28 @@ private struct PlayerNameListView: View {
         .environment(\.editMode, .constant(.active))
         .listStyle(.inset)
         .listRowSpacing(10)
-        //.listRowSeparatorTint(<#T##color: Color?##Color?#>)
     }
 }
 
 private struct NextButtonView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    private let gameSettingInteractor: GameSettingInteractor
+    private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingInteractor: GameSettingInteractor
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingInteractor = gameSettingInteractor
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         NavigationLink {
             if gameSettingStore.gameGameSetting.publicCardsCount > 0 {
                 PublicCardsSettingView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
             } else {
                 MyCardsSettingView(
-                    gameSettingInteractor: gameSettingInteractor
+                    gameSettingIntent: gameSettingIntent
                 )
             }
         } label: {
@@ -114,14 +113,14 @@ private struct NextButtonView: View {
         .foregroundStyle(Color("blue1"))
         .disabled(gameSettingStore.isDisablePlayerDetailSettingNextButton)
         .simultaneousGesture(TapGesture().onEnded({ _ in
-            gameSettingInteractor.initGame()
+            gameSettingIntent.initGame()
         }))
     }
 }
 
 #Preview {
     PlayerDetailSettingView(
-        gameSettingInteractor: GameSettingInteractor(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
     )
     .environmentObject(GameSettingStore())
 }

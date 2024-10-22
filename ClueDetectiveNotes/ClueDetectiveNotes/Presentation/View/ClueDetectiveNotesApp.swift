@@ -15,7 +15,7 @@ struct ClueDetectiveNotesApp: App {
     var body: some Scene {
         WindowGroup {
             PlayerSettingView(
-                gameSettingInteractor: GameSettingInteractor(gameSettingStore: gameSettingStore)
+                gameSettingIntent: GameSettingIntent(gameSettingStore: gameSettingStore)
             )
             .environmentObject(geometryStore)
             .environmentObject(gameSettingStore)
