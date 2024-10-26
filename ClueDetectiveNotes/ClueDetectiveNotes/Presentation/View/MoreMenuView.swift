@@ -68,6 +68,7 @@ struct MoreMenuView: View {
                 },
                 label: {
                     Image(systemName: "ellipsis")
+                        .frame(height: 20)
                 }
             )
         }
