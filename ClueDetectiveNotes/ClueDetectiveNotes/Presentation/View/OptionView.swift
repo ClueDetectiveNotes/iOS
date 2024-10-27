@@ -2,7 +2,7 @@
 //  OptionView.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/22/24.
+//  Created by Dasan on 10/22/24.
 //
 
 import SwiftUI
@@ -102,7 +102,11 @@ private struct ScreenModePickerView: View {
             }
         }
         .padding()
-        .preferredColorScheme(screenMode == .system ? colorSchemeObserver.colorScheme : screenMode.getColorScheme())
+        .preferredColorScheme(
+            screenMode == .system
+            ? colorSchemeObserver.colorScheme
+            : screenMode.getColorScheme()
+        )
     }
 }
 
@@ -112,23 +116,6 @@ private struct DefaultSubMarkerView: View {
             SubTitleView("서브마커 기본값 설정")
         }
         .padding()
-    }
-}
-
-private struct SubTitleView: View {
-    private let subTitle: String
-    
-    init(_ subTitle: String) {
-        self.subTitle = subTitle
-    }
-    
-    var body: some View {
-        HStack {
-            Text(subTitle)
-                .font(.title3)
-            
-            Spacer()
-        }
     }
 }
 

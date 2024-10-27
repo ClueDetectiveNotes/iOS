@@ -31,7 +31,9 @@ struct GameView: View {
                 geometryIntent: geometryIntent
             )
             .overlay {
-                sheetStore.isVisibleScreen ? Color.clear : Color.gray.opacity(0.99)
+                sheetStore.isVisibleScreen 
+                ? Color.clear
+                : Color.gray.opacity(0.99)
             }
                 
             if sheetStore.isDisplayMarkerControlBar {
@@ -353,8 +355,8 @@ private struct CellView: View {
         )
         .foregroundColor(.black)
         .border(
-            sheetStore.sheet.isSelectedCell(cell) ?
-            sheetStore.sheet.mode == .multi ? Color("orange1") : Color("green1")
+            sheetStore.sheet.isSelectedCell(cell) 
+            ? sheetStore.sheet.mode == .multi ? Color("orange1") : Color("green1")
             : Color.black,
             width: sheetStore.sheet.isSelectedCell(cell) ? 3 : 1
         )
@@ -389,8 +391,8 @@ private struct CellView: View {
     }
     
     var cellBackground: some View {
-        sheetStore.sheet.isSelectedColName(cell.colName) || sheetStore.sheet.isSelectedRowName(cell.rowName)
-        //? Color(red: 204/255, green: 255/255, blue: 204/255, opacity: 0.7)
+        sheetStore.sheet.isSelectedColName(cell.colName) 
+        || sheetStore.sheet.isSelectedRowName(cell.rowName)
         ? Color("mint1")
         : Color("white1")
     }

@@ -5,9 +5,6 @@
 //  Created by Dasan & Mary on 5/7/24.
 //
 
-// player, edition, game
-// option - language, Appearance(dark, light), subMarker
-
 final class GameSetter {
     static let shared = GameSetter()
     

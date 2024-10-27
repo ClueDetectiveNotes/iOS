@@ -73,11 +73,15 @@ private struct SelectedCardsView: View {
         HStack {
             ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
                 VStack(spacing: 2) {
-                    CardImage(name: card.type != .none ? card.rawName : "empty(white)")
-                        .border(Color.black)
-                        .onTapGesture {
-                            gameSettingIntent.selectMyCard(card)
-                        }
+                    CardImage(
+                        name: card.type != .none
+                        ? card.rawName
+                        : "empty(white)"
+                    )
+                    .border(Color.black)
+                    .onTapGesture {
+                        gameSettingIntent.selectMyCard(card)
+                    }
                     
                     Text(card.name)
                         .frame(height: 20)
@@ -104,11 +108,15 @@ private struct ScrollSelectedCardsView: View {
             HStack {
                 ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
                     VStack(spacing: 2) {
-                        CardImage(name: card.type != .none ? card.rawName : "empty(white)")
-                            .border(Color("black1"))
-                            .onTapGesture {
-                                gameSettingIntent.selectMyCard(card)
-                            }
+                        CardImage(
+                            name: card.type != .none
+                            ? card.rawName
+                            : "empty(white)"
+                        )
+                        .border(Color("black1"))
+                        .onTapGesture {
+                            gameSettingIntent.selectMyCard(card)
+                        }
                         
                         Text(card.name)
                             .foregroundStyle(Color("black1"))

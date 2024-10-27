@@ -2,7 +2,7 @@
 //  MoreMenuView.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/3/24.
+//  Created by Dasan on 10/3/24.
 //
 
 import SwiftUI
@@ -22,6 +22,8 @@ struct MoreMenuView: View {
     var body: some View {
         //작성된 순서 반대로 보임
         Menu {
+            
+            // 정답칸 보이기
             Button(
                 action: {
                     
@@ -31,6 +33,7 @@ struct MoreMenuView: View {
                 }
             )
             
+            // 옵션
             Button(
                 action: {
                     controlBarIntent.clickOption()
@@ -40,6 +43,7 @@ struct MoreMenuView: View {
                 }
             )
             
+            // 다시하기
             NavigationLink {
                 PlayerSettingView(
                     gameSettingIntent: gameSettingIntent
@@ -52,6 +56,7 @@ struct MoreMenuView: View {
                 gameSettingIntent.initGame()
             })
             
+            // 홈으로
             Button(
                 action: {
                     // 홈으로
@@ -64,7 +69,7 @@ struct MoreMenuView: View {
         } label: {
             Button(
                 action: {
-                    // 세팅 화면
+                    //
                 },
                 label: {
                     Image(systemName: "ellipsis")

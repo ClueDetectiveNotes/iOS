@@ -2,7 +2,7 @@
 //  GameSettingIntent.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 9/18/24.
+//  Created by Dasan on 9/18/24.
 //
 
 import Foundation

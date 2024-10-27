@@ -2,7 +2,7 @@
 //  SkipPreviousUseCase.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/27/24.
+//  Created by Dasan on 10/27/24.
 //
 
 struct SkipPreviousUseCase: UseCase {

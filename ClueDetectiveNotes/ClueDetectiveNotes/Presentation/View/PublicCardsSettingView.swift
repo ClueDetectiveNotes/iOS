@@ -67,11 +67,15 @@ private struct SelectedCardsView: View {
         HStack {
             ForEach(gameSettingStore.gameGameSetting.selectedPublicCards, id: \.self) { card in
                 VStack(spacing: 2) {
-                    CardImage(name: card.type != .none ? card.rawName : "empty(white)")
-                        .border(Color("black1"))
-                        .onTapGesture {
-                            gameSettingIntent.selectPublicCard(card)
-                        }
+                    CardImage(
+                        name: card.type != .none
+                        ? card.rawName
+                        : "empty(white)"
+                    )
+                    .border(Color("black1"))
+                    .onTapGesture {
+                        gameSettingIntent.selectPublicCard(card)
+                    }
                     
                     Text(card.name)
                         .foregroundStyle(Color("black1"))
