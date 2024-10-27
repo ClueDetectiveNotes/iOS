@@ -88,6 +88,8 @@
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
+		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
+		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
 		ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
@@ -192,6 +194,8 @@
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
+		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
+		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
 		ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSheetUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
@@ -449,6 +453,8 @@
 				AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */,
 				AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */,
 				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
+				ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */,
+				ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */,
 			);
 			path = ControlBar;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				AC5C854C2C35011A00F09746 /* KeyboardObserver.swift in Sources */,
 				AC87BEE02C3CF3FF006C2B0D /* SafeAreaInsetsKey.swift in Sources */,
 				ACFED8D02BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift in Sources */,
+				ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */,
 				AC427B052C994ED40071AB4D /* PresentationControlBar.swift in Sources */,
 				AC55CA7F2C2059640045E78F /* ControlBarIntent.swift in Sources */,
 				AC427B2A2C9AD5C40071AB4D /* AddPlayerUseCase.swift in Sources */,
@@ -759,6 +766,7 @@
 				AC0EAC002C44E95000521147 /* PublicCardsSettingView.swift in Sources */,
 				AC427B142C99D1440071AB4D /* CardType.swift in Sources */,
 				AC427B122C99C32E0071AB4D /* CardHolders.swift in Sources */,
+				ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				AC427B162C99D2460071AB4D /* MainMarkerType.swift in Sources */,
 				AC44C5312CC7DAF500EF6C36 /* OptionView.swift in Sources */,

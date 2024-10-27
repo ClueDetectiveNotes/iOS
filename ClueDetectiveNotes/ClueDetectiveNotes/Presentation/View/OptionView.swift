@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 enum Language: String, CaseIterable, Identifiable {
     case korean, english
     
@@ -42,7 +41,6 @@ enum ScreenMode: String, CaseIterable, Identifiable {
 
 struct OptionView: View {
     var body: some View {
-        
         VStack {
             Spacer()
                 .frame(height: 44)

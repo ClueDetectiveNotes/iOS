@@ -10,6 +10,8 @@ struct ControlBarIntent {
     private var controlBarStore: ControlBarStore
     private let undoUseCase: UndoUseCase
     private let redoUseCase: RedoUseCase
+    private let skipNextUseCase: AnyUseCase<Int>
+    private let skipPreviousUseCase: AnyUseCase<Int>
     private let clearUseCase: AnyUseCase<Int>
     private let cancelUseCase: AnyUseCase<Int>
     
@@ -18,6 +20,8 @@ struct ControlBarIntent {
         controlBarStore: ControlBarStore,
         undoUseCase: UndoUseCase = UndoUseCase(),
         redoUseCase: RedoUseCase = RedoUseCase(),
+        skipNextUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(SkipNextUseCase())),
+        skipPreviousUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(SkipPreviousUseCase())),
         clearUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(ClearMarkerSelectedCellUseCase())),
         cancelUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(CancelClickedCellUseCase()))
     ) {
@@ -25,6 +29,8 @@ struct ControlBarIntent {
         self.controlBarStore = controlBarStore
         self.undoUseCase = undoUseCase
         self.redoUseCase = redoUseCase
+        self.skipNextUseCase = skipNextUseCase
+        self.skipPreviousUseCase = skipPreviousUseCase
         self.clearUseCase = clearUseCase
         self.cancelUseCase = cancelUseCase
     }
@@ -42,6 +48,26 @@ struct ControlBarIntent {
     func clickRedo() {
         do {
             let presentationSheet = try redoUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func clickSkipNext() {
+        do {
+            let presentationSheet = try skipNextUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func clickSkipPrevious() {
+        do {
+            let presentationSheet = try skipPreviousUseCase.execute()
             
             updateSheetStore(presentationSheet: presentationSheet)
         } catch {

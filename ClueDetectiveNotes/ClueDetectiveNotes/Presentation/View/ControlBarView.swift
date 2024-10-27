@@ -53,27 +53,59 @@ struct ControlBarView: View {
                 }
             )
             
-            // Clear
+            // Skip Previous
             Button(
                 action: {
-                    controlBarIntent.clickClearButton()
+                    controlBarIntent.clickSkipPrevious()
                 },
                 label: {
-                    Image(systemName: "eraser")
-                        .foregroundStyle(Color("blue1"))
+                    Image(systemName: "backward.end")
+                        .foregroundStyle(
+                            sheetStore.sheet.isInferenceMode()
+                            ? Color("blue1")
+                            : Color("darkgray1")
+                        )
                 }
             )
+            .disabled(!sheetStore.sheet.isInferenceMode())
             
-            // Cancel
+            // Skip Next
             Button(
                 action: {
-                    controlBarIntent.clickCancelButton()
+                    controlBarIntent.clickSkipNext()
                 },
                 label: {
-                    Image(systemName: "square.dashed")
-                        .foregroundStyle(Color("blue1"))
+                    Image(systemName: "forward.end")
+                        .foregroundStyle(
+                            sheetStore.sheet.isInferenceMode()
+                            ? Color("blue1")
+                            : Color("darkgray1")
+                        )
                 }
             )
+            .disabled(!sheetStore.sheet.isInferenceMode())
+            
+//            // Clear
+//            Button(
+//                action: {
+//                    controlBarIntent.clickClearButton()
+//                },
+//                label: {
+//                    Image(systemName: "eraser")
+//                        .foregroundStyle(Color("blue1"))
+//                }
+//            )
+//            
+//            // Cancel
+//            Button(
+//                action: {
+//                    controlBarIntent.clickCancelButton()
+//                },
+//                label: {
+//                    Image(systemName: "square.dashed")
+//                        .foregroundStyle(Color("blue1"))
+//                }
+//            )
             
             Spacer()
             
@@ -83,8 +115,12 @@ struct ControlBarView: View {
                     controlBarIntent.clickVisibleButton()
                 },
                 label: {
-                    Image(systemName: sheetStore.isVisibleScreen ? "eye" : "eye.slash")
-                        .foregroundStyle(Color("blue1"))
+                    Image(
+                        systemName: sheetStore.isVisibleScreen
+                        ? "eye"
+                        : "eye.slash"
+                    )
+                    .foregroundStyle(Color("blue1"))
                 }
             )
             
