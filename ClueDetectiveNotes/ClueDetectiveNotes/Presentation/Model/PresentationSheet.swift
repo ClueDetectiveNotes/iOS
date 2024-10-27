@@ -15,6 +15,7 @@ struct PresentationSheet {
     let selectedCells: [PresentationCell]
     let selectedRowNames: [CardType: RowName]
     let selectedColName: ColName?
+    let isCellsLocked: Bool
     
     func hasSelectedCells() -> Bool {
         return !selectedCells.isEmpty
@@ -34,5 +35,9 @@ struct PresentationSheet {
     
     func isSelectedColName(_ colName: ColName) -> Bool {
         return selectedColName == colName
+    }
+    
+    func isInferenceMode() -> Bool {
+        return mode == .inference
     }
 }

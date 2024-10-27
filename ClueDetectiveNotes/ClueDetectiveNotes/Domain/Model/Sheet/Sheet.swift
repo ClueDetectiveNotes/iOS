@@ -15,13 +15,16 @@ final class Sheet {
     private var selectedCells = [Cell]()
     private var selectedRowNames = [CardType: RowName]()
     private var selectedColName: ColName?
+    private var isCellsLocked: Bool
     
     init (
         cardHolders: CardHolders,
         cards: Deck,
-        mode: SheetMode = .single
+        mode: SheetMode = .single,
+        isCellsLocked: Bool = false
     ) {
         self.mode = mode
+        self.isCellsLocked = isCellsLocked
         
         var tempHolders: [CardHolder] = cardHolders.getPlayers()
         tempHolders.append(cardHolders.getAnswer())
@@ -130,19 +133,38 @@ final class Sheet {
     
     func getNextColName(_ currentColName: ColName) -> ColName {
         var nextIndex = 0
+        var gap = 1
         
         for (index, colName) in colNames.enumerated() {
             if currentColName == colName {
                 if index == colNames.count - 1 {
                     nextIndex = 0
                 } else {
-                    nextIndex = (index + 1) % (colNames.count-1)
+                    nextIndex = (index + gap) % (colNames.count-1)
                 }
                 break
             }
         }
         
         return colNames[nextIndex]
+    }
+    
+    func getPreviousColName(_ currentColName: ColName) -> ColName {
+        var previousIndex = 0
+        var gap = colNames.count - 2
+        
+        for (index, colName) in colNames.enumerated() {
+            if currentColName == colName {
+                if index == colNames.count - 1 {
+                    previousIndex = gap
+                } else {
+                    previousIndex = (index + gap) % (colNames.count-1)
+                }
+                break
+            }
+        }
+        
+        return colNames[previousIndex]
     }
     
     func getSelectedCells() -> [Cell] {
@@ -190,6 +212,10 @@ final class Sheet {
         }
         
         throw SheetError.cellNotFound
+    }
+    
+    func getIsCellsLocked() -> Bool {
+        return isCellsLocked
     }
     
     // MARK: - SET
@@ -346,6 +372,20 @@ final class Sheet {
         getSelectedRowNames().values.forEach { rowName in
             unselectRowName(rowName)
         }
+    }
+    
+    func lockCells() {
+        cells.forEach { cell in
+            cell.lock()
+        }
+        isCellsLocked = true
+    }
+    
+    func unlockCells() {
+        cells.forEach { cell in
+            cell.unlock()
+        }
+        isCellsLocked = false
     }
 }
 

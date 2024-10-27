@@ -90,6 +90,8 @@
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
 		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
 		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
+		ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */; };
+		ACAEE9622CCE0C5400A2B87D /* UnlockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */; };
 		ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
@@ -196,6 +198,8 @@
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
 		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
+		ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockCellsUseCase.swift; sourceTree = "<group>"; };
+		ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockCellsUseCase.swift; sourceTree = "<group>"; };
 		ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSheetUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
@@ -455,6 +459,8 @@
 				AC0360BA2C217EE000455C4A /* ClearMarkerSelectedCellUseCase.swift */,
 				ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */,
 				ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */,
+				ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */,
+				ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */,
 			);
 			path = ControlBar;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 				AC427B0C2C996CC20071AB4D /* Game.swift in Sources */,
 				AC9B9B1F2CAEA460005054F3 /* MoreMenuView.swift in Sources */,
 				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
+				ACAEE9622CCE0C5400A2B87D /* UnlockCellsUseCase.swift in Sources */,
 				AC55A3402BE9F2AD00AC0774 /* CellError.swift in Sources */,
 				44E8D8D22BD0116000A989E2 /* Marker.swift in Sources */,
 				AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */,
@@ -765,6 +772,7 @@
 				AC427B222C9A94340071AB4D /* GameSettingIntent.swift in Sources */,
 				AC0EAC002C44E95000521147 /* PublicCardsSettingView.swift in Sources */,
 				AC427B142C99D1440071AB4D /* CardType.swift in Sources */,
+				ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */,
 				AC427B122C99C32E0071AB4D /* CardHolders.swift in Sources */,
 				ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,

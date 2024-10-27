@@ -23,18 +23,17 @@ struct InitSheetUseCase {
                 } else {
                     cell.setMainMarker(.init(notation: .cross))
                 }
-                cell.setIsLock(true)
             } else {
                 if myCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .cross))
-                    cell.setIsLock(true)
                 }
                 if publicCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .cross))
-                    cell.setIsLock(true)
                 }
             }
         }
+        
+        sheet.lockCells()
         
         return createPresentationSheet()
     }

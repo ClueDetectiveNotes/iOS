@@ -11,6 +11,7 @@ final class SnapshotManager {
     private var tempSnapshot: Snapshot
     private var snapshotUndoStack = [Snapshot]()
     private var snapshotRedoStack = [Snapshot]()
+    private var restoreUndoStack = [Snapshot]()
     
     private init(tempSnapshot: Snapshot = Snapshot()) {
         self.tempSnapshot = tempSnapshot
@@ -42,5 +43,18 @@ final class SnapshotManager {
         tempSnapshot = snapshotRedoStack.removeLast()
         
         return tempSnapshot
+    }
+    
+    func lockSnapshot() {
+        restoreUndoStack.append(contentsOf: snapshotUndoStack)
+        snapshotUndoStack.removeAll()
+        snapshotRedoStack.removeAll()
+    }
+    
+    func unlockSnapshot() {
+        restoreUndoStack.append(contentsOf: snapshotUndoStack)
+        snapshotUndoStack.removeAll()
+        snapshotUndoStack.append(contentsOf: restoreUndoStack)
+        restoreUndoStack.removeAll()
     }
 }

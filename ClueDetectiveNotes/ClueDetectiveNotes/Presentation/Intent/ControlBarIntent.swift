@@ -8,6 +8,8 @@
 struct ControlBarIntent {
     private var sheetStore: SheetStore
     private var controlBarStore: ControlBarStore
+    private let lockCellsUseCase: LockCellsUseCase
+    private let unlockCellsUseCase: UnlockCellsUseCase
     private let undoUseCase: UndoUseCase
     private let redoUseCase: RedoUseCase
     private let skipNextUseCase: AnyUseCase<Int>
@@ -18,6 +20,8 @@ struct ControlBarIntent {
     init(
         sheetStore: SheetStore,
         controlBarStore: ControlBarStore,
+        lockCellsUseCase: LockCellsUseCase = LockCellsUseCase(),
+        unlockCellsUseCase: UnlockCellsUseCase = UnlockCellsUseCase(),
         undoUseCase: UndoUseCase = UndoUseCase(),
         redoUseCase: RedoUseCase = RedoUseCase(),
         skipNextUseCase: AnyUseCase<Int> = AnyUseCase(SnapshotDecorator(SkipNextUseCase())),
@@ -27,12 +31,34 @@ struct ControlBarIntent {
     ) {
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
+        self.lockCellsUseCase = lockCellsUseCase
+        self.unlockCellsUseCase = unlockCellsUseCase
         self.undoUseCase = undoUseCase
         self.redoUseCase = redoUseCase
         self.skipNextUseCase = skipNextUseCase
         self.skipPreviousUseCase = skipPreviousUseCase
         self.clearUseCase = clearUseCase
         self.cancelUseCase = cancelUseCase
+    }
+    
+    func tapLockButton() {
+        do {
+            let presentationSheet = try lockCellsUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func longPressLockButton() {
+        do {
+            let presentationSheet = try unlockCellsUseCase.execute()
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
     }
     
     func clickUndo() {

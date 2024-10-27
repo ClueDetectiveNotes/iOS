@@ -105,6 +105,17 @@ final class Cell {
     func setIsLock(_ isLock: Bool) {
         self.isLock = isLock
     }
+    
+    func lock() {
+        if self.mainMarker?.notation == .cross ||
+            self.mainMarker?.notation == .check {
+            self.isLock = true
+        }
+    }
+    
+    func unlock() {
+        self.isLock = false
+    }
 }
 
 extension Cell: Hashable {

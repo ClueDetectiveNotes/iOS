@@ -26,7 +26,8 @@ struct ConvertManager {
             colNames: mutableSheet.getColNames(),
             selectedCells: getImmutableCells(mutableSheet.getSelectedCells()),
             selectedRowNames: mutableSheet.getSelectedRowNames(),
-            selectedColName: mutableSheet.getSelectedColName()
+            selectedColName: mutableSheet.getSelectedColName(),
+            isCellsLocked: mutableSheet.getIsCellsLocked()
         )
     }
     
