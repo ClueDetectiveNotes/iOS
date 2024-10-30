@@ -93,6 +93,8 @@
 		ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */; };
 		ACAEE9622CCE0C5400A2B87D /* UnlockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */; };
 		ACAEE9642CCE79A100A2B87D /* SubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9632CCE79A100A2B87D /* SubTitleView.swift */; };
+		ACAEE9682CD25CC000A2B87D /* OptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9672CD25CC000A2B87D /* OptionStore.swift */; };
+		ACAEE96A2CD25F8500A2B87D /* OptionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9692CD25F8500A2B87D /* OptionIntent.swift */; };
 		ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
@@ -202,6 +204,8 @@
 		ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockCellsUseCase.swift; sourceTree = "<group>"; };
 		ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockCellsUseCase.swift; sourceTree = "<group>"; };
 		ACAEE9632CCE79A100A2B87D /* SubTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleView.swift; sourceTree = "<group>"; };
+		ACAEE9672CD25CC000A2B87D /* OptionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionStore.swift; sourceTree = "<group>"; };
+		ACAEE9692CD25F8500A2B87D /* OptionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionIntent.swift; sourceTree = "<group>"; };
 		ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSheetUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				44AF61FB2BF723FB00F38165 /* MarkerControlBarIntent.swift */,
 				AC5C85512C380F9000F09746 /* GeometryIntent.swift */,
 				AC427B212C9A94340071AB4D /* GameSettingIntent.swift */,
+				ACAEE9692CD25F8500A2B87D /* OptionIntent.swift */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				AC5C854F2C380F4300F09746 /* GeometryStore.swift */,
 				AC427B072C994F230071AB4D /* ControlBarStore.swift */,
 				AC427B1D2C9A81240071AB4D /* GameSettingStore.swift */,
+				ACAEE9672CD25CC000A2B87D /* OptionStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -728,6 +734,7 @@
 				AC427B182C99D2610071AB4D /* SubMarkerType.swift in Sources */,
 				AC9B9B172CAD9340005054F3 /* InitPublicCardsUseCase.swift in Sources */,
 				AC31705D2C01B627009E947B /* ChooseMainMarkerUseCase.swift in Sources */,
+				ACAEE96A2CD25F8500A2B87D /* OptionIntent.swift in Sources */,
 				4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
 				AC0360BF2C21B40900455C4A /* PlayerSettingView.swift in Sources */,
@@ -742,6 +749,7 @@
 				AC427B082C994F230071AB4D /* ControlBarStore.swift in Sources */,
 				AC0360C12C21CB9800455C4A /* PlayerDetailSettingView.swift in Sources */,
 				ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */,
+				ACAEE9682CD25CC000A2B87D /* OptionStore.swift in Sources */,
 				AC427B102C99C2BB0071AB4D /* PlayerType.swift in Sources */,
 				AC427B2E2CACD5B30071AB4D /* ReorderPlayerUseCase.swift in Sources */,
 				AC6A83E62C1B2D3A0051C0DF /* SnapshotError.swift in Sources */,
