@@ -65,6 +65,10 @@ final class Cell {
         return subMarkers
     }
     
+    func getIsLock() -> Bool {
+        return isLock
+    }
+    
     // MARK: - SET
     func setMainMarker(_ marker: MainMarker) {
         if !isLock {

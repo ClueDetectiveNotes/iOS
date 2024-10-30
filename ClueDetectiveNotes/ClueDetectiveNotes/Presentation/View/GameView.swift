@@ -388,10 +388,31 @@ private struct CellView: View {
         .highPriorityGesture(
             DragGesture().onChanged { _ in }
         )
+        .overlay {
+            if cell.isLock {
+                lockInCell
+            }
+        }
     }
     
-    var cellBackground: some View {
-        sheetStore.sheet.isSelectedColName(cell.colName) 
+    private var lockInCell: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Image(systemName: "lock.circle")
+                    .foregroundStyle(Color("darkgray1"))
+                    .frame(width:5)
+                    .opacity(0.8)
+                
+                Spacer()
+            }
+            .padding(.leading, 5)
+            
+            Spacer()
+        }
+    }
+    
+    private var cellBackground: some View {
+        sheetStore.sheet.isSelectedColName(cell.colName)
         || sheetStore.sheet.isSelectedRowName(cell.rowName)
         ? Color("mint1")
         : Color("white1")

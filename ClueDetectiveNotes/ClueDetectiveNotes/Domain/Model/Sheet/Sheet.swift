@@ -133,7 +133,7 @@ final class Sheet {
     
     func getNextColName(_ currentColName: ColName) -> ColName {
         var nextIndex = 0
-        var gap = 1
+        let gap = 1
         
         for (index, colName) in colNames.enumerated() {
             if currentColName == colName {
@@ -151,7 +151,7 @@ final class Sheet {
     
     func getPreviousColName(_ currentColName: ColName) -> ColName {
         var previousIndex = 0
-        var gap = colNames.count - 2
+        let gap = colNames.count - 2
         
         for (index, colName) in colNames.enumerated() {
             if currentColName == colName {
@@ -192,6 +192,12 @@ final class Sheet {
         
         return cells.filter { cell in
             rowNames.contains(cell.getRowName()) && cell.getColName() == colName
+        }
+    }
+    
+    func getRowCells(_ rowName: RowName) -> [Cell] {
+        return cells.filter { cell in
+            cell.getRowName() == rowName
         }
     }
     

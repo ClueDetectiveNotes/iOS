@@ -13,6 +13,7 @@ struct PresentationCell {
     let colName: ColName
     let mainMarker: MainMarker?
     let subMarkers: [SubMarker]
+    let isLock: Bool
 }
 
 extension PresentationCell: Hashable {
