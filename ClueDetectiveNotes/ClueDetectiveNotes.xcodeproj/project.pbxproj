@@ -95,6 +95,7 @@
 		ACAEE9642CCE79A100A2B87D /* SubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9632CCE79A100A2B87D /* SubTitleView.swift */; };
 		ACAEE9682CD25CC000A2B87D /* OptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9672CD25CC000A2B87D /* OptionStore.swift */; };
 		ACAEE96A2CD25F8500A2B87D /* OptionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE9692CD25F8500A2B87D /* OptionIntent.swift */; };
+		ACAEE96C2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE96B2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift */; };
 		ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
@@ -206,6 +207,7 @@
 		ACAEE9632CCE79A100A2B87D /* SubTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleView.swift; sourceTree = "<group>"; };
 		ACAEE9672CD25CC000A2B87D /* OptionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionStore.swift; sourceTree = "<group>"; };
 		ACAEE9692CD25F8500A2B87D /* OptionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionIntent.swift; sourceTree = "<group>"; };
+		ACAEE96B2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMainMarkerInAutoAnswerModeUseCase.swift; sourceTree = "<group>"; };
 		ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSheetUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */,
 				ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */,
 				ACAEE9612CCE0C5400A2B87D /* UnlockCellsUseCase.swift */,
+				ACAEE96B2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift */,
 			);
 			path = ControlBar;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				444293452BCAAF79008CAA2C /* Sheet.swift in Sources */,
 				44DB76402BEA004C0067A814 /* GameSetter.swift in Sources */,
 				AC3170612C01B6E1009E947B /* CancelClickedCellUseCase.swift in Sources */,
+				ACAEE96C2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift in Sources */,
 				AC31705A2C01B51D009E947B /* ClickRowNameUseCase.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */,
