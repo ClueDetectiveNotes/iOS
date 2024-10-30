@@ -11,17 +11,21 @@ struct GameView: View {
     @StateObject private var sheetStore = SheetStore()
     @StateObject private var controlBarStore = ControlBarStore()
     @EnvironmentObject private var gameSettingStore: GameSettingStore
+    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let geometryIntent: GeometryIntent
+    private let optionIntent: OptionIntent
     
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     init(
         gameSettingIntent: GameSettingIntent,
-        geometryIntent: GeometryIntent
+        geometryIntent: GeometryIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
         self.geometryIntent = geometryIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
@@ -46,7 +50,8 @@ struct GameView: View {
             ControlBarView(
                 sheetStore: sheetStore,
                 controlBarStore: controlBarStore,
-                gameSettingIntent: gameSettingIntent
+                gameSettingIntent: gameSettingIntent,
+                optionIntent: optionIntent
             )
         }
         .overlay {
@@ -423,7 +428,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GameView(
             gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
-            geometryIntent: GeometryIntent(geometryStore: GeometryStore())
+            geometryIntent: GeometryIntent(geometryStore: GeometryStore()), 
+            optionIntent: OptionIntent(optionStore: OptionStore())
         )
         .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
         .environmentObject(GameSettingStore())

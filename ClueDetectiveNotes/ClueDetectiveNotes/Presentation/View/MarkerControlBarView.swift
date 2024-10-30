@@ -96,10 +96,23 @@ struct MarkerControlBarView: View {
         } message: {
             Text("추가할 마커의 이름을 입력해주세요.")
         }
+        .alert(
+            "O 입력시\n나머지 셀의 기존 메인마커가\n변경될 수 있습니다.\n\n계속 하시겠습니까?",
+            isPresented: $sheetStore.isDisplayCheckEnterCheckMarkerAlert
+        ) {
+            Button("네") {
+                markerControlBarIntent.clickYesInCheckMarkerAlert()
+            }
+            Button("아니오", role: .cancel) { }
+        } message: {
+            Text("(서브마커 및 잠겨있는 셀의 마커는 변경되지 않음)")
+        }
+        // message는 View가 한줄밖에 들어가지 않음. 토글도 안들어감. custom한 alert이 필요할 듯
     }
 }
 
 struct MainMarkerBtnsView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     private let markerControlBarIntent: MarkerControlBarIntent
     private let mainMarkerTypes = MainMarker.markerType.allCases
     
@@ -111,7 +124,10 @@ struct MainMarkerBtnsView: View {
         ForEach(mainMarkerTypes, id: \.self) { mainMarkerType in
             Button(
                 action: {
-                    markerControlBarIntent.chooseMainMarker(MainMarker(notation: mainMarkerType))
+                    markerControlBarIntent.chooseMainMarker(
+                        MainMarker(notation: mainMarkerType),
+                        autoAnswerMode: optionStore.autoAnswerMode
+                    )
                 },
                 label: {
                     Text(mainMarkerType.description)

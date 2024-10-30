@@ -9,12 +9,16 @@ import SwiftUI
 
 struct PublicCardsSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
+    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
@@ -40,7 +44,8 @@ struct PublicCardsSettingView: View {
                         .frame(maxHeight: .infinity)
                     
                     NextButtonView(
-                        gameSettingIntent: gameSettingIntent
+                        gameSettingIntent: gameSettingIntent, 
+                        optionIntent: optionIntent
                     )
                 }
                 
@@ -183,17 +188,21 @@ private struct CardImage: View {
 
 private struct NextButtonView: View {
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
         NavigationLink {
             MyCardsSettingView(
-                gameSettingIntent: gameSettingIntent
+                gameSettingIntent: gameSettingIntent, 
+                optionIntent: optionIntent
             )
         } label: {
             Text("다음")
@@ -208,7 +217,8 @@ private struct NextButtonView: View {
 
 #Preview {
     PublicCardsSettingView(
-        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()), 
+        optionIntent: OptionIntent(optionStore: OptionStore())
     )
     .environmentObject(GameSettingStore())
 }

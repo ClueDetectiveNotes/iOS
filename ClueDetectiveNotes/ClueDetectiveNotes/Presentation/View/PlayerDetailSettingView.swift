@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
@@ -32,7 +36,8 @@ struct PlayerDetailSettingView: View {
                 )
                 
                 NextButtonView(
-                    gameSettingIntent: gameSettingIntent
+                    gameSettingIntent: gameSettingIntent, 
+                    optionIntent: optionIntent
                 )
                 
                 Spacer()
@@ -85,22 +90,27 @@ private struct PlayerNameListView: View {
 private struct NextButtonView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
         NavigationLink {
             if gameSettingStore.gameGameSetting.publicCardsCount > 0 {
                 PublicCardsSettingView(
-                    gameSettingIntent: gameSettingIntent
+                    gameSettingIntent: gameSettingIntent, 
+                    optionIntent: optionIntent
                 )
             } else {
                 MyCardsSettingView(
-                    gameSettingIntent: gameSettingIntent
+                    gameSettingIntent: gameSettingIntent, 
+                    optionIntent: optionIntent
                 )
             }
         } label: {
@@ -120,7 +130,8 @@ private struct NextButtonView: View {
 
 #Preview {
     PlayerDetailSettingView(
-        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()), 
+        optionIntent: OptionIntent(optionStore: OptionStore())
     )
     .environmentObject(GameSettingStore())
 }

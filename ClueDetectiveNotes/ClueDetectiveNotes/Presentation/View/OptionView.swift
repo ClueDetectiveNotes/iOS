@@ -39,7 +39,31 @@ enum ScreenMode: String, CaseIterable, Identifiable {
     }
 }
 
+enum AutoAnswerMode: String, CaseIterable, Identifiable {
+    case on, off
+    
+    var id: Self { self }
+    
+    var text: String {
+        switch self {
+        case .on:
+            return "켬"
+        case .off:
+            return "끔"
+        }
+    }
+}
+
 struct OptionView: View {
+    @EnvironmentObject private var optionStore: OptionStore
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -51,12 +75,23 @@ struct OptionView: View {
             )
             
             ScrollView(.vertical, showsIndicators: false) {
-                LanguagePickerView()
+                LanguagePickerView(
+                    optionIntent: optionIntent
+                )
                 
                 Spacer()
                     .frame(height: 40)
                 
-                ScreenModePickerView()
+                ScreenModePickerView(
+                    optionIntent: optionIntent
+                )
+                
+                Spacer()
+                    .frame(height: 40)
+                
+                AutoCompleteAnswerPickerView(
+                    optionIntent: optionIntent
+                )
                 
                 Spacer()
                     .frame(height: 40)
@@ -71,13 +106,20 @@ struct OptionView: View {
 }
 
 private struct LanguagePickerView: View {
-    @State private var selectedLanguage: Language = .korean
+    @EnvironmentObject private var optionStore: OptionStore
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             SubTitleView("언어")
             
-            Picker("Language", selection: $selectedLanguage) {
+            Picker("Language", selection: $optionStore.language) {
                 ForEach(Language.allCases) { language in
                     Text(language.text)
                 }
@@ -88,25 +130,62 @@ private struct LanguagePickerView: View {
 }
 
 private struct ScreenModePickerView: View {
-    @AppStorage("screenMode") private var screenMode: ScreenMode = .system
     @StateObject private var colorSchemeObserver = ColorSchemeObserver()
+    @EnvironmentObject private var optionStore: OptionStore
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             SubTitleView("화면 모드")
             
-            Picker("Screen Mode", selection: $screenMode) {
+            Picker("Screen Mode", selection: $optionStore.screenMode) {
                 ForEach(ScreenMode.allCases) { screenMode in
                     Text(screenMode.rawValue.capitalized) // 영어 첫문자 대문자로 만들어줌
                 }
             }
+            .onChange(of: optionStore.screenMode) { mode in
+                optionIntent.setScreenMode(mode)
+            }
         }
         .padding()
         .preferredColorScheme(
-            screenMode == .system
+            optionStore.screenMode == .system
             ? colorSchemeObserver.colorScheme
-            : screenMode.getColorScheme()
+            : optionStore.screenMode.getColorScheme()
         )
+    }
+}
+
+private struct AutoCompleteAnswerPickerView: View {
+    @EnvironmentObject private var optionStore: OptionStore
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            SubTitleView("정답 자동 완성")
+            
+            Picker("Auto-Complete Answer", selection: $optionStore.autoAnswerMode) {
+                ForEach(AutoAnswerMode.allCases) { mode in
+                    Text(mode.text)
+                }
+            }
+            .onChange(of: optionStore.autoAnswerMode) { _ in
+                optionIntent.saveOption()
+            }
+        }
+        .padding()
     }
 }
 
@@ -120,5 +199,5 @@ private struct DefaultSubMarkerView: View {
 }
 
 #Preview {
-    OptionView()
+    OptionView(optionIntent: OptionIntent(optionStore: OptionStore()))
 }

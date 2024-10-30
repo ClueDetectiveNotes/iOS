@@ -9,15 +9,18 @@ import SwiftUI
 
 struct ControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
+    @EnvironmentObject private var optionStore: OptionStore
     @ObservedObject private var sheetStore: SheetStore
     @ObservedObject private var controlBarStore: ControlBarStore
     private let controlBarIntent: ControlBarIntent
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
         sheetStore: SheetStore,
         controlBarStore: ControlBarStore,
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
@@ -26,10 +29,11 @@ struct ControlBarView: View {
             controlBarStore: controlBarStore
         )
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
-        HStack(spacing: 30) {
+        HStack(spacing: 25) {
             
             // Lock
             Button(
@@ -148,7 +152,8 @@ struct ControlBarView: View {
             
             // 더보기
             MoreMenuView(
-                gameSettingIntent: gameSettingIntent,
+                gameSettingIntent: gameSettingIntent, 
+                optionIntent: optionIntent,
                 controlBarIntent: controlBarIntent
             )
             
@@ -164,7 +169,7 @@ struct ControlBarView: View {
             y: sheetStore.isDisplayMarkerControlBar ? 0 : -7
         )
         .sheet(isPresented: $controlBarStore.showOptionView) {
-            OptionView()
+            OptionView(optionIntent: optionIntent)
         }
     }
 }
@@ -173,7 +178,9 @@ struct ControlBarView: View {
     ControlBarView(
         sheetStore: SheetStore(), 
         controlBarStore: ControlBarStore(),
-        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()), 
+        optionIntent: OptionIntent(optionStore: OptionStore())
     )
     .environmentObject(GeometryStore())
+    .environmentObject(OptionStore())
 }

@@ -9,13 +9,17 @@ import SwiftUI
 
 struct PlayerSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
+    @EnvironmentObject private var optionStore: OptionStore
     @StateObject private var keyboardObserver = KeyboardObserver()
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
@@ -53,7 +57,8 @@ struct PlayerSettingView: View {
                     }
                     
                     NextButtonView(
-                        gameSettingIntent: gameSettingIntent
+                        gameSettingIntent: gameSettingIntent, 
+                        optionIntent: optionIntent
                     )
                     
                     Spacer()
@@ -61,6 +66,9 @@ struct PlayerSettingView: View {
             }
         }
         .padding(0)
+        .onAppear {
+            optionIntent.loadOption()
+        }
     }
 }
 
@@ -172,17 +180,21 @@ private struct NameField: View {
 private struct NextButtonView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     
     init(
-        gameSettingIntent: GameSettingIntent
+        gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
     }
     
     var body: some View {
         NavigationLink {
             PlayerDetailSettingView(
-                gameSettingIntent: gameSettingIntent
+                gameSettingIntent: gameSettingIntent, 
+                optionIntent: optionIntent
             )
         } label: {
             Text("다음")
@@ -198,7 +210,8 @@ private struct NextButtonView: View {
 
 #Preview {
     PlayerSettingView(
-        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore())
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
+        optionIntent: OptionIntent(optionStore: OptionStore())
     )
     .environmentObject(GameSettingStore())
 }

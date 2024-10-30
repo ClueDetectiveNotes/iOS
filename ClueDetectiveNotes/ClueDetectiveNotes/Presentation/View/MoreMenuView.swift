@@ -9,13 +9,16 @@ import SwiftUI
 
 struct MoreMenuView: View {
     private let gameSettingIntent: GameSettingIntent
+    private let optionIntent: OptionIntent
     private let controlBarIntent: ControlBarIntent
     
     init(
         gameSettingIntent: GameSettingIntent,
+        optionIntent: OptionIntent,
         controlBarIntent: ControlBarIntent
     ) {
         self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
         self.controlBarIntent = controlBarIntent
     }
     
@@ -46,7 +49,8 @@ struct MoreMenuView: View {
             // 다시하기
             NavigationLink {
                 PlayerSettingView(
-                    gameSettingIntent: gameSettingIntent
+                    gameSettingIntent: gameSettingIntent, 
+                    optionIntent: optionIntent
                 )
                 .navigationBarBackButtonHidden()
             } label: {
@@ -83,6 +87,7 @@ struct MoreMenuView: View {
 #Preview {
     MoreMenuView(
         gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
+        optionIntent: OptionIntent(optionStore: OptionStore()),
         controlBarIntent: ControlBarIntent(
             sheetStore: SheetStore(),
             controlBarStore: ControlBarStore()
