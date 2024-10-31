@@ -106,7 +106,7 @@ extension ChooseMainMarkerInAutoAnswerModeUseCase {
             if isAllCrossMarker {
                 answer.setMainMarker(MainMarker(notation: .check))
             } else {
-                if countCheckMarker > 1 {
+                if countCheckMarker > 0 {
                     if countCheckMarker != 1 {
                         // 토스트 메시지
                         print("Check 마크가 2개이상 입니다.")
