@@ -25,7 +25,6 @@ struct MoreMenuView: View {
     var body: some View {
         //작성된 순서 반대로 보임
         Menu {
-            
             // 정답칸 보이기
             Button(
                 action: {
@@ -53,6 +52,9 @@ struct MoreMenuView: View {
                     optionIntent: optionIntent
                 )
                 .navigationBarBackButtonHidden()
+                .toolbar {
+                    Text("")
+                }
             } label: {
                 Text("다시하기")
             }

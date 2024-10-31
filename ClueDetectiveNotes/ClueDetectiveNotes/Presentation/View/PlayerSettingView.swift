@@ -84,7 +84,6 @@ private struct StepperView: View {
                 label: {
                     Image(systemName: "minus")
                         .frame(width: 25, height: 17)
-                        .foregroundStyle(Color("blue1"))
                 }
             )
             .disabled(gameSettingStore.isDisabledMinusButton)
@@ -102,7 +101,6 @@ private struct StepperView: View {
                 label: {
                     Image(systemName: "plus")
                         .frame(width: 25, height: 17)
-                        .foregroundStyle(Color("blue1"))
                 }
             )
             .disabled(gameSettingStore.isDisabledPlusButton)

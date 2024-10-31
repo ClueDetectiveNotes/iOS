@@ -106,19 +106,21 @@ extension ChooseMainMarkerInAutoAnswerModeUseCase {
             if isAllCrossMarker {
                 answer.setMainMarker(MainMarker(notation: .check))
             } else {
-                if countCheckMarker == 0 {
-                    // answer.removeMainMarker()
-                } else if countCheckMarker == 1 {
+                if countCheckMarker > 1 {
+                    if countCheckMarker != 1 {
+                        // 토스트 메시지
+                        print("Check 마크가 2개이상 입니다.")
+                    }
+                    
                     answer.setMainMarker(MainMarker(notation: .cross))
                     
                     for cell in cells {
-                        if cell.getMainMarker()?.notation != .check {
+                        if cell.getMainMarker()?.notation != .check 
+                            || (cell.getMainMarker()?.notation == .check
+                                && !selectedCells.contains(cell)) {
                             cell.setMainMarker(MainMarker(notation: .cross))
                         }
                     }
-                } else {
-                    // 토스트 메시지
-                    print("Check 마크가 2개이상 입니다.")
                 }
             }
         }
