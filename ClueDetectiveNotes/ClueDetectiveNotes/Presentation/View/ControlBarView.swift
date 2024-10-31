@@ -35,20 +35,13 @@ struct ControlBarView: View {
         HStack(spacing: 25) {
             
             // Lock
-            Button(
-                action: {
-                    //
-                },
-                label: {
-                    Image(
-                        systemName: sheetStore.sheet.isCellsLocked
-                        ? "lock"
-                        : "lock.open"
-                    )
-                    .frame(width: 15)
-                    .foregroundStyle(Color("blue1"))
-                }
+            Image(
+                systemName: sheetStore.sheet.isCellsLocked
+                ? "lock"
+                : "lock.open"
             )
+            .frame(width: 15)
+            .foregroundStyle(Color("blue1"))
             .simultaneousGesture(LongPressGesture().onEnded ({ _ in
                 controlBarIntent.longPressLockButton()
             }))
