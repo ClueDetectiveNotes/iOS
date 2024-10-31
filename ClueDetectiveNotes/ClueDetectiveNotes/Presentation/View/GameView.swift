@@ -423,14 +423,12 @@ private struct CellView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView(
-            gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
-            geometryIntent: GeometryIntent(geometryStore: GeometryStore()), 
-            optionIntent: OptionIntent(optionStore: OptionStore())
-        )
-        .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
-        .environmentObject(GameSettingStore())
-    }
+#Preview {
+    GameView(
+        gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
+        geometryIntent: GeometryIntent(geometryStore: GeometryStore()),
+        optionIntent: OptionIntent(optionStore: OptionStore())
+    )
+    .environmentObject(GeometryStore(screenSize: .init(width: 375, height: 667)))
+    .environmentObject(GameSettingStore())
 }

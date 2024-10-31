@@ -100,6 +100,7 @@
 		ACCBDA992CD31B4D0060AA8E /* ScreenMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBDA982CD31B4D0060AA8E /* ScreenMode.swift */; };
 		ACCBDA9B2CD31B780060AA8E /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBDA9A2CD31B780060AA8E /* Language.swift */; };
 		ACCBDA9D2CD31B9E0060AA8E /* AutoAnswerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBDA9C2CD31B9E0060AA8E /* AutoAnswerMode.swift */; };
+		ACCBDA9F2CD321E90060AA8E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBDA9E2CD321E90060AA8E /* HomeView.swift */; };
 		ACCBDAA12CD32C830060AA8E /* ResetGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBDAA02CD32C830060AA8E /* ResetGameUseCase.swift */; };
 		ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */; };
 		ACEA787C2C109E04002CF159 /* LongClickCellUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */; };
@@ -216,6 +217,7 @@
 		ACCBDA982CD31B4D0060AA8E /* ScreenMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMode.swift; sourceTree = "<group>"; };
 		ACCBDA9A2CD31B780060AA8E /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		ACCBDA9C2CD31B9E0060AA8E /* AutoAnswerMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoAnswerMode.swift; sourceTree = "<group>"; };
+		ACCBDA9E2CD321E90060AA8E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ACCBDAA02CD32C830060AA8E /* ResetGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetGameUseCase.swift; sourceTree = "<group>"; };
 		ACE10A022C48A4CA00CE42DC /* MyCardsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsSettingView.swift; sourceTree = "<group>"; };
 		ACEA787B2C109E04002CF159 /* LongClickCellUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongClickCellUseCaseTests.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				AC5C85532C38214500F09746 /* Component */,
 				ACFED8CF2BB90B5E00B1D22B /* ClueDetectiveNotesApp.swift */,
+				ACCBDA9E2CD321E90060AA8E /* HomeView.swift */,
 				AC0360BE2C21B40900455C4A /* PlayerSettingView.swift */,
 				AC0360C02C21CB9800455C4A /* PlayerDetailSettingView.swift */,
 				AC0EABFF2C44E95000521147 /* PublicCardsSettingView.swift */,
@@ -747,6 +750,7 @@
 				AC3170612C01B6E1009E947B /* CancelClickedCellUseCase.swift in Sources */,
 				ACAEE96C2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift in Sources */,
 				ACCBDAA12CD32C830060AA8E /* ResetGameUseCase.swift in Sources */,
+				ACCBDA9F2CD321E90060AA8E /* HomeView.swift in Sources */,
 				AC31705A2C01B51D009E947B /* ClickRowNameUseCase.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
 				ACBF6B152C5099C30092112E /* InitSheetUseCase.swift in Sources */,

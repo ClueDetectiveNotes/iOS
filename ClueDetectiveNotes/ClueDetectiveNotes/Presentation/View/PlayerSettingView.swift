@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlayerSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    @EnvironmentObject private var optionStore: OptionStore
     @StateObject private var keyboardObserver = KeyboardObserver()
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -25,9 +24,6 @@ struct PlayerSettingView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Spacer()
-                    .frame(height: 44)
-                
                 TitleView(
                     title: "플레이어 설정",
                     description: "게임에 참여하는 인원 수와 이름을 설정해주세요."
@@ -67,7 +63,7 @@ struct PlayerSettingView: View {
         }
         .padding(0)
         .onAppear {
-            optionIntent.loadOption()
+            gameSettingIntent.initGame()
         }
     }
 }

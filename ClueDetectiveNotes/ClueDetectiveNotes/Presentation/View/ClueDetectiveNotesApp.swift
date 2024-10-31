@@ -15,7 +15,7 @@ struct ClueDetectiveNotesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PlayerSettingView(
+            HomeView(
                 gameSettingIntent: GameSettingIntent(gameSettingStore: gameSettingStore),
                 optionIntent: OptionIntent(optionStore: optionStore)
             )

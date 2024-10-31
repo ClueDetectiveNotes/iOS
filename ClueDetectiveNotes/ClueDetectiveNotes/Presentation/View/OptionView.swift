@@ -18,9 +18,6 @@ struct OptionView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-                .frame(height: 44)
-            
             TitleView(
                 title: "옵션",
                 description: ""

@@ -56,19 +56,18 @@ struct MoreMenuView: View {
             } label: {
                 Text("다시하기")
             }
-            .simultaneousGesture(TapGesture().onEnded {
-                gameSettingIntent.initGame()
-            })
             
             // 홈으로
-            Button(
-                action: {
-                    // 홈으로
-                },
-                label: {
-                    Text("홈")
-                }
-            )
+            // TODO: - 게임을 끝내시겠습니까? 얼럿
+            NavigationLink {
+                HomeView(
+                    gameSettingIntent: gameSettingIntent,
+                    optionIntent: optionIntent
+                )
+                .navigationBarBackButtonHidden()
+            } label: {
+                Text("홈으로")
+            }
             
         } label: {
             Button(
