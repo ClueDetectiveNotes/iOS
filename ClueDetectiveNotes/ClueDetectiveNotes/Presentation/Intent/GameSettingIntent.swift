@@ -19,6 +19,7 @@ struct GameSettingIntent {
     private let initPublicCardsUseCase: InitPublicCardsUseCase
     private let initMyCardsUseCase : InitMyCardsUseCase
     private let initGameUseCase : InitGameUseCase
+    private let resetGameUseCase: ResetGameUseCase
     
     init(
         gameSettingStore: GameSettingStore,
@@ -31,7 +32,8 @@ struct GameSettingIntent {
         selectMyCardsUseCase: SelectMyCardUseCase = SelectMyCardUseCase(),
         initPublicCardsUseCase: InitPublicCardsUseCase = InitPublicCardsUseCase(),
         initMyCardsUseCase : InitMyCardsUseCase = InitMyCardsUseCase(),
-        initGameUseCase : InitGameUseCase = InitGameUseCase()
+        initGameUseCase : InitGameUseCase = InitGameUseCase(),
+        resetGameUseCase: ResetGameUseCase = ResetGameUseCase()
     ) {
         self.gameSettingStore = gameSettingStore
         self.removeLastPlayerUseCase = removeLastPlayerUseCase
@@ -44,6 +46,7 @@ struct GameSettingIntent {
         self.initPublicCardsUseCase = initPublicCardsUseCase
         self.initMyCardsUseCase = initMyCardsUseCase
         self.initGameUseCase = initGameUseCase
+        self.resetGameUseCase = resetGameUseCase
     }
     
     func clickMinusButton() {
@@ -152,7 +155,16 @@ struct GameSettingIntent {
             let presentationGameSetting = try initGameUseCase.execute()
             
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
+        } catch {
             
+        }
+    }
+    
+    func resetGame() {
+        do {
+            let presentationGameSetting = try resetGameUseCase.execute()
+            
+            updateGameSettingStore(presentationGameSetting: presentationGameSetting)
         } catch {
             
         }
@@ -169,8 +181,6 @@ struct GameSettingIntent {
         
         gameSettingStore.setIsDisablePublicCardsSettingNextButton(disable)
     }
-    
-    
     
     func selectPublicCard(_ card: Card) {
         do {

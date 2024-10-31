@@ -84,4 +84,9 @@ final class GameSetter {
             }
         }
     }
+    
+    func resetGame() {
+        game = nil
+        players.removeAll()
+    }
 }
