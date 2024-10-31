@@ -2,7 +2,7 @@
 //  OptionStore.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/30/24.
+//  Created by Dasan on 10/30/24.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  ChooseMainMarkerInAutoAnswerModeUseCase.swift
 //  ClueDetectiveNotes
 //
-//  Created by Yena on 10/30/24.
+//  Created by Dasan on 10/30/24.
 //
 
 struct ChooseMainMarkerInAutoAnswerModeUseCase: UseCase {
@@ -121,29 +121,6 @@ extension ChooseMainMarkerInAutoAnswerModeUseCase {
                     print("Check 마크가 2개이상 입니다.")
                 }
             }
-            
-//            if isAllMarker && countCheckMarker == 1 {
-//                answer.setMainMarker(MainMarker(notation: .cross))
-//            } else {
-//                if isAllMarker && countCheckMarker == 0 && answer.getMainMarker()?.notation == .cross{
-//                    answer.removeMainMarker()
-//                }
-//
-//                // 2개 마킹되어있다고 토스트 메시지 띄우기
-//                if isAllMarker && countCheckMarker > 1 {
-//                    print("Check 마크가 2개이상 입니다.")
-//                }
-//            }
-            
-//            // 모두 cross로 마킹되어 있고, 정답이 비어있을 때
-//            if isAllCrossMarker && answer.isEmptyMainMarker() {
-//                answer.setMainMarker(MainMarker(notation: .check))
-//            } else {
-//                // 모두 cross로 마킹되어 있지 않고, 정답이 check로 마킹되어 있을 때
-//                if !isAllCrossMarker && answer.equalsMainMarker(.init(notation: .check)) {
-//                    answer.removeMainMarker()
-//                }
-//            }
         }
     }
     

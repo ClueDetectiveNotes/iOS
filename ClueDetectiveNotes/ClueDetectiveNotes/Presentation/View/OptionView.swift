@@ -7,55 +7,7 @@
 
 import SwiftUI
 
-enum Language: String, CaseIterable, Identifiable {
-    case korean, english
-    
-    var id: Self { self }
-    
-    var text: String {
-        switch self {
-        case .korean:
-            return "한국어"
-        case .english:
-            return "English"
-        }
-    }
-}
-
-enum ScreenMode: String, CaseIterable, Identifiable {
-    case light, dark, system
-    
-    var id: Self { self }
-    
-    func getColorScheme() -> ColorScheme? {
-        switch self {
-        case .dark:
-            return .dark
-        case .light:
-            return .light
-        case .system:
-            return nil
-        }
-    }
-}
-
-enum AutoAnswerMode: String, CaseIterable, Identifiable {
-    case on, off
-    
-    var id: Self { self }
-    
-    var text: String {
-        switch self {
-        case .on:
-            return "켬"
-        case .off:
-            return "끔"
-        }
-    }
-}
-
 struct OptionView: View {
-    @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
     
     init(
@@ -124,14 +76,17 @@ private struct LanguagePickerView: View {
                     Text(language.text)
                 }
             }
+            .onChange(of: optionStore.language) { _ in
+                optionIntent.saveOption()
+            }
         }
         .padding()
     }
 }
 
 private struct ScreenModePickerView: View {
-    @StateObject private var colorSchemeObserver = ColorSchemeObserver()
     @EnvironmentObject private var optionStore: OptionStore
+    @StateObject private var colorSchemeObserver = ColorSchemeObserver()
     private let optionIntent: OptionIntent
     
     init(
@@ -149,8 +104,8 @@ private struct ScreenModePickerView: View {
                     Text(screenMode.rawValue.capitalized) // 영어 첫문자 대문자로 만들어줌
                 }
             }
-            .onChange(of: optionStore.screenMode) { mode in
-                optionIntent.setScreenMode(mode)
+            .onChange(of: optionStore.screenMode) { _ in
+                optionIntent.saveOption()
             }
         }
         .padding()
@@ -200,4 +155,5 @@ private struct DefaultSubMarkerView: View {
 
 #Preview {
     OptionView(optionIntent: OptionIntent(optionStore: OptionStore()))
+        .environmentObject(OptionStore())
 }

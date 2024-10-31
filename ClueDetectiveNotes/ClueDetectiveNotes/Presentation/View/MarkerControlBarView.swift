@@ -98,10 +98,10 @@ struct MarkerControlBarView: View {
         }
         .alert(
             "O 입력시\n나머지 셀의 기존 메인마커가\n변경될 수 있습니다.\n\n계속 하시겠습니까?",
-            isPresented: $sheetStore.isDisplayCheckEnterCheckMarkerAlert
+            isPresented: $sheetStore.isDisplayCheckMarkerAlert
         ) {
             Button("네") {
-                markerControlBarIntent.clickYesInCheckMarkerAlert()
+                markerControlBarIntent.clickYesButtonInCheckMarkerAlert()
             }
             Button("아니오", role: .cancel) { }
         } message: {

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PublicCardsSettingView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
-    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
     

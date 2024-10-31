@@ -9,12 +9,11 @@ import SwiftUI
 
 struct ControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
-    @EnvironmentObject private var optionStore: OptionStore
     @ObservedObject private var sheetStore: SheetStore
     @ObservedObject private var controlBarStore: ControlBarStore
-    private let controlBarIntent: ControlBarIntent
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
+    private let controlBarIntent: ControlBarIntent
     
     init(
         sheetStore: SheetStore,
@@ -24,12 +23,12 @@ struct ControlBarView: View {
     ) {
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
+        self.gameSettingIntent = gameSettingIntent
+        self.optionIntent = optionIntent
         self.controlBarIntent = ControlBarIntent(
             sheetStore: sheetStore,
             controlBarStore: controlBarStore
         )
-        self.gameSettingIntent = gameSettingIntent
-        self.optionIntent = optionIntent
     }
     
     var body: some View {
@@ -182,5 +181,4 @@ struct ControlBarView: View {
         optionIntent: OptionIntent(optionStore: OptionStore())
     )
     .environmentObject(GeometryStore())
-    .environmentObject(OptionStore())
 }

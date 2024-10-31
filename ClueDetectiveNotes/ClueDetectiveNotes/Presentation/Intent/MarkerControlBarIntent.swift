@@ -35,57 +35,9 @@ struct MarkerControlBarIntent {
     func chooseMainMarker(_ marker: MainMarker, autoAnswerMode: AutoAnswerMode) {
         switch autoAnswerMode {
         case .on:
-            checkAlertInAutoAnswerMode(marker)
+            checkAlertDisplayInAuto(marker)
         case .off:
             chooseMainMarkerInNotAuto(marker)
-        }
-    }
-    
-    // 얼럿 띄우는지 확인 - O일때만 얼럿
-    // 오토모드인지 아닌지 가드문으로 확인하기
-    private func checkAlertInAutoAnswerMode(_ marker: MainMarker) {
-        if marker.notation == .check {
-            // check가 들어왔을 때
-            // 선택된 셀이 1개인 경우
-            //  - lock이 False이고, 정답이 아닌 경우 -> 얼럿 띄우기
-            // 선택된 셀이 2개 이상인 경우
-            //  - 1개라도 lock이 false이고, 정답이 아닌 경우 -> 얼럿 띄우기
-            let selectedCells = sheetStore.sheet.selectedCells
-            var flag = false
-            
-            for selectedCell in selectedCells {
-                if !selectedCell.isLock && selectedCell.colName.cardHolder is Player {
-                    flag = true
-                }
-            }
-            
-            if flag {
-                sheetStore.setDisplayCheckEnterCheckMarkerAlert(flag)
-            } else {
-                chooseMainMarkerInAuto(marker)
-            }
-        } else {
-            chooseMainMarkerInAuto(marker)
-        }
-    }
-    
-    func chooseMainMarkerInAuto(_ marker: MainMarker) {
-        do {
-            let presentationSheet = try chooseMainMarkerInAutoAnswerModeUseCase.execute(marker)
-            
-            updateSheetStore(presentationSheet: presentationSheet)
-        } catch {
-            
-        }
-    }
-    
-    func chooseMainMarkerInNotAuto(_ marker: MainMarker) {
-        do {
-            let presentationSheet = try chooseMainMarkerUseCase.execute(marker)
-            
-            updateSheetStore(presentationSheet: presentationSheet)
-        } catch {
-            
         }
     }
     
@@ -123,13 +75,58 @@ struct MarkerControlBarIntent {
         }
     }
     
-    func clickYesInCheckMarkerAlert() {
+    func clickYesButtonInCheckMarkerAlert() {
         chooseMainMarkerInAuto(MainMarker(notation: .check))
     }
 }
 
 // MARK: - Private
 extension MarkerControlBarIntent {
+    // TODO: - 오토모드인지 아닌지 가드문으로 확인하기
+    private func checkAlertDisplayInAuto(_ marker: MainMarker) {
+        // Check 마커가 선택되었을 때
+        if marker.notation == .check {
+            let selectedCells = sheetStore.sheet.selectedCells
+            var isDisplay = false
+            
+            // 1개라도 cell의 lock이 false이고, 정답이 아닌 경우 얼럿 띄우기
+            for selectedCell in selectedCells {
+                if !selectedCell.isLock
+                    && selectedCell.colName.cardHolder is Player {
+                    isDisplay = true
+                }
+            }
+            
+            if isDisplay {
+                sheetStore.setDisplayCheckMarkerAlert(isDisplay)
+            } else {
+                chooseMainMarkerInAuto(marker)
+            }
+        } else {
+            chooseMainMarkerInAuto(marker)
+        }
+    }
+    
+    private func chooseMainMarkerInAuto(_ marker: MainMarker) {
+        do {
+            let presentationSheet = try chooseMainMarkerInAutoAnswerModeUseCase.execute(marker)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    private func chooseMainMarkerInNotAuto(_ marker: MainMarker) {
+        do {
+            let presentationSheet = try chooseMainMarkerUseCase.execute(marker)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
     private func updateSheetStore(presentationSheet: PresentationSheet) {
         sheetStore.overwriteSheet(presentationSheet)
         

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
     @StateObject private var sheetStore = SheetStore()
     @StateObject private var controlBarStore = ControlBarStore()
-    @EnvironmentObject private var gameSettingStore: GameSettingStore
-    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let geometryIntent: GeometryIntent
     private let optionIntent: OptionIntent
