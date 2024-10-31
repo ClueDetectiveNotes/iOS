@@ -164,6 +164,9 @@ private struct NameField: View {
                 }
             )
             .foregroundStyle(Color("black1"))
+            .onAppear {
+                gameSettingIntent.setIsDisablePlayerSettingNextButton(playerNames: gameSettingStore.gameGameSetting.playerNames)
+            }
         }
     }
 }

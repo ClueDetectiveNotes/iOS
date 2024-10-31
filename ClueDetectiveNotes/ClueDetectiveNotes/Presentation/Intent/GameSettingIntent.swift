@@ -87,6 +87,16 @@ struct GameSettingIntent {
         }
     }
     
+    func setIsDisablePlayerSettingNextButton(playerNames: [String]) {
+        var disable: Bool = false
+        
+        for name in playerNames {
+            if name.isEmpty { disable = true }
+        }
+        
+        gameSettingStore.setIsDisablePlayerSettingNextButton(disable)
+    }
+    
     func reorderPlayer(source: IndexSet, destination: Int) {
         do {
             let presentationGameSetting = try reorderPlayerUseCase.execute(source: source, destination: destination)
@@ -101,9 +111,7 @@ struct GameSettingIntent {
         do {
             let presentationGameSetting = try selectUserUseCase.execute(name: name)
             
-            gameSettingStore.setIsDisablePlayerDetailSettingNextButton(
-                presentationGameSetting.selectedPlayer.isEmpty ? true : false
-            )
+            setIsDisablePlayerDetailSettingNextButton(selectedPlayer: presentationGameSetting.selectedPlayer)
             
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
         } catch {
@@ -197,16 +205,6 @@ extension GameSettingIntent {
             gameSettingStore.setIsDisabledMinusButton(false)
             gameSettingStore.setIsDisabledPlusButton(false)
         }
-    }
-    
-    private func setIsDisablePlayerSettingNextButton(playerNames: [String]) {
-        var disable: Bool = false
-        
-        for name in playerNames {
-            if name.isEmpty { disable = true }
-        }
-        
-        gameSettingStore.setIsDisablePlayerSettingNextButton(disable)
     }
     
     private func setIsDisablePlayerDetailSettingNextButton(selectedPlayer: String) {
