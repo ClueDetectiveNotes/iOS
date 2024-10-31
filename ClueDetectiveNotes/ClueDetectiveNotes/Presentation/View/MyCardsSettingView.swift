@@ -260,6 +260,7 @@ private struct NextButtonView: View {
         }
         .buttonStyle(.borderedProminent)
         .foregroundStyle(Color("blue1"))
+        .padding(.bottom, 25)
     }
 }
 

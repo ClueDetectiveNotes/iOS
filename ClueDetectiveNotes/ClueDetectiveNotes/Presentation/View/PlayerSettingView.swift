@@ -201,6 +201,7 @@ private struct NextButtonView: View {
         .buttonStyle(.borderedProminent)
         .foregroundStyle(Color("blue1"))
         .disabled(gameSettingStore.isDisablePlayerSettingNextButton)
+        .padding(.bottom, 25)
     }
 }
 

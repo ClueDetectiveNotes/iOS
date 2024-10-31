@@ -211,6 +211,7 @@ private struct NextButtonView: View {
         }
         .foregroundStyle(Color("blue1"))
         .buttonStyle(.borderedProminent)
+        .padding(.bottom, 25)
     }
 }
 
