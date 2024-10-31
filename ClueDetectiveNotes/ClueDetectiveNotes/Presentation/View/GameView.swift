@@ -172,7 +172,9 @@ private struct PlayerRowView: View {
                         width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
                         height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                     )
-                    .background(Color("white1"))
+                    .background(colName.cardHolder is Player
+                                ? Color("white1")
+                                : Color.indigo)
                 }
             }
         }
@@ -357,7 +359,6 @@ private struct CellView: View {
             width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
             height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
         )
-        .foregroundColor(.black)
         .border(
             sheetStore.sheet.isSelectedCell(cell) 
             ? sheetStore.sheet.mode == .multi ? Color("orange1") : Color("green1")
@@ -419,7 +420,7 @@ private struct CellView: View {
         sheetStore.sheet.isSelectedColName(cell.colName)
         || sheetStore.sheet.isSelectedRowName(cell.rowName)
         ? Color("mint1")
-        : Color("white1")
+        : cell.colName.cardHolder is Player ? Color("white1") : Color.indigo
     }
 }
 

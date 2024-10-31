@@ -155,6 +155,7 @@ private struct NameField: View {
                 ? $gameSettingStore.gameGameSetting.playerNames[index]
                 : $tempName
             )
+            .foregroundStyle(Color("black1"))
             .onChange(
                 of: index < gameSettingStore.gameGameSetting.playerNames.count
                 ? gameSettingStore.gameGameSetting.playerNames[index]
@@ -163,7 +164,6 @@ private struct NameField: View {
                     gameSettingIntent.setPlayerName(index: index, name: newName)
                 }
             )
-            .foregroundStyle(Color("black1"))
             .onAppear {
                 gameSettingIntent.setIsDisablePlayerSettingNextButton(playerNames: gameSettingStore.gameGameSetting.playerNames)
             }
