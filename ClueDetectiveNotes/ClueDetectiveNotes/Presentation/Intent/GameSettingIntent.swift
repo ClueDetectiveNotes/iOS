@@ -50,18 +50,10 @@ struct GameSettingIntent {
     }
     
     func clickMinusButton() {
-        let minPlayerCount = 3
-        
         do {
             let presentationGameSetting = try removeLastPlayerUseCase.execute()
             
-            if presentationGameSetting.playerCount == minPlayerCount {
-                gameSettingStore.setIsDisabledMinusButton(true)
-            } else {
-                gameSettingStore.setIsDisabledMinusButton(false)
-                gameSettingStore.setIsDisabledPlusButton(false)
-            }
-            
+            setIsDisabledCountButton(playerCount: presentationGameSetting.playerCount)
             setIsDisablePlayerSettingNextButton(playerNames: presentationGameSetting.playerNames)
             
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
@@ -71,18 +63,10 @@ struct GameSettingIntent {
     }
     
     func clickPlusButton() {
-        let maxPlayerCount = 6
-        
         do {
             let presentationGameSetting = try addPlayerUseCase.execute()
             
-            if presentationGameSetting.playerCount == maxPlayerCount {
-                gameSettingStore.setIsDisabledPlusButton(true)
-            } else {
-                gameSettingStore.setIsDisabledMinusButton(false)
-                gameSettingStore.setIsDisabledPlusButton(false)
-            }
-            
+            setIsDisabledCountButton(playerCount: presentationGameSetting.playerCount)
             setIsDisablePlayerSettingNextButton(playerNames: presentationGameSetting.playerNames)
             
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
@@ -102,16 +86,6 @@ struct GameSettingIntent {
             gameSettingStore.setIsDisablePlayerSettingNextButton(true)
         }
     }
-
-    func setIsDisablePlayerSettingNextButton(playerNames: [String]) {
-        var disable: Bool = false
-        
-        for name in playerNames {
-            if name.isEmpty { disable = true }
-        }
-        
-        gameSettingStore.setIsDisablePlayerSettingNextButton(disable)
-    }
     
     func reorderPlayer(source: IndexSet, destination: Int) {
         do {
@@ -126,7 +100,6 @@ struct GameSettingIntent {
     func selectUser(name: String) {
         do {
             let presentationGameSetting = try selectUserUseCase.execute(name: name)
-            
             
             gameSettingStore.setIsDisablePlayerDetailSettingNextButton(
                 presentationGameSetting.selectedPlayer.isEmpty ? true : false
@@ -164,22 +137,13 @@ struct GameSettingIntent {
         do {
             let presentationGameSetting = try resetGameUseCase.execute()
             
+            setIsDisablePlayerSettingNextButton(playerNames: presentationGameSetting.playerNames)
+            setIsDisablePlayerDetailSettingNextButton(selectedPlayer: presentationGameSetting.selectedPlayer)
+            
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
         } catch {
             
         }
-    }
-    
-    func setIsDisablePublicCardsSettingNextButton(_ cards: [Card]) {
-        var disable: Bool = false
-        
-        for card in cards {
-            if card.type == .none {
-                disable = true
-            }
-        }
-        
-        gameSettingStore.setIsDisablePublicCardsSettingNextButton(disable)
     }
     
     func selectPublicCard(_ card: Card) {
@@ -192,18 +156,6 @@ struct GameSettingIntent {
         } catch {
             
         }
-    }
-    
-    func setIsDisableMyCardsSettingNextButton(_ cards: [Card]) {
-        var disable: Bool = false
-        
-        for card in cards {
-            if card.type == .none {
-                disable = true
-            }
-        }
-        
-        gameSettingStore.setIsDisableMyCardsSettingNextButton(disable)
     }
     
     func initMyCards() {
@@ -221,7 +173,7 @@ struct GameSettingIntent {
     func selectMyCard(_ card: Card) {
         do {
             let presentationGameSetting = try selectMyCardsUseCase.execute(selectedCard: card)
-
+            
             setIsDisableMyCardsSettingNextButton(presentationGameSetting.selectedMyCards)
             
             updateGameSettingStore(presentationGameSetting: presentationGameSetting)
@@ -233,6 +185,60 @@ struct GameSettingIntent {
 
 // MARK: - Private
 extension GameSettingIntent {
+    private func setIsDisabledCountButton(playerCount: Int) {
+        let minPlayerCount = 3
+        let maxPlayerCount = 6
+        
+        if playerCount == minPlayerCount {
+            gameSettingStore.setIsDisabledMinusButton(true)
+        } else if playerCount == maxPlayerCount {
+            gameSettingStore.setIsDisabledPlusButton(true)
+        } else {
+            gameSettingStore.setIsDisabledMinusButton(false)
+            gameSettingStore.setIsDisabledPlusButton(false)
+        }
+    }
+    
+    private func setIsDisablePlayerSettingNextButton(playerNames: [String]) {
+        var disable: Bool = false
+        
+        for name in playerNames {
+            if name.isEmpty { disable = true }
+        }
+        
+        gameSettingStore.setIsDisablePlayerSettingNextButton(disable)
+    }
+    
+    private func setIsDisablePlayerDetailSettingNextButton(selectedPlayer: String) {
+        let disable = selectedPlayer.isEmpty ? true : false
+        
+        gameSettingStore.setIsDisablePlayerDetailSettingNextButton(disable)
+    }
+    
+    private func setIsDisablePublicCardsSettingNextButton(_ cards: [Card]) {
+        var disable: Bool = false
+        
+        for card in cards {
+            if card.type == .none {
+                disable = true
+            }
+        }
+        
+        gameSettingStore.setIsDisablePublicCardsSettingNextButton(disable)
+    }
+    
+    private func setIsDisableMyCardsSettingNextButton(_ cards: [Card]) {
+        var disable: Bool = false
+        
+        for card in cards {
+            if card.type == .none {
+                disable = true
+            }
+        }
+        
+        gameSettingStore.setIsDisableMyCardsSettingNextButton(disable)
+    }
+    
     private func updateGameSettingStore(presentationGameSetting: PresentationGameSetting) {
         gameSettingStore.overwriteGameSetting(presentationGameSetting)
     }

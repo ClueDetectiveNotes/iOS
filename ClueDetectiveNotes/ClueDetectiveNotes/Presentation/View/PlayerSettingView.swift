@@ -62,9 +62,6 @@ struct PlayerSettingView: View {
             }
         }
         .padding(0)
-        .onAppear {
-            gameSettingIntent.initGame()
-        }
     }
 }
 

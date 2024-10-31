@@ -123,6 +123,9 @@ private struct NextButtonView: View {
         .foregroundStyle(Color("blue1"))
         .disabled(gameSettingStore.isDisablePlayerDetailSettingNextButton)
         .padding(.bottom, 25)
+        .simultaneousGesture(TapGesture().onEnded({ _ in
+            gameSettingIntent.initGame()
+        }))
     }
 }
 
