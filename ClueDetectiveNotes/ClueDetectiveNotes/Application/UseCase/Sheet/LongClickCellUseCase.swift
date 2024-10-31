@@ -20,6 +20,7 @@ struct LongClickCellUseCase: UseCase {
             sheet.switchMode(.multi)
             fallthrough
         case .multi:
+            sheet.unselectCell()
             if sheet.isSelectedCell(cell) {
                 // 이미 선택된 cell를 longClick하더라도 아무런 처리를 하지 않음
             } else {
