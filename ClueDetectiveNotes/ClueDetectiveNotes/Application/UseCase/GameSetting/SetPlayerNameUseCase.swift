@@ -16,12 +16,17 @@ struct SetPlayerNameUseCase {
             throw SettingError.nameIsEmpty
         }
         
-        guard !players.contains(where: { $0.name == trimmingName }) else {
+        let tempIndex = players.firstIndex(where: { $0.name == trimmingName})
+        
+        guard tempIndex == nil
+                || (tempIndex != nil && tempIndex == index) else {
             throw SettingError.alreadyExistsPlayer
         }
         
-        players[index].name = trimmingName
-        GameSetter.shared.setPlayers(players)
+        if tempIndex == nil {
+            players[index].name = trimmingName
+            GameSetter.shared.setPlayers(players)
+        }
         
         return createPresentationGameSetting()
     }

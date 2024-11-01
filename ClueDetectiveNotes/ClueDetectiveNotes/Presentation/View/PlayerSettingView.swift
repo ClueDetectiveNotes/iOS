@@ -164,9 +164,6 @@ private struct NameField: View {
                     gameSettingIntent.setPlayerName(index: index, name: newName)
                 }
             )
-            .onAppear {
-                gameSettingIntent.setIsDisablePlayerSettingNextButton(playerNames: gameSettingStore.gameGameSetting.playerNames)
-            }
         }
     }
 }
