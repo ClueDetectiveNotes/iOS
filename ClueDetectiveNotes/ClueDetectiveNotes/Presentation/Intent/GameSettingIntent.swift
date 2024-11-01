@@ -207,8 +207,6 @@ extension GameSettingIntent {
             if name.isEmpty { disable = true }
         }
         
-        print("=> \(disable)")
-        
         gameSettingStore.setIsDisablePlayerSettingNextButton(disable)
     }
     

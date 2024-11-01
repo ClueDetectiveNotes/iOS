@@ -88,6 +88,7 @@ struct MarkerControlBarView: View {
             isPresented: $sheetStore.isDisplayAddSubMarkerAlert
         ) {
             TextField("마커 이름", text: $newSubMarkerName)
+                .foregroundColor(Color.white)
             Button("확인") {
                 markerControlBarIntent.addSubMarker(SubMarker(notation: newSubMarkerName))
                 newSubMarkerName = ""

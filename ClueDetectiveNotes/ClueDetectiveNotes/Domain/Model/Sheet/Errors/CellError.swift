@@ -10,6 +10,7 @@ import Foundation
 enum CellError: LocalizedError {
     case alreadyContainsSubMarker
     case notExistInSubMarker
+    case subMarkerIsEmpty
     
     var errorDescription: String? {
         switch self {
@@ -17,6 +18,8 @@ enum CellError: LocalizedError {
             return "That item is already contains sub marker items"
         case .notExistInSubMarker:
             return "That item does not exist in sub marker items"
+        case .subMarkerIsEmpty:
+            return "subMarker is empty."
         }
     }
 }

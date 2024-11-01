@@ -20,8 +20,13 @@ final class SubMarkerType {
         return types
     }
     
+    // DOTO: - Type 에러 분리할까
     func addSubMarkerType(_ notation: String) throws {
         let tempNotation = notation.replacingOccurrences(of: " ", with: "")
+        
+        guard !tempNotation.isEmpty else {
+            throw CellError.subMarkerIsEmpty
+        }
         
         guard !types.contains(tempNotation) else {
             throw CellError.alreadyContainsSubMarker

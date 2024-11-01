@@ -405,12 +405,12 @@ private struct CellView: View {
             HStack(spacing: 0) {
                 Image(systemName: "lock.circle")
                     .foregroundStyle(Color("darkgray1"))
-                    .frame(width:5)
-                    .opacity(0.8)
+                    .frame(width:4)
+                    .opacity(0.6)
                 
                 Spacer()
             }
-            .padding(.leading, 5)
+            .padding(.leading, 7)
             
             Spacer()
         }
