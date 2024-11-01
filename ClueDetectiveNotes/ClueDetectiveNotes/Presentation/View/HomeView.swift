@@ -130,7 +130,6 @@ private struct AboutUsView: View {
                 
                 Spacer()
             }
-            
             Spacer()
         }
     }
