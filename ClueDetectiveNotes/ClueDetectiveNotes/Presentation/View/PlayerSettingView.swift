@@ -89,7 +89,7 @@ private struct StepperView: View {
             .disabled(gameSettingStore.isDisabledMinusButton)
             .buttonStyle(.bordered)
             
-            Text("\(gameSettingStore.gameGameSetting.playerCount)")
+            Text("\(gameSettingStore.gameSetting.playerCount)")
                 .font(.title)
                 .foregroundStyle(Color("black1"))
                 .padding([.leading, .trailing])
@@ -121,7 +121,7 @@ private struct PlayerNameFieldListView: View {
     
     var body: some View {
         List {
-            ForEach(gameSettingStore.gameGameSetting.playerNames.indices, id: \.self) { index in
+            ForEach(gameSettingStore.gameSetting.playerNames.indices, id: \.self) { index in
                 NameField(
                     gameSettingIntent: gameSettingIntent,
                     index: index
@@ -151,14 +151,14 @@ private struct NameField: View {
         VStack {
             TextField(
                 "Player \(index+1) Name",
-                text: index < gameSettingStore.gameGameSetting.playerNames.count
-                ? $gameSettingStore.gameGameSetting.playerNames[index]
+                text: index < gameSettingStore.gameSetting.playerNames.count
+                ? $gameSettingStore.gameSetting.playerNames[index]
                 : $tempName
             )
             .foregroundStyle(Color("black1"))
             .onChange(
-                of: index < gameSettingStore.gameGameSetting.playerNames.count
-                ? gameSettingStore.gameGameSetting.playerNames[index]
+                of: index < gameSettingStore.gameSetting.playerNames.count
+                ? gameSettingStore.gameSetting.playerNames[index]
                 : "" ,
                 perform: { newName in
                     gameSettingIntent.setPlayerName(index: index, name: newName)

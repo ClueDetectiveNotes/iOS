@@ -28,9 +28,10 @@ struct MyCardsSettingView: View {
                     description: "개인 카드를 설정해주세요."
                 )
                 
-                if gameSettingStore.gameGameSetting.myCardsCount > 4 {
-                    ScrollSelectedCardsView(
-                        gameSettingIntenet: gameSettingIntent
+                if gameSettingStore.gameSetting.myCardsCount == 6 {
+                    GridSelectedCardsView(
+                        gameSettingIntent: gameSettingIntent,
+                        myCardCount: gameSettingStore.gameSetting.selectedMyCards.count
                     )
                 } else {
                     SelectedCardsView(
@@ -75,21 +76,11 @@ private struct SelectedCardsView: View {
     
     var body: some View {
         HStack {
-            ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
-                VStack(spacing: 2) {
-                    CardImage(
-                        name: card.type != .none
-                        ? card.rawName
-                        : "empty(white)"
-                    )
-                    .border(Color.black)
-                    .onTapGesture {
-                        gameSettingIntent.selectMyCard(card)
-                    }
-                    
-                    Text(card.name)
-                        .frame(height: 20)
-                }
+            ForEach(gameSettingStore.gameSetting.selectedMyCards, id: \.self) { card in
+                SelectedCardView(
+                    gameSettingIntent: gameSettingIntent,
+                    card: card
+                )
             }
         }
         .padding(.top, 30)
@@ -97,40 +88,106 @@ private struct SelectedCardsView: View {
     }
 }
 
+// 현재 사용하지 않음
 private struct ScrollSelectedCardsView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     
     init(
-        gameSettingIntenet: GameSettingIntent
+        gameSettingIntent: GameSettingIntent
     ) {
-        self.gameSettingIntent = gameSettingIntenet
+        self.gameSettingIntent = gameSettingIntent
     }
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(gameSettingStore.gameGameSetting.selectedMyCards, id: \.self) { card in
-                    VStack(spacing: 2) {
-                        CardImage(
-                            name: card.type != .none
-                            ? card.rawName
-                            : "empty(white)"
-                        )
-                        .border(Color("black1"))
-                        .onTapGesture {
-                            gameSettingIntent.selectMyCard(card)
-                        }
-                        
-                        Text(card.name)
-                            .foregroundStyle(Color("black1"))
-                            .frame(height: 20)
-                    }
+                ForEach(gameSettingStore.gameSetting.selectedMyCards, id: \.self) { card in
+                    SelectedCardView(
+                        gameSettingIntent: gameSettingIntent,
+                        card: card
+                    )
                 }
             }
             .padding(.top, 30)
             .padding(.bottom, 20)
             .padding(.horizontal)
+        }
+    }
+}
+
+private struct GridSelectedCardsView: View {
+    @EnvironmentObject private var gameSettingStore: GameSettingStore
+    private let gameSettingIntent: GameSettingIntent
+    private let myCardCount: Int
+    private var maxCount: Int = 0
+    
+    init(
+        gameSettingIntent: GameSettingIntent,
+        myCardCount: Int
+    ) {
+        self.gameSettingIntent = gameSettingIntent
+        self.myCardCount = myCardCount
+        self.maxCount = Int((Float(myCardCount) / 2.0).rounded())
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                ForEach(
+                    gameSettingStore
+                        .gameSetting
+                        .selectedMyCards[0..<min(gameSettingStore.gameSetting.selectedMyCards.count, maxCount)],
+                    id: \.self
+                ) { card in
+                    SelectedCardView(
+                        gameSettingIntent: gameSettingIntent,
+                        card: card
+                    )
+                }
+            }
+            .padding(.top, 25)
+            
+            HStack {
+                ForEach(gameSettingStore.gameSetting.selectedMyCards[min(gameSettingStore.gameSetting.selectedMyCards.count, maxCount)...], id: \.self) { card in
+                    SelectedCardView(
+                        gameSettingIntent: gameSettingIntent,
+                        card: card
+                    )
+                }
+            }
+            .padding(.bottom, 10)
+        }
+    }
+}
+
+private struct SelectedCardView: View {
+    private let gameSettingIntent: GameSettingIntent
+    private let card: Card
+    
+    init(
+        gameSettingIntent: GameSettingIntent,
+        card: Card
+    ) {
+        self.gameSettingIntent = gameSettingIntent
+        self.card = card
+    }
+    
+    var body: some View {
+        VStack(spacing: 2) {
+            CardImage(
+                name: card.type != .none
+                ? card.rawName
+                : "empty(white)"
+            )
+            .border(Color("black1"))
+            .onTapGesture {
+                gameSettingIntent.selectMyCard(card)
+            }
+            
+            Text(card.name)
+                .foregroundStyle(Color("black1"))
+                .frame(height: 20)
         }
     }
 }
@@ -190,20 +247,20 @@ private struct CardTypeHScrollView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(gameSettingStore.gameGameSetting.edition.deck.getCards(type: cardType), id: \.self) { card in
+                    ForEach(gameSettingStore.gameSetting.edition.deck.getCards(type: cardType), id: \.self) { card in
                         VStack(spacing: 2) {
                             CardImage(name: card.rawName)
                                 .overlay {
-                                    gameSettingStore.gameGameSetting.selectedPublicCards.contains(card)
+                                    gameSettingStore.gameSetting.selectedPublicCards.contains(card)
                                     ? Color.red.opacity(0.7)
-                                    : gameSettingStore.gameGameSetting.selectedMyCards.contains(card)
+                                    : gameSettingStore.gameSetting.selectedMyCards.contains(card)
                                     ? Color.gray.opacity(0.7)
                                     : Color.clear
                                 }
                                 .onTapGesture {
                                     gameSettingIntent.selectMyCard(card)
                                 }
-                                .disabled(gameSettingStore.gameGameSetting.selectedPublicCards.contains(card))
+                                .disabled(gameSettingStore.gameSetting.selectedPublicCards.contains(card))
                             
                             Text(card.name)
                                 .foregroundStyle(Color("black1"))

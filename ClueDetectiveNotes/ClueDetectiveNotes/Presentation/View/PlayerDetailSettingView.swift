@@ -58,10 +58,10 @@ private struct PlayerNameListView: View {
     
     var body: some View {
         List {
-            ForEach(gameSettingStore.gameGameSetting.playerNames, id: \.self) { playerName in
+            ForEach(gameSettingStore.gameSetting.playerNames, id: \.self) { playerName in
                 HStack {
                     Image(
-                        systemName: gameSettingStore.gameGameSetting.selectedPlayer == playerName
+                        systemName: gameSettingStore.gameSetting.selectedPlayer == playerName
                         ? "checkmark.circle.fill"
                         : "circle"
                     )
@@ -102,7 +102,7 @@ private struct NextButtonView: View {
     
     var body: some View {
         NavigationLink {
-            if gameSettingStore.gameGameSetting.publicCardsCount > 0 {
+            if gameSettingStore.gameSetting.publicCardsCount > 0 {
                 PublicCardsSettingView(
                     gameSettingIntent: gameSettingIntent, 
                     optionIntent: optionIntent

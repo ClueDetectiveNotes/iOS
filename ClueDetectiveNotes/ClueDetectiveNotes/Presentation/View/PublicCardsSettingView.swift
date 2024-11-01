@@ -69,7 +69,7 @@ private struct SelectedCardsView: View {
     
     var body: some View {
         HStack {
-            ForEach(gameSettingStore.gameGameSetting.selectedPublicCards, id: \.self) { card in
+            ForEach(gameSettingStore.gameSetting.selectedPublicCards, id: \.self) { card in
                 VStack(spacing: 2) {
                     CardImage(
                         name: card.type != .none
@@ -147,11 +147,11 @@ private struct CardTypeHScrollView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(gameSettingStore.gameGameSetting.edition.deck.getCards(type: cardType), id: \.self) { card in
+                    ForEach(gameSettingStore.gameSetting.edition.deck.getCards(type: cardType), id: \.self) { card in
                         VStack(spacing: 2) {
                             CardImage(name: card.rawName)
                                 .overlay {
-                                    gameSettingStore.gameGameSetting.selectedPublicCards.contains(card)
+                                    gameSettingStore.gameSetting.selectedPublicCards.contains(card)
                                     ? Color.gray.opacity(0.7)
                                     : Color.clear
                                 }

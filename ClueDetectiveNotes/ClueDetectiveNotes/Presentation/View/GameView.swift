@@ -291,7 +291,7 @@ private struct CardRowView: View {
                         .foregroundStyle(Color("black1"))
                         .lineLimit(1)
                         .minimumScaleFactor(0.2)
-                        .underline(gameSettingStore.gameGameSetting.selectedMyCards.contains(rowName.card))
+                        .underline(gameSettingStore.gameSetting.selectedMyCards.contains(rowName.card))
                 }
             )
             .frame(
@@ -299,7 +299,7 @@ private struct CardRowView: View {
                 height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
             )
             .background(
-                gameSettingStore.gameGameSetting.selectedPublicCards.contains(rowName.card)
+                gameSettingStore.gameSetting.selectedPublicCards.contains(rowName.card)
                 ? Color("yellow1")
                 : Color("white1")
             )

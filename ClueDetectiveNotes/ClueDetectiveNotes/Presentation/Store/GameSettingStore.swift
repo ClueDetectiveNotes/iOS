@@ -8,7 +8,7 @@
 import Foundation
 
 final class GameSettingStore: ObservableObject {
-    @Published var gameGameSetting: PresentationGameSetting
+    @Published var gameSetting: PresentationGameSetting
     
     @Published private(set) var isDisabledMinusButton: Bool
     @Published private(set) var isDisabledPlusButton: Bool
@@ -20,7 +20,7 @@ final class GameSettingStore: ObservableObject {
     @Published private(set) var isDisableMyCardsSettingNextButton: Bool
     
     init(
-        gameGameSetting: PresentationGameSetting = ConvertManager.getImmutableGameSetting(),
+        gameSetting: PresentationGameSetting = ConvertManager.getImmutableGameSetting(),
         isDisabledMinusButton: Bool = true,
         isDisabledPlusButton: Bool = false,
         isDisablePlayerSettingNextButton: Bool = true,
@@ -28,7 +28,7 @@ final class GameSettingStore: ObservableObject {
         isDisablePublicCardsSettingNextButton: Bool = true,
         isDisableMyCardsSettingNextButton: Bool = true
     ) {
-        self.gameGameSetting = gameGameSetting
+        self.gameSetting = gameSetting
         self.isDisabledMinusButton = isDisabledMinusButton
         self.isDisabledPlusButton = isDisabledPlusButton
         self.isDisablePlayerSettingNextButton = isDisablePlayerSettingNextButton
@@ -38,7 +38,7 @@ final class GameSettingStore: ObservableObject {
     }
     
     func overwriteGameSetting(_ newGameSetting: PresentationGameSetting) {
-        gameGameSetting = newGameSetting
+        gameSetting = newGameSetting
     }
     
     func setIsDisabledMinusButton(_ value: Bool) {
