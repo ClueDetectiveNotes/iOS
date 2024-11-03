@@ -144,7 +144,8 @@ struct ControlBarView: View {
             
             // 더보기
             MoreMenuView(
-                gameSettingIntent: gameSettingIntent, 
+                controlBarStore: controlBarStore,
+                gameSettingIntent: gameSettingIntent,
                 optionIntent: optionIntent,
                 controlBarIntent: controlBarIntent
             )
@@ -163,8 +164,49 @@ struct ControlBarView: View {
         .sheet(isPresented: $controlBarStore.showOptionView) {
             OptionView(optionIntent: optionIntent)
         }
+        .alert(
+            "세팅화면으로 돌아가시겠습니까?",
+            isPresented: $controlBarStore.showRestartGameAlert
+        ) {
+            Button("확인") {
+                controlBarIntent.restartGame()
+            }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("현재 게임 진행 상황이 모두 삭제됩니다.")
+        }
+        .navigationDestination(isPresented: $controlBarStore.wantsToRestartGame) {
+            PlayerSettingView(
+                gameSettingIntent: gameSettingIntent,
+                optionIntent: optionIntent
+            )
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                Text("")
+            }
+        }
+        .alert(
+            "홈으로 돌아가시겠습니까?",
+            isPresented: $controlBarStore.showToHomeAlert
+        ) {
+            Button("확인") {
+                controlBarIntent.goHome()
+            }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("현재 게임 진행 상황이 모두 삭제됩니다.")
+        }
+        .navigationDestination(isPresented: $controlBarStore.wantsToGoHome) {
+            HomeView(
+                gameSettingIntent: gameSettingIntent,
+                optionIntent: optionIntent
+            )
+            .navigationBarBackButtonHidden()
+        }
     }
 }
+
+
 
 #Preview {
     ControlBarView(

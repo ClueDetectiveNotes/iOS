@@ -116,7 +116,7 @@ struct ControlBarIntent {
     }
     
     func clickOption() {
-        controlBarStore.showOptionView = true
+        controlBarStore.setShowOptionView(true)
     }
     
     func clickCancelButton() {
@@ -127,6 +127,22 @@ struct ControlBarIntent {
         } catch {
             
         }
+    }
+    
+    func clickGoHomeInMoreMenu() {
+        controlBarStore.setShowToHomeAlert(true)
+    }
+    
+    func clickRestartGameInMoreMenu() {
+        controlBarStore.setShowGameAgainAlert(true)
+    }
+    
+    func goHome() {
+        controlBarStore.setWantsToGoHome(true)
+    }
+    
+    func restartGame() {
+        controlBarStore.setWantsToRestartGame(true)
     }
 }
 

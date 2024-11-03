@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct MoreMenuView: View {
+    @ObservedObject private var controlBarStore: ControlBarStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
     private let controlBarIntent: ControlBarIntent
     
+    @State private var wantsToGoHome: Bool = false
+    @State private var wantsToRestartGame: Bool = false
+    
     init(
+        controlBarStore: ControlBarStore,
         gameSettingIntent: GameSettingIntent,
         optionIntent: OptionIntent,
         controlBarIntent: ControlBarIntent
     ) {
+        self.controlBarStore = controlBarStore
         self.gameSettingIntent = gameSettingIntent
         self.optionIntent = optionIntent
         self.controlBarIntent = controlBarIntent
@@ -46,27 +52,15 @@ struct MoreMenuView: View {
             )
             
             // 다시하기
-            NavigationLink {
-                PlayerSettingView(
-                    gameSettingIntent: gameSettingIntent, 
-                    optionIntent: optionIntent
-                )
-                .navigationBarBackButtonHidden()
-                .toolbar {
-                    Text("")
-                }
+            Button {
+                controlBarIntent.clickRestartGameInMoreMenu()
             } label: {
                 Text("다시하기")
             }
             
             // 홈으로
-            // TODO: - 게임을 끝내시겠습니까? 얼럿
-            NavigationLink {
-                HomeView(
-                    gameSettingIntent: gameSettingIntent,
-                    optionIntent: optionIntent
-                )
-                .navigationBarBackButtonHidden()
+            Button {
+                controlBarIntent.clickGoHomeInMoreMenu()
             } label: {
                 Text("홈으로")
             }
@@ -87,6 +81,7 @@ struct MoreMenuView: View {
 
 #Preview {
     MoreMenuView(
+        controlBarStore: ControlBarStore(),
         gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
         optionIntent: OptionIntent(optionStore: OptionStore()),
         controlBarIntent: ControlBarIntent(
