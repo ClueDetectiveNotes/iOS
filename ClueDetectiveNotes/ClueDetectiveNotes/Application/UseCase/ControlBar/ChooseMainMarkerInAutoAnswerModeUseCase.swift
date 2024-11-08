@@ -114,6 +114,8 @@ extension ChooseMainMarkerInAutoAnswerModeUseCase {
                     
                     answer.setMainMarker(MainMarker(notation: .cross))
                     
+                    // O, X, X, X(정답) 채워져있는 상태에서 정답에 i를 넣으면 O가 X되는 오류
+                    // 자동 정답 모드에서는 정답에 입력 못하게 막아야하나
                     for cell in cells {
                         if cell.getMainMarker()?.notation != .check 
                             || (cell.getMainMarker()?.notation == .check

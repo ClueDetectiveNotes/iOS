@@ -108,7 +108,7 @@ private struct AboutUsView: View {
                     HStack {
                         Text("AOS")
                             .monospaced()
-                        Text("| Kim Eunu")
+                        Text("| Kim Eunwoo")
                     }
                     .padding(.vertical, 7)
                     
