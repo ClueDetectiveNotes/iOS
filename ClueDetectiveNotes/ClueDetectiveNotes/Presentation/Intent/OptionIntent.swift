@@ -12,12 +12,28 @@ struct OptionIntent {
     
     @AppStorage("language") private var language: Language = .korean
     @AppStorage("screenMode") private var screenMode: ScreenMode = .system
-    @AppStorage("autoAnswerMode") private var autoAnswerMode: AutoAnswerMode = .off
+//    @AppStorage("autoAnswerMode") private var autoAnswerMode: AutoAnswerMode = .off
+    @AppStorage("autoAnswerMode") private var autoAnswerMode: Bool = false
     
     init(
         optionStore: OptionStore
     ) {
         self.optionStore = optionStore
+    }
+    
+    func clickLanguage(_ language: Language) {
+        optionStore.setLanguage(language)
+        self.language = optionStore.language
+    }
+    
+    func clickScreenMode(_ screenMode: ScreenMode) {
+        optionStore.setScreenMode(screenMode)
+        self.screenMode = optionStore.screenMode
+    }
+    
+    func clickAutoAnswerMode(_ autoAnswerMode: Bool) {
+        optionStore.setAutoAnswerMode(autoAnswerMode)
+        self.autoAnswerMode = optionStore.autoAnswerMode
     }
     
     // AppStorage에서 load

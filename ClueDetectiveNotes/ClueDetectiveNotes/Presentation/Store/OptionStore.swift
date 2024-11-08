@@ -10,15 +10,18 @@ import Foundation
 final class OptionStore: ObservableObject {
     @Published var language: Language
     @Published var screenMode: ScreenMode
-    @Published var autoAnswerMode: AutoAnswerMode
+    //@Published var autoAnswerMode: AutoAnswerMode
+    @Published var autoAnswerMode: Bool
     
     init(
         language: Language = .korean,
         screenMode: ScreenMode = .system,
-        autoAnswerMode: AutoAnswerMode = .off
+        //autoAnswerMode: AutoAnswerMode = .off,
+        autoAnswerMode: Bool = false
     ) {
         self.language = language
         self.screenMode = screenMode
+        //self.autoAnswerMode = autoAnswerMode
         self.autoAnswerMode = autoAnswerMode
     }
     
@@ -30,7 +33,11 @@ final class OptionStore: ObservableObject {
         self.screenMode = screenMode
     }
     
-    func setAutoAnswerMode(_ autoAnswerMode: AutoAnswerMode) {
+//    func setAutoAnswerMode(_ autoAnswerMode: AutoAnswerMode) {
+//        self.autoAnswerMode = autoAnswerMode
+//    }
+    
+    func setAutoAnswerMode(_ autoAnswerMode: Bool) {
         self.autoAnswerMode = autoAnswerMode
     }
 }

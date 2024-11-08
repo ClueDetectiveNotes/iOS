@@ -32,11 +32,11 @@ struct MarkerControlBarIntent {
         self.chooseMainMarkerInAutoAnswerModeUseCase = chooseMainMarkerInAutoAnswerModeUseCase
     }
     
-    func chooseMainMarker(_ marker: MainMarker, autoAnswerMode: AutoAnswerMode) {
+    func chooseMainMarker(_ marker: MainMarker, autoAnswerMode: Bool) {
         switch autoAnswerMode {
-        case .on:
+        case true:
             checkAlertDisplayInAuto(marker)
-        case .off:
+        case false:
             chooseMainMarkerInNotAuto(marker)
         }
     }

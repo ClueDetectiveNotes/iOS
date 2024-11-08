@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OptionView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
     
     init(
@@ -17,43 +18,152 @@ struct OptionView: View {
     }
     
     var body: some View {
-        VStack {
-            TitleView(
-                title: "옵션",
-                description: ""
-            )
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                LanguagePickerView(
-                    optionIntent: optionIntent
-                )
+        //TitleView(title: "옵션", description: "")
+        
+        NavigationStack {
+            List {
+                Section {
+                    NavigationLink {
+                        LanguageSelectView(
+                            optionIntent: optionIntent
+                        )
+                    } label: {
+                        HStack {
+                            Text("언어")
+                            Spacer()
+                            Text(optionStore.language.text)
+                                .foregroundStyle(Color("subText"))
+                        }
+                    }
+                    
+                    NavigationLink {
+                        ScreenModeSelectView(
+                            optionIntent: optionIntent
+                        )
+                    } label: {
+                        HStack {
+                            Text("스크린 모드")
+                            Spacer()
+                            Text(optionStore.screenMode.rawValue.capitalized)
+                                .foregroundStyle(Color("subText"))
+                        }
+                    }
+                    
+                    Toggle(
+                        "정답 자동 완성",
+                        isOn: $optionStore.autoAnswerMode
+                    )
+                    .onChange(of: optionStore.autoAnswerMode) { _ in
+                        optionIntent.saveOption()
+                    }
+                }
                 
-                Spacer()
-                    .frame(height: 40)
+                Section {
+                    NavigationLink {
+                        //
+                    } label: {
+                        Text("도움말")
+                    }
+                }
                 
-                ScreenModePickerView(
-                    optionIntent: optionIntent
-                )
+                Section {
+                    NavigationLink {
+                        //
+                    } label: {
+                        Text("개발자")
+                    }
+                }
                 
-                Spacer()
-                    .frame(height: 40)
-                
-                AutoCompleteAnswerPickerView(
-                    optionIntent: optionIntent
-                )
-                
-                Spacer()
-                    .frame(height: 40)
-                
-                DefaultSubMarkerView()
-                
-                Spacer()
             }
-            .pickerStyle(.segmented)
+        }
+        .navigationTitle("옵션")
+        .navigationBarTitleDisplayMode(.large)
+    }
+}
+
+private struct LanguageSelectView: View {
+    @EnvironmentObject private var optionStore: OptionStore
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Form {
+                ForEach(Language.allCases) { language in
+                    HStack {
+                        Button {
+                            optionIntent.clickLanguage(language)
+                        } label: {
+                            HStack {
+                                Text(language.text)
+                                    .foregroundStyle(Color("black1"))
+                                
+                                Spacer()
+                                
+                                if optionStore.language == language {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("언어")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
+private struct ScreenModeSelectView: View {
+    @EnvironmentObject private var optionStore: OptionStore
+    @StateObject private var colorSchemeObserver = ColorSchemeObserver()
+    private let optionIntent: OptionIntent
+    
+    init(
+        optionIntent: OptionIntent
+    ) {
+        self.optionIntent = optionIntent
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Form {
+                ForEach(ScreenMode.allCases) { screenMode in
+                    HStack {
+                        Button {
+                            optionIntent.clickScreenMode(screenMode)
+                        } label: {
+                            HStack {
+                                Text(screenMode.rawValue.capitalized)
+                                    .foregroundStyle(Color("black1"))
+                                
+                                Spacer()
+                                
+                                if optionStore.screenMode == screenMode {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("스크린 모드")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .preferredColorScheme(
+            optionStore.screenMode == .system
+            ? colorSchemeObserver.colorScheme
+            : optionStore.screenMode.getColorScheme()
+        )
+    }
+}
+
+/*
 private struct LanguagePickerView: View {
     @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
@@ -140,7 +250,8 @@ private struct AutoCompleteAnswerPickerView: View {
         .padding()
     }
 }
-
+*/
+ 
 private struct DefaultSubMarkerView: View {
     var body: some View {
         VStack(alignment: .leading) {
