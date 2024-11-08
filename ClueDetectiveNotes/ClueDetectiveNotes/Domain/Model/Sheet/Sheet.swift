@@ -389,7 +389,9 @@ final class Sheet {
     
     func unlockCells() {
         cells.forEach { cell in
-            cell.unlock()
+            if !cell.isInited() {
+                cell.unlock()
+            }
         }
         isCellsLocked = false
     }

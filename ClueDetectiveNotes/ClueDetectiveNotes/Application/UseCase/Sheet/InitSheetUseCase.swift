@@ -20,15 +20,19 @@ struct InitSheetUseCase {
             if cell.getColName().cardHolder is User {
                 if myCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .check))
+                    cell.setIsInit(true)
                 } else {
                     cell.setMainMarker(.init(notation: .cross))
+                    cell.setIsInit(true)
                 }
             } else {
                 if myCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .cross))
+                    cell.setIsInit(true)
                 }
                 if publicCards.contains(cell.getRowName().card) {
                     cell.setMainMarker(.init(notation: .cross))
+                    cell.setIsInit(true)
                 }
             }
         }

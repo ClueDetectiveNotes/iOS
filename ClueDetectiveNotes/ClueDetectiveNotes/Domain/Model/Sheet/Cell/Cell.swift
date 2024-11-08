@@ -14,6 +14,7 @@ final class Cell {
     private var mainMarker: MainMarker?
     private var subMarkers = Set<SubMarker>()
     private var isLock: Bool = false
+    private var isInit: Bool = false
     
     init(
         rowName: RowName,
@@ -44,6 +45,10 @@ final class Cell {
         return isLock
     }
     
+    func isInited() -> Bool {
+        return isInit
+    }
+    
     // MARK: - GET
     func getID() -> UUID {
         return id
@@ -71,43 +76,47 @@ final class Cell {
     
     // MARK: - SET
     func setMainMarker(_ marker: MainMarker) {
-        if !isLock {
+        if !isLock && !isInit {
             mainMarker = marker
         }
     }
     
     func setSubMarker(_ marker: SubMarker) {
-        if !isLock {
+        if !isLock && !isInit {
             subMarkers.insert(marker)
         }
     }
     
     func setSubMarkers(_ markers: Set<SubMarker>) {
-        if !isLock {
+        if !isLock && !isInit {
             subMarkers = markers
         }
     }
     
     func removeMainMarker() {
-        if !isLock {
+        if !isLock && !isInit {
             mainMarker = nil
         }
     }
     
     func removeSubMarker(_ marker: SubMarker) {
-        if !isLock {
+        if !isLock && !isInit {
             subMarkers.remove(marker)
         }
     }
     
     func removeSubMarkers() {
-        if !isLock {
+        if !isLock && !isInit {
             subMarkers.removeAll()
         }
     }
     
     func setIsLock(_ isLock: Bool) {
         self.isLock = isLock
+    }
+    
+    func setIsInit(_ isInit: Bool) {
+        self.isInit = isInit
     }
     
     func lock() {
