@@ -21,7 +21,7 @@ struct OptionView: View {
         //TitleView(title: "옵션", description: "")
         
         NavigationStack {
-            List {
+            Form {
                 Section {
                     NavigationLink {
                         LanguageSelectView(
