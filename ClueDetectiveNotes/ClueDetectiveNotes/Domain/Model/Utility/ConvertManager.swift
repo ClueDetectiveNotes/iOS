@@ -13,7 +13,8 @@ struct ConvertManager {
                 rowName: cell.getRowName(),
                 colName: cell.getColName(),
                 mainMarker: cell.getMainMarker(),
-                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation },
+//                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation },
+                subMarkers: cell.getSubMarkers(),
                 isLock: cell.getIsLock()
             )
         }

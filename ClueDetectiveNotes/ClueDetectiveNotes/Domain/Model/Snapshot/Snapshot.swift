@@ -13,7 +13,8 @@ struct Snapshot {
     private let selectedRowNames: [CardType: RowName]
     private let selectedColName: ColName?
     private var mainMarkerMarkedCells = [(id: UUID, mainMarker: MainMarker)]()
-    private var subMarkerMarkedCells = [(id: UUID, subMarkers: Set<SubMarker>)]()
+    //private var subMarkerMarkedCells = [(id: UUID, subMarkers: Set<SubMarker>)]()
+    private var subMarkerMarkedCells = [(id: UUID, subMarkers: [SubMarker])]()
     
     init() {
         let sheet = GameSetter.shared.getSheet()
@@ -62,7 +63,11 @@ struct Snapshot {
         return mainMarkerMarkedCells
     }
     
-    func getSubMarkerMarkedCells() -> [(id: UUID, subMarkers: Set<SubMarker>)] {
+//    func getSubMarkerMarkedCells() -> [(id: UUID, subMarkers: Set<SubMarker>)] {
+//        return subMarkerMarkedCells
+//    }
+    
+    func getSubMarkerMarkedCells() -> [(id: UUID, subMarkers: [SubMarker])] {
         return subMarkerMarkedCells
     }
 }
