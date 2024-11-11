@@ -147,37 +147,80 @@ private struct PlayerRowView: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 2) {
             EmptyView()
                 .frame(
                     width: geometryStore.cardNameWidth,
                     height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
+            Spacer()
+                .frame(width: 1)
+            
             HStack(spacing: 2) {
-                ForEach(sheetStore.sheet.colNames, id: \.self) { colName in
-                    Button(
-                        action: {
-                            sheetIntent.clickColName(colName)
-                        },
-                        label: {
-                            Text(colName.cardHolder.name)
-                                .foregroundStyle(Color("black1"))
-                                .minimumScaleFactor(0.2)
-                                .padding(7)
-                                .underline(colName.cardHolder is User)
-                        }
+                ForEach(sheetStore.sheet.colNames.filter({ $0.cardHolder is Player}), id: \.self) { colName in
+                    PlayerNameView(
+                        sheetStore: sheetStore,
+                        sheetIntent: sheetIntent,
+                        colName: colName
                     )
-                    .frame(
-                        width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
-                        height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
+                }
+            }
+            
+            if !sheetStore.isHiddenAnswer {
+                HStack(spacing: 2) {
+                    PlayerNameView(
+                        sheetStore: sheetStore,
+                        sheetIntent: sheetIntent,
+                        colName: sheetStore.sheet.colNames.filter({ !($0.cardHolder is Player)}).first!
                     )
-                    .background(colName.cardHolder is Player
-                                ? Color("white1")
-                                : Color.indigo)
                 }
             }
         }
+    }
+}
+
+private struct PlayerNameView: View {
+    @EnvironmentObject private var geometryStore: GeometryStore
+    @ObservedObject private var sheetStore: SheetStore
+    private let sheetIntent: SheetIntent
+    
+    private let colName: ColName
+    
+    init(
+        sheetStore: SheetStore,
+        sheetIntent: SheetIntent,
+        colName: ColName
+    ) {
+        self.sheetStore = sheetStore
+        self.sheetIntent = sheetIntent
+        self.colName = colName
+    }
+    
+    var body: some View {
+        Button(
+            action: {
+                sheetIntent.clickColName(colName)
+            },
+            label: {
+                Text(colName.cardHolder.name)
+                    .foregroundStyle(Color("black1"))
+                    .minimumScaleFactor(0.2)
+                    .padding(7)
+                    .underline(colName.cardHolder is User)
+            }
+        )
+        .frame(
+            width: sheetStore.isHiddenAnswer
+            ? geometryStore.getCellSize(sheetStore.sheet.colNames.count - 1).width
+            : geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+            height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
+        )
+        .background(
+            colName.cardHolder is Player
+            ? Color("white1")
+            : Color.indigo
+        )
     }
 }
 
@@ -234,7 +277,7 @@ private struct CardNameView: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 2) {
             Text(cardType.description)
                 .minimumScaleFactor(0.1)
                 .bold()
@@ -244,17 +287,30 @@ private struct CardNameView: View {
                     height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
                 )
             
+            Spacer()
+                .frame(width: 1)
+            
             HStack(spacing: 2) {
-                ForEach(sheetStore.sheet.colNames, id: \.self) { _ in
-                    Rectangle()
-                        .frame(
-                            width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
-                            height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
-                        )
-                        .opacity(0)
+                ForEach(sheetStore.sheet.colNames.filter({$0.cardHolder is Player}), id: \.self) { _ in
+                    emptyRect
                 }
             }
+            
+            if !sheetStore.isHiddenAnswer {
+                emptyRect
+            }
         }
+    }
+    
+    private var emptyRect: some View {
+        Rectangle()
+            .frame(
+                width: sheetStore.isHiddenAnswer
+                ? geometryStore.getCellSize(sheetStore.sheet.colNames.count - 1).width
+                : geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+                height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
+            )
+            .opacity(0)
     }
 }
 
@@ -280,7 +336,7 @@ private struct CardRowView: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 2) {
             Button(
                 action: {
                     sheetIntent.clickRowName(rowName)
@@ -304,13 +360,30 @@ private struct CardRowView: View {
                 : Color("white1")
             )
             
+            Spacer()
+                .frame(width: 1)
+            
             HStack(spacing: 2) {
-                ForEach(sheetStore.sheet.cells.filter({ $0.rowName == rowName }), id: \.self) { cell in
+                ForEach(
+                    sheetStore.sheet.cells.filter({$0.rowName == rowName && !$0.isAnswer()}),
+                    id: \.self
+                ) { cell in
                     CellView(
                         sheetStore: sheetStore,
                         geometryIntent: geometryIntent,
                         sheetIntent: sheetIntent,
                         cell: cell
+                    )
+                }
+            }
+            
+            if !sheetStore.isHiddenAnswer {
+                HStack(spacing: 2) {
+                    CellView(
+                        sheetStore: sheetStore,
+                        geometryIntent: geometryIntent,
+                        sheetIntent: sheetIntent,
+                        cell: sheetStore.sheet.cells.filter({ $0.rowName == rowName && $0.isAnswer()}).first!
                     )
                 }
             }
@@ -356,7 +429,9 @@ private struct CellView: View {
         }
         .id(cell.rowName)
         .frame(
-            width: geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
+            width: sheetStore.isHiddenAnswer
+            ? geometryStore.getCellSize(sheetStore.sheet.colNames.count - 1).width
+            : geometryStore.getCellSize(sheetStore.sheet.colNames.count).width,
             height: geometryStore.getCellSize(sheetStore.sheet.colNames.count).height
         )
         .border(

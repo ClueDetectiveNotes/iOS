@@ -144,6 +144,10 @@ struct ControlBarIntent {
     func restartGame() {
         controlBarStore.setWantsToRestartGame(true)
     }
+    
+    func clickHiddenAnswer() {
+        sheetStore.toggleIsHiddenAnswer()
+    }
 }
 
 // MARK: - Private

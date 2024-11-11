@@ -144,6 +144,7 @@ struct ControlBarView: View {
             
             // 더보기
             MoreMenuView(
+                sheetStore: sheetStore,
                 controlBarStore: controlBarStore,
                 gameSettingIntent: gameSettingIntent,
                 optionIntent: optionIntent,

@@ -14,6 +14,10 @@ struct PresentationCell {
     let mainMarker: MainMarker?
     let subMarkers: [SubMarker]
     let isLock: Bool
+    
+    func isAnswer() -> Bool {
+        return !(self.colName.cardHolder is Player)
+    }
 }
 
 extension PresentationCell: Hashable {

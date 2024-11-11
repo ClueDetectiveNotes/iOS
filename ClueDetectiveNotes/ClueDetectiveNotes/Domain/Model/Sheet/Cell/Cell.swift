@@ -49,6 +49,10 @@ final class Cell {
         return isInit
     }
     
+    func isAnswer() -> Bool {
+        return !(self.colName.cardHolder is Player)
+    }
+    
     // MARK: - GET
     func getID() -> UUID {
         return id

@@ -13,18 +13,21 @@ final class SheetStore: ObservableObject {
     @Published var isDisplayAddSubMarkerAlert: Bool
     @Published var isVisibleScreen: Bool
     @Published var isDisplayCheckMarkerAlert: Bool
+    @Published var isHiddenAnswer: Bool
     
     init(
         isDisplayMarkerControlBar: Bool = false,
         isDisplayAddSubMarkerAlert: Bool = false,
         isVisibleScreen: Bool = true,
-        isDisplayCheckMarkerAlert: Bool = false
+        isDisplayCheckMarkerAlert: Bool = false,
+        isHiddenAnswer: Bool = false
     ) {
         self.sheet = ConvertManager.getImmutableSheet(GameSetter.shared.getSheet())
         self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
         self.isDisplayAddSubMarkerAlert = isDisplayAddSubMarkerAlert
         self.isVisibleScreen = isVisibleScreen
         self.isDisplayCheckMarkerAlert = isDisplayCheckMarkerAlert
+        self.isHiddenAnswer = isHiddenAnswer
     }
     
     func overwriteSheet(_ newSheet: PresentationSheet) {
@@ -41,5 +44,9 @@ final class SheetStore: ObservableObject {
     
     func setDisplayCheckMarkerAlert(_ value: Bool) {
         isDisplayCheckMarkerAlert = value
+    }
+    
+    func toggleIsHiddenAnswer() {
+        isHiddenAnswer.toggle()
     }
 }

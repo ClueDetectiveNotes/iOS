@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MoreMenuView: View {
+    @ObservedObject private var sheetStore: SheetStore
     @ObservedObject private var controlBarStore: ControlBarStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -15,13 +16,16 @@ struct MoreMenuView: View {
     
     @State private var wantsToGoHome: Bool = false
     @State private var wantsToRestartGame: Bool = false
+    @State private var testBool: Bool = false
     
     init(
+        sheetStore: SheetStore,
         controlBarStore: ControlBarStore,
         gameSettingIntent: GameSettingIntent,
         optionIntent: OptionIntent,
         controlBarIntent: ControlBarIntent
     ) {
+        self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
         self.gameSettingIntent = gameSettingIntent
         self.optionIntent = optionIntent
@@ -31,15 +35,16 @@ struct MoreMenuView: View {
     var body: some View {
         //작성된 순서 반대로 보임
         Menu {
-            // 정답칸 보이기
-            Button(
-                action: {
-                    
-                },
-                label: {
-                    Text("정답칸 보이기")
-                }
-            )
+            // 정답칸 숨기기
+//            Button(
+//                action: {
+//                    controlBarIntent.clickHiddenAnswer()
+//                },
+//                label: {
+//                    Text("정답칸 숨기기")
+//                }
+//            )
+            Toggle("정답칸 숨기기", isOn: $sheetStore.isHiddenAnswer)
             
             // 옵션
             Button(
@@ -81,6 +86,7 @@ struct MoreMenuView: View {
 
 #Preview {
     MoreMenuView(
+        sheetStore: SheetStore(), 
         controlBarStore: ControlBarStore(),
         gameSettingIntent: GameSettingIntent(gameSettingStore: GameSettingStore()),
         optionIntent: OptionIntent(optionStore: OptionStore()),
