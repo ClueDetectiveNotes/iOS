@@ -18,8 +18,6 @@ struct OptionView: View {
     }
     
     var body: some View {
-        //TitleView(title: "옵션", description: "")
-        
         NavigationStack {
             Form {
                 Section {
@@ -62,6 +60,15 @@ struct OptionView: View {
                     } label: {
                         Text("서브 마커 관리")
                     }
+                    
+                    
+                } header: {
+                    Text("설정")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("black1"))
+                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .padding(.vertical)
                 }
                 
                 Section {
@@ -79,11 +86,10 @@ struct OptionView: View {
                         Text("개발자")
                     }
                 }
-                
             }
         }
-        .navigationTitle("옵션")
-        .navigationBarTitleDisplayMode(.large)
+//        .navigationTitle("옵션")
+//        .navigationBarTitleDisplayMode(.large)
     }
 }
 
