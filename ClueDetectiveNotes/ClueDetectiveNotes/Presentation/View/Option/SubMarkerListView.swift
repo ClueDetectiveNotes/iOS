@@ -55,16 +55,15 @@ struct SubMarkerListView: View {
                 .padding(.trailing, 30)
                 .padding(.bottom, 30)
         }
+        .navigationTitle("서브 마커 관리")
     }
 }
 
 private struct SubMarkerRow: View {
-    @EnvironmentObject private var optionStore: OptionStore
     @Environment(\.editMode) private var editMode
+    @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
     private let subMarkerType: SubMarkerType
-    
-    @State private var isUsed: Bool
     
     init(
         optionIntent: OptionIntent,
@@ -72,7 +71,6 @@ private struct SubMarkerRow: View {
     ) {
         self.optionIntent = optionIntent
         self.subMarkerType = subMarkerType
-        self.isUsed = subMarkerType.isUse
     }
     
     var body: some View {
@@ -82,9 +80,9 @@ private struct SubMarkerRow: View {
             Spacer()
             
             if editMode?.wrappedValue.isEditing == false {
-                Toggle(isOn: $isUsed, label: {})
+                Toggle(isOn: .constant(subMarkerType.isUse), label: {})
                     .labelsHidden()
-                    .onChange(of: isUsed) { _ in
+                    .onTapGesture {
                         optionIntent.toggleSubMarkerType(subMarkerType)
                     }
             }
