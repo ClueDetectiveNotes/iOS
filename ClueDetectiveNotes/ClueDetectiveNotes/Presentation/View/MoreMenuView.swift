@@ -52,7 +52,7 @@ struct MoreMenuView: View {
                     controlBarIntent.clickOption()
                 },
                 label: {
-                    Text("옵션")
+                    Text("설정")
                 }
             )
             

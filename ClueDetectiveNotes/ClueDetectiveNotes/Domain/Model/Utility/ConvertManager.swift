@@ -13,7 +13,6 @@ struct ConvertManager {
                 rowName: cell.getRowName(),
                 colName: cell.getColName(),
                 mainMarker: cell.getMainMarker(),
-//                subMarkers: cell.getSubMarkers().sorted { $0.notation < $1.notation },
                 subMarkers: cell.getSubMarkers(),
                 isLock: cell.getIsLock()
             )
@@ -50,7 +49,11 @@ struct ConvertManager {
         )
     }
     
-    static func getImmutableControlBar(mutableSubMarkerType: SubMarkerType) -> PresentationControlBar {
-        return PresentationControlBar(subMarkerTypes: mutableSubMarkerType.getSubMarkerTypes())
+    static func getImmutableControlBar(mutableSubMarkerType: SubMarkerTypes) -> PresentationControlBar {
+        return PresentationControlBar(subMarkerTypes: mutableSubMarkerType.getSubMarkerTypes().map { $0.notation })
+    }
+    
+    static func getImmutableSubMarkerTypes() -> [SubMarkerType] {
+        return SubMarkerTypes.shared.getSubMarkerTypes()
     }
 }

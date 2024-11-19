@@ -10,6 +10,7 @@ import SwiftUI
 struct MarkerControlBarView: View {
     @EnvironmentObject private var geometryStore: GeometryStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
+    @ObservedObject private var optionStore: OptionStore
     @ObservedObject private var sheetStore: SheetStore
     @ObservedObject private var controlBarStore: ControlBarStore
     private let markerControlBarIntent: MarkerControlBarIntent
@@ -17,12 +18,15 @@ struct MarkerControlBarView: View {
     @State private var newSubMarkerName: String = ""
     
     init(
+        optionStore: OptionStore,
         sheetStore: SheetStore,
         controlBarStore: ControlBarStore
     ) {
+        self.optionStore = optionStore
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
         self.markerControlBarIntent = MarkerControlBarIntent(
+            optionStore: optionStore,
             sheetStore: sheetStore,
             controlBarStore: controlBarStore
         )
@@ -90,7 +94,7 @@ struct MarkerControlBarView: View {
             TextField("마커 이름", text: $newSubMarkerName)
                 .foregroundColor(Color.black)
             Button("확인") {
-                markerControlBarIntent.addSubMarker(SubMarker(notation: newSubMarkerName))
+                markerControlBarIntent.addSubMarkerType(newSubMarkerName)
                 newSubMarkerName = ""
             }
             Button("취소", role: .cancel) { }
@@ -144,6 +148,7 @@ struct MainMarkerBtnsView: View {
 }
 
 struct SubMarkerBtnsView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @ObservedObject private var controlBarStore: ControlBarStore
     private let markerControlBarIntent: MarkerControlBarIntent
     
@@ -156,13 +161,13 @@ struct SubMarkerBtnsView: View {
     }
 
     var body: some View {
-        ForEach(controlBarStore.controlBar.subMarkerTypes, id: \.self) { subMarkerType in
+        ForEach(optionStore.subMarkerTypes.filter({ $0.isUse == true }), id: \.self) { subMarkerType in
             Button(
                 action: {
-                    markerControlBarIntent.chooseSubMarker(SubMarker(notation: subMarkerType))
+                    markerControlBarIntent.chooseSubMarker(SubMarker(notation: subMarkerType.notation))
                 },
                 label: {
-                    Text(subMarkerType)
+                    Text(subMarkerType.notation)
                         .foregroundStyle(Color("darkgray1"))
                 }
             )
@@ -174,7 +179,8 @@ struct SubMarkerBtnsView: View {
 
 #Preview {
     MarkerControlBarView(
-        sheetStore: SheetStore(), 
+        optionStore: OptionStore(),
+        sheetStore: SheetStore(),
         controlBarStore: ControlBarStore()
     )
     .environmentObject(GeometryStore())

@@ -9,6 +9,10 @@ import SwiftUI
 
 struct OptionIntent {
     private var optionStore: OptionStore
+    private let addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase
+    private let removeSubMarkerTypeUseCase : RemoveSubMarkerTypeUseCase
+    private let reorderSubMarkerTypesUseCase : ReorderSubMarkerTypesUseCase
+    private let toggleSubMarkerTypeUseCase: ToggleSubMarkerTypeUseCase
     
     @AppStorage("language") private var language: Language = .korean
     @AppStorage("screenMode") private var screenMode: ScreenMode = .system
@@ -16,9 +20,17 @@ struct OptionIntent {
     @AppStorage("autoAnswerMode") private var autoAnswerMode: Bool = false
     
     init(
-        optionStore: OptionStore
+        optionStore: OptionStore,
+        addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase(),
+        removeSubMarkerTypeUseCase : RemoveSubMarkerTypeUseCase = RemoveSubMarkerTypeUseCase(),
+        reorderSubMarkerTypesUseCase : ReorderSubMarkerTypesUseCase = ReorderSubMarkerTypesUseCase(),
+        toggleSubMarkerTypeUseCase: ToggleSubMarkerTypeUseCase = ToggleSubMarkerTypeUseCase()
     ) {
         self.optionStore = optionStore
+        self.addSubMarkerTypeUseCase = addSubMarkerTypeUseCase
+        self.removeSubMarkerTypeUseCase = removeSubMarkerTypeUseCase
+        self.reorderSubMarkerTypesUseCase = reorderSubMarkerTypesUseCase
+        self.toggleSubMarkerTypeUseCase = toggleSubMarkerTypeUseCase
     }
     
     func clickLanguage(_ language: Language) {
@@ -36,6 +48,47 @@ struct OptionIntent {
         self.autoAnswerMode = optionStore.autoAnswerMode
     }
     
+    func addSubMarkerType(_ markerType: String) {
+        do {
+            let presentationSubMarkerTypes = try addSubMarkerTypeUseCase.execute(markerType)
+            
+            updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
+        } catch {
+            
+        }
+    }
+    
+    func deleteSubMarkerType(indexSet: IndexSet) {
+        do {
+            let presentationSubMarkerTypes = try removeSubMarkerTypeUseCase.execute(indexSet: indexSet)
+            
+            updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
+        } catch {
+            
+        }
+    }
+    
+    func reorderSubMarkerTypes(source: IndexSet, destination: Int) {
+        let presentationSubMarkerTypes = reorderSubMarkerTypesUseCase.execute(source: source, destination: destination)
+        
+        updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
+    }
+    
+    func toggleSubMarkerType(_ subMarkerType: SubMarkerType) {
+        do {
+            let presentationSubMarkerTypes = try toggleSubMarkerTypeUseCase.execute(subMarkerType)
+            
+            updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
+        } catch {
+            
+        }
+    }
+    
+    func clickPlusButton() {
+        //sheetStore.setDisplayAddSubMarkerAlert(true)
+        optionStore.setDisplayAddSubMarkerAlert(true)
+    }
+    
     // AppStorage에서 load
     func loadOption() {
         optionStore.setLanguage(language)
@@ -48,5 +101,11 @@ struct OptionIntent {
         language = optionStore.language
         screenMode = optionStore.screenMode
         autoAnswerMode = optionStore.autoAnswerMode
+    }
+}
+
+extension OptionIntent {
+    private func updateSubMarkerTypes(presentationSubMarkerTypes: [SubMarkerType]) {
+        optionStore.overwriteSubMarkerTypes(presentationSubMarkerTypes)
     }
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 final class ControlBarStore: ObservableObject {
-    @Published private(set) var controlBar: PresentationControlBar
     @Published var showOptionView: Bool
     @Published var showToHomeAlert: Bool
     @Published var showRestartGameAlert: Bool
@@ -16,23 +15,17 @@ final class ControlBarStore: ObservableObject {
     @Published var wantsToRestartGame: Bool
     
     init(
-        controlBar: PresentationControlBar = ConvertManager.getImmutableControlBar(mutableSubMarkerType: SubMarkerType.shared),
         showOptionView: Bool = false,
         showToHomeAlert: Bool = false,
         showRestartGameAlert: Bool = false,
         wantsToGoHome: Bool = false,
         wantsToRestartGame: Bool = false
     ) {
-        self.controlBar = controlBar
         self.showOptionView = showOptionView
         self.showToHomeAlert = showToHomeAlert
         self.showRestartGameAlert = showRestartGameAlert
         self.wantsToGoHome = wantsToGoHome
         self.wantsToRestartGame = wantsToRestartGame
-    }
-    
-    func overwriteControlBar(_ newControlBar: PresentationControlBar) {
-        controlBar = newControlBar
     }
     
     func setShowOptionView(_ value: Bool) {

@@ -33,7 +33,7 @@ struct HomeView: View {
                 )
                 
                 HomeButton(
-                    title: "옵션",
+                    title: "설정",
                     OptionView(
                         optionIntent: optionIntent
                     )

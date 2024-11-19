@@ -6,6 +6,7 @@
 //
 
 struct MarkerControlBarIntent {
+    private var optionStore: OptionStore
     private var sheetStore: SheetStore
     private var controlBarStore: ControlBarStore
     private let chooseMainMarkerUseCase: AnyUseCase<MainMarker>
@@ -15,6 +16,7 @@ struct MarkerControlBarIntent {
     private let chooseMainMarkerInAutoAnswerModeUseCase: AnyUseCase<MainMarker>
     
     init(
+        optionStore: OptionStore,
         sheetStore: SheetStore,
         controlBarStore: ControlBarStore,
         chooseMainMarkerUseCase: AnyUseCase<MainMarker> = AnyUseCase(SnapshotDecorator(ChooseMainMarkerUseCase())),
@@ -23,6 +25,7 @@ struct MarkerControlBarIntent {
         addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase(),
         chooseMainMarkerInAutoAnswerModeUseCase: AnyUseCase<MainMarker> = AnyUseCase(SnapshotDecorator(ChooseMainMarkerInAutoAnswerModeUseCase()))
     ) {
+        self.optionStore = optionStore
         self.sheetStore = sheetStore
         self.controlBarStore = controlBarStore
         self.chooseMainMarkerUseCase = chooseMainMarkerUseCase
@@ -63,13 +66,14 @@ struct MarkerControlBarIntent {
     
     func clickPlusButton() {
         sheetStore.setDisplayAddSubMarkerAlert(true)
+        //optionStore.setDisplayAddSubMarkerAlert(true)
     }
     
-    func addSubMarker(_ marker: SubMarker) {
+    func addSubMarkerType(_ markerType: String) {
         do {
-            let presentationControlBar = try addSubMarkerTypeUseCase.execute(marker)
+            let presentationSubMarkerTypes = try addSubMarkerTypeUseCase.execute(markerType)
             
-            updateControlBarStore(presentationControlBar: presentationControlBar)
+            updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
         } catch {
             
         }
@@ -137,7 +141,7 @@ extension MarkerControlBarIntent {
         }
     }
     
-    private func updateControlBarStore(presentationControlBar: PresentationControlBar) {
-        controlBarStore.overwriteControlBar(presentationControlBar)
+    private func updateSubMarkerTypes(presentationSubMarkerTypes: [SubMarkerType]) {
+        optionStore.overwriteSubMarkerTypes(presentationSubMarkerTypes)
     }
 }

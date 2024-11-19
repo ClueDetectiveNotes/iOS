@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject private var gameSettingStore: GameSettingStore
+    @EnvironmentObject private var optionStore: OptionStore
     @StateObject private var sheetStore = SheetStore()
     @StateObject private var controlBarStore = ControlBarStore()
     private let gameSettingIntent: GameSettingIntent
@@ -41,6 +42,7 @@ struct GameView: View {
                 
             if sheetStore.isDisplayMarkerControlBar {
                 MarkerControlBarView(
+                    optionStore: optionStore,
                     sheetStore: sheetStore,
                     controlBarStore: controlBarStore
                 )

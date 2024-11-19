@@ -56,6 +56,12 @@ struct OptionView: View {
                     .onChange(of: optionStore.autoAnswerMode) { _ in
                         optionIntent.saveOption()
                     }
+                    
+                    NavigationLink {
+                        SubMarkerListView(optionIntent: optionIntent)
+                    } label: {
+                        Text("서브 마커 관리")
+                    }
                 }
                 
                 Section {
@@ -163,101 +169,130 @@ private struct ScreenModeSelectView: View {
     }
 }
 
-/*
-private struct LanguagePickerView: View {
+private struct SubMarkerListView: View {
     @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
     
-    init(
-        optionIntent: OptionIntent
-    ) {
+    init(optionIntent: OptionIntent) {
         self.optionIntent = optionIntent
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            SubTitleView("언어")
-            
-            Picker("Language", selection: $optionStore.language) {
-                ForEach(Language.allCases) { language in
-                    Text(language.text)
+        ZStack {
+            VStack {
+                List {
+                    Section {
+                        ForEach(optionStore.subMarkerTypes, id: \.self) { subMarkerType in
+                            SubMarkerRow(
+                                optionIntent: optionIntent,
+                                subMarkerType: subMarkerType
+                            )
+                        }
+                        .onMove { (source: IndexSet, destination: Int) in
+                            optionIntent.reorderSubMarkerTypes(source: source, destination: destination)
+                        }
+                        .onDelete { indexSet in
+                            optionIntent.deleteSubMarkerType(indexSet: indexSet)
+                        }
+                    }
+                    
+                    Section {
+                        Button {
+                            print("클릭")
+                        } label: {
+                            Text("초기화")
+                                .frame(maxWidth: .infinity)
+                        }
+                    } footer: {
+                        Text("서브 마커를 기본값으로 초기화 합니다.")
+                    }
+
+                }
+                .toolbar {
+                    EditButton()
                 }
             }
-            .onChange(of: optionStore.language) { _ in
-                optionIntent.saveOption()
-            }
+            
+            AddSubMarkerBtnView(optionIntent: optionIntent)
+                .padding(.trailing, 30)
+                .padding(.bottom, 30)
         }
-        .padding()
     }
 }
 
-private struct ScreenModePickerView: View {
+private struct SubMarkerRow: View {
     @EnvironmentObject private var optionStore: OptionStore
-    @StateObject private var colorSchemeObserver = ColorSchemeObserver()
+    @Environment(\.editMode) private var editMode
     private let optionIntent: OptionIntent
+    private let subMarkerType: SubMarkerType
+    
+    @State private var isUsed: Bool
     
     init(
-        optionIntent: OptionIntent
+        optionIntent: OptionIntent,
+        subMarkerType: SubMarkerType
     ) {
         self.optionIntent = optionIntent
+        self.subMarkerType = subMarkerType
+        self.isUsed = subMarkerType.isUse
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            SubTitleView("화면 모드")
+        HStack {
+            Text("\(subMarkerType.notation)")
             
-            Picker("Screen Mode", selection: $optionStore.screenMode) {
-                ForEach(ScreenMode.allCases) { screenMode in
-                    Text(screenMode.rawValue.capitalized) // 영어 첫문자 대문자로 만들어줌
-                }
-            }
-            .onChange(of: optionStore.screenMode) { _ in
-                optionIntent.saveOption()
+            Spacer()
+            
+            if editMode?.wrappedValue.isEditing == false {
+                Toggle(isOn: $isUsed, label: {})
+                    .labelsHidden()
+                    .onChange(of: isUsed) { _ in
+                        optionIntent.toggleSubMarkerType(subMarkerType)
+                    }
             }
         }
-        .padding()
-        .preferredColorScheme(
-            optionStore.screenMode == .system
-            ? colorSchemeObserver.colorScheme
-            : optionStore.screenMode.getColorScheme()
-        )
     }
 }
 
-private struct AutoCompleteAnswerPickerView: View {
+private struct AddSubMarkerBtnView: View {
     @EnvironmentObject private var optionStore: OptionStore
     private let optionIntent: OptionIntent
     
-    init(
-        optionIntent: OptionIntent
-    ) {
+    @State private var newSubMarkerName: String = ""
+    
+    init(optionIntent: OptionIntent) {
         self.optionIntent = optionIntent
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            SubTitleView("정답 자동 완성")
+        VStack {
+            Spacer()
             
-            Picker("Auto-Complete Answer", selection: $optionStore.autoAnswerMode) {
-                ForEach(AutoAnswerMode.allCases) { mode in
-                    Text(mode.text)
+            HStack {
+                Spacer()
+                
+                Button {
+                    optionIntent.clickPlusButton()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 45))
                 }
             }
-            .onChange(of: optionStore.autoAnswerMode) { _ in
-                optionIntent.saveOption()
+        }
+        .alert(
+            "마커 추가",
+            isPresented: $optionStore.isDisplayAddSubMarkerAlert
+        ) {
+            TextField("마커 이름", text: $newSubMarkerName)
+                .foregroundColor(Color.black)
+            Button("확인") {
+                optionIntent.addSubMarkerType(newSubMarkerName)
+                newSubMarkerName = ""
             }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("추가할 마커의 이름을 입력해주세요.")
         }
-        .padding()
-    }
-}
-*/
- 
-private struct DefaultSubMarkerView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            SubTitleView("서브마커 기본값 설정")
-        }
-        .padding()
     }
 }
 
