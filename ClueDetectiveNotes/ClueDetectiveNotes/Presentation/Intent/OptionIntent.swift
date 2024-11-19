@@ -13,6 +13,7 @@ struct OptionIntent {
     private let removeSubMarkerTypeUseCase : RemoveSubMarkerTypeUseCase
     private let reorderSubMarkerTypesUseCase : ReorderSubMarkerTypesUseCase
     private let toggleSubMarkerTypeUseCase: ToggleSubMarkerTypeUseCase
+    private let initSubMarkerTypeUseCase: InitSubMarkerTypeUseCase
     
     @AppStorage("language") private var language: Language = .korean
     @AppStorage("screenMode") private var screenMode: ScreenMode = .system
@@ -24,13 +25,15 @@ struct OptionIntent {
         addSubMarkerTypeUseCase: AddSubMarkerTypeUseCase = AddSubMarkerTypeUseCase(),
         removeSubMarkerTypeUseCase : RemoveSubMarkerTypeUseCase = RemoveSubMarkerTypeUseCase(),
         reorderSubMarkerTypesUseCase : ReorderSubMarkerTypesUseCase = ReorderSubMarkerTypesUseCase(),
-        toggleSubMarkerTypeUseCase: ToggleSubMarkerTypeUseCase = ToggleSubMarkerTypeUseCase()
+        toggleSubMarkerTypeUseCase: ToggleSubMarkerTypeUseCase = ToggleSubMarkerTypeUseCase(),
+        initSubMarkerTypeUseCase: InitSubMarkerTypeUseCase = InitSubMarkerTypeUseCase()
     ) {
         self.optionStore = optionStore
         self.addSubMarkerTypeUseCase = addSubMarkerTypeUseCase
         self.removeSubMarkerTypeUseCase = removeSubMarkerTypeUseCase
         self.reorderSubMarkerTypesUseCase = reorderSubMarkerTypesUseCase
         self.toggleSubMarkerTypeUseCase = toggleSubMarkerTypeUseCase
+        self.initSubMarkerTypeUseCase = initSubMarkerTypeUseCase
     }
     
     func clickLanguage(_ language: Language) {
@@ -46,6 +49,17 @@ struct OptionIntent {
     func clickAutoAnswerMode(_ autoAnswerMode: Bool) {
         optionStore.setAutoAnswerMode(autoAnswerMode)
         self.autoAnswerMode = optionStore.autoAnswerMode
+    }
+    
+    func clickPlusButton() {
+        //sheetStore.setDisplayAddSubMarkerAlert(true)
+        optionStore.setDisplayAddSubMarkerAlert(true)
+    }
+    
+    func initSubMarkerType() {
+        let presentationSubMarkerTypes = initSubMarkerTypeUseCase.execute()
+        
+        updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
     }
     
     func addSubMarkerType(_ markerType: String) {
@@ -82,11 +96,6 @@ struct OptionIntent {
         } catch {
             
         }
-    }
-    
-    func clickPlusButton() {
-        //sheetStore.setDisplayAddSubMarkerAlert(true)
-        optionStore.setDisplayAddSubMarkerAlert(true)
     }
     
     // AppStorage에서 load

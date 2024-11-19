@@ -36,14 +36,6 @@ struct MoreMenuView: View {
         //작성된 순서 반대로 보임
         Menu {
             // 정답칸 숨기기
-//            Button(
-//                action: {
-//                    controlBarIntent.clickHiddenAnswer()
-//                },
-//                label: {
-//                    Text("정답칸 숨기기")
-//                }
-//            )
             Toggle("정답칸 숨기기", isOn: $sheetStore.isHiddenAnswer)
             
             // 옵션

@@ -11,20 +11,25 @@ final class SubMarkerTypes {
     static let shared = SubMarkerTypes()
     
     private var types: [SubMarkerType] = []
+    private var defaultSubMarkerTypes = [
+        SubMarkerType(notation: "1", isUse: true),
+        SubMarkerType(notation: "2", isUse: true),
+        SubMarkerType(notation: "3", isUse: true),
+        SubMarkerType(notation: "4", isUse: true)
+    ]
     
     private init() { }
     
     func getSubMarkerTypes() -> [SubMarkerType] {
         if types.isEmpty {
-            types = [
-                SubMarkerType(notation: "1", isUse: true),
-                SubMarkerType(notation: "2", isUse: true),
-                SubMarkerType(notation: "3", isUse: true),
-                SubMarkerType(notation: "4", isUse: true)
-            ]
+            types = defaultSubMarkerTypes
         }
         
         return types
+    }
+    
+    func initSubMarkerType() {
+        types = defaultSubMarkerTypes
     }
     
     // DOTO: - Type 에러 분리할까
