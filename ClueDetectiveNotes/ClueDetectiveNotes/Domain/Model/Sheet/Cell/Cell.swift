@@ -12,7 +12,6 @@ final class Cell {
     private let rowName: RowName
     private let colName: ColName
     private var mainMarker: MainMarker?
-    //private var subMarkers = Set<SubMarker>()
     private var subMarkers = [SubMarker]()
     private var isLock: Bool = false
     private var isInit: Bool = false
@@ -71,10 +70,6 @@ final class Cell {
         return mainMarker
     }
     
-//    func getSubMarkers() -> Set<SubMarker> {
-//        return subMarkers
-//    }
-    
     func getSubMarkers() -> [SubMarker] {
         return subMarkers
     }
@@ -94,22 +89,11 @@ final class Cell {
         }
     }
     
-//    func setSubMarker(_ marker: SubMarker) {
-//        if !isLock && !isInit {
-//            subMarkers.insert(marker)
-//        }
-//    }
     func setSubMarker(_ marker: SubMarker) {
         if !isLock && !isInit {
             subMarkers.append(marker)
         }
     }
-    
-//    func setSubMarkers(_ markers: Set<SubMarker>) {
-//        if !isLock && !isInit {
-//            subMarkers = markers
-//        }
-//    }
     
     func setSubMarkers(_ markers: [SubMarker]) {
         if !isLock && !isInit {
@@ -122,12 +106,6 @@ final class Cell {
             mainMarker = nil
         }
     }
-    
-//    func removeSubMarker(_ marker: SubMarker) {
-//        if !isLock && !isInit {
-//            subMarkers.remove(marker)
-//        }
-//    }
     
     func removeSubMarker(_ marker: SubMarker) {
         if !isLock && !isInit {

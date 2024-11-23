@@ -32,7 +32,6 @@ final class SubMarkerTypes {
         types = defaultSubMarkerTypes
     }
     
-    // DOTO: - Type 에러 분리할까
     func addSubMarkerType(_ notation: String) throws {
         let tempNotation = notation.replacingOccurrences(of: " ", with: "")
         

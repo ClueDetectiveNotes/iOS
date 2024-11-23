@@ -17,7 +17,6 @@ struct OptionIntent {
     
     @AppStorage("language") private var language: Language = .korean
     @AppStorage("screenMode") private var screenMode: ScreenMode = .system
-//    @AppStorage("autoAnswerMode") private var autoAnswerMode: AutoAnswerMode = .off
     @AppStorage("autoAnswerMode") private var autoAnswerMode: Bool = false
     
     init(
