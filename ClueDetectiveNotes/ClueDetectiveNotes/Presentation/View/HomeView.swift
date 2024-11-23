@@ -69,7 +69,7 @@ private struct HomeButton<Destination: View>: View {
     
     init(
         title: String,
-        maxWidth: CGFloat = 110,
+        maxWidth: CGFloat = 150,
         _ destination: Destination
     ) {
         self.title = title

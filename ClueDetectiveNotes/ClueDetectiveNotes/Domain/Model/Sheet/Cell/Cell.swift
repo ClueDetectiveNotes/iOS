@@ -83,6 +83,10 @@ final class Cell {
         return isLock
     }
     
+    func getIsInit() -> Bool {
+        return isInit
+    }
+    
     // MARK: - SET
     func setMainMarker(_ marker: MainMarker) {
         if !isLock && !isInit {

@@ -166,7 +166,7 @@ struct ControlBarView: View {
             OptionView(optionIntent: optionIntent)
         }
         .alert(
-            "세팅화면으로 돌아가시겠습니까?",
+            "세팅 화면으로 돌아가시겠습니까?",
             isPresented: $controlBarStore.isShowingRestartGameAlert
         ) {
             Button("확인") {
@@ -174,7 +174,7 @@ struct ControlBarView: View {
             }
             Button("취소", role: .cancel) { }
         } message: {
-            Text("현재 게임 진행 상황이 모두 삭제됩니다.")
+            Text("플레이어 정보를 제외한 게임 진행 상황이 사라집니다.")
         }
         .navigationDestination(isPresented: $controlBarStore.wantsToRestartGame) {
             PlayerSettingView(
@@ -195,7 +195,7 @@ struct ControlBarView: View {
             }
             Button("취소", role: .cancel) { }
         } message: {
-            Text("현재 게임 진행 상황이 모두 삭제됩니다.")
+            Text("현재 게임 진행 상황이 모두 사라집니다.")
         }
         .navigationDestination(isPresented: $controlBarStore.wantsToGoHome) {
             HomeView(

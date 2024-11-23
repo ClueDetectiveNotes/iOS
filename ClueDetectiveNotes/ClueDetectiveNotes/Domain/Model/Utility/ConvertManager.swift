@@ -14,7 +14,8 @@ struct ConvertManager {
                 colName: cell.getColName(),
                 mainMarker: cell.getMainMarker(),
                 subMarkers: cell.getSubMarkers(),
-                isLock: cell.getIsLock()
+                isLock: cell.getIsLock(),
+                isInit: cell.getIsInit()
             )
         }
     }

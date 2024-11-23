@@ -14,6 +14,7 @@ struct PresentationCell {
     let mainMarker: MainMarker?
     let subMarkers: [SubMarker]
     let isLock: Bool
+    let isInit: Bool
     
     func isAnswer() -> Bool {
         return !(self.colName.cardHolder is Player)

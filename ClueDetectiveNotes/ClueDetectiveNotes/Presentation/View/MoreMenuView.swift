@@ -35,31 +35,38 @@ struct MoreMenuView: View {
     var body: some View {
         //작성된 순서 반대로 보임
         Menu {
-            // 정답칸 숨기기
-            Toggle("정답칸 숨기기", isOn: $sheetStore.isHiddenAnswer)
-            
-            // 옵션
-            Button(
-                action: {
-                    controlBarIntent.clickOption()
-                },
-                label: {
-                    Text("설정")
-                }
-            )
-            
-            // 다시하기
-            Button {
-                controlBarIntent.clickRestartGameInMoreMenu()
-            } label: {
-                Text("다시하기")
+            Section {
+                // 정답칸 숨기기
+                Toggle("정답칸 숨기기", isOn: $sheetStore.isHiddenAnswer)
+                
+                // lock 이미지 숨기기
+                Toggle("Lock 이미지 숨기기", isOn: $sheetStore.isHiddenLockImage)
             }
             
-            // 홈으로
-            Button {
-                controlBarIntent.clickGoHomeInMoreMenu()
-            } label: {
-                Text("홈으로")
+            Section {
+                // 옵션
+                Button(
+                    action: {
+                        controlBarIntent.clickOption()
+                    },
+                    label: {
+                        Text("설정")
+                    }
+                )
+                
+                // 다시하기
+                Button {
+                    controlBarIntent.clickRestartGameInMoreMenu()
+                } label: {
+                    Text("다시하기")
+                }
+                
+                // 홈으로
+                Button {
+                    controlBarIntent.clickGoHomeInMoreMenu()
+                } label: {
+                    Text("홈으로")
+                }
             }
             
         } label: {

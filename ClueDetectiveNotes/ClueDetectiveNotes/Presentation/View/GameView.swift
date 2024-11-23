@@ -471,7 +471,7 @@ private struct CellView: View {
             DragGesture().onChanged { _ in }
         )
         .overlay {
-            if cell.isLock {
+            if !sheetStore.isHiddenLockImage && cell.isLock {
                 lockInCell
             }
         }
@@ -481,7 +481,9 @@ private struct CellView: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Image(systemName: "lock.circle")
-                    .foregroundStyle(Color("darkgray1"))
+                    .foregroundStyle(
+                        cell.isInit ? Color("darkgray1") : Color("blue1")
+                    )
                     .frame(width:4)
                     .opacity(0.6)
                 
