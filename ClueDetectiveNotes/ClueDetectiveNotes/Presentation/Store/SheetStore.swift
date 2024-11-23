@@ -48,8 +48,4 @@ final class SheetStore: ObservableObject {
     func setIsShowingCheckMarkerAlert(_ value: Bool) {
         isShowingCheckMarkerAlert = value
     }
-    
-    func toggleIsHiddenAnswer() {
-        isHiddenAnswer.toggle()
-    }
 }

@@ -5,6 +5,7 @@
 //  Created by Dasan on 10/30/24.
 //
 
+// TODO: - UseCase 프로토콜 수정하면 [ChooseMainMarkerUseCase]와 병합할 수 있을 듯
 struct ChooseMainMarkerInAutoAnswerModeUseCase: UseCase {
     private var sheet: Sheet
     

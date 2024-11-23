@@ -10,7 +10,6 @@ import Foundation
 final class OptionStore: ObservableObject {
     @Published var language: Language
     @Published var screenMode: ScreenMode
-    //@Published var autoAnswerMode: AutoAnswerMode
     @Published var autoAnswerMode: Bool
     @Published var subMarkerTypes: [SubMarkerType]
     
@@ -21,7 +20,6 @@ final class OptionStore: ObservableObject {
     init(
         language: Language = .korean,
         screenMode: ScreenMode = .system,
-        //autoAnswerMode: AutoAnswerMode = .off,
         autoAnswerMode: Bool = false,
         subMarkerTypes: [SubMarkerType] = ConvertManager.getImmutableSubMarkerTypes(),
         isShowingAddSubMarkerAlert: Bool = false,
@@ -31,7 +29,6 @@ final class OptionStore: ObservableObject {
         
         self.language = language
         self.screenMode = screenMode
-        //self.autoAnswerMode = autoAnswerMode
         self.autoAnswerMode = autoAnswerMode
         self.subMarkerTypes = subMarkerTypes
         self.isShowingAddSubMarkerAlert = isShowingAddSubMarkerAlert
@@ -46,10 +43,6 @@ final class OptionStore: ObservableObject {
     func setScreenMode(_ screenMode: ScreenMode) {
         self.screenMode = screenMode
     }
-    
-    //    func setAutoAnswerMode(_ autoAnswerMode: AutoAnswerMode) {
-    //        self.autoAnswerMode = autoAnswerMode
-    //    }
     
     func setAutoAnswerMode(_ autoAnswerMode: Bool) {
         self.autoAnswerMode = autoAnswerMode

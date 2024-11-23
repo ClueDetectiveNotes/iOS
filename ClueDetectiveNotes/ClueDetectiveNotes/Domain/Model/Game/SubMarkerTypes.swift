@@ -37,11 +37,11 @@ final class SubMarkerTypes {
         let tempNotation = notation.replacingOccurrences(of: " ", with: "")
         
         guard !tempNotation.isEmpty else {
-            throw CellError.subMarkerIsEmpty
+            throw SubMarkerTypesError.subMarkerIsEmpty
         }
         
         guard !types.contains(where: {$0.notation == tempNotation}) else {
-            throw CellError.alreadyContainsSubMarker
+            throw SubMarkerTypesError.alreadyContainsSubMarker
         }
         
         let newSubMarkerType = SubMarkerType(notation: notation, isUse: true)
@@ -50,11 +50,11 @@ final class SubMarkerTypes {
     
     func removeSubMarkerType(_ indexSet: IndexSet) throws {
         guard !types.isEmpty else {
-            throw CellError.subMarkerIsEmpty
+            throw SubMarkerTypesError.subMarkerIsEmpty
         }
         
         guard types.count > 1 else {
-            throw CellError.remainingSingleSubMarker
+            throw SubMarkerTypesError.remainingSingleSubMarker
         }
         
         types.remove(atOffsets: indexSet)
@@ -66,7 +66,7 @@ final class SubMarkerTypes {
     
     func toggleSubMarkerType(_ subMarkerType: SubMarkerType) throws {
         guard !types.isEmpty else {
-            throw CellError.subMarkerIsEmpty
+            throw SubMarkerTypesError.subMarkerIsEmpty
         }
         
         if let index = types.firstIndex(where: { $0.notation == subMarkerType.notation }) {

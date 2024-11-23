@@ -72,7 +72,7 @@ struct OptionIntent {
             
             updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
         } catch {
-            
+            print(error)
         }
     }
     
@@ -83,6 +83,7 @@ struct OptionIntent {
             updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
         } catch {
             optionStore.setIsShowingDeleteSubMarkerAlert(true)
+            print(error)
         }
     }
     
@@ -98,7 +99,7 @@ struct OptionIntent {
             
             updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
         } catch {
-            
+            print(error)
         }
     }
     

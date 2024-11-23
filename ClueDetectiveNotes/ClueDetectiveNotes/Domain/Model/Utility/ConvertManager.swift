@@ -50,9 +50,9 @@ struct ConvertManager {
         )
     }
     
-    static func getImmutableControlBar(mutableSubMarkerType: SubMarkerTypes) -> PresentationControlBar {
-        return PresentationControlBar(subMarkerTypes: mutableSubMarkerType.getSubMarkerTypes().map { $0.notation })
-    }
+//    static func getImmutableControlBar(mutableSubMarkerType: SubMarkerTypes) -> PresentationControlBar {
+//        return PresentationControlBar(subMarkerTypes: mutableSubMarkerType.getSubMarkerTypes().map { $0.notation })
+//    }
     
     static func getImmutableSubMarkerTypes() -> [SubMarkerType] {
         return SubMarkerTypes.shared.getSubMarkerTypes()

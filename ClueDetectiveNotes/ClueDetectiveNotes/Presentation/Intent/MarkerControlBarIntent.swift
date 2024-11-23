@@ -38,7 +38,7 @@ struct MarkerControlBarIntent {
     func chooseMainMarker(_ marker: MainMarker, autoAnswerMode: Bool) {
         switch autoAnswerMode {
         case true:
-            checkAlertDisplayInAuto(marker)
+            confirmMainMarkerInAuto(marker)
         case false:
             chooseMainMarkerInNotAuto(marker)
         }
@@ -87,8 +87,8 @@ struct MarkerControlBarIntent {
 // MARK: - Private
 extension MarkerControlBarIntent {
     // TODO: - 오토모드인지 아닌지 가드문으로 확인하기
-    private func checkAlertDisplayInAuto(_ marker: MainMarker) {
-        // Check 마커가 선택되었을 때
+    private func confirmMainMarkerInAuto(_ marker: MainMarker) {
+        // Check 마커(O)가 선택되었을 때
         if marker.notation == .check {
             let selectedCells = sheetStore.sheet.selectedCells
             var isDisplay = false

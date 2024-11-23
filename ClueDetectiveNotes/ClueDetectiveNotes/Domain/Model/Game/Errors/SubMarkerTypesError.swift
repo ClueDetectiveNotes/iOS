@@ -1,5 +1,5 @@
 //
-//  CellError.swift
+//  SubMarkerTypesError.swift
 //  ClueDetectiveNotes
 //
 //  Created by Dasan & Mary on 5/7/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CellError: LocalizedError {
+enum SubMarkerTypesError: LocalizedError {
     case alreadyContainsSubMarker
     case notExistInSubMarker
     case subMarkerIsEmpty
