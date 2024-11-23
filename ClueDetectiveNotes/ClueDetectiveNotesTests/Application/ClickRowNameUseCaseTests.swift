@@ -14,9 +14,10 @@ final class ClickRowNameUseCaseTests: XCTestCase {
 
     override func setUpWithError() throws {
         sheet = Sheet(
-            players: DummyPlayers.players,
-            cards: Edition.classic.cards
+            cardHolders: CardHolders(players: DummyPlayers.players),
+            cards: Edition.classic.deck
         )
+        
         clickRowNameUseCase = ClickRowNameUseCase(sheet: sheet)
     }
 
@@ -69,8 +70,8 @@ final class ClickRowNameUseCaseTests: XCTestCase {
     func test_RowName이3개ColName1개선택되었을때_추리모드로변경된다() throws {
         let cells = sheet.getCells()
         let targetRowName1 = cells[0].getRowName() //용의자-스칼렛
-        let targetRowName2 = cells[30].getRowName() //무기-나이프
-        let targetRowName3 = cells[50].getRowName() //장소-욕실
+        let targetRowName2 = cells[30].getRowName() //무기-촛대
+        let targetRowName3 = cells[60].getRowName() //장소-욕실
         let targetColName = cells[0].getColName()
         
         _ = sheet.selectRowName(targetRowName1)

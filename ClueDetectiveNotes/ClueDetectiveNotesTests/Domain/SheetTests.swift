@@ -12,7 +12,10 @@ final class SheetTests: XCTestCase {
     private var sheet: Sheet!
     
     override func setUpWithError() throws {
-        sheet = Sheet(players: DummyPlayers.players, cards: Edition.classic.cards)
+        sheet = Sheet(
+            cardHolders: CardHolders(players: DummyPlayers.players),
+            cards: Edition.classic.deck
+        )
     }
     
     override func tearDownWithError() throws {

@@ -14,9 +14,10 @@ final class ClickCellUseCaseTests: XCTestCase {
     
     override func setUpWithError() throws {
         sheet = Sheet(
-            players: DummyPlayers.players,
-            cards: Edition.classic.cards
+            cardHolders: CardHolders(players: DummyPlayers.players),
+            cards: Edition.classic.deck
         )
+        
         clickCellUseCase = ClickCellUseCase(sheet: sheet)
     }
 

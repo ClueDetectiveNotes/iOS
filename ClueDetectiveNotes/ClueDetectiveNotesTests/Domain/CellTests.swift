@@ -13,8 +13,8 @@ final class CellTests: XCTestCase {
 
     override func setUpWithError() throws {
         cell = Cell(
-            rowName: RowName(card: Edition.classic.cards.suspects.first!),
-            colName: ColName(player: DummyPlayers.players.first!)
+            rowName: RowName(card: Edition.classic.deck.suspects.first!),
+            colName: ColName(cardHolder: DummyPlayers.players.first!)
         )
     }
 

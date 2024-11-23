@@ -8,10 +8,10 @@
 @testable import ClueDetectiveNotes
 
 struct DummyPlayers {
-    static let players: [any Player] = [
-        Other(id: 1, name: "코코"),
-        Other(id: 2, name: "다산"),
-        Other(id: 3, name: "메리"),
-        Other(id: 4, name: "야곰")
+    static let players: [Player] = [
+        Other(name: "코코"),
+        Other(name: "다산"),
+        Other(name: "메리"),
+        Other(name: "꽃")
     ]
 }
