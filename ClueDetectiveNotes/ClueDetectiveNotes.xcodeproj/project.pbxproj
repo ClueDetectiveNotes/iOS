@@ -95,6 +95,8 @@
 		AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */; };
 		ACA2ABFB2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */; };
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
+		ACA849932CF20B4B00FBAFA4 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */; };
+		ACA849952CF2237F00FBAFA4 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849942CF2237F00FBAFA4 /* FooterView.swift */; };
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
 		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
 		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
@@ -220,6 +222,8 @@
 		AC9F1FFC2BCD1AB8008283DF /* SheetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetError.swift; sourceTree = "<group>"; };
 		ACA2ABFA2C1988B1002386E1 /* ClickRowNameUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickRowNameUseCaseTests.swift; sourceTree = "<group>"; };
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
+		ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
+		ACA849942CF2237F00FBAFA4 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
 		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 				AC55CA802C205FE50045E78F /* ControlBarView.swift */,
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
 				AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */,
+				ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -571,6 +576,7 @@
 				AC41F8E12C23F91E002FEA66 /* TitleView.swift */,
 				AC5C85542C38217500F09746 /* EmptyView.swift */,
 				ACAEE9632CCE79A100A2B87D /* SubTitleView.swift */,
+				ACA849942CF2237F00FBAFA4 /* FooterView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -815,6 +821,7 @@
 				AC427B182C99D2610071AB4D /* SubMarkerTypes.swift in Sources */,
 				AC9B9B172CAD9340005054F3 /* InitPublicCardsUseCase.swift in Sources */,
 				AC31705D2C01B627009E947B /* ChooseMainMarkerUseCase.swift in Sources */,
+				ACA849952CF2237F00FBAFA4 /* FooterView.swift in Sources */,
 				ACAEE96A2CD25F8500A2B87D /* OptionIntent.swift in Sources */,
 				4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */,
 				444293522BCAD10B008CAA2C /* Card.swift in Sources */,
@@ -839,6 +846,7 @@
 				444293492BCAC0B2008CAA2C /* Deck.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
 				AC427B0C2C996CC20071AB4D /* Game.swift in Sources */,
+				ACA849932CF20B4B00FBAFA4 /* AboutUsView.swift in Sources */,
 				AC9B9B1F2CAEA460005054F3 /* MoreMenuView.swift in Sources */,
 				AC5C85552C38217500F09746 /* EmptyView.swift in Sources */,
 				AC0823DB2CEC945E002D0173 /* LanguageSelectView.swift in Sources */,

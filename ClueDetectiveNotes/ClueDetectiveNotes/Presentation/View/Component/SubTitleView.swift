@@ -21,6 +21,7 @@ struct SubTitleView: View {
             
             Spacer()
         }
+        .padding(.horizontal)
     }
 }
 

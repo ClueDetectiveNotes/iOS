@@ -51,9 +51,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                Text("버전 1.0")
-                    .foregroundStyle(Color("darkgray1"))
-                    .padding()
+                FooterView(text: "버전 1.0")
             }
         }.onAppear {
             optionIntent.loadOption()
@@ -89,49 +87,6 @@ private struct HomeButton<Destination: View>: View {
         .buttonStyle(.borderedProminent)
         .foregroundStyle(Color("blue1"))
         .padding(.vertical, 10)
-    }
-}
-
-private struct AboutUsView: View {
-    var body: some View {
-        VStack {
-            TitleView(
-                title: "About Us",
-                description: ""
-            )
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    SubTitleView("개발")
-                        .padding(.vertical, 10)
-                    
-                    HStack {
-                        Text("AOS")
-                            .monospaced()
-                        Text("| Kim Eunwoo")
-                    }
-                    .padding(.vertical, 7)
-                    
-                    HStack {
-                        Text("iOS")
-                            .monospaced()
-                        Text("| Jo Sungmi")
-                    }
-                    .padding(.vertical, 7)
-                    
-                    HStack {
-                        Text("iOS")
-                            .monospaced()
-                        Text("| Kim Yena")
-                    }
-                    .padding(.vertical, 7)
-                }
-                .padding()
-                
-                Spacer()
-            }
-            Spacer()
-        }
     }
 }
 

@@ -28,13 +28,15 @@ struct TitleView: View {
                 Spacer()
             }
             
-            Spacer()
-                .frame(height: 10)
-            
-            HStack {
-                Text(description)
-                    .foregroundStyle(.gray)
+            if !description.isEmpty {
                 Spacer()
+                    .frame(height: 10)
+                
+                HStack {
+                    Text(description)
+                        .foregroundStyle(.gray)
+                    Spacer()
+                }
             }
         }
         .padding()
