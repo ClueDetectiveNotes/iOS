@@ -41,7 +41,7 @@ struct HomeView: View {
                 
                 HomeButton(
                     title: "도움말",
-                    Text("도움말")
+                    HelpView()
                 )
                 
                 HomeButton(

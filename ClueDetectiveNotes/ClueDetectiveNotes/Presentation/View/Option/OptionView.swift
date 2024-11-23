@@ -73,7 +73,7 @@ struct OptionView: View {
                 
                 Section {
                     NavigationLink {
-                        //
+                        HelpView()
                     } label: {
                         Text("도움말")
                     }
@@ -81,7 +81,7 @@ struct OptionView: View {
                 
                 Section {
                     NavigationLink {
-                        //
+                        AboutUsView()
                     } label: {
                         Text("개발자")
                     }

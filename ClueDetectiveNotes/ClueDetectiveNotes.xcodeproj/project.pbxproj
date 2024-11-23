@@ -97,6 +97,7 @@
 		ACA2ABFD2C199666002386E1 /* SwitchSingleModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */; };
 		ACA849932CF20B4B00FBAFA4 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */; };
 		ACA849952CF2237F00FBAFA4 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849942CF2237F00FBAFA4 /* FooterView.swift */; };
+		ACA849972CF2357400FBAFA4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849962CF2357400FBAFA4 /* HelpView.swift */; };
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
 		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
 		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
@@ -224,6 +225,7 @@
 		ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSingleModeUseCase.swift; sourceTree = "<group>"; };
 		ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		ACA849942CF2237F00FBAFA4 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		ACA849962CF2357400FBAFA4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
 		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				44B81D102BF1F94200E82051 /* MarkerControlBarView.swift */,
 				AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */,
 				ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */,
+				ACA849962CF2357400FBAFA4 /* HelpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				AC04831E2BF275A500B99608 /* PresentationSheet.swift in Sources */,
 				ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */,
 				AC3170582C01B4B6009E947B /* ClickColNameUseCase.swift in Sources */,
+				ACA849972CF2357400FBAFA4 /* HelpView.swift in Sources */,
 				44AF61FA2BF7219D00F38165 /* SheetIntent.swift in Sources */,
 				44AF61FC2BF723FB00F38165 /* MarkerControlBarIntent.swift in Sources */,
 				AC427B302CACD60A0071AB4D /* SelectUserUseCase.swift in Sources */,
