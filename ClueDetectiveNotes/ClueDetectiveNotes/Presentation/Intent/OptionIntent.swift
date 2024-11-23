@@ -56,6 +56,10 @@ struct OptionIntent {
         optionStore.setIsShowingAddSubMarkerAlert(true)
     }
     
+    func clickSubMarkerInitButton() {
+        optionStore.setIsShowingInitSubMarkerAlert(true)
+    }
+    
     func initSubMarkerType() {
         let presentationSubMarkerTypes = initSubMarkerTypeUseCase.execute()
         

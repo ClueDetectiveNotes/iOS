@@ -36,7 +36,7 @@ struct SubMarkerListView: View {
                     
                     Section {
                         Button {
-                            optionIntent.initSubMarkerType()
+                            optionIntent.clickSubMarkerInitButton()
                         } label: {
                             Text("초기화")
                                 .frame(maxWidth: .infinity)
@@ -61,6 +61,17 @@ struct SubMarkerListView: View {
             isPresented: $optionStore.isShowingDeleteSubMarkerAlert
         ) {
             Button("확인", role: .cancel) { }
+        }
+        .alert(
+            "초기화 하시겠습니까?",
+            isPresented: $optionStore.isShowingInitSubMarkerAlert
+        ) {
+            Button("확인", role: .destructive) {
+                optionIntent.initSubMarkerType()
+            }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("게임 플레이 중 초기화는 게임 운영에 불편함을 줄 수 있습니다.")
         }
     }
 }

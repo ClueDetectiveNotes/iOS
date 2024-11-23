@@ -16,6 +16,7 @@ final class OptionStore: ObservableObject {
     
     @Published var isShowingAddSubMarkerAlert: Bool
     @Published var isShowingDeleteSubMarkerAlert: Bool
+    @Published var isShowingInitSubMarkerAlert: Bool
     
     init(
         language: Language = .korean,
@@ -24,7 +25,8 @@ final class OptionStore: ObservableObject {
         autoAnswerMode: Bool = false,
         subMarkerTypes: [SubMarkerType] = ConvertManager.getImmutableSubMarkerTypes(),
         isShowingAddSubMarkerAlert: Bool = false,
-        isShowingDeleteSubMarkerAlert: Bool = false
+        isShowingDeleteSubMarkerAlert: Bool = false,
+        isShowingInitSubMarkerAlert: Bool = false
     ) {
         
         self.language = language
@@ -34,6 +36,7 @@ final class OptionStore: ObservableObject {
         self.subMarkerTypes = subMarkerTypes
         self.isShowingAddSubMarkerAlert = isShowingAddSubMarkerAlert
         self.isShowingDeleteSubMarkerAlert = isShowingDeleteSubMarkerAlert
+        self.isShowingInitSubMarkerAlert = isShowingInitSubMarkerAlert
     }
     
     func setLanguage(_ language: Language) {
@@ -58,6 +61,10 @@ final class OptionStore: ObservableObject {
     
     func setIsShowingDeleteSubMarkerAlert(_ value: Bool) {
         isShowingDeleteSubMarkerAlert = value
+    }
+    
+    func setIsShowingInitSubMarkerAlert(_ value: Bool) {
+        isShowingInitSubMarkerAlert = value
     }
     
     func overwriteSubMarkerTypes(_ newSubMarkerTypes: [SubMarkerType]) {
