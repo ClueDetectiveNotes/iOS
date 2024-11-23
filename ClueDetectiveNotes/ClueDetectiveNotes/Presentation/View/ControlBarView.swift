@@ -158,16 +158,16 @@ struct ControlBarView: View {
         .background()
         .clipped()
         .shadow(
-            radius: sheetStore.isDisplayMarkerControlBar ? 0 : 4,
+            radius: sheetStore.isShowingMarkerControlBar ? 0 : 4,
             x: 0,
-            y: sheetStore.isDisplayMarkerControlBar ? 0 : -7
+            y: sheetStore.isShowingMarkerControlBar ? 0 : -7
         )
-        .sheet(isPresented: $controlBarStore.showOptionView) {
+        .sheet(isPresented: $controlBarStore.isShowingOptionView) {
             OptionView(optionIntent: optionIntent)
         }
         .alert(
             "세팅화면으로 돌아가시겠습니까?",
-            isPresented: $controlBarStore.showRestartGameAlert
+            isPresented: $controlBarStore.isShowingRestartGameAlert
         ) {
             Button("확인") {
                 controlBarIntent.restartGame()
@@ -188,7 +188,7 @@ struct ControlBarView: View {
         }
         .alert(
             "홈으로 돌아가시겠습니까?",
-            isPresented: $controlBarStore.showToHomeAlert
+            isPresented: $controlBarStore.isShowingToHomeAlert
         ) {
             Button("확인") {
                 controlBarIntent.goHome()

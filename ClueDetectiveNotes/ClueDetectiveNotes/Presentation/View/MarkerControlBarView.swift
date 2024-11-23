@@ -89,7 +89,7 @@ struct MarkerControlBarView: View {
         .shadow(radius: 4, x: 0, y: -7)
         .alert(
             "마커 추가",
-            isPresented: $sheetStore.isDisplayAddSubMarkerAlert
+            isPresented: $sheetStore.isShowingAddSubMarkerAlert
         ) {
             TextField("마커 이름", text: $newSubMarkerName)
                 .foregroundColor(Color.black)
@@ -103,7 +103,7 @@ struct MarkerControlBarView: View {
         }
         .alert(
             "O 입력시\n나머지 셀의 기존 메인마커가\n변경될 수 있습니다.\n\n계속 하시겠습니까?",
-            isPresented: $sheetStore.isDisplayCheckMarkerAlert
+            isPresented: $sheetStore.isShowingCheckMarkerAlert
         ) {
             Button("네") {
                 markerControlBarIntent.clickYesButtonInCheckMarkerAlert()

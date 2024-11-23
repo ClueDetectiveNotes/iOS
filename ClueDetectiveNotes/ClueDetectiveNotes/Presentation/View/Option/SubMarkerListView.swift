@@ -56,6 +56,12 @@ struct SubMarkerListView: View {
                 .padding(.bottom, 30)
         }
         .navigationTitle("서브 마커 관리")
+        .alert(
+            "모든 서브 마커를 삭제할 수 없습니다.",
+            isPresented: $optionStore.isShowingDeleteSubMarkerAlert
+        ) {
+            Button("확인", role: .cancel) { }
+        }
     }
 }
 
@@ -117,7 +123,7 @@ private struct AddSubMarkerBtnView: View {
         }
         .alert(
             "마커 추가",
-            isPresented: $optionStore.isDisplayAddSubMarkerAlert
+            isPresented: $optionStore.isShowingAddSubMarkerAlert
         ) {
             TextField("마커 이름", text: $newSubMarkerName)
                 .foregroundColor(Color.black)

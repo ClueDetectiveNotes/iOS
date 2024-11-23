@@ -52,8 +52,8 @@ struct OptionIntent {
     }
     
     func clickPlusButton() {
-        //sheetStore.setDisplayAddSubMarkerAlert(true)
-        optionStore.setDisplayAddSubMarkerAlert(true)
+        //sheetStore.setIsShowingAddSubMarkerAlert(true)
+        optionStore.setIsShowingAddSubMarkerAlert(true)
     }
     
     func initSubMarkerType() {
@@ -78,7 +78,7 @@ struct OptionIntent {
             
             updateSubMarkerTypes(presentationSubMarkerTypes: presentationSubMarkerTypes)
         } catch {
-            
+            optionStore.setIsShowingDeleteSubMarkerAlert(true)
         }
     }
     

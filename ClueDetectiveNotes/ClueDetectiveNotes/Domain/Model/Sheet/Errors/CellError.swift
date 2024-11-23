@@ -11,6 +11,7 @@ enum CellError: LocalizedError {
     case alreadyContainsSubMarker
     case notExistInSubMarker
     case subMarkerIsEmpty
+    case remainingSingleSubMarker
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum CellError: LocalizedError {
             return "That item does not exist in sub marker items"
         case .subMarkerIsEmpty:
             return "subMarker is empty."
+        case .remainingSingleSubMarker:
+            return "Only one sub-marker remains."
         }
     }
 }

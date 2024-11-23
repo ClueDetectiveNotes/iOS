@@ -9,24 +9,24 @@ import Foundation
 
 final class SheetStore: ObservableObject {
     @Published private(set) var sheet: PresentationSheet
-    @Published private(set) var isDisplayMarkerControlBar: Bool
-    @Published var isDisplayAddSubMarkerAlert: Bool
+    @Published private(set) var isShowingMarkerControlBar: Bool
+    @Published var isShowingAddSubMarkerAlert: Bool
     @Published var isVisibleScreen: Bool
-    @Published var isDisplayCheckMarkerAlert: Bool
+    @Published var isShowingCheckMarkerAlert: Bool
     @Published var isHiddenAnswer: Bool
     
     init(
-        isDisplayMarkerControlBar: Bool = false,
-        isDisplayAddSubMarkerAlert: Bool = false,
+        isShowingMarkerControlBar: Bool = false,
+        isShowingAddSubMarkerAlert: Bool = false,
         isVisibleScreen: Bool = true,
-        isDisplayCheckMarkerAlert: Bool = false,
+        isShowingCheckMarkerAlert: Bool = false,
         isHiddenAnswer: Bool = false
     ) {
         self.sheet = ConvertManager.getImmutableSheet(GameSetter.shared.getSheet())
-        self.isDisplayMarkerControlBar = isDisplayMarkerControlBar
-        self.isDisplayAddSubMarkerAlert = isDisplayAddSubMarkerAlert
+        self.isShowingMarkerControlBar = isShowingMarkerControlBar
+        self.isShowingAddSubMarkerAlert = isShowingAddSubMarkerAlert
         self.isVisibleScreen = isVisibleScreen
-        self.isDisplayCheckMarkerAlert = isDisplayCheckMarkerAlert
+        self.isShowingCheckMarkerAlert = isShowingCheckMarkerAlert
         self.isHiddenAnswer = isHiddenAnswer
     }
     
@@ -34,16 +34,16 @@ final class SheetStore: ObservableObject {
         sheet = newSheet
     }
     
-    func setDisplayMarkerControlBar(_ value: Bool) {
-        isDisplayMarkerControlBar = value
+    func setIsShowingMarkerControlBar(_ value: Bool) {
+        isShowingMarkerControlBar = value
     }
     
-    func setDisplayAddSubMarkerAlert(_ value: Bool) {
-        isDisplayAddSubMarkerAlert = value
+    func setIsShowingAddSubMarkerAlert(_ value: Bool) {
+        isShowingAddSubMarkerAlert = value
     }
     
-    func setDisplayCheckMarkerAlert(_ value: Bool) {
-        isDisplayCheckMarkerAlert = value
+    func setIsShowingCheckMarkerAlert(_ value: Bool) {
+        isShowingCheckMarkerAlert = value
     }
     
     func toggleIsHiddenAnswer() {

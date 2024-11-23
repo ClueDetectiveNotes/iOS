@@ -53,6 +53,10 @@ final class SubMarkerTypes {
             throw CellError.subMarkerIsEmpty
         }
         
+        guard types.count > 1 else {
+            throw CellError.remainingSingleSubMarker
+        }
+        
         types.remove(atOffsets: indexSet)
     }
     

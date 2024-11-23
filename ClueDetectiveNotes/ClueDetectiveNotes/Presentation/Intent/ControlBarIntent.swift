@@ -116,7 +116,7 @@ struct ControlBarIntent {
     }
     
     func clickOption() {
-        controlBarStore.setShowOptionView(true)
+        controlBarStore.setIsShowingOptionView(true)
     }
     
     func clickCancelButton() {
@@ -130,11 +130,11 @@ struct ControlBarIntent {
     }
     
     func clickGoHomeInMoreMenu() {
-        controlBarStore.setShowToHomeAlert(true)
+        controlBarStore.setIsShowingToHomeAlert(true)
     }
     
     func clickRestartGameInMoreMenu() {
-        controlBarStore.setShowGameAgainAlert(true)
+        controlBarStore.setIsShowingGameAgainAlert(true)
     }
     
     func goHome() {
@@ -156,9 +156,9 @@ extension ControlBarIntent {
         sheetStore.overwriteSheet(presentationSheet)
         
         if presentationSheet.hasSelectedCells() {
-            sheetStore.setDisplayMarkerControlBar(true)
+            sheetStore.setIsShowingMarkerControlBar(true)
         } else {
-            sheetStore.setDisplayMarkerControlBar(false)
+            sheetStore.setIsShowingMarkerControlBar(false)
         }
     }
 }

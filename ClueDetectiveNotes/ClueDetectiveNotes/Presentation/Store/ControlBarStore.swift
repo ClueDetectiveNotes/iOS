@@ -8,36 +8,36 @@
 import Foundation
 
 final class ControlBarStore: ObservableObject {
-    @Published var showOptionView: Bool
-    @Published var showToHomeAlert: Bool
-    @Published var showRestartGameAlert: Bool
+    @Published var isShowingOptionView: Bool
+    @Published var isShowingToHomeAlert: Bool
+    @Published var isShowingRestartGameAlert: Bool
     @Published var wantsToGoHome: Bool
     @Published var wantsToRestartGame: Bool
     
     init(
-        showOptionView: Bool = false,
-        showToHomeAlert: Bool = false,
-        showRestartGameAlert: Bool = false,
+        isShowingOptionView: Bool = false,
+        isShowingToHomeAlert: Bool = false,
+        isShowingRestartGameAlert: Bool = false,
         wantsToGoHome: Bool = false,
         wantsToRestartGame: Bool = false
     ) {
-        self.showOptionView = showOptionView
-        self.showToHomeAlert = showToHomeAlert
-        self.showRestartGameAlert = showRestartGameAlert
+        self.isShowingOptionView = isShowingOptionView
+        self.isShowingToHomeAlert = isShowingToHomeAlert
+        self.isShowingRestartGameAlert = isShowingRestartGameAlert
         self.wantsToGoHome = wantsToGoHome
         self.wantsToRestartGame = wantsToRestartGame
     }
     
-    func setShowOptionView(_ value: Bool) {
-        showOptionView = value
+    func setIsShowingOptionView(_ value: Bool) {
+        isShowingOptionView = value
     }
     
-    func setShowToHomeAlert(_ value: Bool) {
-        showToHomeAlert = value
+    func setIsShowingToHomeAlert(_ value: Bool) {
+        isShowingToHomeAlert = value
     }
     
-    func setShowGameAgainAlert(_ value: Bool) {
-        showRestartGameAlert = value
+    func setIsShowingGameAgainAlert(_ value: Bool) {
+        isShowingRestartGameAlert = value
     }
     
     func setWantsToGoHome(_ value: Bool) {

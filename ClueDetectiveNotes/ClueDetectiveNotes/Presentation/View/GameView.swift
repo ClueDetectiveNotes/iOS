@@ -40,7 +40,7 @@ struct GameView: View {
                 : Color.gray.opacity(0.99)
             }
                 
-            if sheetStore.isDisplayMarkerControlBar {
+            if sheetStore.isShowingMarkerControlBar {
                 MarkerControlBarView(
                     optionStore: optionStore,
                     sheetStore: sheetStore,

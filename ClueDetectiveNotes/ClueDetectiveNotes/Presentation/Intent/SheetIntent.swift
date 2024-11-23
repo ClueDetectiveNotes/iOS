@@ -86,9 +86,9 @@ extension SheetIntent {
         sheetStore.overwriteSheet(presentationSheet)
         
         if presentationSheet.hasSelectedCells() {
-            sheetStore.setDisplayMarkerControlBar(true)
+            sheetStore.setIsShowingMarkerControlBar(true)
         } else {
-            sheetStore.setDisplayMarkerControlBar(false)
+            sheetStore.setIsShowingMarkerControlBar(false)
         }
     }
 }

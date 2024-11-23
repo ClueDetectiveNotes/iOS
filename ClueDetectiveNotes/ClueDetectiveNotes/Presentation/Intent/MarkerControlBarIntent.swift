@@ -65,8 +65,8 @@ struct MarkerControlBarIntent {
     }
     
     func clickPlusButton() {
-        sheetStore.setDisplayAddSubMarkerAlert(true)
-        //optionStore.setDisplayAddSubMarkerAlert(true)
+        sheetStore.setIsShowingAddSubMarkerAlert(true)
+        //optionStore.setIsShowingAddSubMarkerAlert(true)
     }
     
     func addSubMarkerType(_ markerType: String) {
@@ -102,7 +102,7 @@ extension MarkerControlBarIntent {
             }
             
             if isDisplay {
-                sheetStore.setDisplayCheckMarkerAlert(isDisplay)
+                sheetStore.setIsShowingCheckMarkerAlert(isDisplay)
             } else {
                 chooseMainMarkerInAuto(marker)
             }
@@ -135,9 +135,9 @@ extension MarkerControlBarIntent {
         sheetStore.overwriteSheet(presentationSheet)
         
         if presentationSheet.hasSelectedCells() {
-            sheetStore.setDisplayMarkerControlBar(true)
+            sheetStore.setIsShowingMarkerControlBar(true)
         } else {
-            sheetStore.setDisplayMarkerControlBar(false)
+            sheetStore.setIsShowingMarkerControlBar(false)
         }
     }
     
