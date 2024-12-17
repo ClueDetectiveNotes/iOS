@@ -137,7 +137,10 @@ struct SheetView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .background(Color("blue1"))
+        //.background(Color("blue1"))
+        //.background(Color(red: 97/255, green: 12/255, blue: 39/255))
+        .background(Color(red: 106/255, green: 156/255, blue: 137/255))
+        
         .onAppear {
             sheetIntent.initSheet()
         }
@@ -408,6 +411,7 @@ private struct CellView: View {
     private let geometryIntent: GeometryIntent
     private let sheetIntent: SheetIntent
     
+    @State private var isNotDoubleTap: Bool = true
     private var cell: PresentationCell
     
     init(
@@ -464,15 +468,25 @@ private struct CellView: View {
                         )
                         sheetIntent.longClickCell(cell)
                     }))
+                    .simultaneousGesture(TapGesture(count:2).onEnded({ _ in
+                        print("double tap")
+                        isNotDoubleTap = false
+                    }))
                     .simultaneousGesture(TapGesture().onEnded({ _ in
-                        print("tap \(proxy.frame(in: .global).origin)")
-                        let currentCoordinates = proxy.frame(in: .global).origin
-                        
-                        geometryIntent.clickCell(
-                            currentCoordinates: currentCoordinates,
-                            currentRowName: cell.rowName
-                        )
-                        sheetIntent.clickCell(cell)
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                            if isNotDoubleTap {
+                                print("tap \(proxy.frame(in: .global).origin)")
+                                let currentCoordinates = proxy.frame(in: .global).origin
+                                
+                                geometryIntent.clickCell(
+                                    currentCoordinates: currentCoordinates,
+                                    currentRowName: cell.rowName
+                                )
+                                sheetIntent.clickCell(cell)
+                            } else {
+                                isNotDoubleTap = true
+                            }
+                        }
                     }))
             }
         )
@@ -508,7 +522,7 @@ private struct CellView: View {
         sheetStore.sheet.isSelectedColName(cell.colName)
         || sheetStore.sheet.isSelectedRowName(cell.rowName)
         ? Color("mint1")
-        : cell.colName.cardHolder is Player ? Color("white1") : Color.indigo
+        : cell.colName.cardHolder is Player ? Color("white1") : Color(red: 205/255, green: 92/255, blue: 8/255)
     }
 }
 

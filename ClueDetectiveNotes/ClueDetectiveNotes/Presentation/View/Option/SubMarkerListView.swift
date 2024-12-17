@@ -76,6 +76,42 @@ struct SubMarkerListView: View {
     }
 }
 
+/*
+extension View {
+    func editModeFix(_ editMode: Binding<EditMode>) -> some View {
+        modifier(EditModeFixViewModifier(editMode: editMode))
+    }
+}
+
+private struct EditModeFixView: View {
+    @Environment(\.editMode) private var editModeEnvironment
+    @Binding var editMode: EditMode
+    
+    var body: some View {
+        Color.clear
+            .onChange(of: editModeEnvironment?.wrappedValue) { editModeEnvironment in
+                if let editModeEnvironment = editModeEnvironment {
+                    editMode = editModeEnvironment
+                }
+            }
+            .onChange(of: editMode) { value in
+                editModeEnvironment?.wrappedValue = value
+            }
+    }
+}
+
+private struct EditModeFixViewModifier: ViewModifier {
+    @Binding var editMode: EditMode
+    
+    func body(content: Content) -> some View {
+        content
+            .overlay {
+                EditModeFixView(editMode: $editMode)
+            }
+    }
+}
+*/
+
 private struct SubMarkerRow: View {
     @Environment(\.editMode) private var editMode
     @EnvironmentObject private var optionStore: OptionStore
@@ -147,4 +183,9 @@ private struct AddSubMarkerBtnView: View {
             Text("추가할 마커의 이름을 입력해주세요.")
         }
     }
+}
+
+#Preview {
+    SubMarkerListView(optionIntent: OptionIntent(optionStore: OptionStore()))
+        .environmentObject(OptionStore())
 }
