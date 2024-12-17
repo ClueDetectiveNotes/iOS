@@ -12,6 +12,7 @@ final class OptionStore: ObservableObject {
     @Published var screenMode: ScreenMode
     @Published var autoAnswerMode: Bool
     @Published var subMarkerTypes: [SubMarkerType]
+    @Published var privacyScreenOpacity: Double
     
     @Published var isShowingAddSubMarkerAlert: Bool
     @Published var isShowingDeleteSubMarkerAlert: Bool
@@ -22,6 +23,7 @@ final class OptionStore: ObservableObject {
         screenMode: ScreenMode = .system,
         autoAnswerMode: Bool = false,
         subMarkerTypes: [SubMarkerType] = ConvertManager.getImmutableSubMarkerTypes(),
+        privacyScreenOpacity: Double = 0.98,
         isShowingAddSubMarkerAlert: Bool = false,
         isShowingDeleteSubMarkerAlert: Bool = false,
         isShowingInitSubMarkerAlert: Bool = false
@@ -31,6 +33,7 @@ final class OptionStore: ObservableObject {
         self.screenMode = screenMode
         self.autoAnswerMode = autoAnswerMode
         self.subMarkerTypes = subMarkerTypes
+        self.privacyScreenOpacity = privacyScreenOpacity
         self.isShowingAddSubMarkerAlert = isShowingAddSubMarkerAlert
         self.isShowingDeleteSubMarkerAlert = isShowingDeleteSubMarkerAlert
         self.isShowingInitSubMarkerAlert = isShowingInitSubMarkerAlert
@@ -46,6 +49,10 @@ final class OptionStore: ObservableObject {
     
     func setAutoAnswerMode(_ autoAnswerMode: Bool) {
         self.autoAnswerMode = autoAnswerMode
+    }
+    
+    func setPrivacyScreenOpacity(_ privacyScreenOpacity: Double) {
+        self.privacyScreenOpacity = privacyScreenOpacity
     }
     
     func setIsShowingAddSubMarkerAlert(_ value: Bool) {

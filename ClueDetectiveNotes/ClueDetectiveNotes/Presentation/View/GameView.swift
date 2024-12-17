@@ -69,7 +69,7 @@ struct GameView: View {
     }
     
     var privacyScreen: some View {
-        Color.gray.opacity(0.99)
+        Color.gray.opacity(optionStore.privacyScreenOpacity)
             .overlay {
                 Image(systemName: "eye.slash")
                     .font(.largeTitle)

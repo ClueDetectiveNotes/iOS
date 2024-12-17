@@ -72,6 +72,32 @@ struct OptionView: View {
                 }
                 
                 Section {
+                    VStack {
+                        ZStack {
+                            //Text(String(format: "%.2f", optionStore.privacyScreenOpacity))
+                            Text("내용")
+                            Color.gray.opacity(optionStore.privacyScreenOpacity)
+                                .frame(width: 100)
+                        }
+                        .padding(.top, 10)
+                        
+                        Slider(
+                            value: $optionStore.privacyScreenOpacity,
+                            in: 0.84...1.02,
+                            step: 0.02
+                        ) {
+                            Text("privacy Screen Opacity")
+                        } minimumValueLabel: {
+                            Text("흐리게")
+                        } maximumValueLabel: {
+                            Text("진하게")
+                        }
+                    }
+                } header: {
+                    Text("사생활 보호 스크린 불투명도")
+                }
+                
+                Section {
                     NavigationLink {
                         HelpView()
                     } label: {
