@@ -8,4 +8,5 @@
 struct SubMarkerType: Hashable {
     let notation: String
     var isUse: Bool
+    let isDefault: Bool
 }

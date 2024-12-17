@@ -25,6 +25,8 @@ struct SubMarkerListView: View {
                                 optionIntent: optionIntent,
                                 subMarkerType: subMarkerType
                             )
+                            .moveDisabled(subMarkerType.isDefault)
+                            .deleteDisabled(subMarkerType.isDefault)
                         }
                         .onMove { (source: IndexSet, destination: Int) in
                             optionIntent.reorderSubMarkerTypes(source: source, destination: destination)

@@ -12,10 +12,10 @@ final class SubMarkerTypes {
     
     private var types: [SubMarkerType] = []
     private var defaultSubMarkerTypes = [
-        SubMarkerType(notation: "1", isUse: true),
-        SubMarkerType(notation: "2", isUse: true),
-        SubMarkerType(notation: "3", isUse: true),
-        SubMarkerType(notation: "4", isUse: true)
+        SubMarkerType(notation: "1", isUse: true, isDefault: true),
+        SubMarkerType(notation: "2", isUse: true, isDefault: true),
+        SubMarkerType(notation: "3", isUse: true, isDefault: true),
+        SubMarkerType(notation: "4", isUse: true, isDefault: true)
     ]
     
     private init() { }
@@ -49,7 +49,12 @@ final class SubMarkerTypes {
                 throw SubMarkerTypesError.alreadyContainsSubMarker
             }
         } else {
-            let newSubMarkerType = SubMarkerType(notation: notation, isUse: true)
+            let newSubMarkerType = SubMarkerType(
+                notation: notation,
+                isUse: true,
+                isDefault: false
+            )
+            
             types.append(newSubMarkerType)
         }
     }
