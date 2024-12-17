@@ -39,12 +39,19 @@ final class SubMarkerTypes {
             throw SubMarkerTypesError.subMarkerIsEmpty
         }
         
-        guard !types.contains(where: {$0.notation == tempNotation}) else {
-            throw SubMarkerTypesError.alreadyContainsSubMarker
+        if let index = types.firstIndex(where: { $0.notation == tempNotation }) {
+            
+            // 비활성화 상태이면 활성화로 바꿔주기
+            if types[index].isUse == false {
+                types[index].isUse = true
+            } else {
+                // 활성화 상태이면 에러
+                throw SubMarkerTypesError.alreadyContainsSubMarker
+            }
+        } else {
+            let newSubMarkerType = SubMarkerType(notation: notation, isUse: true)
+            types.append(newSubMarkerType)
         }
-        
-        let newSubMarkerType = SubMarkerType(notation: notation, isUse: true)
-        types.append(newSubMarkerType)
     }
     
     func removeSubMarkerType(_ indexSet: IndexSet) throws {
