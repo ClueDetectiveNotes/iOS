@@ -107,6 +107,7 @@ struct OptionIntent {
         optionStore.setLanguage(language)
         optionStore.setScreenMode(screenMode)
         optionStore.setAutoAnswerMode(autoAnswerMode)
+        optionStore.setMultiLang(SQLiteHelper.shared.getMultiLang(language: language.code) ?? [:])
     }
     
     // AppStorage에 save

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
     
@@ -23,6 +24,9 @@ struct HomeView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 Spacer()
+                
+                Text(optionStore.multiLang["ROPE"] ?? "다산바보")
+                    .frame(height: 30)
                 
                 HomeButton(
                     title: "시작",

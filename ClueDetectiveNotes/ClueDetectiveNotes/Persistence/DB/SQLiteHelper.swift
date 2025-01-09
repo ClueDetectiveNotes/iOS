@@ -12,9 +12,16 @@ final class SQLiteHelper {
     static let shared = SQLiteHelper()
     var db: OpaquePointer?
     let dbName = "clueDetectiveNotes.sqlite"
+    private(set) var options: [String: String]?
+    private(set) var commonCode: [String: String]?
+    private(set) var multiLang: [String: String]?
     
-    init() {
-        initDB()
+    private init() {
+        // App 최초실행 시에만 db 생성
+        if UserDefaults.standard.bool(forKey: "launchedBefore") == false {
+            initDB()
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
     }
     
     deinit {
@@ -24,6 +31,9 @@ final class SQLiteHelper {
     private func initDB() {
         // DB 생성
         self.db = createDB()
+        
+        // 테이블 생성
+        createTables()
         
         // 옵션 테이블 생성 및 데이터 삽입
         insertOptions()
@@ -59,19 +69,31 @@ final class SQLiteHelper {
         return nil
     }
     
-    private func insertOptions() {
+    private func createTables() {
         execSQL(query: "CREATE TABLE IF NOT EXISTS OPTIONS (CODE text, SEQ integer, TYPE text, VALUE text, primary key(CODE));")
+        execSQL(query: "CREATE TABLE IF NOT EXISTS COMMON_CODE (CODE text, TYPE text, PART text, SEQ integer, primary key(CODE,TYPE));")
+        execSQL(query: "CREATE TABLE IF NOT EXISTS MULTI_LANG (CODE text, TYPE text, LANG text, VALUE text, primary key(CODE, TYPE, LANG));")
+    }
+    
+    private func insertOptions() {
         execSQL(query: "INSERT INTO OPTIONS VALUES ('LANGUAGE',1,'SELECT_BOX','KR');")
+        execSQL(query: "INSERT INTO OPTIONS VALUES ('IS_USE_DARK_THEME',2,'TOGGLE','Y');")
+        execSQL(query: "INSERT INTO OPTIONS VALUES ('DARK_THEME_TYPE',2,'SELECT_BOX','FOLLOW_SYSTEM');")
+        execSQL(query: "INSERT INTO OPTIONS VALUES ('BLIND_TRANSPARENCY',1,'SLIDER','60');")
     }
     
     private func insertCommonCode() {
-        execSQL(query: "CREATE TABLE IF NOT EXISTS COMMON_CODE (CODE text, TYPE text, PART text, SEQ integer, primary key(CODE,TYPE));")
         execSQL(query: "INSERT INTO COMMON_CODE VALUES ('KR','SELECT_BOX','LANGUAGE',1);")
         execSQL(query: "INSERT INTO COMMON_CODE VALUES ('EN','SELECT_BOX','LANGUAGE',2);")
+
+        execSQL(query: "INSERT INTO COMMON_CODE VALUES ('Y','TOGGLE','IS_USE_DARK_THEME',1);")
+        execSQL(query: "INSERT INTO COMMON_CODE VALUES ('N','TOGGLE','IS_USE_DARK_THEME',2);")
+
+        execSQL(query: "INSERT INTO COMMON_CODE VALUES ('FOLLOW_SYSTEM','SELECT_BOX','DARK_THEME_TYPE',1);")
+        execSQL(query: "INSERT INTO COMMON_CODE VALUES ('APPLY_DARK_THEME','SELECT_BOX','DARK_THEME_TYPE',2);")
     }
     
     private func insertOptionsMultiLang() {
-        execSQL(query: "CREATE TABLE IF NOT EXISTS MULTI_LANG (CODE text, TYPE text, LANG text, VALUE text, primary key(CODE, TYPE, LANG));")
         //한국어
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('LANGUAGE','OPT','KR','언어');")
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('KR','CM_CD','KR','한국어');")
@@ -221,21 +243,17 @@ final class SQLiteHelper {
         }
     }
     
-    private func getOptions() -> [[String: String]]? {
-        let query = "SELECT CODE, TYPE, VALUE FROM OPTIONS ORDER BY SEQ"
+    func getOptions() -> [String: String]? {
+        let query = "SELECT CODE, VALUE FROM OPTIONS ORDER BY SEQ"
         var stmt:OpaquePointer?
-        var result = [[String: String]]()
+        var result = [String: String]()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
-                var row = [String: String]()
+                let code = String(cString: sqlite3_column_text(stmt, 0))
+                let value = String(cString: sqlite3_column_text(stmt, 1))
                 
-                row["TYPE"] = String(cString: sqlite3_column_text(stmt, 0))
-                row["VALUE"] = String(cString: sqlite3_column_text(stmt, 1))
-                
-                result.append(row)
-                
-                print("read value type : \(String(describing: row["TYPE"])) value : \(String(describing: row["VALUE"]))")
+                result[code] = value
             }
         } else {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -245,21 +263,18 @@ final class SQLiteHelper {
         return result
     }
     
-    private func getCommonCode() -> [[String: String]]? {
+    func getCommonCode() -> [(code: String, part: String, type: String)]? {
         let query = "SELECT CODE, PART, TYPE FROM COMMON_CODE ORDER BY SEQ"
         var stmt:OpaquePointer?
-        var result = [[String: String]]()
+        var result = [(code: String, part: String, type: String)]()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
-//                var row = [String: String]()
-//
-//                row["TYPE"] = String(cString: sqlite3_column_text(stmt, 0))
-//                row["VALUE"] = String(cString: sqlite3_column_text(stmt, 1))
-//
-//                result.append(row)
-//
-//                print("read value type : \(String(describing: row["TYPE"])) value : \(String(describing: row["VALUE"]))")
+                let code = String(cString: sqlite3_column_text(stmt, 0))
+                let part = String(cString: sqlite3_column_text(stmt, 1))
+                let type = String(cString: sqlite3_column_text(stmt, 2))
+                
+                result.append((code, part, type))
             }
         } else {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -269,21 +284,17 @@ final class SQLiteHelper {
         return result
     }
     
-    private func getMultiLang(language: String) -> [[String: String]]? {
-        let query = "SELECT CODE, TYPE, VALUE FROM MULTI_LANG WHERE LANG = ?"
+    func getMultiLang(language: String) -> [String: String]? {
+        let query = "SELECT CODE, VALUE FROM MULTI_LANG WHERE LANG = \(language)"
         var stmt:OpaquePointer?
-        var result = [[String: String]]()
+        var result = [String: String]()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
-//                var row = [String: String]()
-//
-//                row["TYPE"] = String(cString: sqlite3_column_text(stmt, 0))
-//                row["VALUE"] = String(cString: sqlite3_column_text(stmt, 1))
-//
-//                result.append(row)
-//
-//                print("read value type : \(String(describing: row["TYPE"])) value : \(String(describing: row["VALUE"]))")
+                let code = String(cString: sqlite3_column_text(stmt, 0))
+                let value = String(cString: sqlite3_column_text(stmt, 1))
+                
+                result[code] = value
             }
         } else {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -291,26 +302,5 @@ final class SQLiteHelper {
         }
         
         return result
-    }
-
-    
-    // 삭제?
-    private func createTable(query: String) {
-        var statement: OpaquePointer? = nil
-
-        if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {   // 쿼리를 실행할 준비를 하는 단계
-            if sqlite3_step(statement) == SQLITE_DONE { // 쿼리를 실행하는 단계
-                print("Creating table has been succesfully done. db: \(String(describing: self.db))")
-            } else {
-                let errorMessage = String(cString: sqlite3_errmsg(self.db))
-                print("\nsqlte3_step failure while creating table: \(errorMessage)")
-            }
-        } else {
-            let errorMessage = String(cString: sqlite3_errmsg(self.db))
-            print("\nsqlite3_prepare failure while creating table: \(errorMessage)")
-        }
-        
-        sqlite3_finalize(statement) // 메모리에서 sqlite3 할당 해제
     }
 }
-

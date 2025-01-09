@@ -18,4 +18,13 @@ enum Language: String, CaseIterable, Identifiable {
             return "English"
         }
     }
+    
+    var code: String {
+        switch self {
+        case .korean:
+            return "KR"
+        case .english:
+            return "EN"
+        }
+    }
 }
