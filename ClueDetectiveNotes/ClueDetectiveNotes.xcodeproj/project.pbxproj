@@ -48,6 +48,7 @@
 		AC31705F2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */; };
 		AC3170612C01B6E1009E947B /* CancelClickedCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */; };
 		AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */; };
+		AC35DD0C2D114C6D00627C75 /* CellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */; };
 		AC3D734B2C1C19250042C669 /* UseCaseDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */; };
 		AC3D734E2C1C22350042C669 /* SnapshotDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D734D2C1C22350042C669 /* SnapshotDecorator.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
@@ -177,6 +178,7 @@
 		AC31705E2C01B6A8009E947B /* ChooseSubMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubMarkerUseCase.swift; sourceTree = "<group>"; };
 		AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelClickedCellUseCase.swift; sourceTree = "<group>"; };
 		AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubMarkerTypeUseCase.swift; sourceTree = "<group>"; };
+		AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDetailView.swift; sourceTree = "<group>"; };
 		AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseDecorator.swift; sourceTree = "<group>"; };
 		AC3D734D2C1C22350042C669 /* SnapshotDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDecorator.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				AC9B9B1E2CAEA460005054F3 /* MoreMenuView.swift */,
 				ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */,
 				ACA849962CF2357400FBAFA4 /* HelpView.swift */,
+				AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				AC44C5312CC7DAF500EF6C36 /* OptionView.swift in Sources */,
 				44E011BE2C01E22600676359 /* SheetMode.swift in Sources */,
 				AC0695C12CC53460004B915E /* SQLiteHelper.swift in Sources */,
+				AC35DD0C2D114C6D00627C75 /* CellDetailView.swift in Sources */,
 				AC427B372CAD872E0071AB4D /* SelectPublicCardUseCase.swift in Sources */,
 				ACE10A032C48A4CA00CE42DC /* MyCardsSettingView.swift in Sources */,
 			);
