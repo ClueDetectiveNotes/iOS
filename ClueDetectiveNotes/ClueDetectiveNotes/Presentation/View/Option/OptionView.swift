@@ -74,7 +74,6 @@ struct OptionView: View {
                 Section {
                     VStack {
                         ZStack {
-                            //Text(String(format: "%.2f", optionStore.privacyScreenOpacity))
                             Text("내용")
                             Color.gray.opacity(optionStore.privacyScreenOpacity)
                                 .frame(width: 100)
@@ -94,7 +93,7 @@ struct OptionView: View {
                         }
                     }
                 } header: {
-                    Text("사생활 보호 스크린 불투명도")
+                    Text("블라인드 불투명도")
                 }
                 
                 Section {

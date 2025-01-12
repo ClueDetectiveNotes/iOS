@@ -411,7 +411,7 @@ private struct CellView: View {
     private let geometryIntent: GeometryIntent
     private let sheetIntent: SheetIntent
     
-    @State private var isNotDoubleTap: Bool = true
+    @State private var isDoubleTap: Bool = false
     private var cell: PresentationCell
     
     init(
@@ -469,12 +469,12 @@ private struct CellView: View {
                         sheetIntent.longClickCell(cell)
                     }))
                     .simultaneousGesture(TapGesture(count:2).onEnded({ _ in
-                        print("double tap")
-                        isNotDoubleTap = false
+                        isDoubleTap = true
+                        sheetIntent.doubleClickCell(cell)
                     }))
                     .simultaneousGesture(TapGesture().onEnded({ _ in
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                            if isNotDoubleTap {
+                            if !isDoubleTap {
                                 print("tap \(proxy.frame(in: .global).origin)")
                                 let currentCoordinates = proxy.frame(in: .global).origin
                                 
@@ -483,8 +483,6 @@ private struct CellView: View {
                                     currentRowName: cell.rowName
                                 )
                                 sheetIntent.clickCell(cell)
-                            } else {
-                                isNotDoubleTap = true
                             }
                         }
                     }))
@@ -497,6 +495,13 @@ private struct CellView: View {
             if !sheetStore.isHiddenLockImage && cell.isLock {
                 lockInCell
             }
+        }
+        .sheet(isPresented: $isDoubleTap) {//$sheetStore.isShowingCellDetailView) {
+            CellDetailView(
+                sheetStore: sheetStore,
+                sheetIntent: sheetIntent,
+                cell: cell
+            )
         }
     }
     

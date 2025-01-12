@@ -49,6 +49,8 @@
 		AC3170612C01B6E1009E947B /* CancelClickedCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */; };
 		AC3170642C01B78D009E947B /* AddSubMarkerTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */; };
 		AC35DD0C2D114C6D00627C75 /* CellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */; };
+		AC35DD0E2D115F7300627C75 /* RemoveSubMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35DD0D2D115F7300627C75 /* RemoveSubMarkerUseCase.swift */; };
+		AC35DD102D1168BF00627C75 /* DoubleClickCellUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35DD0F2D1168BF00627C75 /* DoubleClickCellUseCase.swift */; };
 		AC3D734B2C1C19250042C669 /* UseCaseDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */; };
 		AC3D734E2C1C22350042C669 /* SnapshotDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D734D2C1C22350042C669 /* SnapshotDecorator.swift */; };
 		AC4121B52BD0138500817B0A /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4121B42BD0138500817B0A /* CellTests.swift */; };
@@ -179,6 +181,8 @@
 		AC3170602C01B6E1009E947B /* CancelClickedCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelClickedCellUseCase.swift; sourceTree = "<group>"; };
 		AC3170632C01B78D009E947B /* AddSubMarkerTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubMarkerTypeUseCase.swift; sourceTree = "<group>"; };
 		AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDetailView.swift; sourceTree = "<group>"; };
+		AC35DD0D2D115F7300627C75 /* RemoveSubMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSubMarkerUseCase.swift; sourceTree = "<group>"; };
+		AC35DD0F2D1168BF00627C75 /* DoubleClickCellUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleClickCellUseCase.swift; sourceTree = "<group>"; };
 		AC3D734A2C1C19250042C669 /* UseCaseDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseDecorator.swift; sourceTree = "<group>"; };
 		AC3D734D2C1C22350042C669 /* SnapshotDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDecorator.swift; sourceTree = "<group>"; };
 		AC4121B42BD0138500817B0A /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
@@ -524,9 +528,11 @@
 				ACBF6B142C5099C30092112E /* InitSheetUseCase.swift */,
 				AC3170532C01B02F009E947B /* ClickCellUseCase.swift */,
 				AC3170552C01B13E009E947B /* LongClickCellUseCase.swift */,
+				AC35DD0F2D1168BF00627C75 /* DoubleClickCellUseCase.swift */,
 				AC3170572C01B4B6009E947B /* ClickColNameUseCase.swift */,
 				AC3170592C01B51D009E947B /* ClickRowNameUseCase.swift */,
 				ACA2ABFC2C199666002386E1 /* SwitchSingleModeUseCase.swift */,
+				AC35DD0D2D115F7300627C75 /* RemoveSubMarkerUseCase.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -863,6 +869,7 @@
 				AC9B9B192CAE34F2005054F3 /* InitGameUseCase.swift in Sources */,
 				444293492BCAC0B2008CAA2C /* Deck.swift in Sources */,
 				444293552BCAD131008CAA2C /* Player.swift in Sources */,
+				AC35DD0E2D115F7300627C75 /* RemoveSubMarkerUseCase.swift in Sources */,
 				AC427B0C2C996CC20071AB4D /* Game.swift in Sources */,
 				ACA849932CF20B4B00FBAFA4 /* AboutUsView.swift in Sources */,
 				AC9B9B1F2CAEA460005054F3 /* MoreMenuView.swift in Sources */,
@@ -896,6 +903,7 @@
 				AC427B282C9ACE1C0071AB4D /* RemoveLastPlayerUseCase.swift in Sources */,
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
 				AC427B222C9A94340071AB4D /* GameSettingIntent.swift in Sources */,
+				AC35DD102D1168BF00627C75 /* DoubleClickCellUseCase.swift in Sources */,
 				AC0EAC002C44E95000521147 /* PublicCardsSettingView.swift in Sources */,
 				AC427B142C99D1440071AB4D /* CardType.swift in Sources */,
 				ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */,
