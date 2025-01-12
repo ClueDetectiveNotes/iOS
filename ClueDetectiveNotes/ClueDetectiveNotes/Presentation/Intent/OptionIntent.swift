@@ -37,6 +37,7 @@ struct OptionIntent {
     
     func clickLanguage(_ language: Language) {
         optionStore.setLanguage(language)
+        optionStore.setMultiLang(SQLiteHelper.shared.getMultiLang(language: language.code))
         self.language = optionStore.language
     }
     

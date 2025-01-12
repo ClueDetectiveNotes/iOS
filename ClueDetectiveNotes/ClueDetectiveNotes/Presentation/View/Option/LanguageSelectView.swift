@@ -39,7 +39,7 @@ struct LanguageSelectView: View {
                     }
                 }
             }
-            .navigationTitle("언어")
+            .navigationTitle(optionStore.multiLang.getString(key: "LANGUAGE"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }
