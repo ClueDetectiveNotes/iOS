@@ -17,7 +17,10 @@ final class SQLiteHelper {
     private(set) var multiLang: [String: String]?
     
     private init() {
-        // App 최초실행 시에만 db 생성
+        // DB 연결
+        self.db = prepareDB()
+        
+        // App 최초실행 시에만 db 데이터 추가
         if UserDefaults.standard.bool(forKey: "launchedBefore") == false {
             initDB()
             UserDefaults.standard.set(true, forKey: "launchedBefore")
@@ -29,9 +32,6 @@ final class SQLiteHelper {
     }
     
     private func initDB() {
-        // DB 생성
-        self.db = createDB()
-        
         // 테이블 생성
         createTables()
         
@@ -48,7 +48,7 @@ final class SQLiteHelper {
         insertButtonMultiLang()
     }
     
-    private func createDB() -> OpaquePointer? {
+    private func prepareDB() -> OpaquePointer? {
         var db: OpaquePointer? = nil
         
         do {
@@ -285,9 +285,9 @@ final class SQLiteHelper {
     }
     
     func getMultiLang(language: String) -> [String: String]? {
-        let query = "SELECT CODE, VALUE FROM MULTI_LANG WHERE LANG = \(language)"
         var stmt:OpaquePointer?
         var result = [String: String]()
+        let query = "SELECT CODE, VALUE FROM MULTI_LANG WHERE LANG = '\(language)'"
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
