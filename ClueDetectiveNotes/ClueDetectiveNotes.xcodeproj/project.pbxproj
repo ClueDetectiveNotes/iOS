@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4424C64E2D33EA42003BB960 /* SafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424C64D2D33EA42003BB960 /* SafeDictionary.swift */; };
 		444293452BCAAF79008CAA2C /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* Sheet.swift */; };
 		444293492BCAC0B2008CAA2C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* Deck.swift */; };
 		4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934C2BCAC6D0008CAA2C /* Cell.swift */; };
@@ -134,6 +135,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4424C64D2D33EA42003BB960 /* SafeDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDictionary.swift; sourceTree = "<group>"; };
 		444293442BCAAF79008CAA2C /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		444293482BCAC0B2008CAA2C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		4442934C2BCAC6D0008CAA2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
@@ -271,6 +273,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4424C64C2D33E9EC003BB960 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4424C64D2D33EA42003BB960 /* SafeDictionary.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		4442933F2BCAAC54008CAA2C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +671,7 @@
 		ACFED8CE2BB90B5E00B1D22B /* ClueDetectiveNotes */ = {
 			isa = PBXGroup;
 			children = (
+				4424C64C2D33E9EC003BB960 /* Utility */,
 				AC0695BC2CC5339F004B915E /* Persistence */,
 				4442933F2BCAAC54008CAA2C /* Presentation */,
 				44DB76362BE9FCD40067A814 /* Application */,
@@ -795,6 +806,7 @@
 				AC55CA7D2C2058980045E78F /* UndoUseCase.swift in Sources */,
 				AC3170512C018C53009E947B /* SettingError.swift in Sources */,
 				AC0823D72CEC92AB002D0173 /* InitSubMarkerTypeUseCase.swift in Sources */,
+				4424C64E2D33EA42003BB960 /* SafeDictionary.swift in Sources */,
 				AC427B0E2C99C2760071AB4D /* CardHolder.swift in Sources */,
 				AC3D734B2C1C19250042C669 /* UseCaseDecorator.swift in Sources */,
 				AC427B2C2C9AD6500071AB4D /* SetPlayerNameUseCase.swift in Sources */,

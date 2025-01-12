@@ -25,7 +25,10 @@ struct HomeView: View {
             VStack(spacing: 0) {
                 Spacer()
                 
-                Text(optionStore.multiLang["ROPE"] ?? "다산바보")
+                Text(optionStore.multiLang.getString(key: "ROPE"))
+                    .frame(height: 30)
+                
+                Text(optionStore.multiLang.getString(key: "ROPE2"))
                     .frame(height: 30)
                 
                 HomeButton(

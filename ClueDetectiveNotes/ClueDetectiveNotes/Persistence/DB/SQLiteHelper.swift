@@ -245,7 +245,7 @@ final class SQLiteHelper {
     
     func getOptions() -> [String: String]? {
         let query = "SELECT CODE, VALUE FROM OPTIONS ORDER BY SEQ"
-        var stmt:OpaquePointer?
+        var stmt: OpaquePointer?
         var result = [String: String]()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
@@ -265,7 +265,7 @@ final class SQLiteHelper {
     
     func getCommonCode() -> [(code: String, part: String, type: String)]? {
         let query = "SELECT CODE, PART, TYPE FROM COMMON_CODE ORDER BY SEQ"
-        var stmt:OpaquePointer?
+        var stmt: OpaquePointer?
         var result = [(code: String, part: String, type: String)]()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
@@ -284,17 +284,17 @@ final class SQLiteHelper {
         return result
     }
     
-    func getMultiLang(language: String) -> [String: String]? {
-        var stmt:OpaquePointer?
-        var result = [String: String]()
+    func getMultiLang(language: String) -> SafeDictionary {
         let query = "SELECT CODE, VALUE FROM MULTI_LANG WHERE LANG = '\(language)'"
+        var stmt: OpaquePointer?
+        var result = SafeDictionary()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
                 let code = String(cString: sqlite3_column_text(stmt, 0))
                 let value = String(cString: sqlite3_column_text(stmt, 1))
                 
-                result[code] = value
+                result.putString(key: code, value: value)
             }
         } else {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
