@@ -25,25 +25,6 @@ struct CellDetailView: View {
     var body: some View {
         List {
             Section {
-                Text(cell.mainMarker?.notation.description ?? "비어있음")
-            } header: {
-                Text("Main Marker")
-            }
-            
-            Section {
-                ForEach(cell.subMarkers, id: \.self) { subMarker in
-                    Text(subMarker.notation)
-                }
-                .onDelete(perform: { indexSet in
-                    sheetIntent.removeSubMarkerInCellDetailView(indexSet)
-                })
-            } header: {
-                Text("Sub Markers")
-            } footer: {
-                Text("서브 마커 삭제가 가능합니다.")
-            }
-            
-            Section {
                 RowContent(
                     title: "Player Name",
                     content: cell.colName.cardHolder.name
@@ -55,14 +36,40 @@ struct CellDetailView: View {
                 )
                 
                 RowContent(
-                    title: "Lock",
-                    content: cell.isLock ? "잠겨있음" : "잠겨있지 않음"
+                    title: "Locked State",
+                    content: (cell.isLock || cell.isInit) ? "잠금" : "잠금 해제"
                 )
-                
-                RowContent(
-                    title: cell.isInit ? "처음 설정시 초기화된 cell로 Main Marker 변경 불가" : "잠겨 있지 않으면 Main Marker 변경 가능",
-                    content: ""
-                )
+            } header: {
+                Text("셀 정보")
+            } footer: {
+                if cell.isInit {
+                    Text("설정시 초기화된 Cell입니다. 잠금을 해제할 수 없습니다.")
+                }
+            }
+            
+            Section {
+                Text(cell.mainMarker?.notation.description ?? "비어 있음")
+            } header: {
+                Text("Main Marker")
+            }
+            
+            Section {
+                if !cell.subMarkers.isEmpty {
+                    ForEach(cell.subMarkers, id: \.self) { subMarker in
+                        Text(subMarker.notation)
+                    }
+                    .onDelete(perform: { indexSet in
+                        sheetIntent.removeSubMarkerInCellDetailView(indexSet)
+                    })
+                } else {
+                    Text("비어 있음")
+                }
+            } header: {
+                Text("Sub Markers")
+            } footer: {
+                if !cell.subMarkers.isEmpty {
+                    Text("스와이프 동작으로 삭제가 가능합니다.")
+                }
             }
         }
     }
