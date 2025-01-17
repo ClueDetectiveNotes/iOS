@@ -25,12 +25,6 @@ struct HomeView: View {
             VStack(spacing: 0) {
                 Spacer()
                 
-                Text(optionStore.multiLang.getString(key: "ROPE"))
-                    .frame(height: 30)
-                
-                Text(optionStore.multiLang.getString(key: "ROPE2"))
-                    .frame(height: 30)
-                
                 HomeButton(
                     title: "시작",
                     PlayerSettingView(
@@ -58,7 +52,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                FooterView(text: "버전 1.0")
+                FooterView(text: "Version 1.0") // 프로젝트 identity의 version정보 가져오는 방법
             }
         }.onAppear {
             optionIntent.loadOption()

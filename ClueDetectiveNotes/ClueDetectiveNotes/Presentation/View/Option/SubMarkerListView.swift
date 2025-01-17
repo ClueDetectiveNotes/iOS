@@ -14,7 +14,7 @@ struct SubMarkerListView: View {
     init(optionIntent: OptionIntent) {
         self.optionIntent = optionIntent
     }
-    
+    // TODO: 서브마커 토클 설명 추가 (사용하는 서브마커 사용하지않는 서브마커)
     var body: some View {
         ZStack {
             VStack {
