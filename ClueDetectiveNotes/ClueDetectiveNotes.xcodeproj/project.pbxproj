@@ -103,6 +103,8 @@
 		ACA849952CF2237F00FBAFA4 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849942CF2237F00FBAFA4 /* FooterView.swift */; };
 		ACA849972CF2357400FBAFA4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA849962CF2357400FBAFA4 /* HelpView.swift */; };
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
+		ACA9111E2D3E973A00FF7CAF /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9111D2D3E973A00FF7CAF /* SafariView.swift */; };
+		ACA911202D3E9BF300FF7CAF /* SafariViewURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9111F2D3E9BF300FF7CAF /* SafariViewURL.swift */; };
 		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
 		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
 		ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */; };
@@ -235,6 +237,8 @@
 		ACA849942CF2237F00FBAFA4 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		ACA849962CF2357400FBAFA4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
+		ACA9111D2D3E973A00FF7CAF /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		ACA9111F2D3E9BF300FF7CAF /* SafariViewURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewURL.swift; sourceTree = "<group>"; };
 		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockCellsUseCase.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				4494A39A2BF33A6500EDA2BA /* PresentationCell.swift */,
 				AC427B042C994ED40071AB4D /* PresentationControlBar.swift */,
 				AC427B1B2C9A766C0071AB4D /* PresentationGameSetting.swift */,
+				ACA9111F2D3E9BF300FF7CAF /* SafariViewURL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				ACA849922CF20B4B00FBAFA4 /* AboutUsView.swift */,
 				ACA849962CF2357400FBAFA4 /* HelpView.swift */,
 				AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */,
+				ACA9111D2D3E973A00FF7CAF /* SafariView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,6 +851,7 @@
 				AC427B182C99D2610071AB4D /* SubMarkerTypes.swift in Sources */,
 				AC9B9B172CAD9340005054F3 /* InitPublicCardsUseCase.swift in Sources */,
 				AC31705D2C01B627009E947B /* ChooseMainMarkerUseCase.swift in Sources */,
+				ACA9111E2D3E973A00FF7CAF /* SafariView.swift in Sources */,
 				ACA849952CF2237F00FBAFA4 /* FooterView.swift in Sources */,
 				ACAEE96A2CD25F8500A2B87D /* OptionIntent.swift in Sources */,
 				4494A39B2BF33A6500EDA2BA /* PresentationCell.swift in Sources */,
@@ -900,6 +907,7 @@
 				AC427B052C994ED40071AB4D /* PresentationControlBar.swift in Sources */,
 				AC55CA7F2C2059640045E78F /* ControlBarIntent.swift in Sources */,
 				AC427B2A2C9AD5C40071AB4D /* AddPlayerUseCase.swift in Sources */,
+				ACA911202D3E9BF300FF7CAF /* SafariViewURL.swift in Sources */,
 				AC427B282C9ACE1C0071AB4D /* RemoveLastPlayerUseCase.swift in Sources */,
 				AC6A83E12C1B28BE0051C0DF /* Snapshot.swift in Sources */,
 				AC427B222C9A94340071AB4D /* GameSettingIntent.swift in Sources */,
