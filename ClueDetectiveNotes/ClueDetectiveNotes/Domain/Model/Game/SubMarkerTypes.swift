@@ -12,10 +12,16 @@ final class SubMarkerTypes {
     
     private var types: [SubMarkerType] = []
     private var defaultSubMarkerTypes = [
+        SubMarkerType(notation: "0", isUse: true, isDefault: true),
         SubMarkerType(notation: "1", isUse: true, isDefault: true),
         SubMarkerType(notation: "2", isUse: true, isDefault: true),
         SubMarkerType(notation: "3", isUse: true, isDefault: true),
-        SubMarkerType(notation: "4", isUse: true, isDefault: true)
+        SubMarkerType(notation: "4", isUse: true, isDefault: true),
+        SubMarkerType(notation: "5", isUse: true, isDefault: true),
+        SubMarkerType(notation: "6", isUse: true, isDefault: true),
+        SubMarkerType(notation: "7", isUse: true, isDefault: true),
+        SubMarkerType(notation: "8", isUse: true, isDefault: true),
+        SubMarkerType(notation: "9", isUse: true, isDefault: true),
     ]
     
     private init() { }
