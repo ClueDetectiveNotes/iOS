@@ -11,7 +11,7 @@ struct CellDetailView2: View {
     @ObservedObject private var sheetStore: SheetStore
     private let sheetIntent: SheetIntent
     private var cell: PresentationCell
-    @State private var isEditing: Bool = true
+    @State private var isEditing: Bool
     
     init(
         sheetStore: SheetStore,
@@ -21,6 +21,7 @@ struct CellDetailView2: View {
         self.sheetStore = sheetStore
         self.sheetIntent = sheetIntent
         self.cell = cell
+        self.isEditing = !(cell.isLock || cell.isInit)
     }
     
     var body: some View {
