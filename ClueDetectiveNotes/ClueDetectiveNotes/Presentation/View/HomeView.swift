@@ -42,7 +42,7 @@ struct HomeView: View {
                 
                 HomeButton(
                     title: "도움말",
-                    HelpView()
+                    SafariView(url: URL(string: SafariViewURL.helpView.url)!)
                 )
                 
                 HomeButton(
