@@ -33,6 +33,7 @@ struct CellDetailView2: View {
             HStack {
                 Text("Main Marker")
                     .font(.title3)
+                    .bold()
                     .padding(.bottom, 16)
                 Spacer()
             }
@@ -55,6 +56,7 @@ struct CellDetailView2: View {
             HStack {
                 Text("Sub Markers")
                     .font(.title3)
+                    .bold()
                     .padding(.bottom, 16)
                 Spacer()
             }
@@ -125,7 +127,7 @@ private struct InfoView: View {
                 .offset(y: 3)
                 .frame(width: 20, height: 20, alignment: .center)
             Text(text)
-                .font(.title2)
+                .font(.headline)
                 .frame(alignment: .center)
         }
         .foregroundColor(.gray)
@@ -140,7 +142,7 @@ struct MarkerView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Text(marker.description)
-                .font(.headline)
+                .font(.body)
                 .padding(.vertical, 8) // 상하 여백 설정
                 .padding(.horizontal, 16) // 좌우 여백 설정
                 .background(Color(red: 224/255, green: 224/255, blue: 224/255).opacity(0.8)) // 반투명 배경색
