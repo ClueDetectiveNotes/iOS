@@ -16,6 +16,7 @@ struct SheetIntent {
     private let clickColNameUseCase: AnyUseCase<ColName>
     private let clickRowNameUseCase: AnyUseCase<RowName>
     private let removeSubMarkerUseCase: AnyUseCase<IndexSet>
+    private let removeMarkerUseCase: AnyUseCase<any Markable>
     
     init(
         sheetStore: SheetStore,
@@ -25,7 +26,8 @@ struct SheetIntent {
         doubleClickCellUseCase: AnyUseCase<PresentationCell> = AnyUseCase(SnapshotDecorator(DoubleClickCellUseCase())),
         clickColNameUseCase: AnyUseCase<ColName> = AnyUseCase(SnapshotDecorator(ClickColNameUseCase())),
         clickRowNameUseCase: AnyUseCase<RowName> = AnyUseCase(SnapshotDecorator(ClickRowNameUseCase())),
-        removeSubMarkerUseCase: AnyUseCase<IndexSet> = AnyUseCase(SnapshotDecorator(RemoveSubMarkerUseCase()))
+        removeSubMarkerUseCase: AnyUseCase<IndexSet> = AnyUseCase(SnapshotDecorator(RemoveSubMarkerUseCase())),
+        removeMarkerUseCase: AnyUseCase<any Markable> = AnyUseCase(SnapshotDecorator(RemoveMarkerUseCase()))
     ) {
         self.sheetStore = sheetStore
         self.initSheetUseCase = initSheetUseCase
@@ -35,6 +37,7 @@ struct SheetIntent {
         self.clickColNameUseCase = clickColNameUseCase
         self.clickRowNameUseCase = clickRowNameUseCase
         self.removeSubMarkerUseCase = removeSubMarkerUseCase
+        self.removeMarkerUseCase = removeMarkerUseCase
     }
     
     func initSheet() {
@@ -100,6 +103,17 @@ struct SheetIntent {
     func removeSubMarkerInCellDetailView(_ indexSet: IndexSet) {
         do {
             let presentationSheet = try removeSubMarkerUseCase.execute(indexSet)
+            
+            updateSheetStore(presentationSheet: presentationSheet)
+        } catch {
+            
+        }
+    }
+    
+    func removeMarkerInCellDetailView(_ marker: any Markable) {
+        do {
+            
+            let presentationSheet = try removeMarkerUseCase.execute(marker)
             
             updateSheetStore(presentationSheet: presentationSheet)
         } catch {

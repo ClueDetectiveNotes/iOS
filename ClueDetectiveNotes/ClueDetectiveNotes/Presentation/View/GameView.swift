@@ -497,11 +497,12 @@ private struct CellView: View {
             }
         }
         .sheet(isPresented: $isDoubleTap) {//$sheetStore.isShowingCellDetailView) {
-            CellDetailView(
+            CellDetailView2(
                 sheetStore: sheetStore,
                 sheetIntent: sheetIntent,
                 cell: cell
             )
+            .presentationDetents([.fraction(0.5)])
         }
     }
     

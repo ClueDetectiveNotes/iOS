@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4424C64E2D33EA42003BB960 /* SafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424C64D2D33EA42003BB960 /* SafeDictionary.swift */; };
+		4424C6512D3F73D7003BB960 /* CellDetailView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424C6502D3F73D7003BB960 /* CellDetailView2.swift */; };
 		444293452BCAAF79008CAA2C /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293442BCAAF79008CAA2C /* Sheet.swift */; };
 		444293492BCAC0B2008CAA2C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444293482BCAC0B2008CAA2C /* Deck.swift */; };
 		4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442934C2BCAC6D0008CAA2C /* Cell.swift */; };
@@ -142,6 +143,7 @@
 
 /* Begin PBXFileReference section */
 		4424C64D2D33EA42003BB960 /* SafeDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDictionary.swift; sourceTree = "<group>"; };
+		4424C6502D3F73D7003BB960 /* CellDetailView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDetailView2.swift; sourceTree = "<group>"; };
 		444293442BCAAF79008CAA2C /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		444293482BCAC0B2008CAA2C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		4442934C2BCAC6D0008CAA2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				ACA849962CF2357400FBAFA4 /* HelpView.swift */,
 				AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */,
 				ACA9111D2D3E973A00FF7CAF /* SafariView.swift */,
+				4424C6502D3F73D7003BB960 /* CellDetailView2.swift */,
 				ACA911212D40838F00FF7CAF /* WebView.swift */,
 			);
 			path = View;
@@ -921,6 +924,7 @@
 				ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */,
 				AC427B122C99C32E0071AB4D /* CardHolders.swift in Sources */,
 				ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */,
+				4424C6512D3F73D7003BB960 /* CellDetailView2.swift in Sources */,
 				4442934D2BCAC6D0008CAA2C /* Cell.swift in Sources */,
 				AC0823DF2CEC94F5002D0173 /* SubMarkerListView.swift in Sources */,
 				AC427B162C99D2460071AB4D /* MainMarkerType.swift in Sources */,

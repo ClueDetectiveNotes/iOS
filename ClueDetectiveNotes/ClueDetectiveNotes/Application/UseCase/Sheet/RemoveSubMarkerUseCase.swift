@@ -32,3 +32,30 @@ extension RemoveSubMarkerUseCase {
         return ConvertManager.getImmutableSheet(sheet)
     }
 }
+
+struct RemoveMarkerUseCase: UseCase {
+    private var sheet: Sheet
+    
+    init(sheet: Sheet = GameSetter.shared.getSheet()) {
+        self.sheet = sheet
+    }
+    
+    func execute(_ marker: any Markable) throws -> PresentationSheet {
+        if let cell = sheet.getSelectedCells().first {
+            if let _ = marker as? MainMarker {
+                cell.removeMainMarker()
+            } else if let marker = marker as? SubMarker {
+                cell.removeSubMarker(marker)
+            }
+        }
+        
+        return createPresentationSheet()
+    }
+}
+
+// MARK: - Private
+extension RemoveMarkerUseCase {
+    private func createPresentationSheet() -> PresentationSheet {
+        return ConvertManager.getImmutableSheet(sheet)
+    }
+}
