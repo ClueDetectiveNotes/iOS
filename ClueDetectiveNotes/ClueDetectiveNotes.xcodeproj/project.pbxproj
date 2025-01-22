@@ -105,6 +105,7 @@
 		ACA8675C2CCD422F006C22F6 /* ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */; };
 		ACA9111E2D3E973A00FF7CAF /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9111D2D3E973A00FF7CAF /* SafariView.swift */; };
 		ACA911202D3E9BF300FF7CAF /* SafariViewURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9111F2D3E9BF300FF7CAF /* SafariViewURL.swift */; };
+		ACA911222D40838F00FF7CAF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA911212D40838F00FF7CAF /* WebView.swift */; };
 		ACAEE95C2CCDED1700A2B87D /* SkipNextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */; };
 		ACAEE95E2CCDF54D00A2B87D /* SkipPreviousUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */; };
 		ACAEE9602CCE061E00A2B87D /* LockCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */; };
@@ -239,6 +240,7 @@
 		ACA8675B2CCD422F006C22F6 /* ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeObserver.swift; sourceTree = "<group>"; };
 		ACA9111D2D3E973A00FF7CAF /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		ACA9111F2D3E9BF300FF7CAF /* SafariViewURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewURL.swift; sourceTree = "<group>"; };
+		ACA911212D40838F00FF7CAF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		ACAEE95B2CCDED1700A2B87D /* SkipNextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipNextUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95D2CCDF54D00A2B87D /* SkipPreviousUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipPreviousUseCase.swift; sourceTree = "<group>"; };
 		ACAEE95F2CCE061E00A2B87D /* LockCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockCellsUseCase.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				ACA849962CF2357400FBAFA4 /* HelpView.swift */,
 				AC35DD0B2D114C6D00627C75 /* CellDetailView.swift */,
 				ACA9111D2D3E973A00FF7CAF /* SafariView.swift */,
+				ACA911212D40838F00FF7CAF /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				ACAEE96C2CD26E0B00A2B87D /* ChooseMainMarkerInAutoAnswerModeUseCase.swift in Sources */,
 				ACCBDAA12CD32C830060AA8E /* ResetGameUseCase.swift in Sources */,
 				ACCBDA9F2CD321E90060AA8E /* HomeView.swift in Sources */,
+				ACA911222D40838F00FF7CAF /* WebView.swift in Sources */,
 				AC0823DD2CEC94B6002D0173 /* ScreenModeSelectView.swift in Sources */,
 				AC31705A2C01B51D009E947B /* ClickRowNameUseCase.swift in Sources */,
 				AC9F1FFD2BCD1AB8008283DF /* SheetError.swift in Sources */,
