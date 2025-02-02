@@ -40,4 +40,8 @@ struct PresentationSheet {
     func isInferenceMode() -> Bool {
         return mode == .inference
     }
+    
+    func isCrossInAnswer(rowName: RowName) -> Bool {
+        return cells.filter({ $0.rowName == rowName && $0.isAnswer()}).first!.mainMarker?.notation == .cross
+    }
 }
