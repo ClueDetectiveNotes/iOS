@@ -90,15 +90,11 @@ final class Cell {
     }
     
     func setSubMarker(_ marker: SubMarker) {
-        if !isLock && !isInit {
-            subMarkers.append(marker)
-        }
+        subMarkers.append(marker)
     }
     
     func setSubMarkers(_ markers: [SubMarker]) {
-        if !isLock && !isInit {
-            subMarkers = markers
-        }
+        subMarkers = markers
     }
     
     func removeMainMarker() {
@@ -108,17 +104,13 @@ final class Cell {
     }
     
     func removeSubMarker(_ marker: SubMarker) {
-        if !isLock && !isInit {
-            if let index = subMarkers.firstIndex(where: { $0 == marker }) {
-                subMarkers.remove(at: index)
-            }
+        if let index = subMarkers.firstIndex(where: { $0 == marker }) {
+            subMarkers.remove(at: index)
         }
     }
     
     func removeSubMarkers() {
-        if !isLock && !isInit {
-            subMarkers.removeAll()
-        }
+        subMarkers.removeAll()
     }
     
     func setIsLock(_ isLock: Bool) {
