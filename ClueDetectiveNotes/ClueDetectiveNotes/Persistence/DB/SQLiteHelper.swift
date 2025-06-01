@@ -12,9 +12,9 @@ final class SQLiteHelper {
     static let shared = SQLiteHelper()
     var db: OpaquePointer?
     let dbName = "clueDetectiveNotes.sqlite"
-    private(set) var options: SafeDictionary
-    private(set) var commonCode: SafeDictionary
-    private(set) var multiLang: SafeDictionary
+    private(set) var options: SafeDictionary = SafeDictionary()
+    private(set) var commonCode: SafeDictionary = SafeDictionary()
+    private(set) var multiLang: SafeDictionary = SafeDictionary()
     
     private init() {
         // DB 연결
