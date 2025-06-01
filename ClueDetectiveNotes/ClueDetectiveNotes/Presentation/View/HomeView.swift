@@ -26,7 +26,7 @@ struct HomeView: View {
                 Spacer()
                 
                 HomeButton(
-                    title: SQLiteHelper.shared.multiLang.getString(key: "START"),
+                    title: optionStore.multiLang.getString(key: "START"),
                     PlayerSettingView(
                         gameSettingIntent: gameSettingIntent,
                         optionIntent: optionIntent
@@ -34,20 +34,20 @@ struct HomeView: View {
                 )
                 
                 HomeButton(
-                    title: "설정",
+                    title: optionStore.multiLang.getString(key: "SETTING"),
                     OptionView(
                         optionIntent: optionIntent
                     )
                 )
                 
                 HomeButton(
-                    title: "도움말",
+                    title: optionStore.multiLang.getString(key: "HELP"),
                     //SafariView(url: URL(string: WebPages.help.url)!)
                     WebView(url: WebPages.help.url)
                 )
                 
                 HomeButton(
-                    title: "About Us",
+                    title: optionStore.multiLang.getString(key: "DEVELOPERS"),
                     AboutUsView()
                 )
                 

@@ -19,12 +19,15 @@ final class SQLiteHelper {
     private init() {
         // DB 연결
         self.db = prepareDB()
+
+        // TEST용
+        initDB()
         
         // App 최초실행 시에만 db 데이터 추가
-        if UserDefaults.standard.bool(forKey: "launchedBefore") == false {
-            initDB()
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-        }
+//        if UserDefaults.standard.bool(forKey: "launchedBefore") == false {
+//            initDB()
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//        }
     }
     
     deinit {
@@ -223,6 +226,8 @@ final class SQLiteHelper {
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('CANCEL','BTN','KR','취소');")
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('HOME','BTN','KR','홈');")
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('SETTING','BTN','KR','설정');")
+        execSQL(query: "INSERT INTO MULTI_LANG VALUES ('HELP','BTN','KR','도움말');")
+        execSQL(query: "INSERT INTO MULTI_LANG VALUES ('DEVELOPERS','BTN','KR','개발자들');")
 
         //영어
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('START','BTN','EN','Start');")
@@ -233,6 +238,8 @@ final class SQLiteHelper {
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('CANCEL','BTN','EN','Cancel');")
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('HOME','BTN','EN','Home');")
         execSQL(query: "INSERT INTO MULTI_LANG VALUES ('SETTING','BTN','EN','Setting');")
+        execSQL(query: "INSERT INTO MULTI_LANG VALUES ('HELP','BTN','EN','Help');")
+        execSQL(query: "INSERT INTO MULTI_LANG VALUES ('DEVELOPERS','BTN','EN','About Us');")
     }
 
     private func execSQL(query: String) {
@@ -287,7 +294,7 @@ final class SQLiteHelper {
     func getMultiLang(language: String) -> SafeDictionary {
         let query = "SELECT CODE, VALUE FROM MULTI_LANG WHERE LANG = '\(language)'"
         var stmt: OpaquePointer?
-        var result = SafeDictionary()
+        let result = SafeDictionary()
         
         if sqlite3_prepare(db, query, -1, &stmt, nil) == SQLITE_OK {
             while(sqlite3_step(stmt) == SQLITE_ROW){
