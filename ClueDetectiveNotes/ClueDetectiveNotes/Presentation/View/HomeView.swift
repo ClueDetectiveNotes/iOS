@@ -26,7 +26,7 @@ struct HomeView: View {
                 Spacer()
                 
                 HomeButton(
-                    title: "시작",
+                    title: SQLiteHelper.shared.multiLang.getString(key: "START"),
                     PlayerSettingView(
                         gameSettingIntent: gameSettingIntent,
                         optionIntent: optionIntent

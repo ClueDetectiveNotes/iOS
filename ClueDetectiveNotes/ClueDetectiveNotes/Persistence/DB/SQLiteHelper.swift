@@ -12,9 +12,9 @@ final class SQLiteHelper {
     static let shared = SQLiteHelper()
     var db: OpaquePointer?
     let dbName = "clueDetectiveNotes.sqlite"
-    private(set) var options: [String: String]?
-    private(set) var commonCode: [String: String]?
-    private(set) var multiLang: [String: String]?
+    private(set) var options: SafeDictionary
+    private(set) var commonCode: SafeDictionary
+    private(set) var multiLang: SafeDictionary
     
     private init() {
         // DB 연결
@@ -29,23 +29,6 @@ final class SQLiteHelper {
     
     deinit {
         sqlite3_close(db)
-    }
-    
-    private func initDB() {
-        // 테이블 생성
-        createTables()
-        
-        // 옵션 테이블 생성 및 데이터 삽입
-        insertOptions()
-        
-        // 공통 코드 테이블 생성 및 데이터 삽입
-        insertCommonCode()
-        
-        // 다국어 테이블 생성 및 데이터 삽입
-        insertOptionsMultiLang()
-        insertCardMultiLang()
-        insertMessageMultiLang()
-        insertButtonMultiLang()
     }
     
     private func prepareDB() -> OpaquePointer? {
@@ -67,6 +50,23 @@ final class SQLiteHelper {
         }
         
         return nil
+    }
+    
+    private func initDB() {
+        // 테이블 생성
+        createTables()
+        
+        // 옵션 테이블 생성 및 데이터 삽입
+        insertOptions()
+        
+        // 공통 코드 테이블 생성 및 데이터 삽입
+        insertCommonCode()
+        
+        // 다국어 테이블 생성 및 데이터 삽입
+        insertOptionsMultiLang()
+        insertCardMultiLang()
+        insertMessageMultiLang()
+        insertButtonMultiLang()
     }
     
     private func createTables() {
