@@ -123,6 +123,7 @@ private struct PlayerRowView: View {
 }
 
 private struct PlayerNameView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
     private let sheetIntent: SheetIntent
@@ -145,7 +146,11 @@ private struct PlayerNameView: View {
                 sheetIntent.clickColName(colName)
             },
             label: {
-                Text(colName.cardHolder.name)
+                Text(
+                    colName.cardHolder.name == "ANSWER"
+                    ? optionStore.multiLang.getString(key: "ANSWER")
+                    : colName.cardHolder.name
+                )
                     .foregroundStyle(Color("black1"))
                     .minimumScaleFactor(0.2)
                     .padding(7)
@@ -206,6 +211,7 @@ private struct CardTypeView: View {
 }
 
 private struct CardNameView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var geometryStore: GeometryStore
     @ObservedObject private var sheetStore: SheetStore
     
@@ -221,7 +227,7 @@ private struct CardNameView: View {
     
     var body: some View {
         HStack(spacing: 2) {
-            Text(cardType.description)
+            Text(optionStore.multiLang.getString(key: cardType.description))
                 .minimumScaleFactor(0.1)
                 .bold()
                 .padding(8)
@@ -258,6 +264,7 @@ private struct CardNameView: View {
 }
 
 private struct CardRowView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var geometryStore: GeometryStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @ObservedObject private var sheetStore: SheetStore
@@ -285,7 +292,7 @@ private struct CardRowView: View {
                     sheetIntent.clickRowName(rowName)
                 },
                 label: {
-                    Text(rowName.card.name)
+                    Text(optionStore.multiLang.getString(key: rowName.card.name))
                         .padding(8)
                         .foregroundStyle(Color("black1"))
                         .lineLimit(1)

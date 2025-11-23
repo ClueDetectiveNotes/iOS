@@ -15,9 +15,9 @@ final class CardHolders {
         players: [Player]
     ) {
         self.players = players
-        self.answer = CardHolder(name: "정답")
-        self.publicOne = CardHolder(name: "공용")
-        self.unknownOne = CardHolder(name: "미확인")
+        self.answer = CardHolder(name: "ANSWER")
+        self.publicOne = CardHolder(name: "PUBLIC")
+        self.unknownOne = CardHolder(name: "UNKNOWN")
     }
     
     func getPlayers() -> [Player] {

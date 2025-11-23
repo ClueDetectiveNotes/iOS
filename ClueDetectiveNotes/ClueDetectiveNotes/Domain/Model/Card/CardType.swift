@@ -14,13 +14,13 @@ enum CardType: CustomStringConvertible {
     var description: String {
         switch self {
         case .suspect:
-            return "용의자"
+            return "SUSPECT"
         case .weapon:
-            return "무기"
+            return "WEAPON"
         case .room:
-            return "장소"
+            return "CRIME_SCENE"
         case .none:
-            return "빈값"
+            return "NONE"
         }
     }
 }

@@ -163,6 +163,7 @@ private struct GridSelectedCardsView: View {
 }
 
 private struct SelectedCardView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let card: Card
     
@@ -186,7 +187,11 @@ private struct SelectedCardView: View {
                 gameSettingIntent.selectMyCard(card)
             }
             
-            Text(card.name)
+            Text(
+                card.type != .none
+                ? optionStore.multiLang.getString(key: card.name)
+                : card.name
+            )
                 .foregroundStyle(Color("black1"))
                 .frame(height: 20)
         }
@@ -226,6 +231,7 @@ private struct ClueCardSetView: View {
 }
 
 private struct CardTypeHScrollView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     let cardType: CardType
@@ -240,7 +246,7 @@ private struct CardTypeHScrollView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(cardType.description)
+            Text(optionStore.multiLang.getString(key: cardType.description))
                 .bold()
                 .foregroundStyle(Color("black1"))
                 .padding(.vertical, 8)
@@ -263,7 +269,7 @@ private struct CardTypeHScrollView: View {
                                 }
                                 .disabled(gameSettingStore.gameSetting.selectedPublicCards.contains(card))
                             
-                            Text(card.name)
+                            Text(optionStore.multiLang.getString(key: card.name))
                                 .foregroundStyle(Color("black1"))
                         }
                     }

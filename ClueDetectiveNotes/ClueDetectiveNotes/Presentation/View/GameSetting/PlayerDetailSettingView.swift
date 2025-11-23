@@ -89,6 +89,7 @@ private struct PlayerNameListView: View {
 }
 
 private struct NextButtonView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -115,7 +116,7 @@ private struct NextButtonView: View {
                 )
             }
         } label: {
-            Text("다음")
+            Text(optionStore.multiLang.getString(key: "NEXT"))
                 .frame(maxWidth: 250)
                 .frame(height: 40)
                 .foregroundStyle(Color("button_white"))
