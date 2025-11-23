@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayerSettingView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     @StateObject private var keyboardObserver = KeyboardObserver()
     private let gameSettingIntent: GameSettingIntent
@@ -25,8 +26,8 @@ struct PlayerSettingView: View {
         NavigationStack {
             VStack {
                 TitleView(
-                    title: "플레이어 설정",
-                    description: "게임에 참여하는 인원 수와 이름을 설정해주세요."
+                    title: optionStore.multiLang.getString(key: "PS_TITLE"),//"플레이어 설정",
+                    description: optionStore.multiLang.getString(key: "PS_DESC")//"게임에 참여하는 인원 수와 이름을 설정해주세요."
                 )
                 
                 Spacer()
@@ -47,7 +48,7 @@ struct PlayerSettingView: View {
                 
                 if !keyboardObserver.isKeyboardVisible {
                     if gameSettingStore.isDisablePlayerSettingNextButton {
-                        Text("이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
+                        Text(optionStore.multiLang.getString(key: "PS_COND"))//"이름이 입력되지 않았거나, 중복된 이름이 있습니다.")
                             .foregroundStyle(Color("subText"))
                             .ignoresSafeArea(.keyboard)
                     }
@@ -169,6 +170,7 @@ private struct NameField: View {
 }
 
 private struct NextButtonView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -188,7 +190,7 @@ private struct NextButtonView: View {
                 optionIntent: optionIntent
             )
         } label: {
-            Text("다음")
+            Text(optionStore.multiLang.getString(key: "NEXT"))//"다음")
             .frame(maxWidth: 250)
             .frame(height: 40)
             .foregroundStyle(Color("button_white"))

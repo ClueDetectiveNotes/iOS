@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PublicCardsSettingView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -24,8 +25,8 @@ struct PublicCardsSettingView: View {
         NavigationStack {
             VStack {
                 TitleView(
-                    title: "공개 카드 설정",
-                    description: "같은 장수가 되도록 나누고 남은 공개 카드를 설정해주세요."
+                    title: optionStore.multiLang.getString(key: "PCS_TITLE"), //"공개 카드 설정",
+                    description: optionStore.multiLang.getString(key: "PCS_DESC")//"같은 장수가 되도록 나누고 남은 공개 카드를 설정해주세요."
                 )
                 
                 SelectedCardsView(
@@ -186,6 +187,7 @@ private struct CardImage: View {
 }
 
 private struct NextButtonView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
     
@@ -204,7 +206,7 @@ private struct NextButtonView: View {
                 optionIntent: optionIntent
             )
         } label: {
-            Text("다음")
+            Text(optionStore.multiLang.getString(key: "NEXT"))//"다음")
                 .foregroundStyle(Color("button_white"))
                 .frame(maxWidth: 250)
                 .frame(height: 40)

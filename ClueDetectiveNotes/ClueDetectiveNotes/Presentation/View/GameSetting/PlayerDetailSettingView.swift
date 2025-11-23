@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayerDetailSettingView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -24,8 +25,8 @@ struct PlayerDetailSettingView: View {
         NavigationStack {
             VStack {
                 TitleView(
-                    title: "플레이어 설정",
-                    description: "자신을 선택하고, 플레이 순서에 맞게 정렬해주세요."
+                    title: optionStore.multiLang.getString(key: "PDS_TITLE"),//"플레이어 설정",
+                    description: optionStore.multiLang.getString(key: "PDS_DESC")//"자신을 선택하고, 플레이 순서에 맞게 정렬해주세요."
                 )
                 
                 Spacer()

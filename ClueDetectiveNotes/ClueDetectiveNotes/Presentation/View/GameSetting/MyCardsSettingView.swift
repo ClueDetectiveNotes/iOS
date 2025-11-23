@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyCardsSettingView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var gameSettingStore: GameSettingStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -24,8 +25,8 @@ struct MyCardsSettingView: View {
         NavigationStack {
             VStack {
                 TitleView(
-                    title: "개인 카드 설정",
-                    description: "개인 카드를 설정해주세요."
+                    title: optionStore.multiLang.getString(key: "HDS_TITLE"),//"개인 카드 설정",
+                    description: optionStore.multiLang.getString(key: "HDS_DESC")//"개인 카드를 설정해주세요."
                 )
                 
                 if gameSettingStore.gameSetting.myCardsCount == 6 {
@@ -289,6 +290,7 @@ private struct CardImage: View {
 }
 
 private struct NextButtonView: View {
+    @EnvironmentObject private var optionStore: OptionStore
     @EnvironmentObject private var geometryStore: GeometryStore
     private let gameSettingIntent: GameSettingIntent
     private let optionIntent: OptionIntent
@@ -310,7 +312,7 @@ private struct NextButtonView: View {
             )
             .navigationBarBackButtonHidden()
         } label: {
-            Text("다음")
+            Text(optionStore.multiLang.getString(key: "NEXT"))//"다음")
             .frame(maxWidth: 250)
             .frame(height: 40)
             .foregroundStyle(Color("button_white"))
